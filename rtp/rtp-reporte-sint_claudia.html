@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RtP — Entrevista y Análisis de Usuario Sintético</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-blue:#5454e9; --c-blue-dark:#3a3acc; --c-blue-tint:#eeeeff;
+      --c-green:#4cb979; --c-green-tint:#eaf7ef;
+      --c-orange:#e9683b; --c-orange-tint:#fdf0ea;
+      --c-purple:#865cf0; --c-purple-tint:#f3effe;
+      --c-yellow:#e4eb60;
+      --c-gray0:#f4f4f6; --c-gray1:#88898c; --c-gray2:#cecfd4;
+      --c-black:#1a1a1a; --c-white:#ffffff;
+      --space-xs:8px; --space-sm:16px; --space-md:24px; --space-lg:40px; --space-xl:60px;
+      --font:'Plus Jakarta Sans',sans-serif;
+      --radius:12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:#f0f0f4;color:var(--c-black);line-height:1.6;}
+
+    /* ─── REPORTE ─── */
+    .reporte{max-width:900px;margin:0 auto;background:var(--c-white);box-shadow:0 4px 40px rgba(0,0,0,.1);}
+    .reporte-body{display:flex;flex-direction:column;gap:var(--space-xl);padding:var(--space-xl) var(--space-lg);}
+
+    /* ─── HEADER ─── */
+    .report-header{background:linear-gradient(135deg,var(--c-blue-dark) 0%,var(--c-blue) 60%,#7c7cf5 100%);color:#fff;padding:var(--space-lg);}
+    .report-header__top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-lg);}
+    .report-header__logo img{height:30px;}
+    .report-header__meta{text-align:right;}
+    .report-header__meta-label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.6;}
+    .report-header__meta-value{display:block;font-size:13px;color:rgba(255,255,255,.85);}
+    .report-header__eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--c-yellow);margin-bottom:10px;}
+    .report-header__title{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.05;margin-bottom:10px;}
+    .report-header__subtitle{font-size:16px;color:rgba(255,255,255,.96);text-shadow:0 1px 2px rgba(0,0,0,.22);max-width:560px;line-height:1.5;}
+    .report-header__kpi-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.15);border-radius:var(--radius);overflow:hidden;margin-top:var(--space-lg);}
+    .report-header__kpi-item{background:rgba(255,255,255,.08);padding:16px 20px;}
+    .report-header__kpi-value{display:block;font-size:26px;font-weight:800;}
+    .report-header__kpi-label{display:block;font-size:11px;opacity:.65;margin-top:2px;font-weight:500;letter-spacing:.05em;}
+
+    /* ─── SECTION ─── */
+    .section{display:flex;flex-direction:column;gap:20px;}
+    .section--tinted{background:var(--c-gray0);border-radius:var(--radius);padding:var(--space-md);}
+    .section--accented{border-left:4px solid var(--c-blue);padding-left:var(--space-md);}
+    .section-title{padding-bottom:16px;border-bottom:2px solid var(--c-blue);margin-bottom:4px;}
+    .section-title__label{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--c-blue);margin-bottom:6px;}
+    .section-title__heading{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:var(--c-black);}
+    .section-title__desc{font-size:14px;color:var(--c-gray1);margin-top:6px;line-height:1.5;}
+
+    /* ─── GRIDS ─── */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md);}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-sm);}
+    .grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:var(--space-md);}
+    @media(max-width:640px){.grid-2,.grid-3,.grid-4,.grid-2-1{grid-template-columns:1fr;}}
+
+    /* ─── KPI CARDS ─── */
+    .kpi-card{background:#fff;border-radius:var(--radius);padding:var(--space-md);display:flex;flex-direction:column;gap:6px;border:1px solid var(--c-gray2);}
+    .kpi-card--blue{border-left:4px solid var(--c-blue);}
+    .kpi-card--green{border-left:4px solid var(--c-green);}
+    .kpi-card--orange{border-left:4px solid var(--c-orange);}
+    .kpi-card--purple{border-left:4px solid var(--c-purple);}
+    .kpi-card--yellow{border-left:4px solid var(--c-yellow);}
+    .kpi-card--tint-blue{background:var(--c-blue-tint);border-color:transparent;}
+    .kpi-card--tint-green{background:var(--c-green-tint);border-color:transparent;}
+    .kpi-card--tint-purple{background:var(--c-purple-tint);border-color:transparent;}
+    .kpi-card--tint-orange{background:var(--c-orange-tint);border-color:transparent;}
+    .kpi-card--solid-blue{background:var(--c-blue);color:#fff;border-color:transparent;}
+    .kpi-card--solid-green{background:var(--c-green);color:#fff;border-color:transparent;}
+    .kpi-card--solid-orange{background:var(--c-orange);color:#fff;border-color:transparent;}
+    .kpi-card__label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-gray1);}
+    .kpi-card--solid-blue .kpi-card__label,.kpi-card--solid-green .kpi-card__label,.kpi-card--solid-orange .kpi-card__label{color:rgba(255,255,255,.75);}
+    .kpi-card__value{font-size:28px;font-weight:800;color:var(--c-blue);line-height:1;}
+    .kpi-card--solid-blue .kpi-card__value,.kpi-card--solid-green .kpi-card__value,.kpi-card--solid-orange .kpi-card__value{color:#fff;}
+    .kpi-card__unit{font-size:16px;font-weight:600;}
+    .kpi-card__delta{font-size:13px;font-weight:600;}
+    .kpi-card__delta--up{color:var(--c-green);}
+    .kpi-card__delta--down{color:var(--c-orange);}
+    .kpi-card__delta--flat{color:var(--c-gray1);}
+    .kpi-card__desc{font-size:12px;color:var(--c-gray1);line-height:1.4;}
+
+    /* ─── HIGHLIGHT BOXES ─── */
+    .highlight-box{background:var(--c-blue);color:#fff;border-radius:var(--radius);padding:var(--space-md) var(--space-md);}
+    .highlight-box--green{background:var(--c-green);}
+    .highlight-box--orange{background:var(--c-orange);}
+    .highlight-box--purple{background:var(--c-purple);}
+    .highlight-box--yellow{background:var(--c-yellow);color:var(--c-black);}
+    .highlight-box__label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:6px;}
+    .highlight-box__texto{display:block;font-size:15px;font-weight:600;line-height:1.4;}
+    .highlight-box--yellow .highlight-box__label,.highlight-box--yellow .highlight-box__texto{color:var(--c-black);}
+
+    /* ─── CITA ─── */
+    .cita{background:var(--c-blue-tint);border-left:4px solid var(--c-blue);border-radius:0 var(--radius) var(--radius) 0;padding:var(--space-md) var(--space-lg);}
+    .cita__texto{display:block;font-size:18px;font-weight:300;font-style:italic;color:var(--c-black);line-height:1.5;margin-bottom:10px;}
+    .cita__fuente{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-blue);}
+
+    /* ─── ALERTAS ─── */
+    .alerta{border-radius:var(--radius);padding:var(--space-sm) var(--space-md);display:flex;flex-direction:column;gap:4px;}
+    .alerta--info{background:var(--c-blue-tint);border-left:4px solid var(--c-blue);}
+    .alerta--ok{background:var(--c-green-tint);border-left:4px solid var(--c-green);}
+    .alerta--advertencia{background:var(--c-orange-tint);border-left:4px solid var(--c-orange);}
+    .alerta--critica{background:#ffeaea;border-left:4px solid #e84040;}
+    .alerta__titulo{font-size:13px;font-weight:700;color:var(--c-black);}
+    .alerta__texto{font-size:13px;color:var(--c-gray1);line-height:1.5;}
+
+    /* ─── LISTAS ─── */
+    .lista-icesi{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .lista-icesi li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;}
+    .lista-icesi li::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--c-blue);flex-shrink:0;margin-top:6px;}
+    .lista-numerada{list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:12px;}
+    .lista-numerada li{counter-increment:n;display:flex;gap:14px;align-items:flex-start;font-size:14px;line-height:1.5;}
+    .lista-numerada li::before{content:counter(n);min-width:26px;height:26px;border-radius:50%;background:var(--c-blue);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .lista-hallazgos{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .lista-hallazgos li{padding:10px 14px;border-radius:8px;font-size:14px;line-height:1.4;display:flex;gap:10px;align-items:flex-start;}
+    .lista-hallazgos li::before{font-size:16px;flex-shrink:0;}
+    .lista-hallazgos li.ok{background:var(--c-green-tint);}
+    .lista-hallazgos li.ok::before{content:'✓';color:var(--c-green);}
+    .lista-hallazgos li.alerta{background:var(--c-orange-tint);}
+    .lista-hallazgos li.alerta{flex-direction:row;}
+    .lista-hallazgos li.alerta::before{content:'⚠';color:var(--c-orange);}
+    .lista-hallazgos li.info{background:var(--c-blue-tint);}
+    .lista-hallazgos li.info::before{content:'●';color:var(--c-blue);}
+
+    /* ─── TIMELINE ─── */
+    .timeline{display:flex;flex-direction:column;gap:0;}
+    .timeline__item{display:flex;gap:var(--space-md);position:relative;}
+    .timeline__item:not(:last-child)::after{content:'';position:absolute;left:16px;top:36px;bottom:-4px;width:2px;background:var(--c-gray2);}
+    .timeline__dot{width:32px;height:32px;border-radius:50%;background:var(--c-blue);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;}
+    .timeline__dot--green{background:var(--c-green);}
+    .timeline__dot--orange{background:var(--c-orange);}
+    .timeline__dot--purple{background:var(--c-purple);}
+    .timeline__dot--gray{background:var(--c-gray1);}
+    .timeline__content{padding-bottom:var(--space-lg);flex:1;}
+    .timeline__fecha{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-gray1);margin-bottom:2px;}
+    .timeline__titulo{display:block;font-size:15px;font-weight:700;color:var(--c-black);margin-bottom:4px;}
+    .timeline__desc{font-size:13px;color:var(--c-gray1);line-height:1.5;}
+
+    /* ─── TABLA ─── */
+    .tabla-wrapper{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--c-gray2);}
+    .tabla-datos{width:100%;border-collapse:collapse;font-size:13px;}
+    .tabla-datos thead{background:var(--c-blue);color:#fff;}
+    .tabla-datos th{padding:12px 16px;text-align:left;font-weight:700;font-size:12px;letter-spacing:.05em;}
+    .tabla-datos td{padding:12px 16px;border-bottom:1px solid var(--c-gray0);vertical-align:top;line-height:1.4;}
+    .tabla-datos tbody tr:last-child td{border-bottom:none;}
+    .tabla-datos--striped tbody tr:nth-child(even){background:var(--c-gray0);}
+    .row--highlight{background:var(--c-blue-tint) !important;font-weight:700;}
+
+    /* ─── BADGES ─── */
+    .badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+    .badge--blue{background:var(--c-blue);color:#fff;}
+    .badge--green{background:var(--c-green);color:#fff;}
+    .badge--orange{background:var(--c-orange);color:#fff;}
+    .badge--purple{background:var(--c-purple);color:#fff;}
+    .badge--yellow{background:var(--c-yellow);color:var(--c-black);}
+    .badge--gray{background:var(--c-gray1);color:#fff;}
+    .badge--outline-blue{border:1.5px solid var(--c-blue);color:var(--c-blue);}
+    .badge--outline-green{border:1.5px solid var(--c-green);color:var(--c-green);}
+
+    /* ─── SEPARADORES ─── */
+    hr.divider{border:none;border-top:1px solid var(--c-gray2);margin:0;}
+    hr.divider--blue{border:none;border-top:2px solid var(--c-blue);margin:0;}
+    hr.divider--thick{border:none;border-top:4px solid var(--c-blue);margin:0;}
+    .divider-label{display:flex;align-items:center;gap:var(--space-sm);color:var(--c-gray1);}
+    .divider-label::before,.divider-label::after{content:'';flex:1;height:1px;background:var(--c-gray2);}
+    .divider-label span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+
+    /* ─── TIPOGRAFÍA UTILITARIA ─── */
+    .text-sm{font-size:13px;}.text-xs{font-size:11px;}.text-muted{color:var(--c-gray1);}
+    .text-blue{color:var(--c-blue);}.text-bold{font-weight:700;}
+    .text-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c-gray1);}
+    p{font-size:14px;line-height:1.65;color:#333;}
+
+    /* ─── DIÁLOGO ENTREVISTA ─── */
+    .dialogo{display:flex;flex-direction:column;gap:10px;}
+    .dialogo p{font-size:14px;line-height:1.7;color:#2b2b2b;}
+
+    /* ─── BARRA INTENSIDAD ─── */
+    .intensidad-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--c-gray0);}
+    .intensidad-row:last-child{border-bottom:none;}
+    .intensidad-label{width:110px;font-size:13px;font-weight:600;flex-shrink:0;}
+    .intensidad-bg{flex:1;height:8px;background:var(--c-gray0);border-radius:4px;overflow:hidden;}
+    .intensidad-fill{height:100%;border-radius:4px;}
+    .intensidad-tag{width:80px;text-align:right;flex-shrink:0;}
+
+    /* ─── SIMULADOR ─── */
+    .sim-meter-box{display:flex;align-items:center;gap:16px;background:var(--c-gray0);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;}
+    .sim-meter-label{font-size:11px;color:var(--c-gray1);white-space:nowrap;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .sim-meter-track{flex:1;height:10px;background:var(--c-gray2);border-radius:5px;overflow:hidden;}
+    .sim-meter-fill{height:100%;border-radius:5px;transition:width .5s ease,background .5s ease;}
+    .sim-meter-pct{font-size:22px;font-weight:800;min-width:56px;text-align:right;transition:color .5s;}
+    .sim-verdict{font-size:12px;min-width:120px;text-align:right;font-weight:700;}
+    .sim-eq{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--c-gray1);margin-bottom:20px;}
+    .sim-eq-group{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;background:var(--c-gray0);}
+    .sim-eq-lbl{font-size:11px;color:var(--c-gray1);}
+    .sim-eq-val{font-size:16px;font-weight:800;transition:all .4s;}
+    .sim-eq-op{font-size:16px;color:var(--c-gray1);}
+    .sim-eq-result{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;transition:background .4s,color .4s;}
+    .sim-forces{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+    .sim-fcard{background:#fff;border:1px solid var(--c-gray2);border-radius:var(--radius);padding:14px 16px;}
+    .sim-fcard-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+    .sim-fcard-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .sim-fcard-val{font-size:24px;font-weight:800;transition:all .4s;}
+    .sim-fcard-dir{font-size:11px;color:var(--c-gray1);margin-bottom:8px;}
+    .sim-bar-track{height:6px;background:var(--c-gray0);border-radius:3px;position:relative;overflow:visible;}
+    .sim-bar-fill{height:100%;border-radius:3px;transition:width .5s ease;}
+    .sim-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;border:2px solid #fff;cursor:default;z-index:2;box-shadow:0 0 0 1.5px #e24b4a;transition:left .5s,background .4s,box-shadow .4s;}
+    .sim-dot.reached{box-shadow:0 0 0 2px #4cb979;}
+    .sim-dot-wrap{position:relative;display:inline-block;}
+    .sim-dot-tip{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--c-gray2);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--c-black);white-space:normal;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:10;width:180px;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+    .sim-dot:hover .sim-dot-tip{opacity:1;}
+    .sim-int-box{background:var(--c-gray0);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;}
+    .sim-int-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-gray1);margin-bottom:12px;}
+    .sim-int-list{display:flex;flex-direction:column;gap:8px;}
+    .sim-int-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#fff;border:1px solid var(--c-gray2);border-radius:10px;cursor:pointer;transition:border-color .2s,background .2s;}
+    .sim-int-item:hover:not(.applied){border-color:var(--c-blue);}
+    .sim-int-item.applied{border-color:#4cb979;background:#eaf7ef;cursor:default;}
+    .sim-int-check{width:18px;height:18px;min-width:18px;border-radius:50%;border:1.5px solid var(--c-gray2);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s;margin-top:2px;font-weight:700;}
+    .sim-int-item.applied .sim-int-check{background:#4cb979;border-color:#4cb979;color:#fff;}
+    .sim-int-body{flex:1;}
+    .sim-int-name{font-size:13px;font-weight:700;color:var(--c-black);margin-bottom:2px;}
+    .sim-int-item.applied .sim-int-name{color:#185F00;}
+    .sim-int-desc{font-size:12px;color:var(--c-gray1);line-height:1.4;}
+    .sim-int-item.applied .sim-int-desc{color:#3B6D11;}
+    .sim-int-delta{font-size:10px;font-weight:700;white-space:nowrap;display:flex;flex-direction:column;gap:3px;align-items:flex-end;padding-top:2px;}
+    .dpill-down{background:#ffeaea;color:#a32d2d;padding:2px 7px;border-radius:100px;}
+    .dpill-up{background:#eaf7ef;color:#185F00;padding:2px 7px;border-radius:100px;}
+    .sim-reset{font-size:12px;color:var(--c-gray1);cursor:pointer;border:1px solid var(--c-gray2);background:transparent;border-radius:8px;padding:5px 16px;display:block;margin:0 auto;}
+    .sim-reset:hover{border-color:var(--c-blue);color:var(--c-blue);}
+    .sim-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--c-black);color:#fff;border-radius:var(--radius);padding:9px 20px;font-size:13px;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;}
+    .sim-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    @media(max-width:620px){.sim-forces{grid-template-columns:1fr;}}
+
+    /* ─── FOOTER ─── */
+    .report-footer{background:var(--c-black);color:#fff;padding:var(--space-md) var(--space-lg);display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);}
+    .report-footer img{height:24px;opacity:.8;}
+    .report-footer__info{font-size:12px;color:#888;flex:1;text-align:center;}
+    .report-footer__url{font-size:12px;color:var(--c-yellow);font-weight:600;}
+  </style>
+</head>
+<body>
+<div class="reporte">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDExMjIuMTUgMjIwLjg0Ij4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMzAuMy4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjMgQnVpbGQgMTgyKSAgLS0+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5zdDAgewogICAgICAgIGZpbGw6ICNmZmZmZmY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJDYXBhXzEiPgogICAgPGc+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNi4zOSwxNzIuMjdWMjUuMTdoMTkuMzV2MTQ3LjA5aC0xOS4zNVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNjguNTEsMTcyLjI3VjI1LjE3aDE2LjE5bDg0LjUsMTE4Ljg2LTcuMzEuNzlWMjUuMTdoMTkuNTV2MTQ3LjA5aC0xNi4xOUw4MS4xNSw1Mi42Mmw2LjcxLS43OXYxMjAuNDRoLTE5LjM1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0yMTQuMjIsMTcyLjI3VjI1LjE3aDE2LjE5bDg0LjUsMTE4Ljg2LTcuMzEuNzlWMjUuMTdoMTkuNTV2MTQ3LjA5aC0xNi4xOWwtODQuMTEtMTE5LjY1LDYuNzEtLjc5djEyMC40NGgtMTkuMzVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTM1OS45MywxNzIuMjdWMjUuMTdoMTkuMzV2MTI5LjMyaDY0LjU2djE3Ljc3aC04My45MVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDUxLjM0LDE3Mi4yN2w1Mi43Mi0xNDcuMDloMjIuOWw1Mi43MiwxNDcuMDloLTIwLjczbC0xMi4wNC0zNC41NWgtNjIuNzlsLTEyLjA0LDM0LjU1aC0yMC43M1pNNDkwLjI0LDExOS45NWg1MC41NGwtMjguMDQtODAuNzVoNS41M2wtMjguMDQsODAuNzVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTU5OC4yNCwxNzIuMjdWMjUuMTdoNjEuOGM4LjgyLDAsMTYuNDIsMS41OCwyMi44LDQuNzQsNi4zOCwzLjE2LDExLjMyLDcuNiwxNC44MSwxMy4zMywzLjQ5LDUuNzMsNS4yMywxMi41NCw1LjIzLDIwLjQzLDAsNy4yNC0xLjg4LDEzLjc5LTUuNjMsMTkuNjUtMy43NSw1Ljg2LTkuMjUsMTAuNDMtMTYuNDksMTMuNzJsLS4yLTcuMzFjNi4zMiwyLjM3LDExLjU1LDUuNSwxNS43LDkuMzgsNC4xNSwzLjg4LDcuMjcsOC4zNiw5LjM4LDEzLjQzLDIuMSw1LjA3LDMuMTYsMTAuNDMsMy4xNiwxNi4wOSwwLDEzLjU2LTQuMzQsMjQuMjItMTMuMDMsMzEuOTktOC42OSw3Ljc3LTIwLjUzLDExLjY1LTM1LjU0LDExLjY1aC02MlpNNjE3LjU5LDg1LjU5aDQyLjA1YzcuMTEsMCwxMi44My0yLjA3LDE3LjE4LTYuMjIsNC4zNC00LjE1LDYuNTItOS40NCw2LjUyLTE1Ljg5cy0yLjE3LTExLjg1LTYuNTItMTUuNGMtNC4zNC0zLjU1LTEwLjA3LTUuMzMtMTcuMTgtNS4zM2gtNDIuMDV2NDIuODRaTTYxNy41OSwxNTQuNWg0My40NGM4LjU1LDAsMTUuNC0yLjMsMjAuNTMtNi45MSw1LjEzLTQuNjEsNy43LTEwLjg2LDcuNy0xOC43NnMtMi41Ny0xNC4xOC03LjctMTguODZjLTUuMTMtNC42Ny0xMS45OC03LjAxLTIwLjUzLTcuMDFoLTQzLjQ0djUxLjUzWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MzEuNiw5NC4zN2MtMy4wNywwLTUuOTEtLjU1LTguNDktMS42Ni0yLjU5LTEuMTEtNC44NS0yLjY4LTYuNzctNC43LTEuOTMtMi4wMi0zLjQyLTQuNC00LjQ3LTcuMTItMS4wNS0yLjcyLTEuNTgtNS43LTEuNTgtOC45M3MuNTMtNi4yNywxLjU4LTguOTljMS4wNS0yLjcyLDIuNTMtNS4xLDQuNDQtNy4xMiwxLjkxLTIuMDIsNC4xNi0zLjU5LDYuNzctNC43LDIuNjEtMS4xMSw1LjQ1LTEuNjYsOC41Mi0xLjY2czUuNjkuNTMsOC4wOSwxLjU4LDQuNDIsMi40MSw2LjA3LDQuMDljMS42NSwxLjY3LDIuODMsMy40NiwzLjUzLDUuMzdsLTUuMjUsMi4zOWMtMS4wMS0yLjQxLTIuNTktNC4zNy00LjczLTUuODctMi4xNC0xLjUtNC43MS0yLjI1LTcuNzEtMi4yNXMtNS43My43Mi04LjA5LDIuMTZjLTIuMzUsMS40NC00LjE5LDMuNDQtNS41Miw2LjAxLTEuMzIsMi41Ny0xLjk4LDUuNTctMS45OCw4Ljk5cy42Niw2LjM2LDEuOTgsOC45M2MxLjMyLDIuNTcsMy4xNiw0LjU3LDUuNTIsNi4wMSwyLjM1LDEuNDQsNS4wNSwyLjE2LDguMDksMi4xNnM1LjU3LS43NSw3LjcxLTIuMjVjMi4xNC0xLjUsMy43Mi0zLjQ1LDQuNzMtNS44N2w1LjI1LDIuMzljLS43LDEuOTEtMS44OCwzLjctMy41Myw1LjM3LTEuNjUsMS42Ny0zLjY4LDMuMDQtNi4wNyw0LjA5cy01LjA5LDEuNTgtOC4wOSwxLjU4WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04NzAuMzEsOTQuMzdjLTMuMDQsMC01Ljc0LS43Mi04LjEyLTIuMTYtMi4zNy0xLjQ0LTQuMjQtMy40Mi01LjYtNS45My0xLjM2LTIuNTEtMi4wNC01LjMyLTIuMDQtOC40NHMuNjctNS45NiwyLjAxLTguNDFjMS4zNC0yLjQ1LDMuMTctNC4zOSw1LjQ5LTUuODEsMi4zMi0xLjQyLDQuOTEtMi4xMyw3Ljc5LTIuMTMsMi4zMywwLDQuNDEuNDIsNi4yMiwxLjI2LDEuODEuODQsMy4zNSwxLjk3LDQuNjEsMy4zOSwxLjI2LDEuNDIsMi4yNCwzLjA0LDIuOTIsNC44NS42OCwxLjgxLDEuMDIsMy42OSwxLjAyLDUuNjMsMCwuNDMtLjAzLjkxLS4wOSwxLjQzcy0uMTMsMS4wMi0uMjEsMS40OWgtMjUuOHYtNC42N2gyMi42NWwtMi41NywyLjFjLjM1LTIuMDIuMTYtMy44My0uNTgtNS40My0uNzQtMS41OS0xLjgzLTIuODYtMy4yNy0zLjc5LTEuNDQtLjkzLTMuMDgtMS40LTQuOS0xLjRzLTMuNS40Ny01LjAyLDEuNGMtMS41Mi45My0yLjcsMi4yNy0zLjUzLDQtLjg0LDEuNzMtMS4xOCwzLjc5LTEuMDIsNi4xNi0uMTYsMi4zLjIsNC4zMSwxLjA4LDYuMDQuODgsMS43MywyLjEyLDMuMDcsMy43NCw0LjAzLDEuNjEuOTUsMy4zOCwxLjQzLDUuMjgsMS40MywyLjEsMCwzLjg3LS40OSw1LjMxLTEuNDYsMS40NC0uOTcsMi42MS0yLjIyLDMuNS0zLjc0bDQuNTUsMi4zM2MtLjYyLDEuNDQtMS41OSwyLjc1LTIuODksMy45NC0xLjMsMS4xOS0yLjg0LDIuMTMtNC42MSwyLjgzLTEuNzcuNy0zLjc1LDEuMDUtNS45MiwxLjA1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04OTEuNjcsOTMuNjd2LTMxLjQ3aDUuMzF2Ni4xM2wtLjg4LS41M2MuNzgtMS45OSwyLjAzLTMuNTMsMy43Ny00LjY0LDEuNzMtMS4xMSwzLjc3LTEuNjYsNi4xLTEuNjZzNC4yNy41MSw2LjA0LDEuNTJjMS43NywxLjAxLDMuMTcsMi40MSw0LjIsNC4yczEuNTUsMy44MSwxLjU1LDYuMDd2MjAuMzdoLTUuNDl2LTE4LjYyYzAtMS43NS0uMzEtMy4yMy0uOTMtNC40NC0uNjItMS4yMS0xLjUxLTIuMTUtMi42Ni0yLjgzcy0yLjQ2LTEuMDItMy45NC0xLjAyLTIuNzkuMzQtMy45NCwxLjAyYy0xLjE1LjY4LTIuMDUsMS42My0yLjcxLDIuODZzLS45OSwyLjctLjk5LDQuNDF2MTguNjJoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTkzOC4zMSw5NC4wMmMtMy4wOCwwLTUuNDQtLjg4LTcuMDktMi42My0xLjY1LTEuNzUtMi40OC00LjIyLTIuNDgtNy40MXYtMTYuNThoLTUuNzJ2LTUuMmgxLjE3YzEuNCwwLDIuNTEtLjQzLDMuMzMtMS4yOC44Mi0uODYsMS4yMy0xLjk5LDEuMjMtMy4zOXYtMi41N2g1LjQzdjcuMjRoNy4wNnY1LjJoLTcuMDZ2MTYuNGMwLDEuMDUuMTYsMS45Ny41LDIuNzQuMzMuNzguODgsMS4zOSwxLjY2LDEuODQuNzguNDUsMS44MS42NywzLjA5LjY3LjI3LDAsLjYxLS4wMiwxLjAyLS4wNnMuNzktLjA4LDEuMTQtLjEydjQuNzljLS41MS4xMi0xLjA3LjItMS42OS4yNi0uNjIuMDYtMS4xNS4wOS0xLjU4LjA5WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05NDguNjUsOTMuNjd2LTMxLjQ3aDUuMzF2NS43OGwtLjU4LS44MmMuNzQtMS43OSwxLjg3LTMuMTIsMy4zOS00czMuMzctMS4zMSw1LjU1LTEuMzFoMS45M3Y1LjE0aC0yLjc0Yy0yLjIyLDAtNC4wMS42OS01LjM3LDIuMDctMS4zNiwxLjM4LTIuMDQsMy4zNC0yLjA0LDUuODd2MTguNzRoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk4NC4wMiw5NC4zN2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MWMxLjQyLTIuNDUsMy4zNi00LjQsNS44MS01Ljg0LDIuNDUtMS40NCw1LjIxLTIuMTYsOC4yOS0yLjE2czUuNzguNzEsOC4yMywyLjEzYzIuNDUsMS40Miw0LjM5LDMuMzYsNS44MSw1LjgxLDEuNDIsMi40NSwyLjEzLDUuMjcsMi4xMyw4LjQ2cy0uNzQsNi4wMi0yLjIyLDguNDljLTEuNDgsMi40Ny0zLjQ0LDQuNDItNS44Nyw1Ljg0LTIuNDMsMS40Mi01LjEzLDIuMTMtOC4wOCwyLjEzWk05ODQuMDIsODkuMTJjMS45NSwwLDMuNzEtLjQ5LDUuMjgtMS40NnMyLjgyLTIuMzIsMy43NC00LjAzYy45MS0xLjcxLDEuMzctMy42MiwxLjM3LTUuNzJzLS40Ni00LjA0LTEuMzctNS42OS0yLjE2LTIuOTgtMy43NC0zLjk3LTMuMzQtMS40OS01LjI4LTEuNDktMy43Ny41LTUuMzQsMS40OS0yLjgzLDIuMzItMy43NywzLjk3LTEuNCwzLjU1LTEuNCw1LjY5LjQ3LDQuMDEsMS40LDUuNzJjLjkzLDEuNzEsMi4xOSwzLjA2LDMuNzcsNC4wM3MzLjM2LDEuNDYsNS4zNCwxLjQ2WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDMxLjY2LDk0LjM3Yy0yLjk2LDAtNS42Mi0uNzItNy45Ny0yLjE2LTIuMzYtMS40NC00LjIxLTMuNDEtNS41OC01LjktMS4zNi0yLjQ5LTIuMDQtNS4yNy0yLjA0LTguMzVzLjY4LTUuOTYsMi4wNC04LjQ0YzEuMzYtMi40NywzLjIyLTQuNDMsNS41OC01Ljg3LDIuMzUtMS40NCw1LjAxLTIuMTYsNy45Ny0yLjE2LDIuNjEsMCw0LjkyLjU1LDYuOTUsMS42NiwyLjAyLDEuMTEsMy42MiwyLjYsNC43OSw0LjQ3bC0uODgsMS4zNHYtMTkuNWg1LjQ5djQ0LjE5aC01LjMxdi02LjcxbC43LjkzYy0xLjA5LDIuMDYtMi42OCwzLjY2LTQuNzYsNC43OS0yLjA4LDEuMTMtNC40MSwxLjY5LTYuOTgsMS42OVpNMTAzMi4xMyw4OS4xMmMxLjk4LDAsMy43Ni0uNDksNS4zMS0xLjQ2czIuNzktMi4zMSwzLjcxLTRjLjkxLTEuNjksMS4zNy0zLjU5LDEuMzctNS42OXMtLjQ2LTQuMDYtMS4zNy01Ljc1Yy0uOTItMS42OS0yLjE1LTMuMDMtMy43MS00LTEuNTYtLjk3LTMuMzMtMS40Ni01LjMxLTEuNDZzLTMuNzEuNS01LjI4LDEuNDktMi44MSwyLjMyLTMuNzEsMy45N2MtLjksMS42NS0xLjM0LDMuNTctMS4zNCw1Ljc1cy40NSw0LDEuMzQsNS42OWMuODksMS42OSwyLjEyLDMuMDMsMy42OCw0czMuMzMsMS40Niw1LjMxLDEuNDZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwNzAuODksOTQuMzdjLTMuMDQsMC01Ljc0LS43Mi04LjEyLTIuMTYtMi4zNy0xLjQ0LTQuMjQtMy40Mi01LjYtNS45My0xLjM2LTIuNTEtMi4wNC01LjMyLTIuMDQtOC40NHMuNjctNS45NiwyLjAxLTguNDFjMS4zNC0yLjQ1LDMuMTctNC4zOSw1LjQ5LTUuODEsMi4zMi0xLjQyLDQuOTEtMi4xMyw3Ljc5LTIuMTMsMi4zMywwLDQuNDEuNDIsNi4yMiwxLjI2LDEuODEuODQsMy4zNSwxLjk3LDQuNjEsMy4zOSwxLjI2LDEuNDIsMi4yNCwzLjA0LDIuOTIsNC44NS42OCwxLjgxLDEuMDIsMy42OSwxLjAyLDUuNjMsMCwuNDMtLjAzLjkxLS4wOSwxLjQzcy0uMTMsMS4wMi0uMjEsMS40OWgtMjUuOHYtNC42N2gyMi42NWwtMi41NywyLjFjLjM1LTIuMDIuMTYtMy44My0uNTgtNS40My0uNzQtMS41OS0xLjgzLTIuODYtMy4yNy0zLjc5LTEuNDQtLjkzLTMuMDgtMS40LTQuOS0xLjRzLTMuNS40Ny01LjAyLDEuNGMtMS41Mi45My0yLjcsMi4yNy0zLjUzLDQtLjg0LDEuNzMtMS4xOCwzLjc5LTEuMDIsNi4xNi0uMTYsMi4zLjIsNC4zMSwxLjA4LDYuMDQuODgsMS43MywyLjEyLDMuMDcsMy43NCw0LjAzLDEuNjEuOTUsMy4zOCwxLjQzLDUuMjgsMS40MywyLjEsMCwzLjg3LS40OSw1LjMxLTEuNDYsMS40NC0uOTcsMi42MS0yLjIyLDMuNS0zLjc0bDQuNTUsMi4zM2MtLjYyLDEuNDQtMS41OSwyLjc1LTIuODksMy45NC0xLjMsMS4xOS0yLjg0LDIuMTMtNC42MSwyLjgzLTEuNzcuNy0zLjc1LDEuMDUtNS45MiwxLjA1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MTEuNTgsMTYzLjczdi00My40OWg1LjcydjQzLjQ5aC01LjcyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MjYuMzUsMTYzLjczdi0zMS40N2g1LjMxdjYuMTNsLS44OC0uNTNjLjc4LTEuOTksMi4wMy0zLjUzLDMuNzctNC42NCwxLjczLTEuMTEsMy43Ny0xLjY2LDYuMS0xLjY2czQuMjcuNTEsNi4wNCwxLjUyYzEuNzcsMS4wMSwzLjE3LDIuNDEsNC4yLDQuMiwxLjAzLDEuNzksMS41NSwzLjgxLDEuNTUsNi4wN3YyMC4zN2gtNS40OXYtMTguNjJjMC0xLjc1LS4zMS0zLjIzLS45My00LjQ0LS42Mi0xLjIxLTEuNTEtMi4xNS0yLjY2LTIuODMtMS4xNS0uNjgtMi40Ni0xLjAyLTMuOTQtMS4wMnMtMi43OS4zNC0zLjk0LDEuMDJjLTEuMTUuNjgtMi4wNSwxLjYzLTIuNzEsMi44Ni0uNjYsMS4yMy0uOTksMi43LS45OSw0LjQxdjE4LjYyaC01LjQzWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04NjAuMiwxNjMuNzN2LTMxLjQ3aDUuMzF2Ni4xM2wtLjg4LS41M2MuNzgtMS45OSwyLjAzLTMuNTMsMy43Ny00LjY0LDEuNzMtMS4xMSwzLjc3LTEuNjYsNi4xLTEuNjZzNC4yNy41MSw2LjA0LDEuNTJjMS43NywxLjAxLDMuMTcsMi40MSw0LjIsNC4yczEuNTUsMy44MSwxLjU1LDYuMDd2MjAuMzdoLTUuNDl2LTE4LjYyYzAtMS43NS0uMzEtMy4yMy0uOTMtNC40NC0uNjItMS4yMS0xLjUxLTIuMTUtMi42Ni0yLjgzcy0yLjQ2LTEuMDItMy45NC0xLjAyLTIuNzkuMzQtMy45NCwxLjAyYy0xLjE1LjY4LTIuMDUsMS42My0yLjcxLDIuODYtLjY2LDEuMjMtLjk5LDIuNy0uOTksNC40MXYxOC42MmgtNS40M1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNOTA5LjAxLDE2NC40M2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MSwzLjM2LTQuNCw1LjgxLTUuODRjMi40NS0xLjQ0LDUuMjEtMi4xNiw4LjI5LTIuMTZzNS43OC43MSw4LjIzLDIuMTNjMi40NSwxLjQyLDQuMzksMy4zNiw1LjgxLDUuODEsMS40MiwyLjQ1LDIuMTMsNS4yNywyLjEzLDguNDZzLS43NCw2LjAyLTIuMjIsOC40OWMtMS40OCwyLjQ3LTMuNDMsNC40Mi01Ljg3LDUuODQtMi40MywxLjQyLTUuMTMsMi4xMy04LjA5LDIuMTNaTTkwOS4wMSwxNTkuMTdjMS45NSwwLDMuNzEtLjQ5LDUuMjgtMS40NnMyLjgyLTIuMzIsMy43NC00LjAzYy45MS0xLjcxLDEuMzctMy42MiwxLjM3LTUuNzJzLS40Ni00LjA0LTEuMzctNS42OWMtLjkyLTEuNjUtMi4xNi0yLjk4LTMuNzQtMy45N3MtMy4zNC0xLjQ5LTUuMjgtMS40OS0zLjc3LjUtNS4zNCwxLjQ5LTIuODMsMi4zMi0zLjc3LDMuOTctMS40LDMuNTUtMS40LDUuNjkuNDcsNC4wMSwxLjQsNS43MmMuOTMsMS43MSwyLjE5LDMuMDYsMy43Nyw0LjAzczMuMzYsMS40Niw1LjM0LDEuNDZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk0MC40MiwxNjMuNzNsLTEyLjMyLTMxLjQ3aDYuMDdsOS44NywyNi42MmgtMi4xbDkuOTItMjYuNjJoNi4wN2wtMTIuMzgsMzEuNDdoLTUuMTRaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk3MC44MywxNjQuNDNjLTIuMDYsMC0zLjg4LS4zOC01LjQ2LTEuMTRzLTIuODEtMS44MS0zLjcxLTMuMTVjLS45LTEuMzQtMS4zNC0yLjg5LTEuMzQtNC42NHMuMzYtMy4xOCwxLjA4LTQuNTJjLjcyLTEuMzQsMS44NS0yLjQ4LDMuMzktMy40MiwxLjU0LS45MywzLjQ3LTEuNiw1LjgxLTEuOTlsMTEuNjgtMS45M3Y0LjU1bC0xMC40NSwxLjc1Yy0yLjAyLjM1LTMuNDkuOTktNC40MSwxLjkzLS45Mi45My0xLjM3LDIuMDgtMS4zNywzLjQ0LDAsMS4yOC41MiwyLjM1LDEuNTUsMy4yMXMyLjMzLDEuMjgsMy44OCwxLjI4YzEuOTgsMCwzLjcxLS40Miw1LjE3LTEuMjYsMS40Ni0uODQsMi42MS0xLjk3LDMuNDUtMy40Mi44NC0xLjQ0LDEuMjUtMy4wNCwxLjI1LTQuNzl2LThjMC0xLjcxLS42My0zLjEtMS45LTQuMTctMS4yNy0xLjA3LTIuOTMtMS42MS00Ljk5LTEuNjEtMS43OSwwLTMuMzguNDYtNC43NiwxLjM3LTEuMzguOTItMi40LDIuMTMtMy4wNiwzLjY1bC00LjczLTIuNDVjLjU4LTEuNDQsMS41Mi0yLjczLDIuOC0zLjg4LDEuMjgtMS4xNSwyLjc4LTIuMDUsNC40OS0yLjcxczMuNS0uOTksNS4zNy0uOTljMi40MSwwLDQuNTMuNDYsNi4zNiwxLjM3LDEuODMuOTIsMy4yNiwyLjE4LDQuMjksMy43OSwxLjAzLDEuNjIsMS41NSwzLjQ5LDEuNTUsNS42M3YyMS4zN2gtNS4zMXYtNS45NmwuOTkuMzVjLS42NiwxLjI1LTEuNTYsMi4zMy0yLjY5LDMuMjctMS4xMy45My0yLjQ1LDEuNjctMy45NywyLjIyLTEuNTIuNTQtMy4xNy44Mi00Ljk2LjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDA5Ljc3LDE2NC40M2MtMy4wOCwwLTUuODEtLjcyLTguMi0yLjE2cy00LjI3LTMuNDEtNS42My01LjljLTEuMzYtMi40OS0yLjA0LTUuMjktMi4wNC04LjQxcy42OC01Ljk1LDIuMDQtOC40MWMxLjM2LTIuNDUsMy4yNC00LjQsNS42My01Ljg0LDIuMzktMS40NCw1LjEzLTIuMTYsOC4yLTIuMTYsMi4wNiwwLDMuOTkuMzcsNS43OCwxLjExLDEuNzkuNzQsMy4zNywxLjczLDQuNzMsMi45OCwxLjM2LDEuMjUsMi4zNSwyLjcxLDIuOTgsNC4zOGwtNC44NSwyLjM0Yy0uNzQtMS42My0xLjg3LTIuOTctMy4zOC00LTEuNTItMS4wMy0zLjI3LTEuNTUtNS4yNS0xLjU1cy0zLjYzLjQ5LTUuMTcsMS40NmMtMS41NC45Ny0yLjc1LDIuMy0zLjY1LDMuOTctLjksMS42Ny0xLjM0LDMuNi0xLjM0LDUuNzhzLjQ1LDQsMS4zNCw1LjY5Yy44OSwxLjY5LDIuMTEsMy4wMywzLjY1LDRzMy4yNiwxLjQ2LDUuMTcsMS40NiwzLjc0LS41Miw1LjI1LTEuNTVjMS41Mi0xLjAzLDIuNjUtMi40LDMuMzgtNC4xMmw0Ljg1LDIuNDVjLS42MiwxLjYzLTEuNjIsMy4wOC0yLjk4LDQuMzUtMS4zNiwxLjI2LTIuOTQsMi4yNy00LjczLDMuMDEtMS43OS43NC0zLjcyLDEuMTEtNS43OCwxLjExWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDMwLjM4LDEyNy4yNHYtNy4wMWg1LjQzdjcuMDFoLTUuNDNaTTEwMzAuMzgsMTYzLjczdi0zMS40N2g1LjQzdjMxLjQ3aC01LjQzWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDU5LjE2LDE2NC40M2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MWMxLjQyLTIuNDUsMy4zNi00LjQsNS44MS01Ljg0LDIuNDUtMS40NCw1LjIxLTIuMTYsOC4yOS0yLjE2czUuNzguNzEsOC4yMywyLjEzYzIuNDUsMS40Miw0LjM5LDMuMzYsNS44MSw1LjgxLDEuNDIsMi40NSwyLjEzLDUuMjcsMi4xMyw4LjQ2cy0uNzQsNi4wMi0yLjIyLDguNDljLTEuNDgsMi40Ny0zLjQ0LDQuNDItNS44Nyw1Ljg0LTIuNDMsMS40Mi01LjEzLDIuMTMtOC4wOCwyLjEzWk0xMDU5LjE2LDE1OS4xN2MxLjk1LDAsMy43MS0uNDksNS4yOC0xLjQ2czIuODItMi4zMiwzLjc0LTQuMDNjLjkxLTEuNzEsMS4zNy0zLjYyLDEuMzctNS43MnMtLjQ2LTQuMDQtMS4zNy01LjY5LTIuMTYtMi45OC0zLjc0LTMuOTctMy4zNC0xLjQ5LTUuMjgtMS40OS0zLjc3LjUtNS4zNCwxLjQ5LTIuODMsMi4zMi0zLjc3LDMuOTctMS40LDMuNTUtMS40LDUuNjkuNDcsNC4wMSwxLjQsNS43MmMuOTMsMS43MSwyLjE5LDMuMDYsMy43Nyw0LjAzczMuMzYsMS40Niw1LjM0LDEuNDZaTTEwNTYuNDEsMTI2LjM2bDQuNjEtOS4yMmg3LjM2bC02LjU0LDkuMjJoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwODIuMzksMTYzLjczdi0zMS40N2g1LjMxdjYuMTNsLS44OC0uNTNjLjc4LTEuOTksMi4wMy0zLjUzLDMuNzctNC42NCwxLjczLTEuMTEsMy43Ny0xLjY2LDYuMS0xLjY2czQuMjcuNTEsNi4wNCwxLjUyYzEuNzcsMS4wMSwzLjE3LDIuNDEsNC4yLDQuMnMxLjU1LDMuODEsMS41NSw2LjA3djIwLjM3aC01LjQ5di0xOC42MmMwLTEuNzUtLjMxLTMuMjMtLjkzLTQuNDQtLjYyLTEuMjEtMS41MS0yLjE1LTIuNjYtMi44M3MtMi40Ni0xLjAyLTMuOTQtMS4wMi0yLjc5LjM0LTMuOTQsMS4wMmMtMS4xNS42OC0yLjA1LDEuNjMtMi43MSwyLjg2cy0uOTksMi43LS45OSw0LjQxdjE4LjYyaC01LjQzWiIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=" alt="INNLAB">
+      </div>
+      <div class="report-header__meta">
+        <span class="report-header__meta-label">Fecha</span>
+        <span class="report-header__meta-value">Mayo 2026</span>
+        <span class="report-header__meta-label" style="margin-top:6px;">Proyecto</span>
+        <span class="report-header__meta-value">Request to Pay — ACH Colombia</span>
+      </div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Investigación de Usuario Sintético · Producto RtP</span>
+      <h1 class="report-header__title">Entrevista y Análisis<br>de Usuario — Claudia R.</h1>
+      <p class="report-header__subtitle">Perfil: Pagadora del Hogar en Copropiedad · Método: Entrevista de descubrimiento basada en el marco de las Cuatro Fuerzas del Progreso (JTBD)</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">9</span>
+        <span class="report-header__kpi-label">Preguntas exploradas</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">4</span>
+        <span class="report-header__kpi-label">Fuerzas mapeadas</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">3</span>
+        <span class="report-header__kpi-label">Hipótesis de diseño</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">4</span>
+        <span class="report-header__kpi-label">Preguntas sin explorar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reporte-body">
+
+    <!-- SECCIÓN 1: PERFIL -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 1</span>
+        <h2 class="section-title__heading">Perfil del usuario sintético</h2>
+        <p class="section-title__desc">Claudia R. fue construida para representar al pagador típico de servicios recurrentes en Colombia: digitalmente activo pero con hábitos financieros establecidos y alta desconfianza ante cambios de flujo.</p>
+      </div>
+      <div class="grid-2">
+        <div class="kpi-card kpi-card--blue">
+          <span class="kpi-card__label">Identidad</span>
+          <span class="kpi-card__value" style="font-size:20px;">Claudia R.</span>
+          <span class="kpi-card__desc">44 años · Bogotá (Cedritos / Colina Campestre) · Administradora de oficina · Ingresos medios</span>
+        </div>
+        <div class="kpi-card kpi-card--purple">
+          <span class="kpi-card__label">Arquetipo</span>
+          <span class="kpi-card__value" style="font-size:16px;line-height:1.2;">Pagadora del hogar en copropiedad</span>
+          <span class="kpi-card__desc">Responsable de pagar administración del conjunto, servicios del hogar y pagos recurrentes del núcleo familiar</span>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">Bancarización</span>
+          <span class="kpi-card__value" style="font-size:16px;">Alta</span>
+          <span class="kpi-card__desc">Usa la app bancaria casi a diario. Se sabe el flujo PSE de memoria.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-purple">
+          <span class="kpi-card__label">Actitud tecnológica</span>
+          <span class="kpi-card__value" style="font-size:16px;">Cautelosa</span>
+          <span class="kpi-card__desc">Desconfía de automatismos financieros. Valora el control sobre la iniciación del pago.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-orange">
+          <span class="kpi-card__label">Motivador real (JTBD)</span>
+          <span class="kpi-card__value" style="font-size:14px;line-height:1.3;">Reputación vecinal</span>
+          <span class="kpi-card__desc">No quiere aparecer en la lista de morosos del ascensor. Eso supera cualquier otro incentivo.</span>
+        </div>
+      </div>
+      <div class="alerta alerta--info">
+        <span class="alerta__titulo">Nota metodológica</span>
+        <p class="alerta__texto">Los usuarios sintéticos no validan las ideas del investigador — las cuestionan. Claudia defiende su hábito actual y cede solo ante argumentos que resuelvan su ansiedad central: el control y el riesgo de fraude.</p>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 2: TRANSCRIPCIÓN -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 2</span>
+        <h2 class="section-title__heading">Transcripción de la entrevista</h2>
+        <p class="section-title__desc">Entrevista de descubrimiento — Modo B (guion completo generado). Duración estimada: 25 minutos. Método: entrevista semi-estructurada con preguntas de exploración conductual.</p>
+      </div>
+
+      <!-- Apertura -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 1 · Apertura y contexto</p>
+        <div class="dialogo">
+          <p><strong>Hola Claudia, gracias por tu tiempo. Cuéntame, ¿quién es el "ministro de hacienda" en tu casa y qué es lo que más te quita tiempo de esa labor?</strong></p>
+          <p>Pues ese ministerio lo manejo yo solita, sí. Mi esposo dice que yo soy la que tiene "la cabeza para esas vueltas". Lo que más me quita tiempo… ay, pagar la administración del edificio. Uno creería que es fácil, pero no. Toca buscar el recibo, entrar al portal del conjunto, que a veces ni carga, luego lo mandan a uno a PSE, y ahí empieza el drama del banco. La semana pasada tuve que intentarlo tres veces porque el sistema se cayó dos veces. Al final pagué, pero me quedé con ese mal sabor de boca.</p>
+        </div>
+      </div>
+
+      <!-- Comportamiento actual -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 2 · Exploración del comportamiento actual</p>
+        <div class="dialogo">
+          <p><strong>Y cuando dices que el sistema se cayó, ¿qué hiciste mientras tanto?</strong></p>
+          <p>Pues nada, cerré todo y volví a empezar. Eso es lo que da más rabia, que toca volver desde cero. No es que uno se quede esperando, toca salir, entrar de nuevo, volver a digitar los datos… qué pereza. Y uno pendiente del código que llega al celular, que si se demora más de dos minutos ya se venció y toca pedir otro.</p>
+          <p><strong>¿Y si no pagas a tiempo, qué pasa?</strong></p>
+          <p>Pues hay un recargo, claro. Pero lo que de verdad no quiero es que me pongan en esa lista. Aquí en el edificio pegan en el ascensor los nombres de los que deben. Imagínese el señor de arriba viéndome ahí. No, eso sí que no. Entonces yo pago siempre antes del cinco, así me toque hacer malabarismos.</p>
+        </div>
+      </div>
+
+      <!-- Introducción del concepto -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 3 · Introducción del concepto RtP</p>
+        <div class="dialogo">
+          <p><strong>Imagina que en vez de entrar a todos esos portales, simplemente te llegara una notificación de tu banco que diga: "La administración del edificio te está cobrando 80.000. ¿Autorizas el pago?" Y tú solo pones la huella y listo. ¿Qué te parece?</strong></p>
+          <p>Suena bien… pero espere. ¿Eso quiere decir que cualquiera me puede mandar un cobro así? ¿O solo la administración?</p>
+          <p><strong>Solo las empresas o servicios que tú hayas autorizado previamente.</strong></p>
+          <p>Ahhh, bueno. Eso cambia las cosas. Porque mi miedo es que llegue un cobro y yo lo apruebe creyendo que es del edificio y resulta que no. Eso sí me daría muy mala espina. Pero si yo controlo quién me puede cobrar… pues sí, suena a un alivio.</p>
+        </div>
+      </div>
+
+      <!-- Exploración de ansiedades -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 4 · Exploración de ansiedades</p>
+        <div class="dialogo">
+          <p><strong>¿Y qué pasaría si llegas a recibir un cobro que parece legítimo pero no lo es?</strong></p>
+          <p>Pues ahí sí me entraría el pánico. ¿Cómo sé yo que ese cobro es de verdad la administración y no de algún vivo que consiguió mis datos? Porque uno ya sabe cómo es esto en Colombia. Eso de que "le llegó un mensaje del banco" ya tiene muy mala fama por las estafas. Entonces uno desconfía de todo.</p>
+          <p><strong>¿Qué tendría que tener esa notificación para que confiaras en que es legítima?</strong></p>
+          <p>Mmm… que se vea el nombre exacto del conjunto, no un nombre raro. Que llegue desde la app de mi banco, no por WhatsApp ni por SMS. Y que yo pueda ver el detalle antes de aprobar, como el mes que estoy pagando, el valor exacto. Si todo eso cuadra, pues uno puede fiarse.</p>
+        </div>
+      </div>
+
+      <!-- Débito automático -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 5 · Comparación con débito automático</p>
+        <div class="dialogo">
+          <p><strong>¿Alguna vez has pensado en poner la administración en débito automático para no tener que hacer nada?</strong></p>
+          <p>No, eso sí que no. Con el débito uno no sabe cuándo le van a sacar la plata. A mí me ha pasado con el seguro del carro que me debitan cuando no tengo suficiente saldo y quedo en rojo. Prefiero ser yo la que decide cuándo sale la plata. Generalmente el 14 o el 29, que ya sé que cayó la quincena.</p>
+          <p><strong>¿Y esto que te estoy contando, el botón de solicitud de pago, te parece diferente al débito automático?</strong></p>
+          <p>Sí, sí es diferente. Porque en el débito le dan permiso a la empresa de sacarle la plata cuando quiera. Aquí en cambio me están preguntando a mí primero. Eso sí me parece mejor. Es como que… <strong>ellos piden y yo decido</strong>. Eso me gusta más.</p>
+        </div>
+      </div>
+
+      <!-- App y canal -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 6 · Canal y app bancaria</p>
+        <div class="dialogo">
+          <p><strong>¿Y si esta opción de aprobar cobros llegara dentro de la app de tu banco, en la sección de notificaciones?</strong></p>
+          <p>Ah, pues ahí sí sería mucho más natural. Si ya estoy en la app revisando, y me sale ahí el aviso del edificio, pues lo apruebo y ya. No tengo que salir a buscar otro portal. Eso sí tendría sentido.</p>
+        </div>
+      </div>
+
+      <!-- Cierre -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:12px;">Bloque 7 · Cierre y disposición a adoptar</p>
+        <div class="dialogo">
+          <p><strong>Para cerrar, Claudia, si esta solución existiera hoy, ¿la usarías?</strong></p>
+          <p>Sí creo que sí… pero tendría que probarla primero con algo de bajo riesgo. No arrancaría con la administración del edificio de una vez. Primero querría ver cómo funciona, que no me lleguen cobros raros, y entender cómo cancelo si algo sale mal. Si eso está claro, sí me animo.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 3: ANÁLISIS - 4 FUERZAS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 3</span>
+        <h2 class="section-title__heading">Análisis — Las Cuatro Fuerzas del Progreso</h2>
+        <p class="section-title__desc">Marco JTBD (Jobs to Be Done): mapeo de las fuerzas que determinan si Claudia adoptará o rechazará el producto.</p>
+      </div>
+      <div class="grid-2">
+        <div class="kpi-card kpi-card--orange">
+          <span class="kpi-card__label">🔴 Push — La empuja a cambiar</span>
+          <p style="font-size:14px;line-height:1.6;margin-top:8px;">El portal del banco se cayó tres veces en una semana al intentar pagar la administración. El proceso PSE implica 5 pasos, OTPs con tiempo límite y reinicios desde cero. La fricción es real, reciente y repetida.</p>
+          <span class="badge badge--orange" style="margin-top:8px;">Intensidad: Alta</span>
+        </div>
+        <div class="kpi-card kpi-card--green">
+          <span class="kpi-card__label">🟢 Pull — La atrae la solución</span>
+          <p style="font-size:14px;line-height:1.6;margin-top:8px;">La idea del pago "invisible pero autorizado por mí" le genera alivio mental. Le atrae no tener que buscar recibos, portales ni redireccionamientos. Sin embargo, el Pull es condicional: solo funciona si el control percibido está garantizado.</p>
+          <span class="badge badge--green" style="margin-top:8px;">Intensidad: Media</span>
+        </div>
+        <div class="kpi-card kpi-card--purple">
+          <span class="kpi-card__label">🟡 Ansiedad — Sus miedos</span>
+          <p style="font-size:14px;line-height:1.6;margin-top:8px;">Miedo a aprobar cobros falsos (phishing por notificación). Miedo al spam de cobros no solicitados. Diferenciación clara con débito automático: el débito le aterra porque "no avisa". La ansiedad es la fuerza más intensa de la entrevista.</p>
+          <span class="badge badge--purple" style="margin-top:8px;">Intensidad: Muy Alta</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">⚪ Hábito — Su inercia actual</span>
+          <p style="font-size:14px;line-height:1.6;margin-top:8px;">Lleva años con PSE. Conoce el camino de memoria. Aunque lento, le da sensación de agencia ("yo inicio el proceso"). Paga el 14 o el 29 — el día exacto importa. Este hábito no se rompe con argumentos de velocidad o modernidad.</p>
+          <span class="badge badge--gray" style="margin-top:8px;">Intensidad: Alta</span>
+        </div>
+      </div>
+
+      <!-- Barra de intensidades -->
+      <div class="section--tinted">
+        <p class="text-label" style="margin-bottom:16px;">Mapa de intensidad de fuerzas</p>
+        <div class="intensidad-row">
+          <span class="intensidad-label">🔴 Push</span>
+          <div class="intensidad-bg"><div class="intensidad-fill" style="width:80%;background:var(--c-orange);"></div></div>
+          <span class="intensidad-tag"><span class="badge badge--orange">Alta</span></span>
+        </div>
+        <div class="intensidad-row">
+          <span class="intensidad-label">🟢 Pull</span>
+          <div class="intensidad-bg"><div class="intensidad-fill" style="width:55%;background:var(--c-green);"></div></div>
+          <span class="intensidad-tag"><span class="badge badge--green">Media</span></span>
+        </div>
+        <div class="intensidad-row">
+          <span class="intensidad-label">🟡 Ansiedad</span>
+          <div class="intensidad-bg"><div class="intensidad-fill" style="width:95%;background:var(--c-purple);"></div></div>
+          <span class="intensidad-tag"><span class="badge badge--purple">Muy Alta</span></span>
+        </div>
+        <div class="intensidad-row">
+          <span class="intensidad-label">⚪ Hábito</span>
+          <div class="intensidad-bg"><div class="intensidad-fill" style="width:80%;background:var(--c-gray1);"></div></div>
+          <span class="intensidad-tag"><span class="badge badge--gray">Alta</span></span>
+        </div>
+        <p class="text-sm text-muted" style="margin-top:12px;">La ansiedad supera al Push. Si no se resuelve la credibilidad del cobro, el Pull no alcanza a vencer el Hábito.</p>
+      </div>
+    </div>
+
+    <!-- SIMULADOR JTBD -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Herramienta interactiva</span>
+        <h2 class="section-title__heading">Simulador de adopción — Cuatro Fuerzas</h2>
+        <p class="section-title__desc">Aplica intervenciones de diseño para reducir la ansiedad y observa en tiempo real cómo cambia la probabilidad de adopción de Claudia. La adopción ocurre cuando Push + Pull supera a Ansiedad + Hábito.</p>
+      </div>
+
+      <div class="sim-meter-box" id="simMeterBox">
+        <span class="sim-meter-label">Probabilidad de adopción</span>
+        <div class="sim-meter-track"><div class="sim-meter-fill" id="simMeterFill"></div></div>
+        <span class="sim-meter-pct" id="simMeterPct"></span>
+        <span class="sim-verdict" id="simVerdict"></span>
+      </div>
+
+      <div class="sim-eq">
+        <div class="sim-eq-group"><span class="sim-eq-lbl">Push</span><span class="sim-eq-val" id="seqPush" style="color:#BA7517"></span></div>
+        <span class="sim-eq-op">+</span>
+        <div class="sim-eq-group"><span class="sim-eq-lbl">Pull</span><span class="sim-eq-val" id="seqPull" style="color:#3B6D11"></span></div>
+        <span class="sim-eq-op">vs</span>
+        <div class="sim-eq-group"><span class="sim-eq-lbl">Ansiedad</span><span class="sim-eq-val" id="seqAnx" style="color:#A32D2D"></span></div>
+        <span class="sim-eq-op">+</span>
+        <div class="sim-eq-group"><span class="sim-eq-lbl">Hábito</span><span class="sim-eq-val" id="seqHab" style="color:#534AB7"></span></div>
+        <div class="sim-eq-result" id="seqResult"></div>
+      </div>
+
+      <div class="sim-forces" id="simForces"></div>
+
+      <div class="sim-int-box">
+        <p class="sim-int-title">Intervenciones de diseño — haz clic para aplicar</p>
+        <div class="sim-int-list" id="simIntList"></div>
+      </div>
+
+      <button class="sim-reset" id="simReset">Reiniciar simulación</button>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 4: CITAS CLAVE -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 4</span>
+        <h2 class="section-title__heading">Citas clave de la entrevista</h2>
+        <p class="section-title__desc">Fragmentos directos en voz de Claudia que capturan los insights más accionables para el diseño del producto.</p>
+      </div>
+      <div class="cita">
+        <span class="cita__texto">"Ellos piden y yo decido. Eso me gusta más."</span>
+        <span class="cita__fuente">Claudia R. — Al diferenciar RtP del débito automático</span>
+      </div>
+      <div class="cita">
+        <span class="cita__texto">"No arrancaría con la administración del edificio de una vez. Primero querría ver cómo funciona."</span>
+        <span class="cita__fuente">Claudia R. — Al preguntarle si usaría RtP hoy</span>
+      </div>
+      <div class="cita">
+        <span class="cita__texto">"Que llegue desde la app de mi banco, no por WhatsApp ni por SMS. Si todo eso cuadra, pues uno puede fiarse."</span>
+        <span class="cita__fuente">Claudia R. — Sobre los requisitos de confianza en la notificación</span>
+      </div>
+      <div class="cita">
+        <span class="cita__texto">"Aquí en el edificio pegan en el ascensor los nombres de los que deben. Imagínese el señor de arriba viéndome ahí. No, eso sí que no."</span>
+        <span class="cita__fuente">Claudia R. — Revelando el Job Social real (solo con pregunta directa)</span>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 5: HALLAZGOS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 5</span>
+        <h2 class="section-title__heading">Hallazgos de la investigación</h2>
+        <p class="section-title__desc">Síntesis de los insights más relevantes, clasificados por tipo de hallazgo.</p>
+      </div>
+      <ul class="lista-hallazgos">
+        <li class="ok">El modelo mental de "solicitud + aprobación" es comprensible y bienvenido. Claudia lo diferencia correctamente del débito automático sin necesidad de explicación extensa.</li>
+        <li class="ok">El canal bancario es el único canal de confianza. Si la notificación llega dentro de la app del banco, la credibilidad se transfiere automáticamente.</li>
+        <li class="ok">La granularidad de información en la notificación (nombre exacto, monto, período) es un requisito implícito de confianza, no un "nice to have".</li>
+        <li class="alerta">La ansiedad por fraude es la barrera principal y supera en intensidad al dolor del proceso actual. Sin resolverla, el producto no se adopta.</li>
+        <li class="alerta">La adopción no puede ser "todo o nada". Claudia necesita empezar con bajo riesgo antes de habilitar pagos críticos. Falta mecanismo de rampa en el diseño actual.</li>
+        <li class="alerta">El Job Social (reputación en el edificio) no emergió espontáneamente — requirió pregunta directa. El mensaje de adopción que apela a "no quedar mal" puede ser más efectivo que el de "ahorro de tiempo".</li>
+        <li class="info">El día exacto del pago (14 o 29) es parte del hábito. Un diseño que permita programar la aprobación para ciertos días podría acelerar la adopción.</li>
+        <li class="info">Claudia preguntó inmediatamente sobre quién puede enviarle cobros. La gestión del directorio de cobradores (whitelist) debe ser prominente en el onboarding.</li>
+      </ul>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 6: HIPÓTESIS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 6</span>
+        <h2 class="section-title__heading">Hipótesis de diseño</h2>
+        <p class="section-title__desc">Implicaciones accionables para el producto derivadas directamente de la entrevista.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Hipótesis</th>
+              <th>Evidencia en entrevista</th>
+              <th>Implicación de diseño</th>
+              <th>Prioridad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row--highlight">
+              <td>H1</td>
+              <td>El control percibido importa más que la velocidad</td>
+              <td>"Ellos piden y yo decido" — diferencia clave vs débito automático</td>
+              <td>El copy de la notificación debe enfatizar la autorización activa, no la automatización</td>
+              <td><span class="badge badge--orange">Alta</span></td>
+            </tr>
+            <tr>
+              <td>H2</td>
+              <td>La identidad verificable del cobrador es requisito de confianza</td>
+              <td>Pide nombre exacto, monto, período antes de aprobar</td>
+              <td>La pantalla de detalle del cobro debe mostrar estos campos antes del botón de aprobación</td>
+              <td><span class="badge badge--orange">Alta</span></td>
+            </tr>
+            <tr>
+              <td>H3</td>
+              <td>La adopción necesita rampa gradual</td>
+              <td>"No arrancaría con la administración de una vez"</td>
+              <td>Diseñar un onboarding progresivo: primero cobros pequeños, luego recurrentes críticos</td>
+              <td><span class="badge badge--blue">Media</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 7: PREGUNTAS SIN EXPLORAR -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 7</span>
+        <h2 class="section-title__heading">Preguntas sin explorar</h2>
+        <p class="section-title__desc">Aspectos que quedaron fuera de esta sesión y deben ser abordados en entrevistas o pruebas con usuarios reales.</p>
+      </div>
+      <ol class="lista-numerada">
+        <li>¿Qué haría Claudia si aprueba un cobro por error? ¿Conoce el mecanismo de reversión? ¿Afecta esto su disposición a usar RtP en pagos de mayor monto?</li>
+        <li>¿Estaría dispuesta a asociar una cuenta secundaria (no la principal) específicamente para cobros RtP, reduciendo el riesgo percibido de quedar en rojo?</li>
+        <li>¿Confiaría más si la notificación viniera firmada digitalmente por su banco, o le sería suficiente que llegue dentro de la app?</li>
+        <li>¿Cómo reaccionaría ante un límite máximo de cobro configurable por el usuario? ¿Lo usaría como mecanismo de control adicional?</li>
+      </ol>
+      <div class="alerta alerta--advertencia">
+        <span class="alerta__titulo">Riesgo metodológico a tener en cuenta</span>
+        <p class="alerta__texto">El mayor riesgo en la investigación con usuarios reales es el sesgo de deseabilidad social: dirán que sí adoptarían el producto, pero en la práctica el miedo al fraude puede bloquearlos. Las pruebas de usability deben incluir escenarios de cobro sospechoso para medir la reacción real.</p>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- SECCIÓN 8: PRÓXIMOS PASOS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 8</span>
+        <h2 class="section-title__heading">Próximos pasos recomendados</h2>
+        <p class="section-title__desc">Plan de research para validar las hipótesis con usuarios reales antes de avanzar en el desarrollo del flujo.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__dot">1</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 1–2</span>
+            <span class="timeline__titulo">Prototipo clickeable del flujo de notificación</span>
+            <p class="timeline__desc">Construir el flujo completo: comercio genera cobro → notificación en app bancaria → pantalla de detalle → aprobación → confirmación. Foco en la pantalla de detalle (H2).</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--green">2</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 3–4</span>
+            <span class="timeline__titulo">Usability testing moderado (5–8 usuarios reales)</span>
+            <p class="timeline__desc">Reclutar pagadores activos de Nequi, Bancolombia y Davivienda. Incluir tareas de cobro legítimo y cobro sospechoso. Medir comprensión, tiempo hasta aprobación y momentos de abandono.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--orange">3</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 5</span>
+            <span class="timeline__titulo">Encuesta a comercios (15–20 preguntas)</span>
+            <p class="timeline__desc">Cuantificar qué tanto duele el flujo actual de cobranza y qué tan dispuestos están a adoptar RtP. Identificar los tipos de cobro que arrancarían primero (mensualidades, servicios).</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--purple">4</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 6</span>
+            <span class="timeline__titulo">Síntesis y presentación a Nicole / ACH Colombia</span>
+            <p class="timeline__desc">Consolidar hallazgos, validar hipótesis y ajustar las recomendaciones de diseño antes del inicio del desarrollo del flujo regulado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIGHLIGHT BOXES RESUMEN -->
+    <div class="grid-3">
+      <div class="highlight-box highlight-box--purple">
+        <span class="highlight-box__label">Insight central</span>
+        <span class="highlight-box__texto">El usuario no abandona el hábito por velocidad — lo abandona por control y confianza garantizados.</span>
+      </div>
+      <div class="highlight-box highlight-box--orange">
+        <span class="highlight-box__label">Barrera crítica</span>
+        <span class="highlight-box__texto">El miedo al fraude por notificación es más fuerte que el dolor del proceso PSE actual.</span>
+      </div>
+      <div class="highlight-box highlight-box--green">
+        <span class="highlight-box__label">Oportunidad clave</span>
+        <span class="highlight-box__texto">El canal bancario ya tiene la confianza. La batalla es de UX, no de marca.</span>
+      </div>
+    </div>
+
+  </div><!-- /reporte-body -->
+
+  <div class="sim-toast" id="simToast"></div>
+
+  <script>
+  (function(){
+    var FORCES=[
+      {id:'push',label:'Push',dir:'↑ Empuja al cambio',desc:'Fricción real con PSE hoy',base:80,color:'#BA7517',bar:'#EF9F27'},
+      {id:'pull',label:'Pull',dir:'↑ Atrae hacia RtP',desc:'Atracción hacia la nueva solución',base:52,color:'#3B6D11',bar:'#639922'},
+      {id:'anx',label:'Ansiedad',dir:'↓ Frena el cambio',desc:'Miedo al fraude y pérdida de control',base:95,color:'#A32D2D',bar:'#E24B4A'},
+      {id:'habit',label:'Hábito',dir:'↓ Frena el cambio',desc:'Inercia con PSE y control percibido',base:80,color:'#534AB7',bar:'#7F77DD'}
+    ];
+    var DOTS=[
+      {pct:77,label:'Sin whitelist: cualquiera puede cobrarme'},
+      {pct:57,label:'Sin detalle verificable: no sé qué apruebo'},
+      {pct:35,label:'Sin canal bancario: no confío en la fuente'},
+      {pct:21,label:'Sin reversión: el error es permanente'}
+    ];
+    var IVS=[
+      {id:'wl',name:'Whitelist de cobradores',desc:'El usuario decide quién puede enviarle cobros. Solo comercios autorizados.',da:-18,dp:8,dh:-4,msg:'Control activado — la ansiedad baja notablemente.'},
+      {id:'det',name:'Pantalla de detalle verificable',desc:'Nombre exacto, monto y período visibles antes de cualquier botón de aprobación.',da:-20,dp:12,dh:-5,msg:'Credibilidad mejorada — Pull sube, hábito cede.'},
+      {id:'ch',name:'Notificación dentro de la app bancaria',desc:'La confianza del banco se transfiere al flujo. Es el canal que Claudia ya usa a diario.',da:-22,dp:15,dh:-8,msg:'Canal de confianza — el banco avala la solicitud.'},
+      {id:'rev',name:'Mecanismo de reversión claro',desc:'El usuario sabe que puede deshacer un cobro aprobado por error.',da:-14,dp:8,dh:-4,msg:'Red de seguridad — adoptar ya no es irreversible.'}
+    ];
+    var st={push:80,pull:52,anx:95,habit:80,app:[]};
+    function has(id){return st.app.indexOf(id)>=0;}
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+    function adoptPct(){return Math.round(clamp((st.push+st.pull-st.anx-st.habit+80)/160,0,1)*100);}
+
+    function renderMeter(){
+      var p=adoptPct();
+      var fill=document.getElementById('simMeterFill');
+      var pctEl=document.getElementById('simMeterPct');
+      var vrd=document.getElementById('simVerdict');
+      var box=document.getElementById('simMeterBox');
+      fill.style.width=p+'%';
+      pctEl.textContent=p+'%';
+      if(p>=65){fill.style.background='#639922';pctEl.style.color='#185F00';vrd.textContent='✓ Adopción probable';vrd.style.color='#3B6D11';box.style.borderLeft='4px solid #4cb979';}
+      else if(p>=45){fill.style.background='#e9683b';pctEl.style.color='#8a3010';vrd.textContent='~ En el límite';vrd.style.color='#8a3010';box.style.borderLeft='4px solid #e9683b';}
+      else{fill.style.background='#E24B4A';pctEl.style.color='#791F1F';vrd.textContent='✗ Sin adopción';vrd.style.color='#A32D2D';box.style.borderLeft='4px solid #E24B4A';}
+    }
+
+    function renderEq(){
+      var w=(st.push+st.pull)>(st.anx+st.habit);
+      ['Push','Pull','Anx','Hab'].forEach(function(k,i){
+        var ids=['seqPush','seqPull','seqAnx','seqHab'];
+        var vals=[st.push,st.pull,st.anx,st.habit];
+        document.getElementById(ids[i]).textContent=Math.round(vals[i]);
+      });
+      var r=document.getElementById('seqResult');
+      if(w){r.style.background='#eaf7ef';r.style.color='#185F00';r.textContent='✓ Adopción probable';}
+      else{r.style.background='#ffeaea';r.style.color='#791F1F';r.textContent='✗ Sin adopción';}
+    }
+
+    function renderForces(){
+      var grid=document.getElementById('simForces');
+      grid.innerHTML='';
+      FORCES.forEach(function(f){
+        var val=Math.round(st[f.id]);
+        var d=document.createElement('div');
+        d.className='sim-fcard';
+        d.innerHTML='<div class="sim-fcard-head"><span class="sim-fcard-name" style="color:'+f.color+'">'+f.label+'</span><span class="sim-fcard-val" style="color:'+f.color+'">'+val+'</span></div>'
+          +'<div class="sim-fcard-dir" style="color:'+f.color+';font-size:11px;margin-bottom:8px;">'+f.dir+'</div>'
+          +'<div class="sim-bar-track" id="sbt-'+f.id+'"><div class="sim-bar-fill" style="width:'+val+'%;background:'+f.bar+'"></div></div>'
+          +'<div style="margin-top:6px;font-size:11px;color:#88898c">'+f.desc+'</div>';
+        grid.appendChild(d);
+      });
+      var track=document.getElementById('sbt-anx');
+      if(track){
+        DOTS.forEach(function(dot){
+          var el=document.createElement('div');
+          el.className='sim-dot'+(st.anx<=dot.pct?' reached':'');
+          el.style.left=dot.pct+'%';
+          el.style.background=st.anx<=dot.pct?'#4cb979':'#E24B4A';
+          var tip=document.createElement('div');
+          tip.className='sim-dot-tip';
+          tip.textContent=dot.label;
+          el.appendChild(tip);
+          track.appendChild(el);
+        });
+      }
+    }
+
+    function renderInt(){
+      var list=document.getElementById('simIntList');
+      list.innerHTML='';
+      IVS.forEach(function(iv){
+        var applied=has(iv.id);
+        var item=document.createElement('div');
+        item.className='sim-int-item'+(applied?' applied':'');
+        item.innerHTML='<div class="sim-int-check">'+(applied?'✓':'')+'</div>'
+          +'<div class="sim-int-body"><div class="sim-int-name">'+iv.name+'</div><div class="sim-int-desc">'+iv.desc+'</div></div>'
+          +'<div class="sim-int-delta"><span class="dpill-down">Ansiedad '+iv.da+'</span><span class="dpill-up">Pull +'+iv.dp+'</span></div>';
+        if(!applied){item.onclick=(function(x){return function(){applyIv(x);};})(iv);}
+        list.appendChild(item);
+      });
+    }
+
+    function applyIv(iv){
+      st.app.push(iv.id);
+      st.anx=clamp(st.anx+iv.da,5,99);
+      st.pull=clamp(st.pull+iv.dp,0,99);
+      st.habit=clamp(st.habit+iv.dh,0,99);
+      renderAll();
+      showToast(iv.msg);
+    }
+
+    function showToast(msg){
+      var t=document.getElementById('simToast');
+      t.textContent=msg;
+      t.classList.add('show');
+      setTimeout(function(){t.classList.remove('show');},2800);
+    }
+
+    function renderAll(){renderMeter();renderEq();renderForces();renderInt();}
+
+    document.getElementById('simReset').onclick=function(){
+      st={push:80,pull:52,anx:95,habit:80,app:[]};
+      renderAll();showToast('Simulación reiniciada.');
+    };
+
+    renderAll();
+  })();
+  </script>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDExMjIuMTUgMjIwLjg0Ij4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMzAuMy4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjMgQnVpbGQgMTgyKSAgLS0+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5zdDAgewogICAgICAgIGZpbGw6ICNmZmZmZmY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJDYXBhXzEiPgogICAgPGc+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNi4zOSwxNzIuMjdWMjUuMTdoMTkuMzV2MTQ3LjA5aC0xOS4zNVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNjguNTEsMTcyLjI3VjI1LjE3aDE2LjE5bDg0LjUsMTE4Ljg2LTcuMzEuNzlWMjUuMTdoMTkuNTV2MTQ3LjA5aC0xNi4xOUw4MS4xNSw1Mi42Mmw2LjcxLS43OXYxMjAuNDRoLTE5LjM1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0yMTQuMjIsMTcyLjI3VjI1LjE3aDE2LjE5bDg0LjUsMTE4Ljg2LTcuMzEuNzlWMjUuMTdoMTkuNTV2MTQ3LjA5aC0xNi4xOWwtODQuMTEtMTE5LjY1LDYuNzEtLjc5djEyMC40NGgtMTkuMzVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTM1OS45MywxNzIuMjdWMjUuMTdoMTkuMzV2MTI5LjMyaDY0LjU2djE3Ljc3aC04My45MVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDUxLjM0LDE3Mi4yN2w1Mi43Mi0xNDcuMDloMjIuOWw1Mi43MiwxNDcuMDloLTIwLjczbC0xMi4wNC0zNC41NWgtNjIuNzlsLTEyLjA0LDM0LjU1aC0yMC43M1pNNDkwLjI0LDExOS45NWg1MC41NGwtMjguMDQtODAuNzVoNS41M2wtMjguMDQsODAuNzVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTU5OC4yNCwxNzIuMjdWMjUuMTdoNjEuOGM4LjgyLDAsMTYuNDIsMS41OCwyMi44LDQuNzQsNi4zOCwzLjE2LDExLjMyLDcuNiwxNC44MSwxMy4zMywzLjQ5LDUuNzMsNS4yMywxMi41NCw1LjIzLDIwLjQzLDAsNy4yNC0xLjg4LDEzLjc5LTUuNjMsMTkuNjUtMy43NSw1Ljg2LTkuMjUsMTAuNDMtMTYuNDksMTMuNzJsLS4yLTcuMzFjNi4zMiwyLjM3LDExLjU1LDUuNSwxNS43LDkuMzgsNC4xNSwzLjg4LDcuMjcsOC4zNiw5LjM4LDEzLjQzLDIuMSw1LjA3LDMuMTYsMTAuNDMsMy4xNiwxNi4wOSwwLDEzLjU2LTQuMzQsMjQuMjItMTMuMDMsMzEuOTktOC42OSw3Ljc3LTIwLjUzLDExLjY1LTM1LjU0LDExLjY1aC02MlpNNjE3LjU5LDg1LjU5aDQyLjA1YzcuMTEsMCwxMi44My0yLjA3LDE3LjE4LTYuMjIsNC4zNC00LjE1LDYuNTItOS40NCw2LjUyLTE1Ljg5cy0yLjE3LTExLjg1LTYuNTItMTUuNGMtNC4zNC0zLjU1LTEwLjA3LTUuMzMtMTcuMTgtNS4zM2gtNDIuMDV2NDIuODRaTTYxNy41OSwxNTQuNWg0My40NGM4LjU1LDAsMTUuNC0yLjMsMjAuNTMtNi45MSw1LjEzLTQuNjEsNy43LTEwLjg2LDcuNy0xOC43NnMtMi41Ny0xNC4xOC03LjctMTguODZjLTUuMTMtNC42Ny0xMS45OC03LjAxLTIwLjUzLTcuMDFoLTQzLjQ0djUxLjUzWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MzEuNiw5NC4zN2MtMy4wNywwLTUuOTEtLjU1LTguNDktMS42Ni0yLjU5LTEuMTEtNC44NS0yLjY4LTYuNzctNC43LTEuOTMtMi4wMi0zLjQyLTQuNC00LjQ3LTcuMTItMS4wNS0yLjcyLTEuNTgtNS43LTEuNTgtOC45M3MuNTMtNi4yNywxLjU4LTguOTljMS4wNS0yLjcyLDIuNTMtNS4xLDQuNDQtNy4xMiwxLjkxLTIuMDIsNC4xNi0zLjU5LDYuNzctNC43LDIuNjEtMS4xMSw1LjQ1LTEuNjYsOC41Mi0xLjY2czUuNjkuNTMsOC4wOSwxLjU4LDQuNDIsMi40MSw2LjA3LDQuMDljMS42NSwxLjY3LDIuODMsMy40NiwzLjUzLDUuMzdsLTUuMjUsMi4zOWMtMS4wMS0yLjQxLTIuNTktNC4zNy00LjczLTUuODctMi4xNC0xLjUtNC43MS0yLjI1LTcuNzEtMi4yNXMtNS43My43Mi04LjA5LDIuMTZjLTIuMzUsMS40NC00LjE5LDMuNDQtNS41Miw2LjAxLTEuMzIsMi41Ny0xLjk4LDUuNTctMS45OCw4Ljk5cy42Niw2LjM2LDEuOTgsOC45M2MxLjMyLDIuNTcsMy4xNiw0LjU3LDUuNTIsNi4wMSwyLjM1LDEuNDQsNS4wNSwyLjE2LDguMDksMi4xNnM1LjU3LS43NSw3LjcxLTIuMjVjMi4xNC0xLjUsMy43Mi0zLjQ1LDQuNzMtNS44N2w1LjI1LDIuMzljLS43LDEuOTEtMS44OCwzLjctMy41Myw1LjM3LTEuNjUsMS42Ny0zLjY4LDMuMDQtNi4wNyw0LjA5cy01LjA5LDEuNTgtOC4wOSwxLjU4WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04NzAuMzEsOTQuMzdjLTMuMDQsMC01Ljc0LS43Mi04LjEyLTIuMTYtMi4zNy0xLjQ0LTQuMjQtMy40Mi01LjYtNS45My0xLjM2LTIuNTEtMi4wNC01LjMyLTIuMDQtOC40NHMuNjctNS45NiwyLjAxLTguNDFjMS4zNC0yLjQ1LDMuMTctNC4zOSw1LjQ5LTUuODEsMi4zMi0xLjQyLDQuOTEtMi4xMyw3Ljc5LTIuMTMsMi4zMywwLDQuNDEuNDIsNi4yMiwxLjI2LDEuODEuODQsMy4zNSwxLjk3LDQuNjEsMy4zOSwxLjI2LDEuNDIsMi4yNCwzLjA0LDIuOTIsNC44NS42OCwxLjgxLDEuMDIsMy42OSwxLjAyLDUuNjMsMCwuNDMtLjAzLjkxLS4wOSwxLjQzcy0uMTMsMS4wMi0uMjEsMS40OWgtMjUuOHYtNC42N2gyMi42NWwtMi41NywyLjFjLjM1LTIuMDIuMTYtMy44My0uNTgtNS40My0uNzQtMS41OS0xLjgzLTIuODYtMy4yNy0zLjc5LTEuNDQtLjkzLTMuMDgtMS40LTQuOS0xLjRzLTMuNS40Ny01LjAyLDEuNGMtMS41Mi45My0yLjcsMi4yNy0zLjUzLDQtLjg0LDEuNzMtMS4xOCwzLjc5LTEuMDIsNi4xNi0uMTYsMi4zLjIsNC4zMSwxLjA4LDYuMDQuODgsMS43MywyLjEyLDMuMDcsMy43NCw0LjAzLDEuNjEuOTUsMy4zOCwxLjQzLDUuMjgsMS40MywyLjEsMCwzLjg3LS40OSw1LjMxLTEuNDYsMS40NC0uOTcsMi42MS0yLjIyLDMuNS0zLjc0bDQuNTUsMi4zM2MtLjYyLDEuNDQtMS41OSwyLjc1LTIuODksMy45NC0xLjMsMS4xOS0yLjg0LDIuMTMtNC42MSwyLjgzLTEuNzcuNy0zLjc1LDEuMDUtNS45MiwxLjA1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04OTEuNjcsOTMuNjd2LTMxLjQ3aDUuMzF2Ni4xM2wtLjg4LS41M2MuNzgtMS45OSwyLjAzLTMuNTMsMy43Ny00LjY0LDEuNzMtMS4xMSwzLjc3LTEuNjYsNi4xLTEuNjZzNC4yNy41MSw2LjA0LDEuNTJjMS43NywxLjAxLDMuMTcsMi40MSw0LjIsNC4yczEuNTUsMy44MSwxLjU1LDYuMDd2MjAuMzdoLTUuNDl2LTE4LjYyYzAtMS43NS0uMzEtMy4yMy0uOTMtNC40NC0uNjItMS4yMS0xLjUxLTIuMTUtMi42Ni0yLjgzcy0yLjQ2LTEuMDItMy45NC0xLjAyLTIuNzkuMzQtMy45NCwxLjAyYy0xLjE1LjY4LTIuMDUsMS42My0yLjcxLDIuODZzLS45OSwyLjctLjk5LDQuNDF2MTguNjJoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTkzOC4zMSw5NC4wMmMtMy4wOCwwLTUuNDQtLjg4LTcuMDktMi42My0xLjY1LTEuNzUtMi40OC00LjIyLTIuNDgtNy40MXYtMTYuNThoLTUuNzJ2LTUuMmgxLjE3YzEuNCwwLDIuNTEtLjQzLDMuMzMtMS4yOC44Mi0uODYsMS4yMy0xLjk5LDEuMjMtMy4zOXYtMi41N2g1LjQzdjcuMjRoNy4wNnY1LjJoLTcuMDZ2MTYuNGMwLDEuMDUuMTYsMS45Ny41LDIuNzQuMzMuNzguODgsMS4zOSwxLjY2LDEuODQuNzguNDUsMS44MS42NywzLjA5LjY3LjI3LDAsLjYxLS4wMiwxLjAyLS4wNnMuNzktLjA4LDEuMTQtLjEydjQuNzljLS41MS4xMi0xLjA3LjItMS42OS4yNi0uNjIuMDYtMS4xNS4wOS0xLjU4LjA5WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05NDguNjUsOTMuNjd2LTMxLjQ3aDUuMzF2NS43OGwtLjU4LS44MmMuNzQtMS43OSwxLjg3LTMuMTIsMy4zOS00czMuMzctMS4zMSw1LjU1LTEuMzFoMS45M3Y1LjE0aC0yLjc0Yy0yLjIyLDAtNC4wMS42OS01LjM3LDIuMDctMS4zNiwxLjM4LTIuMDQsMy4zNC0yLjA0LDUuODd2MTguNzRoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk4NC4wMiw5NC4zN2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MWMxLjQyLTIuNDUsMy4zNi00LjQsNS44MS01Ljg0LDIuNDUtMS40NCw1LjIxLTIuMTYsOC4yOS0yLjE2czUuNzguNzEsOC4yMywyLjEzYzIuNDUsMS40Miw0LjM5LDMuMzYsNS44MSw1LjgxLDEuNDIsMi40NSwyLjEzLDUuMjcsMi4xMyw4LjQ2cy0uNzQsNi4wMi0yLjIyLDguNDljLTEuNDgsMi40Ny0zLjQ0LDQuNDItNS44Nyw1Ljg0LTIuNDMsMS40Mi01LjEzLDIuMTMtOC4wOCwyLjEzWk05ODQuMDIsODkuMTJjMS45NSwwLDMuNzEtLjQ5LDUuMjgtMS40NnMyLjgyLTIuMzIsMy43NC00LjAzYy45MS0xLjcxLDEuMzctMy42MiwxLjM3LTUuNzJzLS40Ni00LjA0LTEuMzctNS42OS0yLjE2LTIuOTgtMy43NC0zLjk3LTMuMzQtMS40OS01LjI4LTEuNDktMy43Ny41LTUuMzQsMS40OS0yLjgzLDIuMzItMy43NywzLjk3LTEuNCwzLjU1LTEuNCw1LjY5LjQ3LDQuMDEsMS40LDUuNzJjLjkzLDEuNzEsMi4xOSwzLjA2LDMuNzcsNC4wM3MzLjM2LDEuNDYsNS4zNCwxLjQ2WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDMxLjY2LDk0LjM3Yy0yLjk2LDAtNS42Mi0uNzItNy45Ny0yLjE2LTIuMzYtMS40NC00LjIxLTMuNDEtNS41OC01LjktMS4zNi0yLjQ5LTIuMDQtNS4yNy0yLjA0LTguMzVzLjY4LTUuOTYsMi4wNC04LjQ0YzEuMzYtMi40NywzLjIyLTQuNDMsNS41OC01Ljg3LDIuMzUtMS40NCw1LjAxLTIuMTYsNy45Ny0yLjE2LDIuNjEsMCw0LjkyLjU1LDYuOTUsMS42NiwyLjAyLDEuMTEsMy42MiwyLjYsNC43OSw0LjQ3bC0uODgsMS4zNHYtMTkuNWg1LjQ5djQ0LjE5aC01LjMxdi02LjcxbC43LjkzYy0xLjA5LDIuMDYtMi42OCwzLjY2LTQuNzYsNC43OS0yLjA4LDEuMTMtNC40MSwxLjY5LTYuOTgsMS42OVpNMTAzMi4xMyw4OS4xMmMxLjk4LDAsMy43Ni0uNDksNS4zMS0xLjQ2czIuNzktMi4zMSwzLjcxLTRjLjkxLTEuNjksMS4zNy0zLjU5LDEuMzctNS42OXMtLjQ2LTQuMDYtMS4zNy01Ljc1Yy0uOTItMS42OS0yLjE1LTMuMDMtMy43MS00LTEuNTYtLjk3LTMuMzMtMS40Ni01LjMxLTEuNDZzLTMuNzEuNS01LjI4LDEuNDktMi44MSwyLjMyLTMuNzEsMy45N2MtLjksMS42NS0xLjM0LDMuNTctMS4zNCw1Ljc1cy40NSw0LDEuMzQsNS42OWMuODksMS42OSwyLjEyLDMuMDMsMy42OCw0czMuMzMsMS40Niw1LjMxLDEuNDZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwNzAuODksOTQuMzdjLTMuMDQsMC01Ljc0LS43Mi04LjEyLTIuMTYtMi4zNy0xLjQ0LTQuMjQtMy40Mi01LjYtNS45My0xLjM2LTIuNTEtMi4wNC01LjMyLTIuMDQtOC40NHMuNjctNS45NiwyLjAxLTguNDFjMS4zNC0yLjQ1LDMuMTctNC4zOSw1LjQ5LTUuODEsMi4zMi0xLjQyLDQuOTEtMi4xMyw3Ljc5LTIuMTMsMi4zMywwLDQuNDEuNDIsNi4yMiwxLjI2LDEuODEuODQsMy4zNSwxLjk3LDQuNjEsMy4zOSwxLjI2LDEuNDIsMi4yNCwzLjA0LDIuOTIsNC44NS42OCwxLjgxLDEuMDIsMy42OSwxLjAyLDUuNjMsMCwuNDMtLjAzLjkxLS4wOSwxLjQzcy0uMTMsMS4wMi0uMjEsMS40OWgtMjUuOHYtNC42N2gyMi42NWwtMi41NywyLjFjLjM1LTIuMDIuMTYtMy44My0uNTgtNS40My0uNzQtMS41OS0xLjgzLTIuODYtMy4yNy0zLjc5LTEuNDQtLjkzLTMuMDgtMS40LTQuOS0xLjRzLTMuNS40Ny01LjAyLDEuNGMtMS41Mi45My0yLjcsMi4yNy0zLjUzLDQtLjg0LDEuNzMtMS4xOCwzLjc5LTEuMDIsNi4xNi0uMTYsMi4zLjIsNC4zMSwxLjA4LDYuMDQuODgsMS43MywyLjEyLDMuMDcsMy43NCw0LjAzLDEuNjEuOTUsMy4zOCwxLjQzLDUuMjgsMS40MywyLjEsMCwzLjg3LS40OSw1LjMxLTEuNDYsMS40NC0uOTcsMi42MS0yLjIyLDMuNS0zLjc0bDQuNTUsMi4zM2MtLjYyLDEuNDQtMS41OSwyLjc1LTIuODksMy45NC0xLjMsMS4xOS0yLjg0LDIuMTMtNC42MSwyLjgzLTEuNzcuNy0zLjc1LDEuMDUtNS45MiwxLjA1WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MTEuNTgsMTYzLjczdi00My40OWg1LjcydjQzLjQ5aC01LjcyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MjYuMzUsMTYzLjczdi0zMS40N2g1LjMxdjYuMTNsLS44OC0uNTNjLjc4LTEuOTksMi4wMy0zLjUzLDMuNzctNC42NCwxLjczLTEuMTEsMy43Ny0xLjY2LDYuMS0xLjY2czQuMjcuNTEsNi4wNCwxLjUyYzEuNzcsMS4wMSwzLjE3LDIuNDEsNC4yLDQuMiwxLjAzLDEuNzksMS41NSwzLjgxLDEuNTUsNi4wN3YyMC4zN2gtNS40OXYtMTguNjJjMC0xLjc1LS4zMS0zLjIzLS45My00LjQ0LS42Mi0xLjIxLTEuNTEtMi4xNS0yLjY2LTIuODMtMS4xNS0uNjgtMi40Ni0xLjAyLTMuOTQtMS4wMnMtMi43OS4zNC0zLjk0LDEuMDJjLTEuMTUuNjgtMi4wNSwxLjYzLTIuNzEsMi44Ni0uNjYsMS4yMy0uOTksMi43LS45OSw0LjQxdjE4LjYyaC01LjQzWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04NjAuMiwxNjMuNzN2LTMxLjQ3aDUuMzF2Ni4xM2wtLjg4LS41M2MuNzgtMS45OSwyLjAzLTMuNTMsMy43Ny00LjY0LDEuNzMtMS4xMSwzLjc3LTEuNjYsNi4xLTEuNjZzNC4yNy41MSw2LjA0LDEuNTJjMS43NywxLjAxLDMuMTcsMi40MSw0LjIsNC4yczEuNTUsMy44MSwxLjU1LDYuMDd2MjAuMzdoLTUuNDl2LTE4LjYyYzAtMS43NS0uMzEtMy4yMy0uOTMtNC40NC0uNjItMS4yMS0xLjUxLTIuMTUtMi42Ni0yLjgzcy0yLjQ2LTEuMDItMy45NC0xLjAyLTIuNzkuMzQtMy45NCwxLjAyYy0xLjE1LjY4LTIuMDUsMS42My0yLjcxLDIuODYtLjY2LDEuMjMtLjk5LDIuNy0uOTksNC40MXYxOC42MmgtNS40M1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNOTA5LjAxLDE2NC40M2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MSwzLjM2LTQuNCw1LjgxLTUuODRjMi40NS0xLjQ0LDUuMjEtMi4xNiw4LjI5LTIuMTZzNS43OC43MSw4LjIzLDIuMTNjMi40NSwxLjQyLDQuMzksMy4zNiw1LjgxLDUuODEsMS40MiwyLjQ1LDIuMTMsNS4yNywyLjEzLDguNDZzLS43NCw2LjAyLTIuMjIsOC40OWMtMS40OCwyLjQ3LTMuNDMsNC40Mi01Ljg3LDUuODQtMi40MywxLjQyLTUuMTMsMi4xMy04LjA5LDIuMTNaTTkwOS4wMSwxNTkuMTdjMS45NSwwLDMuNzEtLjQ5LDUuMjgtMS40NnMyLjgyLTIuMzIsMy43NC00LjAzYy45MS0xLjcxLDEuMzctMy42MiwxLjM3LTUuNzJzLS40Ni00LjA0LTEuMzctNS42OWMtLjkyLTEuNjUtMi4xNi0yLjk4LTMuNzQtMy45N3MtMy4zNC0xLjQ5LTUuMjgtMS40OS0zLjc3LjUtNS4zNCwxLjQ5LTIuODMsMi4zMi0zLjc3LDMuOTctMS40LDMuNTUtMS40LDUuNjkuNDcsNC4wMSwxLjQsNS43MmMuOTMsMS43MSwyLjE5LDMuMDYsMy43Nyw0LjAzczMuMzYsMS40Niw1LjM0LDEuNDZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk0MC40MiwxNjMuNzNsLTEyLjMyLTMxLjQ3aDYuMDdsOS44NywyNi42MmgtMi4xbDkuOTItMjYuNjJoNi4wN2wtMTIuMzgsMzEuNDdoLTUuMTRaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTk3MC44MywxNjQuNDNjLTIuMDYsMC0zLjg4LS4zOC01LjQ2LTEuMTRzLTIuODEtMS44MS0zLjcxLTMuMTVjLS45LTEuMzQtMS4zNC0yLjg5LTEuMzQtNC42NHMuMzYtMy4xOCwxLjA4LTQuNTJjLjcyLTEuMzQsMS44NS0yLjQ4LDMuMzktMy40MiwxLjU0LS45MywzLjQ3LTEuNiw1LjgxLTEuOTlsMTEuNjgtMS45M3Y0LjU1bC0xMC40NSwxLjc1Yy0yLjAyLjM1LTMuNDkuOTktNC40MSwxLjkzLS45Mi45My0xLjM3LDIuMDgtMS4zNywzLjQ0LDAsMS4yOC41MiwyLjM1LDEuNTUsMy4yMXMyLjMzLDEuMjgsMy44OCwxLjI4YzEuOTgsMCwzLjcxLS40Miw1LjE3LTEuMjYsMS40Ni0uODQsMi42MS0xLjk3LDMuNDUtMy40Mi44NC0xLjQ0LDEuMjUtMy4wNCwxLjI1LTQuNzl2LThjMC0xLjcxLS42My0zLjEtMS45LTQuMTctMS4yNy0xLjA3LTIuOTMtMS42MS00Ljk5LTEuNjEtMS43OSwwLTMuMzguNDYtNC43NiwxLjM3LTEuMzguOTItMi40LDIuMTMtMy4wNiwzLjY1bC00LjczLTIuNDVjLjU4LTEuNDQsMS41Mi0yLjczLDIuOC0zLjg4LDEuMjgtMS4xNSwyLjc4LTIuMDUsNC40OS0yLjcxczMuNS0uOTksNS4zNy0uOTljMi40MSwwLDQuNTMuNDYsNi4zNiwxLjM3LDEuODMuOTIsMy4yNiwyLjE4LDQuMjksMy43OSwxLjAzLDEuNjIsMS41NSwzLjQ5LDEuNTUsNS42M3YyMS4zN2gtNS4zMXYtNS45NmwuOTkuMzVjLS42NiwxLjI1LTEuNTYsMi4zMy0yLjY5LDMuMjctMS4xMy45My0yLjQ1LDEuNjctMy45NywyLjIyLTEuNTIuNTQtMy4xNy44Mi00Ljk2LjgyWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDA5Ljc3LDE2NC40M2MtMy4wOCwwLTUuODEtLjcyLTguMi0yLjE2cy00LjI3LTMuNDEtNS42My01LjljLTEuMzYtMi40OS0yLjA0LTUuMjktMi4wNC04LjQxcy42OC01Ljk1LDIuMDQtOC40MWMxLjM2LTIuNDUsMy4yNC00LjQsNS42My01Ljg0LDIuMzktMS40NCw1LjEzLTIuMTYsOC4yLTIuMTYsMi4wNiwwLDMuOTkuMzcsNS43OCwxLjExLDEuNzkuNzQsMy4zNywxLjczLDQuNzMsMi45OCwxLjM2LDEuMjUsMi4zNSwyLjcxLDIuOTgsNC4zOGwtNC44NSwyLjM0Yy0uNzQtMS42My0xLjg3LTIuOTctMy4zOC00LTEuNTItMS4wMy0zLjI3LTEuNTUtNS4yNS0xLjU1cy0zLjYzLjQ5LTUuMTcsMS40NmMtMS41NC45Ny0yLjc1LDIuMy0zLjY1LDMuOTctLjksMS42Ny0xLjM0LDMuNi0xLjM0LDUuNzhzLjQ1LDQsMS4zNCw1LjY5Yy44OSwxLjY5LDIuMTEsMy4wMywzLjY1LDRzMy4yNiwxLjQ2LDUuMTcsMS40NiwzLjc0LS41Miw1LjI1LTEuNTVjMS41Mi0xLjAzLDIuNjUtMi40LDMuMzgtNC4xMmw0Ljg1LDIuNDVjLS42MiwxLjYzLTEuNjIsMy4wOC0yLjk4LDQuMzUtMS4zNiwxLjI2LTIuOTQsMi4yNy00LjczLDMuMDEtMS43OS43NC0zLjcyLDEuMTEtNS43OCwxLjExWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDMwLjM4LDEyNy4yNHYtNy4wMWg1LjQzdjcuMDFoLTUuNDNaTTEwMzAuMzgsMTYzLjczdi0zMS40N2g1LjQzdjMxLjQ3aC01LjQzWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMDU5LjE2LDE2NC40M2MtMy4wNCwwLTUuNzgtLjcxLTguMjMtMi4xMy0yLjQ1LTEuNDItNC40LTMuMzgtNS44NC01Ljg3LTEuNDQtMi40OS0yLjE2LTUuMzEtMi4xNi04LjQ3cy43MS01Ljk1LDIuMTMtOC40MWMxLjQyLTIuNDUsMy4zNi00LjQsNS44MS01Ljg0LDIuNDUtMS40NCw1LjIxLTIuMTYsOC4yOS0yLjE2czUuNzguNzEsOC4yMywyLjEzYzIuNDUsMS40Miw0LjM5LDMuMzYsNS44MSw1LjgxLDEuNDIsMi40NSwyLjEzLDUuMjcsMi4xMyw4LjQ2cy0uNzQsNi4wMi0yLjIyLDguNDljLTEuNDgsMi40Ny0zLjQ0LDQuNDItNS44Nyw1Ljg0LTIuNDMsMS40Mi01LjEzLDIuMTMtOC4wOCwyLjEzWk0xMDU5LjE2LDE1OS4xN2MxLjk1LDAsMy43MS0uNDksNS4yOC0xLjQ2czIuODItMi4zMiwzLjc0LTQuMDNjLjkxLTEuNzEsMS4zNy0zLjYyLDEuMzctNS43MnMtLjQ2LTQuMDQtMS4zNy01LjY5LTIuMTYtMi45OC0zLjc0LTMuOTctMy4zNC0xLjQ5LTUuMjgtMS40OS0zLjc3LjUtNS4zNCwxLjQ5LTIuODMsMi4zMi0zLjc3LDMuOTctMS40LDMuNTUtMS40LDUuNjkuNDcsNC4wMSwxLjQsNS43MmMuOTMsMS43MSwyLjE5LDMuMDYsMy43Nyw0LjAzczMuMzYsMS40Niw1LjM0LDEuNDZaTTEwNTYuNDEsMTI2LjM2bDQuNjEtOS4yMmg3LjM2bC02LjU0LDkuMjJoLTUuNDNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwODIuMzksMTYzLjczdi0zMS40N2g1LjMxdjYuMTNsLS44OC0uNTNjLjc4LTEuOTksMi4wMy0zLjUzLDMuNzctNC42NCwxLjczLTEuMTEsMy43Ny0xLjY2LDYuMS0xLjY2czQuMjcuNTEsNi4wNCwxLjUyYzEuNzcsMS4wMSwzLjE3LDIuNDEsNC4yLDQuMnMxLjU1LDMuODEsMS41NSw2LjA3djIwLjM3aC01LjQ5di0xOC42MmMwLTEuNzUtLjMxLTMuMjMtLjkzLTQuNDQtLjYyLTEuMjEtMS41MS0yLjE1LTIuNjYtMi44M3MtMi40Ni0xLjAyLTMuOTQtMS4wMi0yLjc5LjM0LTMuOTQsMS4wMmMtMS4xNS42OC0yLjA1LDEuNjMtMi43MSwyLjg2cy0uOTksMi43LS45OSw0LjQxdjE4LjYyaC01LjQzWiIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=" alt="INNLAB">
+    <span class="report-footer__info">Entrevista Usuario Sintético — RtP / Botón de Solicitud de Pago · Universidad Icesi · Confidencial</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div>
+</body>
+</html>
