@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insumos — Prueba Práctica Diseñador UX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+<div class="reporte">
+
+  <!-- ── HEADER ── -->
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo">
+        <img src="../img/Icesi_white.svg" alt="Universidad Icesi" style="height:40px">
+      </div>
+      <div class="report-header__meta">
+        <span class="report-header__meta-label">Prueba Práctica UX</span>
+        <span class="report-header__meta-value">Vicepresidencia de Producto · Mayo 2026</span>
+      </div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Insumos de trabajo</span>
+      <h1 class="report-header__title">Materiales de la prueba</h1>
+      <p class="report-header__subtitle">Tres insumos de partida: el mapa del ecosistema, los perfiles de usuario y una selección de reseñas. Complémentalos con tu propia investigación.</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">3</span>
+        <span class="report-header__kpi-label">Insumos entregados</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">12</span>
+        <span class="report-header__kpi-label">Reseñas seleccionadas</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">3</span>
+        <span class="report-header__kpi-label">Perfiles de usuario</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BODY ── -->
+  <div class="reporte-body">
+
+    <!-- NOTA METODOLÓGICA -->
+    <div class="alerta alerta--advertencia">
+      <span class="alerta__titulo">Nota metodológica</span>
+      <p class="alerta__texto">Las reseñas son ilustrativas — construidas a partir de problemas reales documentados públicamente en Google Play, foros y redes sociales. Los patrones de fricción que representan sí son reales y verificables. Se espera que busques evidencia adicional por tu cuenta.</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         INSUMO 1 — MAPA DEL ECOSISTEMA
+    ══════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Insumo 1 de 3</span>
+        <h2 class="section-title__heading">Mapa del ecosistema de plataformas</h2>
+        <p class="section-title__desc">El aspirante interactúa con tres sistemas distintos a lo largo de su proceso. Cada uno tiene un rol diferente — pero esa separación no siempre es clara para el usuario.</p>
+      </div>
+
+      <div class="grafica-wrapper">
+        <div class="grafica-wrapper__titulo">
+          Recorrido del aspirante por el ecosistema SENA
+          <div class="grafica-wrapper__subtitulo">Betowa · Portal Sofía Plus · Zajuna — puntos de fricción documentados</div>
+        </div>
+        <div class="grafica-wrapper__body" style="padding:0; overflow-x:auto;">
+          <svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg"
+               font-family="Plus Jakarta Sans, system-ui, sans-serif"
+               style="min-width:680px; width:100%; display:block;">
+
+            <!-- BG -->
+            <rect x="0" y="0" width="780" height="420" fill="#f4f4f6"/>
+
+            <!-- Phase header bands -->
+            <rect x="0" y="0" width="780" height="44" fill="#fff"/>
+            <text x="112" y="28" font-size="11" font-weight="700" fill="#88898c" letter-spacing="1" text-anchor="middle">DESCUBRIMIENTO</text>
+            <text x="308" y="28" font-size="11" font-weight="700" fill="#88898c" letter-spacing="1" text-anchor="middle">INSCRIPCIÓN</text>
+            <text x="510" y="28" font-size="11" font-weight="700" fill="#88898c" letter-spacing="1" text-anchor="middle">SELECCIÓN</text>
+            <text x="685" y="28" font-size="11" font-weight="700" fill="#88898c" letter-spacing="1" text-anchor="middle">FORMACIÓN</text>
+
+            <!-- Phase dividers -->
+            <line x1="210" y1="0" x2="210" y2="420" stroke="#e8e8ed" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="415" y1="0" x2="415" y2="420" stroke="#e8e8ed" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="600" y1="0" x2="600" y2="420" stroke="#e8e8ed" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="0" y1="44" x2="780" y2="44" stroke="#e8e8ed" stroke-width="1"/>
+
+            <!-- Row labels -->
+            <rect x="8" y="65" width="88" height="22" rx="5" fill="#eeeeff"/>
+            <text x="52" y="80" font-size="11" font-weight="700" fill="#5454e9" text-anchor="middle">Sofía Plus</text>
+
+            <rect x="8" y="175" width="72" height="22" rx="5" fill="#fdf0eb"/>
+            <text x="44" y="190" font-size="11" font-weight="700" fill="#e9683b" text-anchor="middle">Betowa</text>
+
+            <rect x="8" y="290" width="66" height="22" rx="5" fill="#f3effe"/>
+            <text x="41" y="305" font-size="11" font-weight="700" fill="#865cf0" text-anchor="middle">Zajuna</text>
+
+            <!-- ── SOFÍA PLUS STEPS ── -->
+            <rect x="112" y="58" width="148" height="48" rx="7" fill="#fff" stroke="#5454e9" stroke-width="1.5"/>
+            <text x="186" y="79" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Consultar oferta</text>
+            <text x="186" y="96" font-size="11" fill="#88898c" text-anchor="middle">cronogramas y cupos</text>
+
+            <rect x="420" y="58" width="148" height="48" rx="7" fill="#fff" stroke="#5454e9" stroke-width="1.5"/>
+            <text x="494" y="79" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Ver resultados</text>
+            <text x="494" y="96" font-size="11" fill="#88898c" text-anchor="middle">citaciones y puntajes</text>
+
+            <rect x="614" y="58" width="148" height="48" rx="7" fill="#fff" stroke="#5454e9" stroke-width="1.5"/>
+            <text x="688" y="79" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Certificados</text>
+            <text x="688" y="96" font-size="11" fill="#88898c" text-anchor="middle">y trámites post-egreso</text>
+
+            <!-- Sofia arrows -->
+            <line x1="260" y1="82" x2="420" y2="82" stroke="#5454e9" stroke-width="1.5" marker-end="url(#ab)"/>
+            <line x1="568" y1="82" x2="614" y2="82" stroke="#5454e9" stroke-width="1.5" marker-end="url(#ab)"/>
+
+            <!-- ── BETOWA STEPS ── -->
+            <rect x="220" y="168" width="130" height="48" rx="7" fill="#fff" stroke="#e9683b" stroke-width="1.5"/>
+            <text x="285" y="189" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Crear cuenta /</text>
+            <text x="285" y="206" font-size="11" fill="#88898c" text-anchor="middle">iniciar sesión</text>
+
+            <rect x="375" y="168" width="130" height="48" rx="7" fill="#fff" stroke="#e9683b" stroke-width="1.5"/>
+            <text x="440" y="189" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Solicitar cupo</text>
+            <text x="440" y="206" font-size="11" fill="#88898c" text-anchor="middle">en programa elegido</text>
+
+            <rect x="525" y="168" width="130" height="48" rx="7" fill="#fff" stroke="#e9683b" stroke-width="1.5"/>
+            <text x="590" y="189" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Matrícula</text>
+            <text x="590" y="206" font-size="11" fill="#88898c" text-anchor="middle">si es seleccionado</text>
+
+            <!-- Betowa arrows -->
+            <line x1="350" y1="192" x2="375" y2="192" stroke="#e9683b" stroke-width="1.5" marker-end="url(#ao)"/>
+            <line x1="505" y1="192" x2="525" y2="192" stroke="#e9683b" stroke-width="1.5" marker-end="url(#ao)"/>
+
+            <!-- Friction points -->
+            <rect x="222" y="224" width="126" height="20" rx="5" fill="#fff3e0" stroke="#e9683b" stroke-width="1"/>
+            <text x="285" y="238" font-size="10" font-weight="600" fill="#e9683b" text-anchor="middle">⚠ Credenciales distintas a Sofía Plus</text>
+
+            <rect x="377" y="224" width="126" height="20" rx="5" fill="#fff3e0" stroke="#e9683b" stroke-width="1"/>
+            <text x="440" y="238" font-size="10" font-weight="600" fill="#e9683b" text-anchor="middle">⚠ Colapso en horas pico</text>
+
+            <rect x="527" y="224" width="126" height="20" rx="5" fill="#fff3e0" stroke="#e9683b" stroke-width="1"/>
+            <text x="590" y="238" font-size="10" font-weight="600" fill="#e9683b" text-anchor="middle">⚠ Confundida con inscripción</text>
+
+            <!-- ── ZAJUNA ── -->
+            <rect x="614" y="283" width="148" height="48" rx="7" fill="#fff" stroke="#865cf0" stroke-width="1.5"/>
+            <text x="688" y="304" font-size="12" font-weight="600" fill="#1a1a1a" text-anchor="middle">Aula virtual</text>
+            <text x="688" y="321" font-size="11" fill="#88898c" text-anchor="middle">materiales y actividades</text>
+
+            <!-- Betowa to Zajuna -->
+            <line x1="688" y1="216" x2="688" y2="283" stroke="#865cf0" stroke-width="1.5" marker-end="url(#ap)"/>
+
+            <!-- ── ASPIRANTE ── -->
+            <circle cx="58" cy="148" r="24" fill="#1a1a1a"/>
+            <text x="58" y="155" font-size="20" text-anchor="middle">🧑</text>
+            <text x="58" y="175" font-size="10" font-weight="700" fill="#88898c" text-anchor="middle">ASPIRANTE</text>
+
+            <line x1="76" y1="137" x2="112" y2="90" stroke="#5454e9" stroke-width="1.5" marker-end="url(#ab)"/>
+            <line x1="76" y1="157" x2="220" y2="192" stroke="#e9683b" stroke-width="1.5" marker-end="url(#ao)"/>
+
+            <!-- ¿Por dónde empiezo? box -->
+            <rect x="90" y="118" width="165" height="36" rx="8" fill="#1a1a1a"/>
+            <text x="172" y="133" font-size="11" font-weight="700" fill="#e4eb60" text-anchor="middle">❓ ¿Por dónde empiezo?</text>
+            <text x="172" y="148" font-size="10" fill="rgba(255,255,255,.65)" text-anchor="middle">Las 3 plataformas no se explican entre sí</text>
+
+            <!-- Cross reference dashed line -->
+            <line x1="494" y1="106" x2="494" y2="168" stroke="#88898c" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="508" y="140" font-size="10" fill="#88898c">consulta</text>
+            <text x="508" y="153" font-size="10" fill="#88898c">paralela</text>
+
+            <!-- Legend -->
+            <rect x="8" y="358" width="764" height="52" rx="6" fill="#fff" stroke="#e8e8ed" stroke-width="1"/>
+            <circle cx="32" cy="384" r="5" fill="#5454e9"/>
+            <text x="44" y="388" font-size="11" fill="#555">Portal Sofía Plus</text>
+            <circle cx="152" cy="384" r="5" fill="#e9683b"/>
+            <text x="164" y="388" font-size="11" fill="#555">Betowa (inscripción)</text>
+            <circle cx="292" cy="384" r="5" fill="#865cf0"/>
+            <text x="304" y="388" font-size="11" fill="#555">Zajuna (aula virtual)</text>
+            <rect x="406" y="378" width="12" height="12" rx="2" fill="#fff3e0" stroke="#e9683b" stroke-width="1"/>
+            <text x="424" y="388" font-size="11" fill="#555">Punto de fricción documentado</text>
+            <line x1="590" y1="384" x2="615" y2="384" stroke="#88898c" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="622" y="388" font-size="11" fill="#555">Interacción paralela</text>
+
+            <!-- Markers -->
+            <defs>
+              <marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#5454e9"/>
+              </marker>
+              <marker id="ao" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#e9683b"/>
+              </marker>
+              <marker id="ap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#865cf0"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="grafica-wrapper__fuente">Elaborado a partir de documentación pública del SENA · betowa.sena.edu.co · Portal Sofía Plus · 2025–2026</div>
+      </div>
+
+      <div class="alerta alerta--info">
+        <span class="alerta__titulo">Qué observar</span>
+        <p class="alerta__texto">Desde agosto 2025, Betowa es el punto oficial de entrada. El Portal Sofía Plus sigue activo para cronogramas y certificados. Zajuna solo entra en juego una vez el aspirante fue matriculado. El mayor problema de UX está en la <strong>transición entre fases</strong> — los usuarios no saben cuándo terminó Betowa y cuándo empieza lo siguiente.</p>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         INSUMO 2 — PERFILES DE USUARIO
+    ══════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Insumo 2 de 3</span>
+        <h2 class="section-title__heading">Perfiles de usuario</h2>
+        <p class="section-title__desc">Tres tipos de aspirante que representan la diversidad de personas que usa estas plataformas. Todos dependen del SENA para acceder a educación técnica gratuita.</p>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- Laura -->
+        <div class="section section--tinted" style="gap:14px; padding:0; overflow:hidden; border-radius:var(--radius-lg);">
+          <div style="background:var(--c-blue); padding:18px 20px; display:flex; align-items:center; gap:12px;">
+            <span style="font-size:28px; line-height:1;">👩‍🎓</span>
+            <div>
+              <div style="font-size:16px; font-weight:800; color:#fff; line-height:1.2;">Laura</div>
+              <div style="font-size:12px; color:rgba(255,255,255,.7); margin-top:2px;">18 años · Bello, Antioquia</div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <p class="text-label">Contexto</p>
+              <p class="text-sm" style="margin-top:4px;">Recién egresada del colegio. Busca inscribirse a auxiliar de enfermería para trabajar mientras estudia.</p>
+            </div>
+            <div>
+              <p class="text-label">Dispositivo</p>
+              <p class="text-sm" style="margin-top:4px;">Samsung A14. Datos móviles prepago. Conexión lenta en casa.</p>
+            </div>
+            <div>
+              <p class="text-label">Comportamiento digital</p>
+              <p class="text-sm" style="margin-top:4px;">Instagram, TikTok, WhatsApp. Primera vez llenando un formulario gubernamental. Aprende con tutoriales en YouTube.</p>
+            </div>
+            <div class="cita" style="padding:12px 16px;">
+              <span class="cita__texto" style="font-size:13px;">"Intenté varias veces y nunca supe si me quedó bien inscrita."</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span class="badge badge--orange">Alta frustración</span>
+              <span class="badge badge--gray">Solo móvil</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carlos -->
+        <div class="section section--tinted" style="gap:14px; padding:0; overflow:hidden; border-radius:var(--radius-lg);">
+          <div style="background:var(--c-orange); padding:18px 20px; display:flex; align-items:center; gap:12px;">
+            <span style="font-size:28px; line-height:1;">👨‍🔧</span>
+            <div>
+              <div style="font-size:16px; font-weight:800; color:#fff; line-height:1.2;">Carlos</div>
+              <div style="font-size:12px; color:rgba(255,255,255,.7); margin-top:2px;">42 años · Cali, Valle</div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <p class="text-label">Contexto</p>
+              <p class="text-sm" style="margin-top:4px;">Conductor de plataforma (Rappi, InDriver). Quiere certificarse en logística para acceder a mejores contratos.</p>
+            </div>
+            <div>
+              <p class="text-label">Dispositivo</p>
+              <p class="text-sm" style="margin-top:4px;">Motorola gama media. Usa el celular para todo. Sin PC en casa.</p>
+            </div>
+            <div>
+              <p class="text-label">Comportamiento digital</p>
+              <p class="text-sm" style="margin-top:4px;">WhatsApp, YouTube, apps de trabajo. Si algo falla más de dos veces, asume que no funciona.</p>
+            </div>
+            <div class="cita" style="padding:12px 16px;">
+              <span class="cita__texto" style="font-size:13px;">"Me inscribí pero no supe más nada. ¿Quedé o no quedé?"</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span class="badge badge--orange">Poco tiempo</span>
+              <span class="badge badge--gray">Solo móvil</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rosalba -->
+        <div class="section section--tinted" style="gap:14px; padding:0; overflow:hidden; border-radius:var(--radius-lg);">
+          <div style="background:var(--c-purple); padding:18px 20px; display:flex; align-items:center; gap:12px;">
+            <span style="font-size:28px; line-height:1;">👩‍🦳</span>
+            <div>
+              <div style="font-size:16px; font-weight:800; color:#fff; line-height:1.2;">Rosalba</div>
+              <div style="font-size:12px; color:rgba(255,255,255,.7); margin-top:2px;">57 años · Tunja, Boyacá</div>
+            </div>
+          </div>
+          <div style="padding:0 20px 20px; display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <p class="text-label">Contexto</p>
+              <p class="text-sm" style="margin-top:4px;">Vendedora en plaza de mercado. Necesita certificado de manipulación de alimentos que le exige la alcaldía.</p>
+            </div>
+            <div>
+              <p class="text-label">Dispositivo</p>
+              <p class="text-sm" style="margin-top:4px;">Celular Android básico. Depende de su hijo para procesos digitales. A veces va a café internet.</p>
+            </div>
+            <div>
+              <p class="text-label">Comportamiento digital</p>
+              <p class="text-sm" style="margin-top:4px;">Solo WhatsApp y llamadas. Nunca ha creado una cuenta en portal gubernamental sola. Teme "dañar algo".</p>
+            </div>
+            <div class="cita" style="padding:12px 16px;">
+              <span class="cita__texto" style="font-size:13px;">"Cuando fui sola a seguir el proceso me perdí. La página pedía cosas que no entendía."</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span class="badge badge--orange">Baja autonomía digital</span>
+              <span class="badge badge--gray">Urgencia real</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         INSUMO 3 — RESEÑAS
+    ══════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Insumo 3 de 3</span>
+        <h2 class="section-title__heading">Reseñas seleccionadas</h2>
+        <p class="section-title__desc">12 voces de aspirantes. Cada reseña está etiquetada por el tipo de fricción que ilustra. Úsalas como punto de partida — contrasta con lo que encuentres en tu propia búsqueda.</p>
+      </div>
+
+      <!-- Leyenda de categorías -->
+      <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+        <span class="text-label" style="margin-right:4px;">Categorías:</span>
+        <span class="badge badge--blue">Confusión de plataformas</span>
+        <span class="badge badge--orange">Abandono</span>
+        <span class="badge badge--purple">Técnico</span>
+        <span class="badge badge--green">Acceso</span>
+      </div>
+
+      <div class="grid-2">
+
+        <!-- R1 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--blue">Confusión de plataformas</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Llevo tres días intentando inscribirme. Primero me dijeron que era Sofía Plus, luego Betowa, luego que para los horarios era otra página. En el centro me dijeron que el celular no servía. ¿Cuándo voy a hacer eso si trabajo todo el día?"</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Carlos M., 43 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R2 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--orange">Abandono</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Se me cayó la página justo cuando estaba llenando los datos del formulario y perdí todo. Cuando volví me dijo que ya tenía una solicitud activa pero no podía verla en ningún lado. Llamé a la línea y me tuvieron 40 minutos en espera."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Valentina R., 19 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R3 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--blue">Confusión de plataformas</span>
+            <span style="color:#e67e22; font-size:14px; letter-spacing:1px;">★★☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Lo peor es que uno no sabe en qué paso va. Me inscribí en Betowa y pensé que ya quedé. Resulta que 'inscripción' no es lo mismo que 'matrícula'. Perdí el cupo porque no hice el segundo paso que ni sabía que existía."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Andrés F., 29 años</span>
+            <span class="text-muted text-xs">Redes sociales</span>
+          </div>
+        </div>
+
+        <!-- R4 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--purple">Técnico</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Mi hija me ayudó a crear la cuenta pero cuando fui a entrar sola me daba error. Resulta que tenía que borrar no sé qué del navegador. Eso es para gente de sistemas, no para uno. Al final fui al SENA y me hicieron el proceso ellos."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Rosalbita V., 55 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R5 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--purple">Técnico</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"El día de la convocatoria la página no cargaba. Estuve desde las 8am hasta las 12 intentando. Cuando por fin entré ya no había cupos en el programa que quería. Perdí medio día de trabajo para nada."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Henry S., 37 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R6 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--blue">Confusión de plataformas</span>
+            <span style="color:#e67e22; font-size:14px; letter-spacing:1px;">★★☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Me inscribí y no supe más nada. Nunca llegó correo confirmando. Después de tres semanas me enteré por un vecino que los resultados los publicaban en otra plataforma diferente a donde me inscribí."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Luisa P., 24 años</span>
+            <span class="text-muted text-xs">Foro universitario</span>
+          </div>
+        </div>
+
+        <!-- R7 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--purple">Técnico</span>
+            <span style="color:#e67e22; font-size:14px; letter-spacing:1px;">★★☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Desde el celular no se puede hacer nada bien. Los botones quedan escondidos, el formulario se corta. Tuve que pedirle el portátil a un compañero del trabajo para terminar el proceso. No todo el mundo tiene un computador disponible."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Miguel T., 31 años</span>
+            <span class="text-muted text-xs">Google Play · Sofía Plus</span>
+          </div>
+        </div>
+
+        <!-- R8 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--green">Acceso</span>
+            <span style="color:#e67e22; font-size:14px; letter-spacing:1px;">★★☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"La cuenta me la bloquearon después de varios intentos fallidos. El correo de recuperación nunca llegó. Tuve que crear una cuenta nueva con otro correo y no sé si eso me va a traer problemas con mis datos del SENA de antes."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Paola G., 22 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R9 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--orange">Abandono</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Llevaba llenado el formulario casi completo y al dar 'siguiente' me botó a la página de inicio. Lo hice de nuevo, y lo mismo. A la tercera me resigné. Uno pierde la fe en que el proceso vaya a funcionar."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Diego A., 26 años</span>
+            <span class="text-muted text-xs">Trustpilot · SENA</span>
+          </div>
+        </div>
+
+        <!-- R10 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--blue">Confusión de plataformas</span>
+            <span style="color:#e67e22; font-size:14px; letter-spacing:1px;">★★☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Cuando algo no funciona, la página dice 'Error 500' o 'Solicitud inválida'. Eso no me dice absolutamente nada. ¿Qué hice mal? ¿Tengo que volver a empezar? ¿Llamar a alguien? Nadie explica nada."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Camila O., 18 años</span>
+            <span class="text-muted text-xs">Google Play · Betowa</span>
+          </div>
+        </div>
+
+        <!-- R11 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--green">Acceso</span>
+            <span style="color:#f4b400; font-size:14px; letter-spacing:1px;">★★★☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Si ya tenías cuenta en Sofía Plus a veces funciona con las mismas credenciales en Betowa, a veces no. Pasé media hora tratando de entender si eran la misma cuenta o no. Al final tuve que crear una nueva. ¿Por qué no lo explican desde el principio?"</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Jhon B., 34 años</span>
+            <span class="text-muted text-xs">Redes sociales</span>
+          </div>
+        </div>
+
+        <!-- R12 -->
+        <div class="section section--tinted" style="gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <span class="badge badge--purple">Técnico</span>
+            <span style="color:#e04040; font-size:14px; letter-spacing:1px;">★☆☆☆☆</span>
+          </div>
+          <p class="text-sm" style="font-style:italic; color:#333;">"Busqué 'inscripciones SENA' en Google y el primer enlace me llevó a la página vieja de Sofía Plus. Estuve llenando datos ahí hasta que me di cuenta de que eso ya no era el proceso. Casi lleno mis datos en una página que no sé si es oficial."</p>
+          <div style="display:flex; justify-content:space-between;">
+            <span class="text-bold text-sm">Sandra L., 41 años</span>
+            <span class="text-muted text-xs">Trustpilot · SENA</span>
+          </div>
+        </div>
+
+      </div><!-- /grid-2 reseñas -->
+    </div>
+
+  </div><!-- /reporte-body -->
+
+  <!-- ── FOOTER ── -->
+  <div class="report-footer">
+    <img src="../img/innlab_white.svg" alt="INNLAB" style="height:28px">
+    <span class="report-footer__info">Insumos Prueba Práctica UX · Vicepresidencia de Producto · Mayo 2026</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div>
+</body>
+</html>
