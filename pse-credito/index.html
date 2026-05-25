@@ -200,6 +200,7 @@ body{
   display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-style:italic;letter-spacing:-1px;
   box-shadow:inset 0 0 0 2px rgba(255,255,255,.14);
 }
+.enel-pse-logo{width:66px;height:66px;display:block;object-fit:contain;}
 .enel-bank-logo{display:flex;flex-direction:column;gap:6px;align-items:flex-start;color:#111;}
 .enel-bank-kicker{font-size:11px;font-weight:600;}
 .enel-bank-name{font-size:15px;font-weight:700;line-height:1.15;}
@@ -223,6 +224,7 @@ body{
   padding:50px 20px 22px;text-align:center;
 }
 .pse-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+.pse-logo-brand{width:44px;height:44px;display:block;object-fit:contain;}
 .pse-circle{
   width:42px;height:42px;border-radius:50%;
   background:linear-gradient(135deg,#1565C0,var(--navy));
@@ -698,9 +700,10 @@ body{
 .pl-header {
   background:linear-gradient(135deg,var(--navy),var(--blue));
   padding:50px 20px 18px;
-  display:flex; align-items:center; gap:12px;
+  display:flex; align-items:center; gap:7px;
 }
 .pl-logo-row { display:flex; align-items:center; gap:7px; }
+.pl-logo-brand { height:44px; width:auto; display:block; }
 .pl-logo-circle {
   width:38px; height:38px; border-radius:50%;
   background:rgba(0,0,0,.25); border:1.5px solid rgba(255,255,255,.3);
@@ -729,6 +732,13 @@ body{
 
 .pl-big-logo {
   display:flex; justify-content:center; padding-bottom:28px;
+}
+.pl-spinner-wrap {
+  position:relative; width:90px; height:90px;
+  display:flex; align-items:center; justify-content:center;
+}
+.pl-big-gif {
+  width:96px; height:96px; display:block; object-fit:contain;
 }
 .pl-big-circle {
   width:90px; height:90px; border-radius:50%;
@@ -764,6 +774,9 @@ body{
   padding:48px 16px 10px;
   display:flex; align-items:center; gap:11px;
   background:transparent; flex-shrink:0;
+}
+.pse-sum-logo-brand {
+  width:50px; height:50px; display:block; object-fit:contain; flex-shrink:0;
 }
 .pse-sum-logo-circle {
   width:50px; height:50px; border-radius:50%;
@@ -1128,7 +1141,7 @@ body{
               <div class="enel-pay-title">Selecciona el medio de pago.</div>
               <div class="enel-methods">
                 <div class="enel-method selected" id="enelMethodPse" onclick="selectEnelMethod('pse')">
-                  <div class="enel-pse-badge">pse</div>
+                  <img class="enel-pse-logo" src="img/logo_pse.png" alt="Logo PSE">
                 </div>
                 <div class="enel-method" id="enelMethodBank" onclick="selectEnelMethod('bank')">
                   <div class="enel-bank-logo">
@@ -1150,10 +1163,7 @@ body{
         <div class="scr" id="s2">
           <div class="pse-hdr">
             <div class="pse-logo-row">
-              <div class="pse-circle">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><path d="M6 9h6M9 6v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </div>
-              <span class="pse-wm">pse</span>
+              <img class="pse-logo-brand" src="img/logo_pse.png" alt="Logo PSE">
             </div>
             <div class="pse-tag">¡Fácil, rápido y seguro!</div>
             <div class="pse-amt-l">Total a pagar</div>
@@ -1200,10 +1210,7 @@ body{
           <div class="preloader-wrap">
             <div class="pl-header">
               <div class="pl-logo-row">
-                <div class="pl-logo-circle">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/><path d="M6 9h6M9 6v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <span class="pl-logo-text">pse</span>
+                <img class="pl-logo-brand" src="img/logo_pse.png" alt="Logo PSE">
               </div>
               <span class="pl-tagline">¡Fácil, rápido y seguro!</span>
             </div>
@@ -1214,16 +1221,10 @@ body{
               <div class="pl-connector"></div>
               <div class="pl-step"><div class="pl-step-icon">🏦</div></div>
             </div>
-            <div class="pl-center-text">Redirigiéndote<br>a nuestro aliado.</div>
+            <div class="pl-center-text">Te estamos redirigiendo<br>a nuestro aliado.</div>
             <div class="pl-big-logo">
               <div class="pl-spinner-wrap" id="plSpinnerWrap">
-                <svg class="pl-spinner-svg" viewBox="0 0 96 96">
-                  <circle class="pl-spinner-arc" id="plArc" cx="48" cy="48" r="44"/>
-                </svg>
-                <div class="pl-big-circle">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="rgba(255,255,255,.4)" stroke-width="2"/><path d="M9 14h10M14 9v10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-                  <span class="pl-big-text">pse</span>
-                </div>
+                <img class="pl-big-gif" src="img/loader_psd.GIF" alt="PSE loading animation">
               </div>
             </div>
             <div style="flex:1"></div>
@@ -1420,14 +1421,7 @@ body{
 
             <!-- Header: logo PSE izquierda + tagline -->
             <div class="pse-sum-hdr">
-              <div class="pse-sum-logo-circle">
-                <div class="pse-sum-logo-ring">
-                  <span class="pse-sum-logo-txt">pse</span>
-                  <div class="pse-sum-logo-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                </div>
-              </div>
+              <img class="pse-sum-logo-brand" src="img/logo_pse.png" alt="Logo PSE">
               <span class="pse-sum-tagline">¡Fácil. rápido y seguro!</span>
             </div>
 
@@ -2155,40 +2149,18 @@ function toggleCaptcha() {
 /* ── PRE-LOADER ANIMATION (requestAnimationFrame) ── */
 var preloaderTimer = null;
 var preloaderRAF = null;
-var CIRCUMFERENCE = 276.46;
-var DURATION = 3000; // ms
+var PRELOADER_DELAY = 5000; // ms
 
 function startPreloaderAnim() {
   resetPreloaderAnim();
-  var arc = document.getElementById('plArc');
-  if (!arc) return;
-  // Reset to full offset (invisible)
-  arc.style.strokeDashoffset = CIRCUMFERENCE;
-  var startTime = null;
-  function step(ts) {
-    if (!startTime) startTime = ts;
-    var elapsed = ts - startTime;
-    var progress = Math.min(elapsed / DURATION, 1);
-    // ease-in-out cubic
-    var eased = progress < 0.5
-      ? 4 * progress * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-    arc.style.strokeDashoffset = CIRCUMFERENCE * (1 - eased);
-    if (progress < 1) {
-      preloaderRAF = requestAnimationFrame(step);
-    } else {
-      arc.style.strokeDashoffset = 0;
-      preloaderTimer = setTimeout(function() { go(4); }, 150);
-    }
-  }
-  preloaderRAF = requestAnimationFrame(step);
+  preloaderTimer = setTimeout(function() {
+    if (cur === 3) go(4);
+  }, PRELOADER_DELAY);
 }
 
 function resetPreloaderAnim() {
   if (preloaderRAF) { cancelAnimationFrame(preloaderRAF); preloaderRAF = null; }
   if (preloaderTimer) { clearTimeout(preloaderTimer); preloaderTimer = null; }
-  var arc = document.getElementById('plArc');
-  if (arc) arc.style.strokeDashoffset = CIRCUMFERENCE;
 }
 
 /* ── USER TYPE TOGGLE ── */
