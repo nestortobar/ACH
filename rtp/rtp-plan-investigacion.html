@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan de Investigación UX — Botón RtP · ACH Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../estilos.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    :root { --radius: 12px; }
+    .report-header__subtitle { color: rgba(255,255,255,.92); text-shadow: 0 1px 2px rgba(0,0,0,.18); max-width: 620px; }
+    .report-header__logo img { height: 36px; }
+  </style>
+</head>
+<body>
+<div class="reporte">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1NjAgMjg4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjNTQ1NGU5OwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlLXdpZHRoOiAwcHg7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI4OCIvPgogIDxnPgogICAgPGc+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTI0OC43LDEyOGgxMi4ydjcwLjdoLTEyLjJ2LTcwLjdaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTI3NS4zLDE2My44YzAtMjEuMywxNi4xLTM3LjQsMzctMzcuNHMyMy40LDUuMywzMC4yLDE1bC05LjcsNy40Yy01LjctNy43LTEyLjgtMTEuMy0yMC42LTExLjMtMTMuNSwwLTI0LjIsMTAuNy0yNC4yLDI1LjlzMTEsMjUuOSwyNC40LDI1LjksMTYuNC00LjMsMjEuOS0xMS44bDkuMyw2LjhjLTYuOCwxMC4zLTE4LjIsMTYuMS0zMS4zLDE2LjEtMjEuMywwLTM2LjktMTUuNS0zNi45LTM2LjZaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQyMi40LDE2Ni4xaC01OWMxLDE0LjksMTAuOSwyMy40LDI1LjEsMjMuNHMxNy40LTMuOSwyMy40LTEybDguOCw2LjdjLTYuOCwxMC4yLTE4LjIsMTYuMS0zMi40LDE2LjEtMjIuMSwwLTM3LjMtMTQuOS0zNy4zLTM2LjVzMTUuOS0zNy42LDM3LjQtMzcuNiwzNC41LDEzLjgsMzQuNSwzNC41LS4xLDMuNi0uNCw1LjNaTTM2NC4xLDE1NS41aDQ2LjJjLTEuOC0xMi4yLTkuOS0xOC43LTIyLTE4LjdzLTIxLjQsNi44LTI0LjIsMTguN1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDMyLjQsMTg5LjFsNy44LTkuMmM2LjcsNi4zLDE1LjUsOS41LDIzLjcsOS41czE1LjItNC4zLDE1LjItMTAuMi0zLjEtNy41LTEyLjEtOS42bC0xMi40LTIuOGMtMTQuMi0zLjItMjAuMi05LjMtMjAuMi0xOC45czEwLjYtMjEuNiwyNy4xLTIxLjYsMjIsNCwyOC43LDExLjNsLTguMiw4LjVjLTUuOC01LjgtMTMuMS04LjgtMjEuMy04LjhzLTE0LjMsMy45LTE0LjMsOS42LDIuNiw2LjgsMTIuNCw5bDEyLjQsMi44YzE0LjMsMy4yLDE5LjksOS43LDE5LjksMTkuNXMtMTAuMiwyMi4xLTI3LjYsMjIuMS0yMy45LTQuMy0zMS0xMS4zWiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik01MDUuMSwxMjhoMTIuMnY3MC43aC0xMi4ydi03MC43WiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Universidad Icesi">
+      </div>
+      <div class="report-header__meta">
+        <span class="report-header__meta-label">Proyecto</span>
+        <span class="report-header__meta-value">RtP · ACH Colombia × INNLAB</span>
+      </div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Plan de Investigación UX · Fase 2 · Mayo 2026</span>
+      <h1 class="report-header__title">Botón de Solicitud de Pago<br>Request to Pay</h1>
+      <p class="report-header__subtitle">Plan de research riguroso para validar hipótesis de adopción con usuarios reales — usability testing moderado, encuesta a comercios y triangulación de datos. De la evidencia sintética a la evidencia empírica.</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">6</span>
+        <span class="report-header__kpi-label">Semanas de campo</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">3</span>
+        <span class="report-header__kpi-label">Hipótesis a validar</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">5–8</span>
+        <span class="report-header__kpi-label">Usuarios en testing</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">15–20</span>
+        <span class="report-header__kpi-label">Comercios encuestados</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reporte-body">
+
+    <!-- S1 · CONTEXTO Y PROBLEMA DE RESEARCH -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 1</span>
+        <h2 class="section-title__heading">Contexto y problema de investigación</h2>
+        <p class="section-title__desc">¿Qué sabemos, qué no sabemos y qué necesitamos saber antes de lanzar?</p>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="h4" style="margin-top:0">El producto</p>
+          <p>El <strong>Botón RtP integrado con Bre-B</strong> permite a un comercio iniciar un cobro usando la llave Bre-B del pagador. El cliente recibe una notificación push en su app bancaria y aprueba (o rechaza) con huella o clave. El dinero se mueve en tiempo real.</p>
+          <p style="margin-top:14px"><strong>Diferencia crítica frente al débito automático:</strong> el cliente es siempre quien autoriza. El comercio solicita; el usuario decide. Esta distinción debe estar en el centro del mensaje de adopción.</p>
+
+          <p class="h4" style="margin-top:20px">Evidencia de la Fase 1</p>
+          <p>La entrevista con usuario sintético (Claudia R., 44 años, Bogotá) reveló que la <strong>Ansiedad (95/100) supera al Pull (52/100)</strong>. El producto genera interés genuino, pero la barrera de confianza bloquea la intención de adopción. Sin datos de usuarios reales, estas magnitudes son hipotéticas.</p>
+        </div>
+        <div>
+          <p class="h4" style="margin-top:0">Gap de conocimiento central</p>
+          <div class="alerta alerta--advertencia">
+            <span class="alerta__titulo">Lo que no sabemos todavía</span>
+            <p class="alerta__texto">Toda la evidencia actual proviene de un solo perfil sintético. No tenemos datos empíricos sobre: (1) si la ansiedad se replica en usuarios reales de diferentes bancos, (2) qué elementos concretos del flujo generan abandono, (3) cómo responde el lado comercio a la propuesta.</p>
+          </div>
+          <p class="h4" style="margin-top:20px">Pregunta central de investigación</p>
+          <div class="highlight-box">
+            <span class="highlight-box__label">Research question principal</span>
+            <span class="highlight-box__texto">¿Bajo qué condiciones de diseño y comunicación un usuario pagador de servicios del hogar aprueba su primer cobro RtP sin abandonar el flujo?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S2 · PREGUNTAS DE INVESTIGACIÓN -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 2</span>
+        <h2 class="section-title__heading">Preguntas de investigación por método</h2>
+        <p class="section-title__desc">Cada metodología responde preguntas específicas. Ningún método solo puede responderlas todas.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>Pregunta de investigación</th>
+              <th>Tipo</th>
+              <th>Método principal</th>
+              <th>Hipótesis que alimenta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>¿Qué elementos de la pantalla de notificación generan confianza o desconfianza en el primer contacto?</td>
+              <td><span class="badge badge--blue">Cualitativo</span></td>
+              <td>Think-aloud durante usability test</td>
+              <td>H2</td>
+            </tr>
+            <tr>
+              <td>¿En qué paso exacto del flujo se produce el abandono o la hesitación más significativa?</td>
+              <td><span class="badge badge--blue">Cualitativo</span></td>
+              <td>Observación + task completion</td>
+              <td>H1, H2</td>
+            </tr>
+            <tr>
+              <td>¿El frame "tú sigues siendo quien autoriza" reduce la ansiedad percibida frente a "pago más rápido"?</td>
+              <td><span class="badge badge--purple">Mixto</span></td>
+              <td>A/B en pantalla de onboarding + escala SEQ</td>
+              <td>H1</td>
+            </tr>
+            <tr>
+              <td>¿El usuario activa RtP primero para cobros de bajo monto o los rechaza todos por igual?</td>
+              <td><span class="badge badge--blue">Cualitativo</span></td>
+              <td>Entrevista semi-estructurada post-test</td>
+              <td>H3</td>
+            </tr>
+            <tr>
+              <td>¿Qué nivel de detalle del cobrador (solo nombre vs NIT + dirección) es suficiente para aprobar?</td>
+              <td><span class="badge badge--blue">Cualitativo</span></td>
+              <td>Card sorting de atributos de confianza</td>
+              <td>H2</td>
+            </tr>
+            <tr>
+              <td>¿Cuál es la disposición del comercio a integrarse y cuál es su barrera principal (técnica / regulatoria / de adopción del pagador)?</td>
+              <td><span class="badge badge--green">Cuantitativo</span></td>
+              <td>Encuesta estructurada 15–20 preguntas</td>
+              <td>Contexto estratégico</td>
+            </tr>
+            <tr>
+              <td>¿El conocimiento del mecanismo de reversión cambia la intención de aprobación?</td>
+              <td><span class="badge badge--purple">Mixto</span></td>
+              <td>Pre/post medición con escala Likert de ansiedad</td>
+              <td>Sin explorar #1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S3 · HIPÓTESIS CON CRITERIOS DE ÉXITO -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 3</span>
+        <h2 class="section-title__heading">Hipótesis y criterios de éxito medibles</h2>
+        <p class="section-title__desc">Cada hipótesis tiene un criterio de aceptación cuantificable y una condición de refutación explícita.</p>
+      </div>
+
+      <div class="grid-2-1">
+        <div>
+          <p class="h4" style="margin-top:0"><span class="badge badge--blue">H1</span> &nbsp;El frame de control supera al frame de velocidad</p>
+          <p>Usuarios expuestos al mensaje <em>"tú sigues siendo quien autoriza"</em> completarán el flujo de aprobación a mayor tasa que usuarios expuestos a <em>"paga sin salir de la app"</em>.</p>
+          <ul class="lista-icesi" style="margin-top:12px">
+            <li><strong>Criterio de aceptación:</strong> ≥70% task completion en grupo frame-control vs ≤50% en grupo frame-velocidad</li>
+            <li><strong>Métrica secundaria:</strong> SEQ (Single Ease Question) ≥5/7 en el paso de aprobación para frame-control</li>
+            <li><strong>Condición de refutación:</strong> diferencia de task completion &lt;15 puntos porcentuales entre grupos</li>
+          </ul>
+        </div>
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">Riesgo si H1 falla</span>
+          <span class="kpi-card__value">Alto</span>
+          <span class="kpi-card__desc">El mensaje de marketing y onboarding debe rediseñarse desde cero. Impacta el go-to-market de ACH Colombia.</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="grid-2-1">
+        <div>
+          <p class="h4" style="margin-top:0"><span class="badge badge--purple">H2</span> &nbsp;La pantalla de detalle es requisito de confianza</p>
+          <p>Ningún usuario aprobará un cobro RtP sin haber leído activamente la pantalla de detalle (nombre legal, NIT, monto, período, concepto). El botón de aprobación sin detalle previo genera abandono o rechazo.</p>
+          <ul class="lista-icesi" style="margin-top:12px">
+            <li><strong>Criterio de aceptación:</strong> 0 de 8 usuarios aprueban en variante sin pantalla de detalle; ≤2 abandonos en variante con detalle completo</li>
+            <li><strong>Métrica secundaria:</strong> tiempo de permanencia en pantalla de detalle ≥8 segundos (indica lectura activa, no scroll rápido)</li>
+            <li><strong>Condición de refutación:</strong> ≥3 usuarios aprueban sin leer el detalle — sugiere que el canal (app del banco) es suficiente señal de confianza por sí solo</li>
+          </ul>
+        </div>
+        <div class="kpi-card kpi-card--tint-purple">
+          <span class="kpi-card__label">Riesgo si H2 falla</span>
+          <span class="kpi-card__value">Muy alto</span>
+          <span class="kpi-card__desc">Si el usuario aprueba sin detalle, hay riesgo de fraude por ingeniería social. Implica revisión regulatoria.</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="grid-2-1">
+        <div>
+          <p class="h4" style="margin-top:0"><span class="badge badge--green">H3</span> &nbsp;El onboarding gradual desbloquea la adopción inicial</p>
+          <p>Los usuarios activarán RtP primero para cobros de bajo riesgo percibido (tienda de barrio, biblioteca, gimnasio) antes de habilitarlo para cobros críticos (arriendo, administración, servicios públicos).</p>
+          <ul class="lista-icesi" style="margin-top:12px">
+            <li><strong>Criterio de aceptación:</strong> ≥60% de participantes declara que activaría RtP primero para un cobro de &lt;$100.000 antes de habilitarlo para el pago de administración</li>
+            <li><strong>Métrica secundaria:</strong> escala de disposición a activar (1–7) &gt;5 para cobros de bajo valor; &lt;4 para cobros críticos en primer contacto</li>
+            <li><strong>Condición de refutación:</strong> el umbral de activación no varía por monto — el usuario o activa todo o no activa nada</li>
+          </ul>
+        </div>
+        <div class="kpi-card kpi-card--tint-green">
+          <span class="kpi-card__label">Riesgo si H3 falla</span>
+          <span class="kpi-card__value">Medio</span>
+          <span class="kpi-card__desc">Si no hay rampa, el onboarding debe rediseñarse como activación universal — cambia la estrategia de comercios ancla.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S4 · DISEÑO METODOLÓGICO -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 4</span>
+        <h2 class="section-title__heading">Diseño metodológico</h2>
+        <p class="section-title__desc">Tres métodos complementarios que se triangularán para reducir el riesgo de conclusiones basadas en artefacto metodológico.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="kpi-card kpi-card--blue">
+          <span class="kpi-card__label">Método 1</span>
+          <span class="kpi-card__value">Usability Testing</span>
+          <span class="kpi-card__delta">Moderado · Presencial / Remoto</span>
+          <span class="kpi-card__desc">5–8 participantes. Think-aloud protocol. Prototipo Figma con dos variantes de pantalla (frame-control vs frame-velocidad). Tareas realistas: recibir un cobro de administración de $180.000 y decidir si aprobarlo.</span>
+        </div>
+        <div class="kpi-card kpi-card--purple">
+          <span class="kpi-card__label">Método 2</span>
+          <span class="kpi-card__value">Entrevista Semi-estructurada</span>
+          <span class="kpi-card__delta">Post-test · 20–30 min</span>
+          <span class="kpi-card__desc">Aplicada al finalizar cada sesión de usability. Explora motivaciones latentes, experiencias previas de fraude digital, disposición a gradualidad y límites configurables. No reemplaza al testing — lo profundiza.</span>
+        </div>
+        <div class="kpi-card kpi-card--green">
+          <span class="kpi-card__label">Método 3</span>
+          <span class="kpi-card__value">Encuesta a Comercios</span>
+          <span class="kpi-card__delta">Cuantitativo · Online</span>
+          <span class="kpi-card__desc">15–20 preguntas. Escala Likert 5 puntos + preguntas abiertas. Segmentos: administración de conjuntos, comercio local, suscripciones. Mide disposición a integrar RtP y barreras percibidas.</span>
+        </div>
+      </div>
+
+      <div class="section-title section-title--compact" style="margin-top:28px">
+        <h2 class="section-title__heading h4">Justificación del tamaño muestral</h2>
+      </div>
+      <div class="grid-2">
+        <div class="alerta alerta--info">
+          <span class="alerta__titulo">Usability testing: 5–8 participantes es suficiente</span>
+          <p class="alerta__texto">Con 5 usuarios se detecta el 85% de los problemas de usabilidad de mayor severidad (Nielsen, 1993). Con 8 se llega al 95% con alta diversidad de perfil bancario. El objetivo no es representatividad estadística sino saturación de hallazgos cualitativos.</p>
+        </div>
+        <div class="alerta alerta--info">
+          <span class="alerta__titulo">Encuesta comercios: 15–20 respuestas — exploratorio</span>
+          <p class="alerta__texto">No se busca inferencia estadística al universo de comercios. El objetivo es mapear el espacio de percepciones y barreras para informar el diseño del producto lado-comercio. Una encuesta &gt;100 respondentes requeriría un instrumento validado previamente.</p>
+        </div>
+      </div>
+
+      <div class="section-title section-title--compact" style="margin-top:24px">
+        <h2 class="section-title__heading h4">Estructura de la sesión de usability testing (60–75 min)</h2>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Duración</th>
+              <th>Actividad</th>
+              <th>Qué se observa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bienvenida y consentimiento</strong></td>
+              <td class="num">5 min</td>
+              <td>Presentación, firma de consentimiento, encuadre del rol del participante</td>
+              <td>Nivel de comodidad, familiaridad con investigación</td>
+            </tr>
+            <tr>
+              <td><strong>Calentamiento</strong></td>
+              <td class="num">10 min</td>
+              <td>Preguntas sobre rutina de pagos digitales. ¿Qué app usa más? ¿Tuvo algún problema de fraude o cobro inesperado?</td>
+              <td>Nivel de ansiedad base, hábitos actuales, experiencias de referencia</td>
+            </tr>
+            <tr class="row--highlight">
+              <td><strong>Tareas con prototipo</strong></td>
+              <td class="num">30 min</td>
+              <td>3 tareas realistas con think-aloud. T1: recibir notificación. T2: revisar detalle y decidir. T3: ver confirmación y evaluar experiencia</td>
+              <td>Task completion, tiempo por tarea, puntos de hesitación, verbalizaciones espontáneas</td>
+            </tr>
+            <tr>
+              <td><strong>Card sorting de confianza</strong></td>
+              <td class="num">10 min</td>
+              <td>8 atributos del cobrador (nombre, NIT, logo banco, monto, fecha, categoría, historial, sello verificado). El usuario ordena de "más importante" a "no necesario"</td>
+              <td>Jerarquía de señales de confianza — informa diseño de pantalla de detalle (H2)</td>
+            </tr>
+            <tr>
+              <td><strong>Entrevista post-test</strong></td>
+              <td class="num">20 min</td>
+              <td>Preguntas abiertas sobre disposición a activar, cobros aceptables, mecanismo de reversión, límite configurable</td>
+              <td>Motivaciones latentes, umbrales de riesgo percibido, disposición a gradualidad (H3)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S5 · PLAN DE ANÁLISIS Y TRIANGULACIÓN -->
+    <div class="section section--tinted">
+      <div class="section-title">
+        <span class="section-title__label">Sección 5</span>
+        <h2 class="section-title__heading">Plan de análisis y triangulación</h2>
+        <p class="section-title__desc">Cómo se procesará, codificará y cruzará la evidencia de los tres métodos para llegar a conclusiones sólidas.</p>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <p class="h4" style="margin-top:0">Análisis cualitativo — usability + entrevista</p>
+          <ol class="lista-numerada">
+            <li><strong>Transcripción y anotación:</strong> grabación de pantalla + audio. Anotaciones en tiempo real sobre verbalizaciones y comportamientos no verbales.</li>
+            <li><strong>Codificación temática:</strong> dos investigadores codifican de forma independiente (doble codificación) para reducir sesgo del analista. Resolución de discrepancias por consenso.</li>
+            <li><strong>Affinity mapping:</strong> los temas codificados se agrupan en un diagrama de afinidad digital (FigJam). Clusters emergentes se convierten en hallazgos.</li>
+            <li><strong>Severity rating:</strong> cada problema de usabilidad se clasifica por frecuencia (% participantes afectados) e impacto (abandono / hesitación / confusión leve).</li>
+          </ol>
+        </div>
+        <div>
+          <p class="h4" style="margin-top:0">Análisis cuantitativo — encuesta + métricas de tarea</p>
+          <ol class="lista-numerada">
+            <li><strong>Task completion rate:</strong> % de participantes que completan cada tarea sin ayuda del moderador. Comparación entre variantes A/B de frame.</li>
+            <li><strong>SEQ (Single Ease Question):</strong> escala 1–7 al finalizar cada tarea. Benchmark: ≥5.5 = aceptable, ≥6 = bueno.</li>
+            <li><strong>Likert de ansiedad:</strong> medición pre/post exposición al mecanismo de reversión. Δ negativo = reducción de ansiedad confirma gap #1.</li>
+            <li><strong>Encuesta comercios:</strong> frecuencias y distribuciones por segmento. Análisis de correlación entre disposición a integrar y tipo de barrera percibida.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="section-title section-title--compact" style="margin-top:24px">
+        <h2 class="section-title__heading h4">Matriz de triangulación</h2>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>Hipótesis</th>
+              <th>Evidencia cualitativa</th>
+              <th>Evidencia cuantitativa</th>
+              <th>Evidencia comercios</th>
+              <th>Veredicto posible</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge--blue">H1</span> Frame de control</td>
+              <td>Verbalizaciones sobre sensación de control durante think-aloud</td>
+              <td>Task completion A/B + SEQ por variante</td>
+              <td>¿Los comercios ven el control del pagador como ventaja competitiva?</td>
+              <td>Confirmar / Refutar / Matizar</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge--purple">H2</span> Pantalla de detalle</td>
+              <td>Card sorting de atributos de confianza + puntos de hesitación</td>
+              <td>Tiempo en pantalla de detalle + tasa de aprobación por variante</td>
+              <td>¿Los comercios reportan resistencia del pagador en el paso de detalle?</td>
+              <td>Confirmar / Refutar / Ajustar atributos</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge--green">H3</span> Gradualidad</td>
+              <td>Entrevista post-test: cobros aceptables en primer uso</td>
+              <td>Escala de disposición 1–7 por tipo de cobro</td>
+              <td>¿Los comercios de bajo monto son más fáciles de incorporar como ancla?</td>
+              <td>Confirmar / Refutar / Segmentar por banco</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S6 · CONTROL DE SESGOS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 6</span>
+        <h2 class="section-title__heading">Sesgos identificados y estrategias de mitigación</h2>
+        <p class="section-title__desc">Todo estudio de usabilidad introduce sesgos. Identificarlos y planear su control es parte del rigor metodológico.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>Sesgo</th>
+              <th>Riesgo en este estudio</th>
+              <th>Estrategia de mitigación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Demanda del participante</strong></td>
+              <td>El usuario intenta "ayudar" aprobando cobros aunque tenga dudas, para no defraudar al moderador</td>
+              <td>Encuadre explícito: "estamos probando el prototipo, no a usted. No hay respuestas correctas." Moderador no presente durante tareas en variante remota.</td>
+            </tr>
+            <tr>
+              <td><strong>Sesgo de deseabilidad social</strong></td>
+              <td>En entrevista post-test, el participante puede reportar mayor disposición a adoptar de la real</td>
+              <td>Usar escalas ancladas con escenarios concretos ("si mañana llegara este cobro a su app, ¿qué haría?") en lugar de preguntas de actitud genérica.</td>
+            </tr>
+            <tr>
+              <td><strong>Sesgo del moderador</strong></td>
+              <td>El moderador puede guiar al usuario hacia la respuesta esperada con micro-señales no verbales</td>
+              <td>Protocolo de moderación estandarizado. Doble sesión: el investigador principal modera las primeras 4; un segundo investigador modera las últimas 4 de forma independiente.</td>
+            </tr>
+            <tr>
+              <td><strong>Efecto de novedad del prototipo</strong></td>
+              <td>El usuario pasa más tiempo explorando la interfaz por curiosidad, no porque el diseño sea confuso</td>
+              <td>Registrar tiempo de tarea por separado en la primera y segunda tarea. Si T2 &lt;&lt; T1, hay efecto de aprendizaje — se descuenta al analizar.</td>
+            </tr>
+            <tr>
+              <td><strong>Sesgo de selección</strong></td>
+              <td>Los participantes voluntarios tienden a ser más digitalmente cómodos que el usuario promedio</td>
+              <td>Incluir explícitamente en el screener al menos 2 participantes con baja frecuencia de uso de transferencias digitales (&lt;2 veces/mes).</td>
+            </tr>
+            <tr>
+              <td><strong>Anclaje en la Fase 1</strong></td>
+              <td>El equipo puede interpretar los datos buscando confirmar el perfil de Claudia R. en lugar de estar abierto a perfiles distintos</td>
+              <td>Los hallazgos del usuario sintético no se presentan a los participantes ni guían el orden de las tareas. Análisis ciego: los codificadores reciben transcripciones sin saber si el participante es Perfil A, B o C.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S7 · TIMELINE -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 7</span>
+        <h2 class="section-title__heading">Roadmap de 6 semanas</h2>
+        <p class="section-title__desc">Actividades, entregables y responsables por semana. Cada fase depende de la anterior.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline__item">
+          <div class="timeline__dot">
+            <span>1</span>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 1 — Preparación e instrumentos</span>
+            <span class="timeline__titulo">Diseño del prototipo y guías de sesión</span>
+            <p class="timeline__desc">Construir en Figma el flujo completo de notificación RtP con dos variantes de pantalla de onboarding (H1). Incluir pantalla de detalle con dos versiones: atributos mínimos vs completos (H2). Redactar guía de moderación, script de tareas, consentimiento informado y screener de reclutamiento. Entregable: prototipo navegable revisado por ACH Colombia + instrumentos listos.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot">
+            <span>2</span>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 2 — Reclutamiento y piloto</span>
+            <span class="timeline__titulo">Screener, reclutamiento y sesión piloto</span>
+            <p class="timeline__desc">Lanzar screener de reclutamiento (Google Forms o panel propio). Criterios: app bancaria activa (Nequi / Bancolombia / Davivienda), ≥3 pagos de servicios del hogar por mes, sin empleados de ACH o entidades bancarias. Realizar 1 sesión piloto con participante de perfil similar para ajustar timing y fluidez del script. Ajustes al prototipo si se detectan problemas técnicos. Entregable: 5–8 sesiones agendadas.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--green">
+            <span>3</span>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semanas 3–4 — Campo: usability testing</span>
+            <span class="timeline__titulo">Sesiones individuales moderadas (60–75 min c/u)</span>
+            <p class="timeline__desc">5–8 sesiones moderadas presenciales o por Lookback/Zoom. Think-aloud protocol + card sorting de atributos de confianza + entrevista post-test. Transcripción inmediata en las 24h siguientes a cada sesión para detectar saturación de hallazgos. Si a la sesión 5 no emergen temas nuevos, se confirma saturación y no se necesitan más participantes. Entregable: grabaciones + transcripciones anotadas.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--orange">
+            <span>4</span>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 5 — Encuesta a comercios + análisis paralelo</span>
+            <span class="timeline__titulo">Encuesta online + affinity mapping de sesiones</span>
+            <p class="timeline__desc">Lanzar encuesta a 15–20 comercios en sectores de administración de conjuntos, servicios locales y suscripciones. Mientras el campo de la encuesta está activo, el equipo realiza el affinity mapping de las sesiones de usability: doble codificación, severity rating de problemas y construcción del diagrama de afinidad en FigJam. Entregable: mapa de afinidad + draft de hallazgos cualitativos.</p>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot timeline__dot--purple">
+            <span>5</span>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Semana 6 — Síntesis, triangulación y presentación</span>
+            <span class="timeline__titulo">Reporte ejecutivo + presentación a ACH Colombia</span>
+            <p class="timeline__desc">Triangulación de los tres cuerpos de datos: cualitativo (usability + entrevistas), cuantitativo (task completion, SEQ, Likert) y comercios (encuesta). Veredicto por hipótesis: confirmada / refutada / matizada. Recomendaciones de diseño priorizadas por impacto en adopción. Presentación en deck navegable para Nicole Tonnelier y equipo de ACH Colombia, con próximos pasos de producto priorizados. Entregable: deck de resultados + reporte detallado.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S8 · PROTOCOLO ÉTICO -->
+    <div class="section section--accented">
+      <div class="section-title">
+        <span class="section-title__label">Sección 8</span>
+        <h2 class="section-title__heading">Protocolo ético y operativo</h2>
+        <p class="section-title__desc">La investigación con usuarios reales requiere estándares claros de consentimiento, privacidad e incentivos.</p>
+      </div>
+      <div class="grid-3">
+        <div>
+          <p class="h4" style="margin-top:0">Consentimiento informado</p>
+          <ul class="lista-icesi">
+            <li>Firma de consentimiento escrito antes de iniciar la sesión</li>
+            <li>Explicación del propósito (mejorar el producto, no evaluación del participante)</li>
+            <li>Derecho a retirarse en cualquier momento sin consecuencias</li>
+            <li>Autorización explícita de grabación de pantalla y audio</li>
+          </ul>
+        </div>
+        <div>
+          <p class="h4" style="margin-top:0">Privacidad y datos</p>
+          <ul class="lista-icesi">
+            <li>Datos personales almacenados separados de grabaciones (anonimización)</li>
+            <li>Grabaciones accesibles solo al equipo de investigación</li>
+            <li>Eliminación de grabaciones a los 90 días de la entrega del reporte</li>
+            <li>Ningún dato identificable en reportes públicos o presentaciones</li>
+          </ul>
+        </div>
+        <div>
+          <p class="h4" style="margin-top:0">Incentivos</p>
+          <ul class="lista-icesi">
+            <li>Incentivo sugerido: bono de $50.000 COP en gift card digital por sesión de 60–75 min</li>
+            <li>Entregado al finalizar la sesión, independiente de las respuestas</li>
+            <li>Para encuesta de comercios: sorteo de 2 bonos de $100.000 COP entre respondentes completados</li>
+            <li>El incentivo no condiciona ni sesga las respuestas — se informa antes de iniciar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alerta alerta--info" style="margin-top:8px">
+        <span class="alerta__titulo">Nota sobre el prototipo de testing</span>
+        <p class="alerta__texto">El prototipo no debe conectarse a cuentas bancarias reales ni solicitar datos financieros del participante. Toda la información en pantalla (montos, nombres de cobradores, cuentas) debe ser ficticia y claramente indicada como tal en el encuadre de la sesión.</p>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S9 · PERFILES DE RECLUTAMIENTO -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 9</span>
+        <h2 class="section-title__heading">Perfiles de reclutamiento</h2>
+        <p class="section-title__desc">Screener criterios para garantizar diversidad de perfil bancario y nivel de ansiedad digital — evitar una muestra demasiado cómoda con tecnología.</p>
+      </div>
+      <div class="grid-3">
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">Perfil A · Nequi (2–3 participantes)</span>
+          <span class="kpi-card__value">Digital-nativo</span>
+          <span class="kpi-card__desc">22–35 años. Nequi como cuenta principal. Paga servicios digitales. Bajo nivel de ansiedad tecnológica esperado. Sirve como línea base de adopción temprana. Hipótesis: Pull &gt; Ansiedad desde el inicio.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-purple">
+          <span class="kpi-card__label">Perfil B · Bancolombia (2–3 participantes)</span>
+          <span class="kpi-card__value">Pagador mixto</span>
+          <span class="kpi-card__desc">35–50 años. App Bancolombia activa. Paga arriendo, administración, utilities. Responsable financiero del hogar. Perfil más cercano a Claudia R. — caso de mayor ansiedad. Crítico para H1 y H2.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-green">
+          <span class="kpi-card__label">Perfil C · Davivienda (1–2 participantes)</span>
+          <span class="kpi-card__value">Conservador activo</span>
+          <span class="kpi-card__desc">40–55 años. Múltiples obligaciones mensuales. Valora control y trazabilidad sobre velocidad. Prueba de estrés para H1 y H3. Si H1 funciona con este perfil, funciona con todos.</span>
+        </div>
+      </div>
+
+      <div class="tabla-wrapper" style="margin-top:12px">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>Criterio de screener</th>
+              <th>Incluir</th>
+              <th>Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>App bancaria</td>
+              <td>Nequi, Bancolombia o Davivienda con acceso activo en los últimos 30 días</td>
+              <td>Solo efectivo, tarjeta física o sin app instalada</td>
+            </tr>
+            <tr>
+              <td>Pagos mensuales</td>
+              <td>≥3 pagos de servicios del hogar por mes (administración, servicios, arriendo, suscripciones)</td>
+              <td>Sin responsabilidad de pagos del hogar</td>
+            </tr>
+            <tr>
+              <td>Frecuencia de uso digital</td>
+              <td>Usa la app de su banco ≥1 vez por semana para consultas o pagos</td>
+              <td>Solo uso presencial de cajero o sucursal</td>
+            </tr>
+            <tr>
+              <td>Diversidad de comodidad digital</td>
+              <td>Al menos 2 participantes con frecuencia de transferencias &lt;2 veces/mes (perfil conservador)</td>
+              <td>Solo perfiles tech-savvy — muestra sesgada hacia adopción temprana</td>
+            </tr>
+            <tr>
+              <td>Conflicto de interés</td>
+              <td>Cualquier ciudadano fuera del ecosistema bancario-fintech</td>
+              <td>Empleados de ACH Colombia, bancos participantes, fintechs de pagos o equipos de producto digital</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S10 · DISEÑO DE ENCUESTA COMERCIOS -->
+    <div class="section section--tinted">
+      <div class="section-title">
+        <span class="section-title__label">Sección 10</span>
+        <h2 class="section-title__heading">Diseño de la encuesta a comercios</h2>
+        <p class="section-title__desc">Estructura de las 15–20 preguntas para mapear disposición e identificar barreras por segmento.</p>
+      </div>
+      <div class="grid-2">
+        <div>
+          <p class="h4" style="margin-top:0">Módulos de la encuesta</p>
+          <ol class="lista-numerada">
+            <li><strong>Perfil del negocio</strong> (3 preguntas) — tipo de cobro, facturación mensual, canales actuales de cobro</li>
+            <li><strong>Dolor actual con medios de cobro</strong> (3–4 preguntas) — tasa de mora, costo de gestión de cartera, tiempo promedio de recaudo</li>
+            <li><strong>Conocimiento de Bre-B / RtP</strong> (2 preguntas) — nivel de familiaridad, fuente de información</li>
+            <li><strong>Disposición a integrar</strong> (4–5 preguntas) — escala Likert 1–5: "¿Usaría un botón de cobro directo si su cliente lo debe aprobar?", willingness to pay por integración</li>
+            <li><strong>Barreras percibidas</strong> (3–4 preguntas) — selección múltiple: técnica / regulatoria / desconfianza del pagador / costo / complejidad de integración</li>
+          </ol>
+        </div>
+        <div>
+          <p class="h4" style="margin-top:0">Preguntas clave de la encuesta</p>
+          <div class="cita">
+            <span class="cita__texto">"Si sus clientes pudieran recibir el cobro directo en su app del banco y aprobarlo con huella, ¿cuánto tiempo de gestión de cartera cree que ahorraría por mes?"</span>
+            <span class="cita__fuente">Pregunta ancla de valor percibido — respuesta abierta + escala</span>
+          </div>
+          <div class="cita" style="margin-top:16px">
+            <span class="cita__texto">"¿Cuál es su mayor preocupación si su cliente tiene que aprobar el cobro manualmente cada vez?"</span>
+            <span class="cita__fuente">Pregunta de barrera abierta — identifica fricción en el lado comercio</span>
+          </div>
+          <div class="alerta alerta--info" style="margin-top:16px">
+            <span class="alerta__titulo">Pilot testing de la encuesta</span>
+            <p class="alerta__texto">Aplicar a 2–3 comercios del equipo antes del lanzamiento para validar comprensión de terminología (Bre-B, llave de pago, solicitud de cobro) y ajustar el tiempo promedio de respuesta a &lt;8 minutos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S11 · PLAN DE COMUNICACIÓN DE HALLAZGOS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 11</span>
+        <h2 class="section-title__heading">Plan de comunicación de hallazgos</h2>
+        <p class="section-title__desc">¿A quién se le comunica qué, en qué formato y con qué objetivo de acción?</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>Audiencia</th>
+              <th>Formato de entrega</th>
+              <th>Contenido prioritario</th>
+              <th>Acción esperada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row--highlight">
+              <td><strong>ACH Colombia (Nicole + equipo)</strong></td>
+              <td>Deck ejecutivo 10–12 slides + sesión de presentación 45 min</td>
+              <td>Veredicto por hipótesis, severity de problemas de usabilidad, recomendaciones de diseño priorizadas, barreras del lado comercio</td>
+              <td>Decisión de diseño sobre pantalla de detalle y mensaje de onboarding. Priorización del roadmap.</td>
+            </tr>
+            <tr>
+              <td><strong>Universidad Icesi / INNLAB</strong></td>
+              <td>Reporte académico detallado + repositorio de evidencia</td>
+              <td>Metodología completa, datos brutos anonimizados, análisis de triangulación, limitaciones del estudio</td>
+              <td>Documentación para future reference y posible publicación académica sobre JTBD en fintech.</td>
+            </tr>
+            <tr>
+              <td><strong>Equipo de diseño UX (si existe)</strong></td>
+              <td>Affinity map exportado + severity list en Notion/Figma</td>
+              <td>Problemas de usabilidad por pantalla, jerarquía de atributos de confianza del card sorting, verbalizaciones clave</td>
+              <td>Iteración directa del prototipo en base a evidencia. Input para sprint de diseño.</td>
+            </tr>
+            <tr>
+              <td><strong>Banrep (indirecto, vía ACH)</strong></td>
+              <td>Resumen ejecutivo de 2 páginas</td>
+              <td>Evidencia sobre necesidad de campo nuevo para referencia de pago vs uso temporal del ID de QR</td>
+              <td>Soporte empírico para decisión regulatoria sobre la especificación técnica del flujo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S12 · PREGUNTAS SIN EXPLORAR -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 12</span>
+        <h2 class="section-title__heading">Preguntas sin explorar — agenda para Fase 3</h2>
+        <p class="section-title__desc">Gaps de conocimiento que esta fase no cierra. Sirven para planear el siguiente ciclo de research.</p>
+      </div>
+      <ol class="lista-numerada">
+        <li><strong>Mecanismo de reversión:</strong> ¿Qué haría el usuario si aprueba un cobro por error? ¿Confía en el proceso de reversión de Bre-B sin haberlo experimentado? — requiere investigación longitudinal con usuarios post-adopción.</li>
+        <li><strong>Cuenta secundaria como control:</strong> ¿Estaría el usuario dispuesto a asociar una cuenta específica para cobros RtP, manteniendo su cuenta principal aislada? — requiere prototipo de configuración que aún no existe.</li>
+        <li><strong>Firma institucional de la notificación:</strong> ¿Confía más si la notificación está verificada por el banco (Bancolombia dice: "cobro verificado") o por el comercio directamente? — requiere variante de prototipo adicional fuera del alcance actual.</li>
+        <li><strong>Límite máximo configurable:</strong> ¿Usaría un tope de monto por transacción (ej. máx. $500.000) como seguro psicológico? — alto potencial de desbloquear la ansiedad, pero necesita prototipo con pantalla de configuración.</li>
+        <li><strong>Comportamiento real vs declarado:</strong> ¿El usuario que dice en la entrevista que activaría RtP lo hace realmente cuando se le da acceso al producto? — solo un piloto con usuarios reales y producto en producción puede responder esto.</li>
+      </ol>
+
+      <div class="grid-2" style="margin-top:8px">
+        <div class="highlight-box highlight-box--yellow">
+          <span class="highlight-box__label">Gap más crítico para Fase 3</span>
+          <span class="highlight-box__texto">El mecanismo de reversión es la única variable que puede mover la Ansiedad de 95 a un nivel de adopción sin necesidad de todas las demás intervenciones. Requiere priorización inmediata.</span>
+        </div>
+        <div class="highlight-box highlight-box--purple">
+          <span class="highlight-box__label">Mayor oportunidad de diferenciación</span>
+          <span class="highlight-box__texto">El límite configurable por el usuario podría ser el "seguro psicológico" que desbloquea la adopción masiva sin requerir cambios regulatorios. Es de bajo costo técnico y alto impacto percibido.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S13 · EQUIPO -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 13</span>
+        <h2 class="section-title__heading">Equipo y roles en el research</h2>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Organización</th>
+              <th>Rol en el proyecto</th>
+              <th>Rol en el research</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nicole Tonnelier Piña</strong></td>
+              <td><span class="badge badge--blue">ACH Colombia</span></td>
+              <td>Líder del producto RtP</td>
+              <td>Stakeholder principal — valida hipótesis y toma decisiones de producto</td>
+            </tr>
+            <tr>
+              <td><strong>Leydi Viviana Rojas Niño</strong></td>
+              <td><span class="badge badge--blue">ACH Colombia</span></td>
+              <td>Equipo de producto</td>
+              <td>Revisión de protocolo y validación de flujos técnicos en el prototipo</td>
+            </tr>
+            <tr>
+              <td><strong>Nestor Armando Tobar Araujo</strong></td>
+              <td><span class="badge badge--purple">Icesi / INNLAB</span></td>
+              <td>Investigación académica</td>
+              <td>Investigador principal — diseño metodológico y moderación de sesiones</td>
+            </tr>
+            <tr>
+              <td><strong>Julián Andrés Suárez Espejo</strong></td>
+              <td><span class="badge badge--purple">Icesi</span></td>
+              <td>Universidad Icesi</td>
+              <td>Co-investigador — codificación de transcripciones y affinity mapping</td>
+            </tr>
+            <tr>
+              <td><strong>Jose Andres Moncada Quintero</strong></td>
+              <td><span class="badge badge--purple">Icesi</span></td>
+              <td>Universidad Icesi</td>
+              <td>Análisis cuantitativo — métricas de tarea y análisis de encuesta</td>
+            </tr>
+            <tr>
+              <td><strong>Andres Felipe Naranjo Cadena</strong></td>
+              <td><span class="badge badge--purple">Icesi</span></td>
+              <td>Universidad Icesi</td>
+              <td>Prototipado en Figma y soporte de logística de reclutamiento</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- fin reporte-body -->
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1NjAgMjg4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjNTQ1NGU5OwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlLXdpZHRoOiAwcHg7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI4OCIvPgogIDxnPgogICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMjQ4LjcsMTI4aDEyLjJ2NzAuN2gtMTIuMnYtNzAuN1oiLz4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTUwNS4xLDEyOGgxMi4ydjcwLjdoLTEyLjJ2LTcwLjdaIi8+CiAgPC9nPgo8L3N2Zz4=" alt="Universidad Icesi" style="height: 32px">
+    <span class="report-footer__info">Plan de Investigación UX · RtP · ACH Colombia × INNLAB · Mayo 2026 · Confidencial</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div><!-- fin reporte -->
+</body>
+</html>
