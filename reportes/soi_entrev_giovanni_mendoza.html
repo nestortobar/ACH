@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Entrevista UX — Giovanni Mendoza · SOI Cargue Masivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="reporte">
+
+  <!-- ============================================================ HEADER -->
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1NjAgMjg4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjNTQ1NGU5OwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlLXdpZHRoOiAwcHg7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI4OCIvPgogIDxnPgogICAgPGc+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE3OS42LDcxLjFjMS43LDEuMiwzLjQsMi40LDUsMy42bC0xMy45LDE5LjJjLTEuNi0xLjMtMy4zLTIuNS01LTMuNmwxMy45LTE5LjJaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTc5LjYsNzEuMWMxLjcsMS4yLDMuNCwyLjQsNSwzLjZsLTEzLjksMTkuMmMtMS42LTEuMy0zLjMtMi41LTUtMy42bDEzLjktMTkuMloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik05Ni4xLDYzLjJsNy40LDIyLjZjNC43LTIuMiw5LjYtMy44LDE0LjgtNC44bC03LjQtMjIuNmMtNS4xLDEuMi0xMC4xLDIuOC0xNC44LDQuOFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik05Ni4xLDYzLjJsNy40LDIyLjZjNC43LTIuMiw5LjYtMy44LDE0LjgtNC44bC03LjQtMjIuNmMtNS4xLDEuMi0xMC4xLDIuOC0xNC44LDQuOFoiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNDcuNyw4Mi4xYzEuOC41LDMuNiwxLjEsNS4zLDEuN2w3LjMtMjIuNWMtMS43LS42LTMuNS0xLjItNS4zLTEuN2wtNy4zLDIyLjVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTQ3LjcsODIuMWMxLjguNSwzLjYsMS4xLDUuMywxLjdsNy4zLTIyLjVjLTEuNy0uNi0zLjUtMS4yLTUuMy0xLjdsLTcuMywyMi41WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTc0LjgsMTEyLjJjMi4zLTQuMSw1LjEtNy45LDguMy0xMS40bC0xOS4yLTE0Yy0zLjEsMy42LTUuOCw3LjQtOC4zLDExLjRsMTkuMiwxNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03NC44LDExMi4yYzIuMy00LjEsNS4xLTcuOSw4LjMtMTEuNGwtMTkuMi0xNGMtMy4xLDMuNi01LjgsNy40LTguMywxMS40bDE5LjIsMTRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODcuMSw5Ni44YzMuNi0zLjMsNy43LTYuMywxMi04LjdsLTE0LTE5LjJjLTQuMiwyLjYtOC4zLDUuNS0xMiw4LjdsMTQsMTkuMloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04Ny4xLDk2LjhjMy42LTMuMyw3LjctNi4zLDEyLTguN2wtMTQtMTkuMmMtNC4yLDIuNi04LjMsNS41LTEyLDguN2wxNCwxOS4yWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTIxMi45LDExMy40bC0yMi41LDcuM2MuOSwyLjIsMS42LDQuNSwyLjIsNi45bDIyLjUtNy4zYy0uNy0yLjMtMS40LTQuNi0yLjItNi45WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTIxMi45LDExMy40bC0yMi41LDcuM2MuOSwyLjIsMS42LDQuNSwyLjIsNi45bDIyLjUtNy4zYy0uNy0yLjMtMS40LTQuNi0yLjItNi45WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTY2LjMsMTQ0YzAtMi4xLjEtNC4zLjMtNi40aC0yMy43Yy0uMiwyLjEtLjIsNC4yLS4yLDYuNHMwLDQuMy4yLDYuNGgyMy43Yy0uMi0yLjEtLjMtNC4yLS4zLTYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02Ni4zLDE0NGMwLTIuMS4xLTQuMy4zLTYuNGgtMjMuN2MtLjIsMi4xLS4yLDQuMi0uMiw2LjRzMCw0LjMuMiw2LjRoMjMuN2MtLjItMi4xLS4zLTQuMi0uMy02LjRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTk0LjgsMTQ0YzAsMS4zLDAsMi43LS4xLDRoMjMuN2MwLTEuMywwLTIuNywwLTRzMC0yLjcsMC00aC0yMy43YzAsMS4zLjEsMi43LjEsNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTQuOCwxNDRjMCwxLjMsMCwyLjctLjEsNGgyMy43YzAtMS4zLDAtMi43LDAtNHMwLTIuNywwLTRoLTIzLjdjMCwxLjMuMSwyLjcuMSw0WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTY3LjcsMTMwLjZjLjktNC40LDIuMy04LjcsNC4xLTEyLjdsLTIyLjYtNy4zYy0xLjcsNC4xLTMuMSw4LjMtNC4xLDEyLjdsMjIuNiw3LjNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjcuNywxMzAuNmMuOS00LjQsMi4zLTguNyw0LjEtMTIuN2wtMjIuNi03LjNjLTEuNyw0LjEtMy4xLDguMy00LjEsMTIuN2wyMi42LDcuM1oiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xODAuNCwxMDMuNmMxLjQsMS44LDIuOCwzLjYsNCw1LjZsMTkuMi0xMy45Yy0xLjMtMS45LTIuNi0zLjgtNC01LjZsLTE5LjIsMTMuOVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xODAuNCwxMDMuNmMxLjQsMS44LDIuOCwzLjYsNCw1LjZsMTkuMi0xMy45Yy0xLjMtMS45LTIuNi0zLjgtNC01LjZsLTE5LjIsMTMuOVoiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMjIuMyw1Ni41djIzLjhzMCwwLDAsMGMxLjEtLjEsNC41LS41LDguMi0uNXM3LjEuNCw4LjIuNWMwLDAsMCwwLDAsMHYtMjMuOGMtMS4zLS4xLTQuNy0uNC04LjItLjRzLTYuOS4zLTguMi40WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTEyMi4zLDU2LjV2MjMuOHMwLDAsMCwwYzEuMS0uMSw0LjUtLjUsOC4yLS41czcuMS40LDguMi41YzAsMCwwLDAsMCwwdi0yMy44Yy0xLjMtLjEtNC43LS40LTguMi0uNHMtNi45LjMtOC4yLjRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTcyLjQsMTkyLjZjLTIuNCwyLTQuOSwzLjktNy41LDUuNmwxNCwxOS4yYzIuNi0xLjcsNS4xLTMuNiw3LjUtNS42bC0xNC0xOS4yWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE3Mi40LDE5Mi42Yy0yLjQsMi00LjksMy45LTcuNSw1LjZsMTQsMTkuMmMyLjYtMS43LDUuMS0zLjYsNy41LTUuNmwtMTQtMTkuMloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03MS42LDE2OS41Yy0xLjYtMy43LTIuOC03LjUtMy43LTExLjVsLTIyLjYsNy4zYzEsMy45LDIuMiw3LjgsMy43LDExLjVsMjIuNi03LjNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNzEuNiwxNjkuNWMtMS42LTMuNy0yLjgtNy41LTMuNy0xMS41bC0yMi42LDcuM2MxLDMuOSwyLjIsNy44LDMuNywxMS41bDIyLjYtNy4zWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1NC44LDIwMy41Yy0yLjksMS4yLTUuOCwyLjEtOC45LDIuOWw3LjMsMjIuNmMzLS44LDYtMS44LDguOS0yLjlsLTcuMy0yMi42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1NC44LDIwMy41Yy0yLjksMS4yLTUuOCwyLjEtOC45LDIuOWw3LjMsMjIuNmMzLS44LDYtMS44LDguOS0yLjlsLTcuMy0yMi42WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE5Mi44LDE1OS44Yy0uNywyLjctMS42LDUuNC0yLjYsOGwyMi42LDcuM2MxLTIuNiwxLjktNS4zLDIuNi04bC0yMi41LTcuM1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTIuOCwxNTkuOGMtLjcsMi43LTEuNiw1LjQtMi42LDhsMjIuNiw3LjNjMS0yLjYsMS45LTUuMywyLjYtOGwtMjIuNS03LjNaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTg1LDE3OGMtMS42LDIuNS0zLjMsNC45LTUuMiw3LjJsMTkuMiwxMy45YzEuOS0yLjMsMy42LTQuNyw1LjItNy4ybC0xOS4yLTEzLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTg1LDE3OGMtMS42LDIuNS0zLjMsNC45LTUuMiw3LjJsMTkuMiwxMy45YzEuOS0yLjMsMy42LTQuNyw1LjItNy4ybC0xOS4yLTEzLjlaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODMuNCwyMTguMmwxMy45LTE5LjJjLTMuMS0xLjktNi4xLTQtOC44LTYuNGwtMTQsMTkuMmMyLjgsMi4zLDUuNyw0LjUsOC44LDYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04My40LDIxOC4ybDEzLjktMTkuMmMtMy4xLTEuOS02LjEtNC04LjgtNi40bC0xNCwxOS4yYzIuOCwyLjMsNS43LDQuNSw4LjgsNi40WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTgyLjIsMTg2LjJjLTIuNS0yLjktNC44LTYtNi44LTkuM2wtMTkuMiwxNGMyLDMuMiw0LjMsNi4zLDYuNyw5LjNsMTkuMi0xNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04Mi4yLDE4Ni4yYy0yLjUtMi45LTQuOC02LTYuOC05LjNsLTE5LjIsMTRjMiwzLjIsNC4zLDYuMyw2LjcsOS4zbDE5LjItMTRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTE1LjcsMjA2LjVjLTMuNC0uOC02LjctMS45LTkuOS0zLjJsLTcuMywyMi42YzMuMiwxLjMsNi41LDIuMyw5LjgsMy4ybDcuMy0yMi42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTExNS43LDIwNi41Yy0zLjQtLjgtNi43LTEuOS05LjktMy4ybC03LjMsMjIuNmMzLjIsMS4zLDYuNSwyLjMsOS44LDMuMmw3LjMtMjIuNloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMzUuNSwyMzEuN3YtMjMuN2MtMS42LjEtMy4zLjItNC45LjJzLTMuMywwLTQuOS0uMnYyMy43YzEuNiwwLDMuMy4xLDQuOS4xczMuMywwLDQuOS0uMVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMzUuNSwyMzEuN3YtMjMuN2MtMS42LjEtMy4zLjItNC45LjJzLTMuMywwLTQuOS0uMnYyMy43YzEuNiwwLDMuMy4xLDQuOS4xczMuMywwLDQuOS0uMVoiLz4KICAgICAgPC9nPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMjAuMywxMDYuNWMtMS4yLjMtMi40LjctMy41LDEuMWwtNi42LTIwLjRjMS4yLS40LDIuMy0uOCwzLjUtMS4xbDYuNiwyMC40Wk0xMzAuNSw4My43Yy0xLjQsMC0yLjksMC00LjMuMnYyMS42YzEuNC0uMiwyLjgtLjIsNC4zLS4yLDEuNSwwLDIuOSwwLDQuMy4ydi0yMS42Yy0xLjQsMC0yLjgtLjItNC4zLS4yWk0xNTMuMSw4OGMtMi42LTEtNS4yLTEuOS03LjktMi42bC02LjcsMjAuNWMyLjguNiw1LjQsMS41LDcuOSwyLjZsNi43LTIwLjVaTTE2OS4yLDk3LjdjLTIuMS0xLjctNC4yLTMuMy02LjUtNC43bC0xMi43LDE3LjRjMi4zLDEuNCw0LjUsMi45LDYuNSw0LjdsMTIuNy0xNy40Wk05Ni43LDk0Yy0xLjEuNy0yLjEsMS41LTMuMiwyLjNsMTIuNiwxNy40YzEtLjgsMi4xLTEuNiwzLjItMi4zbC0xMi42LTE3LjRaTTE4MS41LDExMS44Yy0xLjQtMi4yLTIuOS00LjMtNC42LTYuM2wtMTcuNCwxMi43YzEuNywxLjksMy4zLDQuMSw0LjYsNi4zbDE3LjQtMTIuN1pNNzIuNSwxMjcuNWwyMC40LDYuNmMuNC0xLjQuOS0yLjksMS40LTQuMmwtMjAuNS02LjZjLS41LDEuNC0xLDIuOC0xLjQsNC4yWk0xNjkuMiwxNDcuNmgyMS41YzAtMS4yLjEtMi40LjEtMy42czAtMi40LS4xLTMuNmgtMjEuNWMuMSwxLjIuMiwyLjQuMiwzLjYsMCwxLjIsMCwyLjQtLjIsMy42Wk04MywxMDYuOGMtLjksMS4xLTEuNywyLjItMi41LDMuNGwxNy40LDEyLjZjLjgtMS4yLDEuNi0yLjMsMi41LTMuNGwtMTcuNC0xMi42Wk05MS44LDE0MS42aC0yMS41YzAsLjgsMCwxLjYsMCwyLjRzMCwxLjYsMCwyLjRoMjEuNWMwLS44LDAtMS42LDAtMi40czAtMS42LDAtMi40Wk05Mi45LDE5MS4xYzEuNCwxLjEsMi45LDIuMiw0LjQsMy4ybDEyLjYtMTcuNGMtMS42LTEtMy0yLjEtNC40LTMuMmwtMTIuNiwxNy40Wk0xMDkuMiwyMDAuNGMxLjguNywzLjYsMS4zLDUuNSwxLjhsNi43LTIwLjVjLTEuOS0uNS0zLjctMS4xLTUuNS0xLjhsLTYuNywyMC41Wk04MC4yLDE3Ny4zYzEsMS41LDIsMi45LDMuMSw0LjJsMTcuNC0xMi42Yy0xLjEtMS4zLTIuMS0yLjgtMy4xLTQuMmwtMTcuNCwxMi42Wk03Mi40LDE2MC4zYy40LDEuNiwxLDMuMiwxLjUsNC43bDIwLjUtNi42Yy0uNi0xLjUtMS4xLTMuMS0xLjUtNC43bC0yMC40LDYuNlpNMTMwLjUsMjA0LjNjMSwwLDIsMCwzLDB2LTIxLjVjLTEsMC0yLC4xLTMsLjFzLTIsMC0zLS4xdjIxLjVjMSwwLDIsMCwzLDBaTTE4OSwxMjljLS42LTIuNS0xLjQtNC45LTIuMy03LjJsLTIwLjUsNi43YzEsMi4zLDEuOCw0LjcsMi4zLDcuMmwyMC41LTYuN1pNMTQ2LjIsMjAyLjNjMi0uNSw0LTEuMiw2LTEuOWwtNi43LTIwLjVjLTEuOS44LTMuOSwxLjQtNiwxLjlsNi43LDIwLjVaTTE4Ni43LDE2NmMuOS0yLjIsMS42LTQuNCwyLjItNi43bC0yMC41LTYuN2MtLjUsMi4zLTEuMiw0LjYtMi4yLDYuN2wyMC41LDYuN1pNMTc3LjMsMTgyLjFjMS40LTEuNywyLjgtMy42LDQtNS41bC0xNy40LTEyLjdjLTEuMiwxLjktMi41LDMuOC00LDUuNWwxNy40LDEyLjdaTTE2My4zLDE5NC43YzEuOC0xLjIsMy42LTIuNSw1LjMtMy44bC0xMi43LTE3LjRjLTEuNiwxLjQtMy40LDIuNy01LjMsMy44bDEyLjYsMTcuNFoiLz4KICAgIDwvZz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yNDguNywxMjhoMTIuMnY3MC43aC0xMi4ydi03MC43WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yNzUuMywxNjMuOGMwLTIxLjMsMTYuMS0zNy40LDM3LTM3LjRzMjMuNCw1LjMsMzAuMiwxNWwtOS43LDcuNGMtNS43LTcuNy0xMi44LTExLjMtMjAuNi0xMS4zLTEzLjUsMC0yNC4yLDEwLjctMjQuMiwyNS45czExLDI1LjksMjQuNCwyNS45LDE2LjQtNC4zLDIxLjktMTEuOGw5LjMsNi44Yy02LjgsMTAuMy0xOC4yLDE2LjEtMzEuMywxNi4xLTIxLjMsMC0zNi45LTE1LjUtMzYuOS0zNi42WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00MjIuNCwxNjYuMWgtNTljMSwxNC45LDEwLjksMjMuNCwyNS4xLDIzLjRzMTcuNC0zLjksMjMuNC0xMmw4LjgsNi43Yy02LjgsMTAuMi0xOC4yLDE2LjEtMzIuNCwxNi4xLTIyLjEsMC0zNy4zLTE0LjktMzcuMy0zNi41czE1LjktMzcuNiwzNy40LTM3LjYsMzQuNSwxMy44LDM0LjUsMzQuNS0uMSwzLjYtLjQsNS4zWk0zNjQuMSwxNTUuNWg0Ni4yYy0xLjgtMTIuMi05LjktMTguNy0yMi0xOC43cy0yMS40LDYuOC0yNC4yLDE4LjdaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQzMi40LDE4OS4xbDcuOC05LjJjNi43LDYuMywxNS41LDkuNSwyMy43LDkuNXMxNS4yLTQuMywxNS4yLTEwLjItMy4xLTcuNS0xMi4xLTkuNmwtMTIuNC0yLjhjLTE0LjItMy4yLTIwLjItOS4zLTIwLjItMTguOXMxMC42LTIxLjYsMjcuMS0yMS42LDIyLDQsMjguNywxMS4zbC04LjIsOC41Yy01LjgtNS44LTEzLjEtOC44LTIxLjMtOC44cy0xNC4zLDMuOS0xNC4zLDkuNiwyLjYsNi44LDEyLjQsOWwxMi40LDIuOGMxNC4zLDMuMiwxOS45LDkuNywxOS45LDE5LjVzLTEwLjIsMjIuMS0yNy42LDIyLjEtMjMuOS00LjMtMzEtMTEuM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTA1LjEsMTI4aDEyLjJ2NzAuN2gtMTIuMnYtNzAuN1oiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMjQ4LjcsMTAxLjF2LTEyLjNoMy43djEyYzAsMy43LDEuOCw1LjUsNC45LDUuNXM0LjktMS44LDQuOS01LjV2LTEyaDMuN3YxMi4zYzAsNS41LTMuMyw4LjYtOC42LDguNnMtOC42LTMuMS04LjYtOC42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTI4NC43LDEwMC4zdjloLTMuNXYtOC4zYzAtMi42LTEuMi0zLjktMy4yLTMuOXMtMi42LjUtMy43LDEuOHYxMC40aC0zLjV2LTE1aDMuNXYxLjNjMS4yLTEsMi45LTEuNiw0LjYtMS42LDMuNSwwLDUuOCwyLjMsNS44LDYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yODguOSw5MGMwLTEuMiwxLTIuMiwyLjMtMi4yczIuMiwxLDIuMiwyLjItMSwyLjMtMi4yLDIuMy0yLjMtMS0yLjMtMi4zWk0yODkuNCw5NC4zaDMuNXYxNWgtMy41di0xNVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zMTIuMSw5NC4zbC02LjIsMTVoLTMuOGwtNi4yLTE1aDMuOWw0LjIsMTAuNyw0LjItMTAuN2gzLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzI5LjIsMTAyLjdoLTExLjljLjMsMi42LDIsNCw0LjYsNHMzLjItLjYsNC40LTIuMWwyLjUsMS45Yy0xLjYsMi4xLTQsMy4zLTcsMy4zLTQuOSwwLTguMS0zLjItOC4xLTcuOHMzLjMtOCw4LTgsNy41LDIuOSw3LjUsNy40LDAsLjksMCwxLjNaTTMxNy41LDEwMGg4LjNjLS40LTIuMS0xLjgtMy4xLTMuOS0zLjFzLTMuOCwxLjEtNC4zLDMuMVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zNDIuNSw5NC4xbC0uMiwzLjNjLS41LDAtMS0uMS0xLjQtLjEtMS43LDAtMy4yLjgtNC4xLDIuM3Y5LjhoLTMuNXYtMTVoMy41djEuNmMxLTEuMywyLjYtMiw0LjItMnMxLDAsMS42LjJaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzQ0LjksMTA3LjVsMS44LTIuNmMxLjYsMS4yLDMuMywxLjgsNSwxLjhzMi42LS43LDIuNi0xLjYtLjUtMS4yLTIuMS0xLjZsLTIuNi0uNmMtMy0uNy00LjMtMi00LjMtNC4xczIuMy00LjgsNi00LjgsNC43LjgsNi4yLDIuMmwtMS45LDIuNWMtMS40LTEuMS0yLjktMS43LTQuNS0xLjdzLTIuNC42LTIuNCwxLjUuNSwxLjEsMi4xLDEuNWwyLjYuNmMzLjEuNyw0LjMsMi4xLDQuMyw0LjJzLTIuMyw0LjktNi4yLDQuOS01LjEtLjktNi43LTIuMloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zNjEsOTBjMC0xLjIsMS0yLjIsMi4zLTIuMnMyLjIsMSwyLjIsMi4yLTEsMi4zLTIuMiwyLjMtMi4zLTEtMi4zLTIuM1pNMzYxLjUsOTQuM2gzLjV2MTVoLTMuNXYtMTVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzg0LjMsODcuNnYyMS43aC0zLjV2LTEuMWMtMS4xLDEtMi43LDEuNS00LjMsMS41LTQuMSwwLTcuNS0zLjMtNy41LTcuOXMzLjQtNy45LDcuNS03LjksMy4yLjUsNC4zLDEuNXYtNy44aDMuNVpNMzgwLjgsMTA0Ljd2LTUuOGMtMS0xLjItMi40LTEuNy0zLjgtMS43LTIuNSwwLTQuNCwxLjgtNC40LDQuNnMxLjksNC42LDQuNCw0LjYsMi44LS42LDMuOC0xLjhaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDAzLjUsOTQuM3YxNWgtMy41di0xLjFjLTEuMSwxLTIuNywxLjUtNC4zLDEuNS00LjEsMC03LjUtMy4zLTcuNS03LjlzMy40LTcuOSw3LjUtNy45LDMuMi41LDQuMywxLjV2LTEuMWgzLjVaTTQwMCwxMDQuN3YtNS44Yy0xLTEuMi0yLjQtMS43LTMuOC0xLjctMi41LDAtNC40LDEuOC00LjQsNC42czEuOSw0LjYsNC40LDQuNiwyLjgtLjYsMy44LTEuOFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00MjIuOCw4Ny42djIxLjdoLTMuNXYtMS4xYy0xLjEsMS0yLjcsMS41LTQuMywxLjUtNC4xLDAtNy41LTMuMy03LjUtNy45czMuNC03LjksNy41LTcuOSwzLjIuNSw0LjMsMS41di03LjhoMy41Wk00MTkuMywxMDQuN3YtNS44Yy0xLTEuMi0yLjQtMS43LTMuOC0xLjctMi41LDAtNC40LDEuOC00LjQsNC42czEuOSw0LjYsNC40LDQuNiwyLjgtLjYsMy44LTEuOFoiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Universidad Icesi" style="height:40px">
+      </div>
+      <div class="report-header__meta">
+        <span class="report-header__meta-label">Fecha</span>
+        <span class="report-header__meta-value">20 de mayo de 2026</span>
+        <span class="report-header__meta-label" style="margin-top:6px">Proyecto</span>
+        <span class="report-header__meta-value">SOI · Cargue masivo de novedades</span>
+      </div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Investigación UX · Entrevista con usuario</span>
+      <h1 class="report-header__title">Giovanni Mendoza<br>Gerente de Compensación · ACH Colombia</h1>
+      <p class="report-header__subtitle">Sesión de 47 min sobre el proceso de cargue masivo de novedades de seguridad social en la plataforma SOI. Facilitada por María Fernanda Gaviria, Carolina Sandoval, José Andrés Moncada y Néstor Tobar.</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">370</span>
+        <span class="report-header__kpi-label">Colaboradores en nómina</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">~$1.000M</span>
+        <span class="report-header__kpi-label">COP pago mensual nómina</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">Oracle HCM</span>
+        <span class="report-header__kpi-label">ERP de nómina (Entelli)</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">Día 15/25</span>
+        <span class="report-header__kpi-label">Corte novedades / pago</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ BODY -->
+  <div class="reporte-body">
+
+    <!-- S01 · Perfil del participante -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 01</span>
+        <h2 class="section-title__heading">Perfil del participante</h2>
+        <p class="section-title__desc">Rol, experiencia y contexto operativo dentro de ACH Colombia.</p>
+      </div>
+      <div class="grid-2">
+        <div class="kpi-card kpi-card--blue">
+          <span class="kpi-card__label">Cargo</span>
+          <span class="kpi-card__value" style="font-size:18px">Gerente de Compensación</span>
+          <span class="kpi-card__desc">ACH Colombia — empresa de compensación y pagos interbancarios. Involucrado en todas las etapas del ciclo de nómina y seguridad social.</span>
+        </div>
+        <div class="kpi-card kpi-card--purple">
+          <span class="kpi-card__label">Rol en el proceso SOI</span>
+          <span class="kpi-card__value" style="font-size:18px">Revisor y aprobador</span>
+          <span class="kpi-card__desc">Realiza auditoría aleatoria de bases salariales y novedades. Aprueba el pago antes de que pase a Tesorería. Tiene amplia trayectoria con operadores de SS.</span>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">Nivel de expertise</span>
+          <span class="kpi-card__value" style="font-size:20px">Alto</span>
+          <span class="kpi-card__desc">Experiencia con múltiples operadores (Compensar, entre otros). Conocimiento técnico de archivos planos, IBC, traslados y retiros.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-purple">
+          <span class="kpi-card__label">Equipo de nómina</span>
+          <span class="kpi-card__value" style="font-size:20px">3 personas</span>
+          <span class="kpi-card__desc">Giovanni + persona nueva (reemplaza a Juan Carlos) + Sebastián. En transición por cambio de líder de nómina reciente.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-orange">
+          <span class="kpi-card__label">Frecuencia de uso SOI</span>
+          <span class="kpi-card__value" style="font-size:20px">12 veces/año</span>
+          <span class="kpi-card__desc">Una vez al mes para el ciclo principal. Adicionalmente ejecuciones de prenómina como validación previa al pago definitivo.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S02 · Flujo del proceso -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 02</span>
+        <h2 class="section-title__heading">Flujo del proceso documentado</h2>
+        <p class="section-title__desc">Reconstrucción del ciclo completo desde la recolección de novedades hasta el pago de seguridad social.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__dot">1</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Día 1–15 del mes</span>
+            <span class="timeline__titulo">Recolección de novedades</span>
+            <p class="timeline__desc">Los 370 colaboradores generan novedades de múltiples fuentes: autoservicio (vacaciones), correo novedades (incapacidades vía Mavet), lineamientos de compañía, horas extras, comisiones, cambios de salario, ingresos y retiros. Fecha de corte: día 15.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot">2</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Día 15 — inicio liquidación</span>
+            <span class="timeline__titulo">Liquidación de nómina en HCM (Oracle)</span>
+            <p class="timeline__desc">El líder de nómina ingresa todas las novedades al ERP Entelli/HCM y ejecuta la liquidación. Genera el archivo plano (.txt) de seguridad social.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot--green timeline__dot">3</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Días intermedios — PRE-NÓMINA</span>
+            <span class="timeline__titulo">Cargue de archivo en SOI (modo validación / prenómina)</span>
+            <p class="timeline__desc">Se carga el archivo plano a SOI antes del pago definitivo. SOI arroja un Excel de errores que permite detectar: nombres no coincidentes, IBC incorrectos, personas retiradas que reaparecen, y traslados de entidades. Es el principal mecanismo de validación anticipada.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot--orange timeline__dot">4</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Corrección de errores</span>
+            <span class="timeline__titulo">Ciclo de corrección: Entelli → SOI → Macro Excel</span>
+            <p class="timeline__desc">Primero se escala al proveedor ERP (Entelli) para correcciones de fondo. Si no resuelve en tiempo, se contacta al asesor de SOI. En casos críticos el asesor construye el archivo usando una macro de Excel, que a veces resulta más eficiente que el propio ERP.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot">5</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Día 25 — nómina definitiva</span>
+            <span class="timeline__titulo">Aprobación vía Microsoft Teams → pago</span>
+            <p class="timeline__desc">El líder de nómina notifica en Teams. Giovanni y Lili (Directora de Talento Humano) aprueban. Pasa a Tesorería para el pago. La aprobación ocurre fuera de SOI, en Teams, por ausencia de flujo nativo en la plataforma.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot--gray timeline__dot">6</div>
+          <div class="timeline__content">
+            <span class="timeline__fecha">Último día hábil del mes</span>
+            <span class="timeline__titulo">Planilla definitiva de seguridad social</span>
+            <p class="timeline__desc">Se realiza el cargue oficial y pago de la planilla de seguridad social. Hay una semana entre el pago de nómina (día 25) y el cierre del mes para hacer el proceso de seguridad social.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S03 · Temas clave -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 03</span>
+        <h2 class="section-title__heading">Temas clave emergentes</h2>
+        <p class="section-title__desc">Cinco grandes temas que estructuran la experiencia del usuario con SOI y su proceso de cargue masivo.</p>
+      </div>
+
+      <div class="section--accented">
+        <p class="h4">Tema 1 — La prenómina como práctica de validación anticipada</p>
+        <p>Giovanni diseñó un proceso no convencional: ejecutar el ciclo completo de cargue en SOI <em>antes</em> del pago definitivo, usando el sistema como validador. Esta práctica revela que el usuario no confía plenamente en el ERP ni en el proceso automático, y necesita una "segunda opinión" del operador.</p>
+        <span class="badge badge--blue" style="margin-top:8px">Explícito</span>
+      </div>
+
+      <div class="section--accented" style="border-color: var(--c-orange)">
+        <p class="h4">Tema 2 — Degradación percibida de las validaciones en SOI</p>
+        <p>Giovanni menciona reiteradamente que SOI "antes hacía más validaciones" que ya no hace o que se redujeron. Esto genera una percepción de pérdida de un aliado clave. Las validaciones que extrañan incluyen detección de empleados que desaparecen sin novedad de retiro, advertencias de IBC y liquidación con entidades desactualizadas.</p>
+        <span class="badge badge--orange" style="margin-top:8px">Explícito</span>
+      </div>
+
+      <div class="section--accented" style="border-color: var(--c-purple)">
+        <p class="h4">Tema 3 — Reportería como oportunidad crítica de mejora</p>
+        <p>El módulo de reportes es señalado como el área con mayor brecha entre expectativas y realidad. Los informes son estándar, poco intuitivos de acceder, no permiten configuración dinámica y no soportan comparativos entre períodos. Giovanni necesita informes para auditoría, revisoría fiscal, DIAN y gerencia de talento humano.</p>
+        <span class="badge badge--purple" style="margin-top:8px">Explícito</span>
+      </div>
+
+      <div class="section--accented" style="border-color: var(--c-green)">
+        <p class="h4">Tema 4 — Aprobación de pagos fuera de la plataforma</p>
+        <p>El flujo de aprobación de la planilla de seguridad social ocurre en Microsoft Teams porque SOI no tiene esta funcionalidad. Giovanni propone explícitamente que SOI implemente un módulo de aprobación similar al de Tesorita, con notificaciones y roles definidos, que lleve al aprobador directamente dentro de la plataforma.</p>
+        <span class="badge badge--green" style="margin-top:8px">Explícito — propuesta del usuario</span>
+      </div>
+
+      <div class="section--accented" style="border-color: var(--c-yellow)">
+        <p class="h4">Tema 5 — Acompañamiento como factor de confianza y retención</p>
+        <p>El usuario valora el modelo de acompañamiento proactivo del asesor de SOI más allá del soporte reactivo. Hace referencia nostálgica a experiencias previas con Compensar donde el asesor recordaba activamente al cliente antes de la fecha de pago. La relación con el asesor es tan importante que el cambio de asesor generó ansiedad en el equipo.</p>
+        <span class="badge badge--yellow" style="margin-top:8px">Inferred + explícito</span>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S04 · Pain points -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 04</span>
+        <h2 class="section-title__heading">Puntos de dolor y fricciones</h2>
+        <p class="section-title__desc">Clasificados por severidad e impacto operativo. Evidencia explícita o inferida del transcript.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos tabla-datos--striped">
+          <thead>
+            <tr>
+              <th>Pain Point</th>
+              <th>Severidad</th>
+              <th>Evidencia</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row--highlight">
+              <td><strong>Validaciones de SOI percibidas como degradadas</strong> — el sistema hacía alertas valiosas que ya no genera (retirados, IBC, entidades)</td>
+              <td><span class="badge badge--orange">Alta</span></td>
+              <td>"siento que se ha perdido validaciones que uno la llevaba mucho en la gestión"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr class="row--highlight">
+              <td><strong>Reportería no configurable e inconsistente</strong> — acceso poco intuitivo, no hay comparativos por año, sin tablas dinámicas, sin informes por auditoría personalizada</td>
+              <td><span class="badge badge--orange">Alta</span></td>
+              <td>"a nivel de reportería falta mucho, o sea, mucho es mucho"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr class="row--highlight">
+              <td><strong>Sin flujo de aprobación nativo en SOI</strong> — el proceso de revisión y aprobación vive en Teams, fuera de la plataforma del operador</td>
+              <td><span class="badge badge--orange">Alta</span></td>
+              <td>"si el flujo existiera en SOY, no en Teams… sería muy ganador"</td>
+              <td>Explícito — propuesta directa</td>
+            </tr>
+            <tr>
+              <td><strong>ERP genera archivos sucios que requieren macro manual</strong> — el asesor termina construyendo el archivo plano en Excel porque el ERP no es confiable</td>
+              <td><span class="badge badge--yellow" style="color:#1a1a1a">Media</span></td>
+              <td>"a veces es mejor… con la persona que nos ayuda que con el mismo aplicativo"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr>
+              <td><strong>Traslados de entidad en fin de semana generan descuadres contables</strong> — la BDUA actualiza el fin de semana y el pago queda asignado a la entidad anterior, causando errores en terceros contables</td>
+              <td><span class="badge badge--yellow" style="color:#1a1a1a">Media</span></td>
+              <td>"ese es otro dolor de cabeza porque contabilidad me dice usted pagó bien pero mis terceros están descuadrados"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr>
+              <td><strong>Novedades post-retiro difíciles de corregir</strong> — comisiones de personas ya retiradas generan reactivación compleja en HCM; el ERP no es flexible para re-procesar sin efectos colaterales</td>
+              <td><span class="badge badge--yellow" style="color:#1a1a1a">Media</span></td>
+              <td>"si una persona tiene comisiones y se fue… eso nos complica la vida"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr>
+              <td><strong>Sin plan de recuperación ante caída de HCM</strong> — el equipo no sabe cómo construir la planilla manualmente si cae el ERP; el DRP no está definido</td>
+              <td><span class="badge badge--gray">Baja-media</span></td>
+              <td>"créeme que no sé responderte… tenemos que dar respuesta a eso"</td>
+              <td>Explícito</td>
+            </tr>
+            <tr>
+              <td><strong>Conocimiento tácito no transferible</strong> — el proceso se hace 12 veces al año, el conocimiento es muy específico y se pierde con rotación del equipo (caso Juan Carlos)</td>
+              <td><span class="badge badge--gray">Latente</span></td>
+              <td>"en mis años de experiencia yo nunca me termino de aprender"</td>
+              <td>Inferido</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S05 · Jobs to be done -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 05</span>
+        <h2 class="section-title__heading">Jobs-to-be-done</h2>
+        <p class="section-title__desc">Lo que Giovanni realmente intenta lograr en cada dimensión del proceso.</p>
+      </div>
+      <div class="grid-2">
+        <div class="kpi-card kpi-card--tint-blue">
+          <span class="kpi-card__label">Job funcional principal</span>
+          <span class="kpi-card__desc" style="font-size:14px; font-weight:600; color:#1a1a1a">Garantizar que el pago mensual de ~$1.000M COP en seguridad social sea correcto, completo y sin descuadres contables, dentro de los plazos legales.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-purple">
+          <span class="kpi-card__label">Job emocional</span>
+          <span class="kpi-card__desc" style="font-size:14px; font-weight:600; color:#1a1a1a">Llegar al día de pago con certeza y tranquilidad, sin depender de llamadas de último momento al asesor bajo presión de tiempo.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-green">
+          <span class="kpi-card__label">Job social / de rol</span>
+          <span class="kpi-card__desc" style="font-size:14px; font-weight:600; color:#1a1a1a">Ser percibido como un gerente que controla y domina el proceso, capaz de aprobar el pago con evidencia sólida y dar informes a auditoría, revisoría y DIAN cuando se los pidan.</span>
+        </div>
+        <div class="kpi-card kpi-card--tint-orange">
+          <span class="kpi-card__label">Job de aprendizaje</span>
+          <span class="kpi-card__desc" style="font-size:14px; font-weight:600; color:#1a1a1a">Onboardear rápidamente al nuevo líder de nómina sin perder el conocimiento institucional que tenía Juan Carlos, y entender cómo mejorar el proceso con SOI.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S06 · Workarounds -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 06</span>
+        <h2 class="section-title__heading">Workarounds actuales</h2>
+        <p class="section-title__desc">Cómo el equipo resuelve hoy lo que el sistema no resuelve por sí solo.</p>
+      </div>
+      <ul class="lista-hallazgos">
+        <li class="alerta"><strong>Prenómina como mecanismo de test:</strong> Cargan el archivo a SOI antes del pago definitivo, no para pagarlo, sino para que SOI les muestre errores. Es un workaround de validación anticipada que consume tiempo extra del ciclo.</li>
+        <li class="alerta"><strong>Microsoft Teams como plataforma de aprobaciones:</strong> El flujo de revisión y aprobación de la planilla ocurre en Teams porque SOI no tiene esta funcionalidad nativa. Genera desconexión entre la evidencia del operador y el acto de aprobación.</li>
+        <li class="alerta"><strong>Macro Excel construida por el asesor SOI:</strong> Cuando el ERP no genera un archivo limpio, el asesor interviene manualmente con una macro. Esta intervención es más rápida que el propio sistema, lo que evidencia una brecha crítica en el ERP.</li>
+        <li class="info"><strong>Escalación secuencial: Entelli → SOI:</strong> Antes de contactar al asesor de SOI, el equipo agota las instancias con el proveedor del ERP. Protocolo informal, no documentado en SOI.</li>
+        <li class="info"><strong>Descarga + configuración manual del Excel de la planilla:</strong> Para hacer la revisión gerencial, Giovanni descarga el Excel, lo configura (encabezados, columnas) y lo compara manualmente con lo que muestra el ERP. Tarea repetitiva cada mes.</li>
+        <li class="ok"><strong>Correo novedades (Mavet):</strong> Crearon un correo centralizado hace pocos meses para consolidar las incapacidades, que además requieren bloqueo de usuario en seguridad. Workaround funcional bien institucionalizado.</li>
+      </ul>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S07 · Delighters -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 07</span>
+        <h2 class="section-title__heading">Aspectos positivos y delighters</h2>
+        <p class="section-title__desc">Lo que funciona bien o supera expectativas — a preservar y ampliar.</p>
+      </div>
+      <div class="grid-2">
+        <div class="highlight-box highlight-box--green">
+          <span class="highlight-box__label">Actitud del equipo SOI</span>
+          <span class="highlight-box__texto">Giovanni destaca la disposición y actitud colaborativa del equipo asesor de SOI: "siempre lo encontramos, nunca hemos tenido que esperar". La accesibilidad al asesor es un diferenciador positivo.</span>
+        </div>
+        <div class="highlight-box">
+          <span class="highlight-box__label">Excel de errores (SOI)</span>
+          <span class="highlight-box__texto">El archivo de errores que genera SOI al cargar la planilla es altamente valorado como mecanismo de retroalimentación. Giovanni quiere <em>más</em> de esto, no menos.</span>
+        </div>
+        <div class="highlight-box highlight-box--purple">
+          <span class="highlight-box__label">Modelo previo de acompañamiento proactivo</span>
+          <span class="highlight-box__texto">La experiencia con un asesor que enviaba mensajes de WhatsApp antes de la nómina ("recuerda que estamos a tu disposición") es recordada como un diferenciador emocional muy fuerte. Giovanni lo describe con nostalgia.</span>
+        </div>
+        <div class="highlight-box highlight-box--orange">
+          <span class="highlight-box__label">La macro Excel (cuando funciona)</span>
+          <span class="highlight-box__texto">Aunque es un workaround, Giovanni reconoce que la macro del asesor ha sido una salida ágil en momentos críticos. Si el ERP falla, la macro es su plan B real.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S08 · Citas notables -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 08</span>
+        <h2 class="section-title__heading">Citas notables del participante</h2>
+        <p class="section-title__desc">Verbatim que capturan insights esenciales para el equipo de diseño y producto.</p>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"Siento que se ha perdido validaciones que incluso uno la llevaba mucho en la gestión… es que ese validador me ayudaba a mí en mi gestión a validar cosas."</span>
+        <span class="cita__fuente">Giovanni Mendoza — sobre la degradación de validaciones en SOI</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"A nivel de reportería falta mucho, o sea, mucho es mucho. Debería ser como una tabla dinámica: sáqueme eso y que él mismo genere el ser como uno lo quiere."</span>
+        <span class="cita__fuente">Giovanni Mendoza — sobre el módulo de reportes de SOI</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"Si el flujo existiera en SOY, no en Teams, porque nosotros tenemos Teams y hay un modelo de aprobación… el técnico le dijera venga en SOY está la aprobación de la seguridad social."</span>
+        <span class="cita__fuente">Giovanni Mendoza — proponiendo un flujo de aprobación nativo en SOI</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"El asesor nos dice venga hagamos la Macro… llega un punto que a veces es mejor con la persona que nos ayuda que con el mismo aplicativo en sí."</span>
+        <span class="cita__fuente">Giovanni Mendoza — sobre la dependencia del asesor y la macro Excel</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"Son mil millones de pesos que pagamos… eso sí siempre he dicho que desde la misma herramienta me permitiera hacer a mis revisiones."</span>
+        <span class="cita__fuente">Giovanni Mendoza — contextualizando la magnitud del proceso y la necesidad de revisión dentro de SOI</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"En mis años de experiencia yo nunca me termino de aprender, siempre termino aprendiendo cosas… ese conocimiento cuesta y más cuando el proceso se hace 12 veces al año."</span>
+        <span class="cita__fuente">Giovanni Mendoza — sobre la curva de aprendizaje del proceso</span>
+      </div>
+
+      <div class="cita">
+        <span class="cita__texto">"Recuerda, estamos a tu disposición, lo que necesites con mucho gusto, recuerda que este es mi número, sé que ya estás en nómina, cualquier cosa me avisas. Y uno decía: uy, esa gente estaba pendiente de uno."</span>
+        <span class="cita__fuente">Giovanni Mendoza — recordando el modelo de acompañamiento proactivo de un operador anterior</span>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S09 · Sorpresas -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 09</span>
+        <h2 class="section-title__heading">Hallazgos sorpresivos</h2>
+        <p class="section-title__desc">Lo inesperado o contracorriente a los supuestos iniciales del equipo.</p>
+      </div>
+      <div class="grid-2">
+        <div class="alerta alerta--advertencia">
+          <span class="alerta__titulo">No hay DRP definido para el proceso de nómina</span>
+          <p class="alerta__texto">Pese a que el equipo tiene pruebas de continuidad periódicas, no existe un plan formal para construir la planilla si cae HCM. Giovanni reconoce que no sabe cómo respondería a esa situación.</p>
+        </div>
+        <div class="alerta alerta--advertencia">
+          <span class="alerta__titulo">El asesor como plan B del ERP</span>
+          <p class="alerta__texto">El rol del asesor de SOI va más allá de soporte: en la práctica, construye el archivo de pago con una macro cuando el ERP falla. Esto hace que la calidad del proceso dependa de una persona, no del sistema.</p>
+        </div>
+        <div class="alerta alerta--info">
+          <span class="alerta__titulo">Alta nómina por empleado pese al tamaño</span>
+          <p class="alerta__texto">ACH liquida ~$2.7M COP por empleado al mes (370 personas, $1.000M), lo que indica una nómina con salarios altos y alta responsabilidad en cada liquidación.</p>
+        </div>
+        <div class="alerta alerta--info">
+          <span class="alerta__titulo">El cambio de asesor genera ansiedad institucional</span>
+          <p class="alerta__texto">Giovanni mencionó la sustitución del asesor de SOI durante la misma sesión con una carga emocional visible. La confianza depositada en el asesor es tan alta que su cambio afecta la percepción de continuidad del servicio.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- S10 · Oportunidades y recomendaciones -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title__label">Sección 10</span>
+        <h2 class="section-title__heading">Oportunidades de diseño y acción</h2>
+        <p class="section-title__desc">Recomendaciones accionables para el equipo de producto y UX de SOI, ordenadas por prioridad.</p>
+      </div>
+      <ol class="lista-numerada">
+        <li><strong>Restablecer y ampliar las validaciones inteligentes de SOI.</strong> Recuperar las alertas que el sistema dejó de hacer: empleados que desaparecen sin retiro, IBC inconsistentes con el período anterior, traslados de entidad recientes. Propuesta: panel de alertas contextuales en el momento del cargue del archivo.</li>
+        <li><strong>Rediseñar el módulo de reportes con enfoque en configurabilidad.</strong> Implementar un constructor de informes tipo tabla dinámica que permita al usuario seleccionar dimensiones, filtros y comparativos por período. Priorizar informes para auditoría, DIAN, revisoría fiscal y evolución de planta.</li>
+        <li><strong>Implementar flujo de aprobación de pagos nativo en SOI.</strong> Crear un módulo de aprobaciones con roles (liquidador → revisor → aprobador → tesorería), notificaciones push y acceso directo al detalle de la planilla. Inspirarse en el modelo de Tesorita mencionado por Giovanni.</li>
+        <li><strong>Mejorar la legibilidad y exportabilidad del Excel de errores.</strong> El archivo de errores es la herramienta más usada, pero requiere configuración manual. Diseñar una vista filtrable, con categorías de error, severidad y acciones sugeridas directamente desde SOI.</li>
+        <li><strong>Diseñar un modelo de acompañamiento proactivo digitalizado.</strong> Recuperar la práctica de recordatorios activos al cliente antes de fechas clave de nómina. Puede ser vía notificación en la plataforma, email o WhatsApp. El modelo de Compensar recordado por Giovanni es la referencia de UX a replicar.</li>
+        <li><strong>Generar vista de revisión gerencial dentro de SOI.</strong> Crear una pantalla de aprobación ejecutiva configurable donde el gerente vea solo los campos que necesita (cédula, nombre, salario base, componentes salariales) sin tener que descargar y manipular el Excel.</li>
+        <li><strong>Planificar sesión de testeo con Sebastián y la nueva líder de nómina.</strong> Giovanni propuso explícitamente una sesión en la segunda semana de junio. Esta sesión puede capturar la perspectiva de un usuario novato en contraste con la de un usuario experto como Giovanni.</li>
+      </ol>
+    </div>
+
+    <!-- S11 · Próximos pasos -->
+    <div class="section section--tinted">
+      <div class="section-title section-title--compact">
+        <span class="section-title__label">Próximos pasos</span>
+        <h2 class="section-title__heading">Agenda de seguimiento</h2>
+      </div>
+      <div class="grid-2">
+        <div class="kpi-card kpi-card--blue">
+          <span class="kpi-card__label">Sesión con equipo operativo</span>
+          <span class="kpi-card__value" style="font-size:16px">2.ª semana de junio</span>
+          <span class="kpi-card__desc">Testeo con Sebastián + nueva líder de nómina, propuesto por Giovanni. Perspectiva de usuario novato y comparación con operador anterior. Coordinar con María Fernanda Gaviria.</span>
+        </div>
+        <div class="kpi-card kpi-card--orange">
+          <span class="kpi-card__label">Síntesis y priorización</span>
+          <span class="kpi-card__value" style="font-size:16px">Inmediato</span>
+          <span class="kpi-card__desc">Consolidar hallazgos de esta entrevista con otras sesiones del proyecto. Priorizar oportunidades de diseño con el equipo de producto de SOI.</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.reporte-body -->
+
+  <!-- ============================================================ FOOTER -->
+  <div class="report-footer">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1NjAgMjg4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjNTQ1NGU5OwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlLXdpZHRoOiAwcHg7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI4OCIvPgogIDxnPgogICAgPGc+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE3OS42LDcxLjFjMS43LDEuMiwzLjQsMi40LDUsMy42bC0xMy45LDE5LjJjLTEuNi0xLjMtMy4zLTIuNS01LTMuNmwxMy45LTE5LjJaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTc5LjYsNzEuMWMxLjcsMS4yLDMuNCwyLjQsNSwzLjZsLTEzLjksMTkuMmMtMS42LTEuMy0zLjMtMi41LTUtMy42bDEzLjktMTkuMloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik05Ni4xLDYzLjJsNy40LDIyLjZjNC43LTIuMiw5LjYtMy44LDE0LjgtNC44bC03LjQtMjIuNmMtNS4xLDEuMi0xMC4xLDIuOC0xNC44LDQuOFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik05Ni4xLDYzLjJsNy40LDIyLjZjNC43LTIuMiw5LjYtMy44LDE0LjgtNC44bC03LjQtMjIuNmMtNS4xLDEuMi0xMC4xLDIuOC0xNC44LDQuOFoiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNDcuNyw4Mi4xYzEuOC41LDMuNiwxLjEsNS4zLDEuN2w3LjMtMjIuNWMtMS43LS42LTMuNS0xLjItNS4zLTEuN2wtNy4zLDIyLjVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTQ3LjcsODIuMWMxLjguNSwzLjYsMS4xLDUuMywxLjdsNy4zLTIyLjVjLTEuNy0uNi0zLjUtMS4yLTUuMy0xLjdsLTcuMywyMi41WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTc0LjgsMTEyLjJjMi4zLTQuMSw1LjEtNy45LDguMy0xMS40bC0xOS4yLTE0Yy0zLjEsMy42LTUuOCw3LjQtOC4zLDExLjRsMTkuMiwxNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03NC44LDExMi4yYzIuMy00LjEsNS4xLTcuOSw4LjMtMTEuNGwtMTkuMi0xNGMtMy4xLDMuNi01LjgsNy40LTguMywxMS40bDE5LjIsMTRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODcuMSw5Ni44YzMuNi0zLjMsNy43LTYuMywxMi04LjdsLTE0LTE5LjJjLTQuMiwyLjYtOC4zLDUuNS0xMiw4LjdsMTQsMTkuMloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04Ny4xLDk2LjhjMy42LTMuMyw3LjctNi4zLDEyLTguN2wtMTQtMTkuMmMtNC4yLDIuNi04LjMsNS41LTEyLDguN2wxNCwxOS4yWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTIxMi45LDExMy40bC0yMi41LDcuM2MuOSwyLjIsMS42LDQuNSwyLjIsNi45bDIyLjUtNy4zYy0uNy0yLjMtMS40LTQuNi0yLjItNi45WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTIxMi45LDExMy40bC0yMi41LDcuM2MuOSwyLjIsMS42LDQuNSwyLjIsNi45bDIyLjUtNy4zYy0uNy0yLjMtMS40LTQuNi0yLjItNi45WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTY2LjMsMTQ0YzAtMi4xLjEtNC4zLjMtNi40aC0yMy43Yy0uMiwyLjEtLjIsNC4yLS4yLDYuNHMwLDQuMy4yLDYuNGgyMy43Yy0uMi0yLjEtLjMtNC4yLS4zLTYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik02Ni4zLDE0NGMwLTIuMS4xLTQuMy4zLTYuNGgtMjMuN2MtLjIsMi4xLS4yLDQuMi0uMiw2LjRzMCw0LjMuMiw2LjRoMjMuN2MtLjItMi4xLS4zLTQuMi0uMy02LjRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTk0LjgsMTQ0YzAsMS4zLDAsMi43LS4xLDRoMjMuN2MwLTEuMywwLTIuNywwLTRzMC0yLjcsMC00aC0yMy43YzAsMS4zLjEsMi43LjEsNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTQuOCwxNDRjMCwxLjMsMCwyLjctLjEsNGgyMy43YzAtMS4zLDAtMi43LDAtNHMwLTIuNywwLTRoLTIzLjdjMCwxLjMuMSwyLjcuMSw0WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTY3LjcsMTMwLjZjLjktNC40LDIuMy04LjcsNC4xLTEyLjdsLTIyLjYtNy4zYy0xLjcsNC4xLTMuMSw4LjMtNC4xLDEyLjdsMjIuNiw3LjNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNjcuNywxMzAuNmMuOS00LjQsMi4zLTguNyw0LjEtMTIuN2wtMjIuNi03LjNjLTEuNyw0LjEtMy4xLDguMy00LjEsMTIuN2wyMi42LDcuM1oiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xODAuNCwxMDMuNmMxLjQsMS44LDIuOCwzLjYsNCw1LjZsMTkuMi0xMy45Yy0xLjMtMS45LTIuNi0zLjgtNC01LjZsLTE5LjIsMTMuOVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xODAuNCwxMDMuNmMxLjQsMS44LDIuOCwzLjYsNCw1LjZsMTkuMi0xMy45Yy0xLjMtMS45LTIuNi0zLjgtNC01LjZsLTE5LjIsMTMuOVoiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMjIuMyw1Ni41djIzLjhzMCwwLDAsMGMxLjEtLjEsNC41LS41LDguMi0uNXM3LjEuNCw4LjIuNWMwLDAsMCwwLDAsMHYtMjMuOGMtMS4zLS4xLTQuNy0uNC04LjItLjRzLTYuOS4zLTguMi40WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTEyMi4zLDU2LjV2MjMuOHMwLDAsMCwwYzEuMS0uMSw0LjUtLjUsOC4yLS41czcuMS40LDguMi41YzAsMCwwLDAsMCwwdi0yMy44Yy0xLjMtLjEtNC43LS40LTguMi0uNHMtNi45LjMtOC4yLjRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTcyLjQsMTkyLjZjLTIuNCwyLTQuOSwzLjktNy41LDUuNmwxNCwxOS4yYzIuNi0xLjcsNS4xLTMuNiw3LjUtNS42bC0xNC0xOS4yWiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE3Mi40LDE5Mi42Yy0yLjQsMi00LjksMy45LTcuNSw1LjZsMTQsMTkuMmMyLjYtMS43LDUuMS0zLjYsNy41LTUuNmwtMTQtMTkuMloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03MS42LDE2OS41Yy0xLjYtMy43LTIuOC03LjUtMy43LTExLjVsLTIyLjYsNy4zYzEsMy45LDIuMiw3LjgsMy43LDExLjVsMjIuNi03LjNaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNzEuNiwxNjkuNWMtMS42LTMuNy0yLjgtNy41LTMuNy0xMS41bC0yMi42LDcuM2MxLDMuOSwyLjIsNy44LDMuNywxMS41bDIyLjYtNy4zWiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1NC44LDIwMy41Yy0yLjksMS4yLTUuOCwyLjEtOC45LDIuOWw3LjMsMjIuNmMzLS44LDYtMS44LDguOS0yLjlsLTcuMy0yMi42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1NC44LDIwMy41Yy0yLjksMS4yLTUuOCwyLjEtOC45LDIuOWw3LjMsMjIuNmMzLS44LDYtMS44LDguOS0yLjlsLTcuMy0yMi42WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE5Mi44LDE1OS44Yy0uNywyLjctMS42LDUuNC0yLjYsOGwyMi42LDcuM2MxLTIuNiwxLjktNS4zLDIuNi04bC0yMi41LTcuM1oiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOTIuOCwxNTkuOGMtLjcsMi43LTEuNiw1LjQtMi42LDhsMjIuNiw3LjNjMS0yLjYsMS45LTUuMywyLjYtOGwtMjIuNS03LjNaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTg1LDE3OGMtMS42LDIuNS0zLjMsNC45LTUuMiw3LjJsMTkuMiwxMy45YzEuOS0yLjMsMy42LTQuNyw1LjItNy4ybC0xOS4yLTEzLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTg1LDE3OGMtMS42LDIuNS0zLjMsNC45LTUuMiw3LjJsMTkuMiwxMy45YzEuOS0yLjMsMy42LTQuNyw1LjItNy4ybC0xOS4yLTEzLjlaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNODMuNCwyMTguMmwxMy45LTE5LjJjLTMuMS0xLjktNi4xLTQtOC44LTYuNGwtMTQsMTkuMmMyLjgsMi4zLDUuNyw0LjUsOC44LDYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04My40LDIxOC4ybDEzLjktMTkuMmMtMy4xLTEuOS02LjEtNC04LjgtNi40bC0xNCwxOS4yYzIuOCwyLjMsNS43LDQuNSw4LjgsNi40WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTgyLjIsMTg2LjJjLTIuNS0yLjktNC44LTYtNi44LTkuM2wtMTkuMiwxNGMyLDMuMiw0LjMsNi4zLDYuNyw5LjNsMTkuMi0xNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik04Mi4yLDE4Ni4yYy0yLjUtMi45LTQuOC02LTYuOC05LjNsLTE5LjIsMTRjMiwzLjIsNC4zLDYuMyw2LjcsOS4zbDE5LjItMTRaIi8+CiAgICAgIDwvZz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTE1LjcsMjA2LjVjLTMuNC0uOC02LjctMS45LTkuOS0zLjJsLTcuMywyMi42YzMuMiwxLjMsNi41LDIuMyw5LjgsMy4ybDcuMy0yMi42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTExNS43LDIwNi41Yy0zLjQtLjgtNi43LTEuOS05LjktMy4ybC03LjMsMjIuNmMzLjIsMS4zLDYuNSwyLjMsOS44LDMuMmw3LjMtMjIuNloiLz4KICAgICAgPC9nPgogICAgICA8Zz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMzUuNSwyMzEuN3YtMjMuN2MtMS42LjEtMy4zLjItNC45LjJzLTMuMywwLTQuOS0uMnYyMy43YzEuNiwwLDMuMy4xLDQuOS4xczMuMywwLDQuOS0uMVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMzUuNSwyMzEuN3YtMjMuN2MtMS42LjEtMy4zLjItNC45LjJzLTMuMywwLTQuOS0uMnYyMy43YzEuNiwwLDMuMy4xLDQuOS4xczMuMywwLDQuOS0uMVoiLz4KICAgICAgPC9nPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMjAuMywxMDYuNWMtMS4yLjMtMi40LjctMy41LDEuMWwtNi42LTIwLjRjMS4yLS40LDIuMy0uOCwzLjUtMS4xbDYuNiwyMC40Wk0xMzAuNSw4My43Yy0xLjQsMC0yLjksMC00LjMuMnYyMS42YzEuNC0uMiwyLjgtLjIsNC4zLS4yLDEuNSwwLDIuOSwwLDQuMy4ydi0yMS42Yy0xLjQsMC0yLjgtLjItNC4zLS4yWk0xNTMuMSw4OGMtMi42LTEtNS4yLTEuOS03LjktMi42bC02LjcsMjAuNWMyLjguNiw1LjQsMS41LDcuOSwyLjZsNi43LTIwLjVaTTE2OS4yLDk3LjdjLTIuMS0xLjctNC4yLTMuMy02LjUtNC43bC0xMi43LDE3LjRjMi4zLDEuNCw0LjUsMi45LDYuNSw0LjdsMTIuNy0xNy40Wk05Ni43LDk0Yy0xLjEuNy0yLjEsMS41LTMuMiwyLjNsMTIuNiwxNy40YzEtLjgsMi4xLTEuNiwzLjItMi4zbC0xMi42LTE3LjRaTTE4MS41LDExMS44Yy0xLjQtMi4yLTIuOS00LjMtNC42LTYuM2wtMTcuNCwxMi43YzEuNywxLjksMy4zLDQuMSw0LjYsNi4zbDE3LjQtMTIuN1pNNzIuNSwxMjcuNWwyMC40LDYuNmMuNC0xLjQuOS0yLjksMS40LTQuMmwtMjAuNS02LjZjLS41LDEuNC0xLDIuOC0xLjQsNC4yWk0xNjkuMiwxNDcuNmgyMS41YzAtMS4yLjEtMi40LjEtMy42czAtMi40LS4xLTMuNmgtMjEuNWMuMSwxLjIuMiwyLjQuMiwzLjYsMCwxLjIsMCwyLjQtLjIsMy42Wk04MywxMDYuOGMtLjksMS4xLTEuNywyLjItMi41LDMuNGwxNy40LDEyLjZjLjgtMS4yLDEuNi0yLjMsMi41LTMuNGwtMTcuNC0xMi42Wk05MS44LDE0MS42aC0yMS41YzAsLjgsMCwxLjYsMCwyLjRzMCwxLjYsMCwyLjRoMjEuNWMwLS44LDAtMS42LDAtMi40czAtMS42LDAtMi40Wk05Mi45LDE5MS4xYzEuNCwxLjEsMi45LDIuMiw0LjQsMy4ybDEyLjYtMTcuNGMtMS42LTEtMy0yLjEtNC40LTMuMmwtMTIuNiwxNy40Wk0xMDkuMiwyMDAuNGMxLjguNywzLjYsMS4zLDUuNSwxLjhsNi43LTIwLjVjLTEuOS0uNS0zLjctMS4xLTUuNS0xLjhsLTYuNywyMC41Wk04MC4yLDE3Ny4zYzEsMS41LDIsMi45LDMuMSw0LjJsMTcuNC0xMi42Yy0xLjEtMS4zLTIuMS0yLjgtMy4xLTQuMmwtMTcuNCwxMi42Wk03Mi40LDE2MC4zYy40LDEuNiwxLDMuMiwxLjUsNC43bDIwLjUtNi42Yy0uNi0xLjUtMS4xLTMuMS0xLjUtNC43bC0yMC40LDYuNlpNMTMwLjUsMjA0LjNjMSwwLDIsMCwzLDB2LTIxLjVjLTEsMC0yLC4xLTMsLjFzLTIsMC0zLS4xdjIxLjVjMSwwLDIsMCwzLDBaTTE4OSwxMjljLS42LTIuNS0xLjQtNC45LTIuMy03LjJsLTIwLjUsNi43YzEsMi4zLDEuOCw0LjcsMi4zLDcuMmwyMC41LTYuN1pNMTQ2LjIsMjAyLjNjMi0uNSw0LTEuMiw2LTEuOWwtNi43LTIwLjVjLTEuOS44LTMuOSwxLjQtNiwxLjlsNi43LDIwLjVaTTE4Ni43LDE2NmMuOS0yLjIsMS42LTQuNCwyLjItNi43bC0yMC41LTYuN2MtLjUsMi4zLTEuMiw0LjYtMi4yLDYuN2wyMC41LDYuN1pNMTc3LjMsMTgyLjFjMS40LTEuNywyLjgtMy42LDQtNS41bC0xNy40LTEyLjdjLTEuMiwxLjktMi41LDMuOC00LDUuNWwxNy40LDEyLjdaTTE2My4zLDE5NC43YzEuOC0xLjIsMy42LTIuNSw1LjMtMy44bC0xMi43LTE3LjRjLTEuNiwxLjQtMy40LDIuNy01LjMsMy44bDEyLjYsMTcuNFoiLz4KICAgIDwvZz4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yNDguNywxMjhoMTIuMnY3MC43aC0xMi4ydi03MC43WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yNzUuMywxNjMuOGMwLTIxLjMsMTYuMS0zNy40LDM3LTM3LjRzMjMuNCw1LjMsMzAuMiwxNWwtOS43LDcuNGMtNS43LTcuNy0xMi44LTExLjMtMjAuNi0xMS4zLTEzLjUsMC0yNC4yLDEwLjctMjQuMiwyNS45czExLDI1LjksMjQuNCwyNS45LDE2LjQtNC4zLDIxLjktMTEuOGw5LjMsNi44Yy02LjgsMTAuMy0xOC4yLDE2LjEtMzEuMywxNi4xLTIxLjMsMC0zNi45LTE1LjUtMzYuOS0zNi42WiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00MjIuNCwxNjYuMWgtNTljMSwxNC45LDEwLjksMjMuNCwyNS4xLDIzLjRzMTcuNC0zLjksMjMuNC0xMmw4LjgsNi43Yy02LjgsMTAuMi0xOC4yLDE2LjEtMzIuNCwxNi4xLTIyLjEsMC0zNy4zLTE0LjktMzcuMy0zNi41czE1LjktMzcuNiwzNy40LTM3LjYsMzQuNSwxMy44LDM0LjUsMzQuNS0uMSwzLjYtLjQsNS4zWk0zNjQuMSwxNTUuNWg0Ni4yYy0xLjgtMTIuMi05LjktMTguNy0yMi0xOC43cy0yMS40LDYuOC0yNC4yLDE4LjdaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTQzMi40LDE4OS4xbDcuOC05LjJjNi43LDYuMywxNS41LDkuNSwyMy43LDkuNXMxNS4yLTQuMywxNS4yLTEwLjItMy4xLTcuNS0xMi4xLTkuNmwtMTIuNC0yLjhjLTE0LjItMy4yLTIwLjItOS4zLTIwLjItMTguOXMxMC42LTIxLjYsMjcuMS0yMS42LDIyLDQsMjguNywxMS4zbC04LjIsOC41Yy01LjgtNS44LTEzLjEtOC44LTIxLjMtOC44cy0xNC4zLDMuOS0xNC4zLDkuNiwyLjYsNi44LDEyLjQsOWwxMi40LDIuOGMxNC4zLDMuMiwxOS45LDkuNywxOS45LDE5LjVzLTEwLjIsMjIuMS0yNy42LDIyLjEtMjMuOS00LjMtMzEtMTEuM1oiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNTA1LjEsMTI4aDEyLjJ2NzAuN2gtMTIuMnYtNzAuN1oiLz4KICAgICAgPGc+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMjQ4LjcsMTAxLjF2LTEyLjNoMy43djEyYzAsMy43LDEuOCw1LjUsNC45LDUuNXM0LjktMS44LDQuOS01LjV2LTEyaDMuN3YxMi4zYzAsNS41LTMuMyw4LjYtOC42LDguNnMtOC42LTMuMS04LjYtOC42WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTI4NC43LDEwMC4zdjloLTMuNXYtOC4zYzAtMi42LTEuMi0zLjktMy4yLTMuOXMtMi42LjUtMy43LDEuOHYxMC40aC0zLjV2LTE1aDMuNXYxLjNjMS4yLTEsMi45LTEuNiw0LjYtMS42LDMuNSwwLDUuOCwyLjMsNS44LDYuNFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yODguOSw5MGMwLTEuMiwxLTIuMiwyLjMtMi4yczIuMiwxLDIuMiwyLjItMSwyLjMtMi4yLDIuMy0yLjMtMS0yLjMtMi4zWk0yODkuNCw5NC4zaDMuNXYxNWgtMy41di0xNVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zMTIuMSw5NC4zbC02LjIsMTVoLTMuOGwtNi4yLTE1aDMuOWw0LjIsMTAuNyw0LjItMTAuN2gzLjlaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzI5LjIsMTAyLjdoLTExLjljLjMsMi42LDIsNCw0LjYsNHMzLjItLjYsNC40LTIuMWwyLjUsMS45Yy0xLjYsMi4xLTQsMy4zLTcsMy4zLTQuOSwwLTguMS0zLjItOC4xLTcuOHMzLjMtOCw4LTgsNy41LDIuOSw3LjUsNy40LDAsLjksMCwxLjNaTTMxNy41LDEwMGg4LjNjLS40LTIuMS0xLjgtMy4xLTMuOS0zLjFzLTMuOCwxLjEtNC4zLDMuMVoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zNDIuNSw5NC4xbC0uMiwzLjNjLS41LDAtMS0uMS0xLjQtLjEtMS43LDAtMy4yLjgtNC4xLDIuM3Y5LjhoLTMuNXYtMTVoMy41djEuNmMxLTEuMywyLjYtMiw0LjItMnMxLDAsMS42LjJaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzQ0LjksMTA3LjVsMS44LTIuNmMxLjYsMS4yLDMuMywxLjgsNSwxLjhzMi42LS43LDIuNi0xLjYtLjUtMS4yLTIuMS0xLjZsLTIuNi0uNmMtMy0uNy00LjMtMi00LjMtNC4xczIuMy00LjgsNi00LjgsNC43LjgsNi4yLDIuMmwtMS45LDIuNWMtMS40LTEuMS0yLjktMS43LTQuNS0xLjdzLTIuNC42LTIuNCwxLjUuNSwxLjEsMi4xLDEuNWwyLjYuNmMzLjEuNyw0LjMsMi4xLDQuMyw0LjJzLTIuMyw0LjktNi4yLDQuOS01LjEtLjktNi43LTIuMloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0zNjEsOTBjMC0xLjIsMS0yLjIsMi4zLTIuMnMyLjIsMSwyLjIsMi4yLTEsMi4zLTIuMiwyLjMtMi4zLTEtMi4zLTIuM1pNMzYxLjUsOTQuM2gzLjV2MTVoLTMuNXYtMTVaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzg0LjMsODcuNnYyMS43aC0zLjV2LTEuMWMtMS4xLDEtMi43LDEuNS00LjMsMS41LTQuMSwwLTcuNS0zLjMtNy41LTcuOXMzLjQtNy45LDcuNS03LjksMy4yLjUsNC4zLDEuNXYtNy44aDMuNVpNMzgwLjgsMTA0Ljd2LTUuOGMtMS0xLjItMi40LTEuNy0zLjgtMS43LTIuNSwwLTQuNCwxLjgtNC40LDQuNnMxLjksNC42LDQuNCw0LjYsMi44LS42LDMuOC0xLjhaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNDAzLjUsOTQuM3YxNWgtMy41di0xLjFjLTEuMSwxLTIuNywxLjUtNC4zLDEuNS00LjEsMC03LjUtMy4zLTcuNS03LjlzMy40LTcuOSw3LjUtNy45LDMuMi41LDQuMywxLjV2LTEuMWgzLjVaTTQwMCwxMDQuN3YtNS44Yy0xLTEuMi0yLjQtMS43LTMuOC0xLjctMi41LDAtNC40LDEuOC00LjQsNC42czEuOSw0LjYsNC40LDQuNiwyLjgtLjYsMy44LTEuOFoiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik00MjIuOCw4Ny42djIxLjdoLTMuNXYtMS4xYy0xLjEsMS0yLjcsMS41LTQuMywxLjUtNC4xLDAtNy41LTMuMy03LjUtNy45czMuNC03LjksNy41LTcuOSwzLjIuNSw0LjMsMS41di03LjhoMy41Wk00MTkuMywxMDQuN3YtNS44Yy0xLTEuMi0yLjQtMS43LTMuOC0xLjctMi41LDAtNC40LDEuOC00LjQsNC42czEuOSw0LjYsNC40LDQuNiwyLjgtLjYsMy44LTEuOFoiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Universidad Icesi" style="height:24px">
+    <span class="report-footer__info">Informe de entrevista UX · SOI Cargue masivo de novedades · Investigación Leonardo / Icesi · Confidencial</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div><!-- /.reporte -->
+</body>
+</html>
