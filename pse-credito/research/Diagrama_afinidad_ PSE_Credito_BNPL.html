@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagrama de Afinidad — PSE Crédito (BNPL) · ACH Colombia</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --ink: #1A2E42;
+    --slate: #2C4A66;
+    --steel: #4A6FA5;
+    --sky: #7AADCF;
+    --fog: #C9DCEC;
+    --paper: #F4F8FB;
+    --white: #FFFFFF;
+
+    --amber: #E8A020;
+    --amber-pale: #FDF3E0;
+    --red: #C94040;
+    --red-pale: #FAEAEA;
+    --green: #2E7D5A;
+    --green-pale: #E4F2EB;
+    --violet: #6B4FA0;
+    --violet-pale: #EEE8F6;
+    --teal: #1D7A74;
+    --teal-pale: #E2F2F1;
+    --rose: #B84870;
+    --rose-pale: #F8EAF0;
+
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 10vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,111,165,0.25) 0%, transparent 70%);
+    top: -200px; right: -100px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(122,173,207,0.12) 0%, transparent 70%);
+    bottom: -100px; left: 5%;
+  }
+  .cover-tag {
+    font-family: var(--font-head);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 32px;
+  }
+  .cover h1 {
+    font-family: var(--font-head);
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 24px;
+  }
+  .cover h1 span {
+    color: var(--sky);
+  }
+  .cover-sub {
+    font-size: 18px;
+    color: var(--fog);
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item {
+    color: var(--fog);
+  }
+  .cover-meta-item strong {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span { font-size: 15px; }
+  .cover-badge {
+    position: absolute;
+    top: 40px; right: 10vw;
+    background: rgba(122,173,207,0.12);
+    border: 1px solid rgba(122,173,207,0.3);
+    color: var(--sky);
+    font-family: var(--font-head);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  /* ─── SECTION LAYOUT ─── */
+  .section {
+    padding: 80px 10vw;
+  }
+  .section-alt { background: var(--white); }
+  .section-dark {
+    background: var(--ink);
+    color: var(--fog);
+  }
+
+  .section-label {
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 12px;
+  }
+  .section-dark .section-label { color: var(--sky); }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-dark .section-title { color: var(--white); }
+
+  .section-intro {
+    font-size: 16px;
+    color: #556879;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+  .section-dark .section-intro { color: var(--fog); }
+
+  /* ─── EXECUTIVE SUMMARY ─── */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--fog);
+    border-radius: 12px;
+    padding: 28px 24px;
+    border-top: 3px solid var(--steel);
+  }
+  .stat-card .num {
+    font-family: var(--font-head);
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-card .lbl {
+    font-size: 13px;
+    color: #667;
+    line-height: 1.4;
+  }
+
+  .summary-box {
+    background: var(--ink);
+    color: var(--fog);
+    border-radius: 16px;
+    padding: 40px 48px;
+    border-left: 4px solid var(--sky);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .summary-box strong { color: var(--white); }
+
+  /* ─── PARTICIPANT TABLE ─── */
+  .participants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .participant-card {
+    background: var(--white);
+    border: 1px solid var(--fog);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+  .participant-card:hover { box-shadow: 0 6px 24px rgba(13,27,42,0.08); }
+  .p-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--sky);
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .p-avatar.synthetic { background: var(--slate); }
+  .p-info h4 {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .p-info .p-meta { font-size: 12px; color: #667; line-height: 1.5; }
+  .p-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .p-tag.real { background: var(--green-pale); color: var(--green); }
+  .p-tag.synthetic { background: var(--slate); color: var(--fog); }
+
+  /* ─── AFFINITY DIAGRAM ─── */
+  .affinity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+  }
+  .theme-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(13,27,42,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .theme-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(13,27,42,0.12);
+  }
+  .theme-header {
+    padding: 24px 28px 20px;
+    color: var(--white);
+  }
+  .theme-header .t-icon { font-size: 28px; margin-bottom: 10px; }
+  .theme-header h3 {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .theme-header .t-insight {
+    font-size: 12px;
+    opacity: 0.85;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .theme-body {
+    background: var(--white);
+    padding: 20px 28px 24px;
+  }
+  .cluster {
+    margin-bottom: 20px;
+  }
+  .cluster:last-child { margin-bottom: 0; }
+  .cluster-title {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--fog);
+  }
+  .note {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.45;
+    background: var(--paper);
+    border-left: 3px solid var(--fog);
+    padding: 6px 10px;
+    border-radius: 0 5px 5px 0;
+    margin: 3px 0;
+    color: var(--ink);
+    width: 100%;
+  }
+  .note.red { background: var(--red-pale); border-color: var(--red); }
+  .note.amber { background: var(--amber-pale); border-color: var(--amber); }
+  .note.green { background: var(--green-pale); border-color: var(--green); }
+  .note.violet { background: var(--violet-pale); border-color: var(--violet); }
+  .note.teal { background: var(--teal-pale); border-color: var(--teal); }
+  .note.rose { background: var(--rose-pale); border-color: var(--rose); }
+
+  .frequency {
+    font-size: 10px;
+    background: var(--navy);
+    color: var(--sky);
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-left: 6px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
+  /* Theme color themes */
+  .t-exclusion .theme-header { background: linear-gradient(135deg, #C94040, #9E2020); }
+  .t-crisis .theme-header { background: linear-gradient(135deg, #E8A020, #C07010); }
+  .t-ansiedad .theme-header { background: linear-gradient(135deg, #6B4FA0, #4A3070); }
+  .t-confianza .theme-header { background: linear-gradient(135deg, #1D7A74, #0E5550); }
+  .t-condiciones .theme-header { background: linear-gradient(135deg, #2E7D5A, #1A5040); }
+  .t-aversion .theme-header { background: linear-gradient(135deg, #4A6FA5, #2C4A66); }
+
+  /* ─── INSIGHT STATEMENTS ─── */
+  .insights-list {
+    counter-reset: insight;
+    list-style: none;
+  }
+  .insight-item {
+    counter-increment: insight;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--fog);
+    align-items: start;
+  }
+  .insight-item:last-child { border-bottom: none; }
+  .insight-num {
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--fog);
+    line-height: 1;
+  }
+  .insight-content h4 {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .insight-content p { font-size: 14px; color: #5A6978; line-height: 1.6; }
+  .insight-evidence {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--steel);
+    font-style: italic;
+  }
+
+  /* ─── QUOTES ─── */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .quote-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 28px;
+    border-top: 3px solid var(--steel);
+    box-shadow: 0 2px 12px rgba(13,27,42,0.05);
+    position: relative;
+  }
+  .quote-card::before {
+    content: '"';
+    font-family: Georgia, serif;
+    font-size: 72px;
+    color: var(--fog);
+    line-height: 0.6;
+    position: absolute;
+    top: 28px; left: 22px;
+  }
+  .quote-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink);
+    padding-top: 32px;
+    font-style: italic;
+  }
+  .quote-author {
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    font-family: var(--font-head);
+    letter-spacing: 0.5px;
+  }
+  .quote-tag {
+    font-size: 10px;
+    background: var(--fog);
+    color: var(--slate);
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin-left: 6px;
+  }
+
+  /* ─── DESIGN RECOMMENDATIONS ─── */
+  .recs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .rec-card {
+    background: var(--white);
+    border: 1px solid var(--fog);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+  }
+  .rec-num {
+    font-family: var(--font-head);
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--fog);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .rec-card h4 {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .rec-card p { font-size: 13px; color: #5A6978; line-height: 1.65; }
+  .rec-priority {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-top: 14px;
+  }
+  .priority-high { background: var(--red-pale); color: var(--red); }
+  .priority-med { background: var(--amber-pale); color: #A07010; }
+  .priority-low { background: var(--green-pale); color: var(--green); }
+
+  /* ─── ARCHETYPE TABLE ─── */
+  .archetype-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .archetype-table th {
+    background: var(--ink);
+    color: var(--sky);
+    font-family: var(--font-head);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    text-align: left;
+  }
+  .archetype-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--fog);
+    color: var(--ink);
+    vertical-align: top;
+  }
+  .archetype-table tr:last-child td { border-bottom: none; }
+  .archetype-table tr:nth-child(even) td { background: var(--paper); }
+  .arch-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 13px;
+  }
+  .match-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--steel);
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+  .match-dot.filled { background: var(--navy); }
+
+  /* ─── PRIORITY MAP ─── */
+  .priority-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--fog);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .matrix-cell {
+    padding: 32px 28px;
+    background: var(--white);
+    min-height: 180px;
+  }
+  .matrix-cell.q1 { background: #FDF0F0; }
+  .matrix-cell.q2 { background: #FFFBF0; }
+  .matrix-cell.q3 { background: #F0F6F0; }
+  .matrix-cell.q4 { background: var(--paper); }
+  .matrix-cell h5 {
+    font-family: var(--font-head);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .matrix-cell.q1 h5 { color: var(--red); }
+  .matrix-cell.q2 h5 { color: #A07010; }
+  .matrix-cell.q3 h5 { color: var(--green); }
+  .matrix-cell.q4 h5 { color: var(--slate); }
+  .matrix-item {
+    font-size: 12px;
+    color: var(--ink);
+    padding: 4px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .matrix-item::before { content: '→'; color: #AAB; flex-shrink: 0; }
+  .matrix-labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 4px;
+    gap: 2px;
+    max-width: 700px;
+    margin: 0 auto 4px;
+  }
+  .matrix-y-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy);
+    color: var(--fog);
+    padding: 40px 10vw;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer strong { color: var(--sky); }
+
+  /* ─── NAV ─── */
+  .toc {
+    position: sticky;
+    top: 0;
+    background: var(--navy);
+    z-index: 99;
+    padding: 12px 10vw;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .toc::-webkit-scrollbar { display: none; }
+  .toc a {
+    text-decoration: none;
+    color: var(--fog);
+    font-family: var(--font-head);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .toc a:hover { color: var(--sky); border-bottom-color: var(--sky); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cover h1, .cover-sub, .cover-meta {
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .cover-sub { animation-delay: 0.15s; }
+  .cover-meta { animation-delay: 0.3s; }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--fog), transparent);
+    margin: 0 10vw;
+  }
+
+  @media (max-width: 600px) {
+    .section { padding: 60px 6vw; }
+    .cover { padding: 60px 6vw; }
+    .toc { padding: 12px 6vw; }
+    .footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover" id="inicio">
+  <div class="cover-badge">Confidencial · UX Research</div>
+  <div class="cover-tag">ACH Colombia · Laboratorio Digital · Abril 2026</div>
+  <h1>Diagrama de<br><span>Afinidad</span></h1>
+  <p class="cover-sub">Síntesis cualitativa de investigación de usuario para la iniciativa <strong style="color:white">PSE Crédito (BNPL)</strong> — validación de dolores, barreras y oportunidades de diseño.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <strong>Entrevistas</strong>
+      <span>5 participantes (2 sintéticos + 3 reales)</span>
+    </div>
+    <div class="cover-meta-item">
+      <strong>Método</strong>
+      <span>JTBD / Cuatro Fuerzas</span>
+    </div>
+    <div class="cover-meta-item">
+      <strong>Periodo</strong>
+      <span>Abril 21–22, 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <strong>Para</strong>
+      <span>ACH Colombia</span>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#resumen">Resumen Ejecutivo</a>
+  <a href="#participantes">Participantes</a>
+  <a href="#diagrama">Diagrama</a>
+  <a href="#insights">Insights</a>
+  <a href="#citas">Voz del Usuario</a>
+  <a href="#arquetipos">Arquetipos</a>
+  <a href="#recomendaciones">Recomendaciones</a>
+</nav>
+
+<!-- RESUMEN EJECUTIVO -->
+<section class="section" id="resumen">
+  <div class="section-label">01 · Resumen Ejecutivo</div>
+  <h2 class="section-title">Lo que encontramos</h2>
+  <p class="section-intro">Cinco entrevistas — dos perfiles sintéticos profundos y tres transcripciones reales — revelan un mercado con alta demanda latente pero bloqueado por una capa de ansiedades financieras que el producto debe desactivar antes de generar conversión.</p>
+
+  <div class="exec-grid">
+    <div class="stat-card">
+      <div class="num">5/5</div>
+      <div class="lbl">Participantes conocen o usan PSE. La marca ya tiene autoridad instalada.</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4/5</div>
+      <div class="lbl">No tienen tarjeta de crédito o la tienen al tope. El dolor es estructural.</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4/5</div>
+      <div class="lbl">Prefieren PSE sobre Addi cuando se les pregunta por preferencia de marca.</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3/5</div>
+      <div class="lbl">Han abandonado una compra por falta de liquidez en el momento exacto.</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3/5</div>
+      <div class="lbl">"Pagar después" les genera carga emocional, no alivio. El framing importa.</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">0/5</div>
+      <div class="lbl">Ninguno usa Addi o BNPL actualmente. Alta fricción de onboarding del competidor.</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    Existe un mercado real de colombianos que <strong>trabajan, ganan dinero y pagan sus cuentas</strong>, pero que el sistema crediticio trata como invisibles. Su mayor frustración no es la falta de dinero — es la incoherencia: tener trabajo, cuenta y ganas, y aun así no poder comprar una silla un sábado. <strong>PSE Crédito tiene una ventaja única</strong>: la marca ya inspira confianza. Pero esa confianza se perderá en el primer clic si el costo real no es visible de inmediato. La condición no negociable para el MVP es una sola: <strong>transparencia radical antes del "sí"</strong>.
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARTICIPANTES -->
+<section class="section section-alt" id="participantes">
+  <div class="section-label">02 · Muestra</div>
+  <h2 class="section-title">Participantes del estudio</h2>
+  <p class="section-intro">Combinación de perfiles sintéticos (basados en arquetipos validados) y entrevistas reales realizadas por el equipo del Laboratorio Digital.</p>
+
+  <div class="participants-grid">
+    <div class="participant-card">
+      <div class="p-avatar synthetic">MG</div>
+      <div class="p-info">
+        <h4>Mateo G.</h4>
+        <div class="p-meta">27 años · Medellín<br>Conductor Uber/Didi · Nequi, sin TC<br>Ingreso variable ~$2.2M</div>
+        <span class="p-tag synthetic">Sintético</span>
+      </div>
+    </div>
+    <div class="participant-card">
+      <div class="p-avatar synthetic">VR</div>
+      <div class="p-info">
+        <h4>Valentina R.</h4>
+        <div class="p-meta">34 años · Bogotá (Kennedy)<br>Técnica contabilidad · TC al 90%<br>Meta: crédito hipotecario en 18 meses</div>
+        <span class="p-tag synthetic">Sintético</span>
+      </div>
+    </div>
+    <div class="participant-card">
+      <div class="p-avatar">JR</div>
+      <div class="p-info">
+        <h4>Juan Rodríguez</h4>
+        <div class="p-meta">24 años · Empleado formal<br>Usa Nequi y PSE · Sin tarjeta de crédito<br>Rechazado por bancos (sin historial)</div>
+        <span class="p-tag real">Entrevista Real</span>
+      </div>
+    </div>
+    <div class="participant-card">
+      <div class="p-avatar">SM</div>
+      <div class="p-info">
+        <h4>Sofía Martín</h4>
+        <div class="p-meta">Sin edad registrada<br>Compró Apple Pencil ($450k) hace 2 semanas<br>Nunca ha quedado sin saldo en checkout</div>
+        <span class="p-tag real">Entrevista Real</span>
+      </div>
+    </div>
+    <div class="participant-card">
+      <div class="p-avatar">AL</div>
+      <div class="p-info">
+        <h4>Ana Sofía Luque</h4>
+        <div class="p-meta">19 años · Estudiante universitaria<br>Sin tarjeta de crédito · Compras frecuentes en línea<br>Se autodefine como impulsiva</div>
+        <span class="p-tag real">Entrevista Real</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIAGRAMA DE AFINIDAD -->
+<section class="section" id="diagrama">
+  <div class="section-label">03 · Diagrama de Afinidad</div>
+  <h2 class="section-title">Seis macro-temas emergentes</h2>
+  <p class="section-intro">Construido de abajo hacia arriba a partir de observaciones, citas y comportamientos detectados en las 5 entrevistas. Cada tarjeta agrupa notas similares bajo un tema unificador.</p>
+
+  <div class="affinity-grid">
+
+    <!-- TEMA 1: EXCLUSIÓN -->
+    <div class="theme-card t-exclusion">
+      <div class="theme-header">
+        <div class="t-icon">🚫</div>
+        <h3>Exclusión del Sistema Crediticio Formal</h3>
+        <div class="t-insight">"El sistema me trata como si no existiera" — el rechazo bancario es una herida emocional, no solo un obstáculo técnico.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">Rechazo bancario sin explicación <span class="frequency">3/5</span></div>
+          <div class="note red">Juan (24): "Ningún banco me quiere" — rechazado en Bancolombia, Rappi y otros sin razón explícita.</div>
+          <div class="note red">Mateo: El banco exige certificados laborales que un conductor independiente no puede obtener.</div>
+          <div class="note red">Ana Sofía (19): Aún no ha intentado pedir crédito, pero ya anticipa que no le darán.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">El préstamo familiar como sustituto <span class="frequency">3/5</span></div>
+          <div class="note amber">Juan: Recurre a su abuela para cubrir compras urgentes. Se siente "miserable" al pedirle.</div>
+          <div class="note amber">Mateo: Intentó pedirle a su mamá $500k para completar el celular, ella solo tenía $200k.</div>
+          <div class="note amber">Ana Sofía: "Pido plata a la familia" es su respuesta default cuando no tiene saldo.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Vergüenza del préstamo informal</div>
+          <div class="note">Juan: "Me siento miserable. Dando pena. Pero bueno." — la resignación es habitual.</div>
+          <div class="note">Valentina: Se crió viendo a su mamá pedir fiado y sintiendo pena. Ese trauma persiste.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 2: CRISIS EN CHECKOUT -->
+    <div class="theme-card t-crisis">
+      <div class="theme-header">
+        <div class="t-icon">💥</div>
+        <h3>El Momento de Crisis en el Checkout</h3>
+        <div class="t-insight">El abandono de compra tiene una carga emocional alta. No es solo una transacción fallida — es una identidad cuestionada.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">Abandono forzado por iliquidez <span class="frequency">3/5</span></div>
+          <div class="note amber">Mateo: Celular de $900k en Mercado Libre. "Fondos Insuficientes". Cerró la pestaña. Sigue trabajando con el celular roto.</div>
+          <div class="note amber">Valentina: Silla de escritorio $380k en Falabella. Cupo de tarjeta insuficiente. Trabajó en la silla rota 12 días más.</div>
+          <div class="note amber">Juan: Audífonos Sonata $380k. Si no hubiera tenido la plata, "hubiera ido a pedir con mi abuela".</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Impacto emocional del "No" <span class="frequency">4/5</span></div>
+          <div class="note red">Valentina: "Fastidio, vergüenza... aunque nadie me estaba viendo." Cerró el computador e hizo el almuerzo.</div>
+          <div class="note red">Mateo: Mandó audio a un amigo: "malparido sistema, trabajo 12 horas y no puedo ni comprar un celular."</div>
+          <div class="note red">Juan: "Me sentiría miserable" si tuviera que pedirle a la abuela.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Necesidad urgente vs. esperar la quincena</div>
+          <div class="note">Mateo: El celular era una herramienta de trabajo, no un capricho. La pérdida de ingresos era inmediata.</div>
+          <div class="note">Valentina: "Cerré y seguí trabajando en la silla rota otros 12 días." El tiempo perdido tiene valor.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 3: ANSIEDADES -->
+    <div class="theme-card t-ansiedad">
+      <div class="theme-header">
+        <div class="t-icon">😰</div>
+        <h3>Ansiedades que Bloquean la Adopción</h3>
+        <div class="t-insight">El crédito digital enfrenta una pila de miedos específicos. Desactivarlos uno a uno es la tarea de UX más crítica del MVP.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">Miedo a intereses ocultos <span class="frequency">4/5</span></div>
+          <div class="note violet">Mateo: "0% en grande y después letra pequeña con aval, seguro de vida, IVA. La tasa real supera el 80% anual."</div>
+          <div class="note violet">Valentina: Addi no le dijo el costo real al inicio. "Como si te fueran enganchando primero con la aprobación."</div>
+          <div class="note violet">Sofía: Necesita "tasas de interés, plazos y condiciones" antes de decidir. Sin eso, no confía.</div>
+          <div class="note violet">Juan: "Quiero saber cuándo es el pago, cuánto debo, cuánto es el interés antes de comprometer."</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Temor al reporte en Datacrédito <span class="frequency">3/5</span></div>
+          <div class="note red">Mateo: "Si me reportan por $50.000 de atraso, chao el crédito de moto el año que viene."</div>
+          <div class="note red">Valentina: "En 18 meses quiero crédito hipotecario. No sé si usar un BNPL me afecta la calificación."</div>
+          <div class="note red">Juan: Interesado en PSE Crédito si "sirve para el historial crediticio".</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Carga emocional del endeudamiento <span class="frequency">3/5</span></div>
+          <div class="note">Sofía: "Me genera doble trabajo — comprar y luego pagar. Prefiero pagar todo a la primera."</div>
+          <div class="note">Ana Sofía: "Si no lo puedo pagar hoy, ¿quién me dice que lo puedo pagar después?"</div>
+          <div class="note">Valentina: "La ansiedad financiera me cuesta más que los intereses mismos."</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Miedo a cobranza agresiva</div>
+          <div class="note">Mateo: Un amigo tuvo $300k de deuda y lo llamaban a él, a la mamá y al vecino. Ese trauma se transmite.</div>
+          <div class="note">Sofía: El refinanciamiento "no le genera confianza" — lo asocia con empresas poco serias.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 4: CONFIANZA PSE -->
+    <div class="theme-card t-confianza">
+      <div class="theme-header">
+        <div class="t-icon">🔵</div>
+        <h3>PSE como Ancla de Confianza</h3>
+        <div class="t-insight">PSE ya ganó la primera batalla: la familiaridad. Pero el capital de marca se puede destruir con una sola mala experiencia en el flujo de crédito.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">PSE = familiaridad y confiabilidad <span class="frequency">5/5</span></div>
+          <div class="note teal">Mateo: "PSE, sin pensarlo mucho. Ya lo conozco. Pago el recibo de la luz con PSE. Sé que funciona."</div>
+          <div class="note teal">Valentina: "PSE lo uso para pagar el arriendo hace 3 años y nunca ha fallado. Le tengo más fe que a una fintech de Instagram."</div>
+          <div class="note teal">Ana Sofía: "Usaría PSE porque sé usarlo, sé que es seguro."</div>
+          <div class="note teal">Juan: "Con PSE, con más confianza. Ya tengo cuenta, lo he manejado bastante."</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Rechazo activo a Addi <span class="frequency">3/5</span></div>
+          <div class="note amber">Valentina: Cerró el formulario de Addi cuando le pidió referencias personales. "Muy invasivo."</div>
+          <div class="note amber">Mateo: "Me da pereza descargar otra app, llenar cédula, selfie, datos del trabajo. ¿Qué trabajo pongo si soy independiente?"</div>
+          <div class="note">Sofía y Ana Sofía: No conocen Addi. PSE es su única referencia de pago digital confiable.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Condiciones para confiar en PSE Crédito</div>
+          <div class="note">Mateo: "¿Quién me aprueba y con base en qué? ¿Cuánto me cobran de verdad? ¿Si hay un problema a quién llamo?"</div>
+          <div class="note">Valentina: "¿Esto aparece en Datacrédito? ¿Lo ve mi banco? ¿Qué pasa con las reversas?" — 3 preguntas que deben tener respuesta antes del primer clic.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 5: CONDICIONES MVP -->
+    <div class="theme-card t-condiciones">
+      <div class="theme-header">
+        <div class="t-icon">✅</div>
+        <h3>Condiciones "No Negociables" para el MVP</h3>
+        <div class="t-insight">El usuario no pide mucho — pide exactamente lo que los prestadores actuales ocultan: claridad, control y humanidad.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">Transparencia radical antes del clic <span class="frequency">5/5</span></div>
+          <div class="note green">Valentina: "Si yo veo desde el primer momento el total — cuotas, intereses, todo — lo meto en mi Excel y se vuelve una decisión racional."</div>
+          <div class="note green">Mateo: "Necesito ver el costo total antes de hacer clic, no después."</div>
+          <div class="note green">Sofía: La tasa de interés es lo primero que pide para generar confianza.</div>
+          <div class="note green">Juan: "Quiero saber cuándo es el pago, cuánto debo, cuánto el interés, y que me avisen."</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Scoring sin certificación laboral <span class="frequency">2/5</span></div>
+          <div class="note">Mateo: Si PSE analiza su historial de pagos de servicios (luz, internet) como criterio, lo acepta. "Dímelo explícitamente."</div>
+          <div class="note">Juan: Interesado si el proceso no requiere documentos que como empleado informal no puede conseguir.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Política de mora humana y visible</div>
+          <div class="note">Mateo: Una garantía explícita de que los primeros días de atraso no generan reporte a centrales eliminaría su mayor bloqueador.</div>
+          <div class="note">Valentina: La política de reversas (si el comercio falla) debe estar visible antes de comprar, no en los T&C.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Inicio de historial crediticio como gancho</div>
+          <div class="note">Juan: "¿Si esto me sirve para el historial crediticio? Claro que sí, de una." — El BNPL como puerta de entrada al crédito formal es un argumento muy poderoso para este segmento.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMA 6: AVERSIÓN AL CRÉDITO -->
+    <div class="theme-card t-aversion">
+      <div class="theme-header">
+        <div class="t-icon">🧾</div>
+        <h3>Usuarios con Aversión Estructural al Crédito</h3>
+        <div class="t-insight">Un segmento importante no es target de BNPL. Su identidad financiera se construye sobre el "pago de contado". Forzarlos generaría fricción y abandono.</div>
+      </div>
+      <div class="theme-body">
+        <div class="cluster">
+          <div class="cluster-title">Identidad del "pago de contado" <span class="frequency">2/5</span></div>
+          <div class="note">Sofía: "Prefiero pagar de contado o con efectivo." Nunca ha tenido saldo insuficiente en checkout.</div>
+          <div class="note">Ana Sofía: "Si no lo puedo pagar, pido a la familia. No veo sentido en el crédito para compras pequeñas."</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Solo aceptarían crédito para activos grandes</div>
+          <div class="note">Sofía: "Un crédito de hipoteca para casa o carro, sí. Compras menores, no."</div>
+          <div class="note">Ana Sofía: Se reconoce impulsiva y teme "meterse en problemas" con una tarjeta o crédito rotativo.</div>
+        </div>
+        <div class="cluster">
+          <div class="cluster-title">Implicación de diseño</div>
+          <div class="note green">PSE Crédito no debe mostrarse como opción primaria o como presión. Debe aparecer como alternativa discreta para quien llegue al checkout sin saldo — no como propuesta universal.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INSIGHT STATEMENTS -->
+<section class="section section-alt" id="insights">
+  <div class="section-label">04 · Insight Statements</div>
+  <h2 class="section-title">El "so what?" de cada tema</h2>
+  <p class="section-intro">Cada insight captura la consecuencia de diseño más importante que emerge del cluster. Son las frases que deben guiar las decisiones del MVP.</p>
+
+  <ol class="insights-list">
+    <li class="insight-item">
+      <div class="insight-num">01</div>
+      <div class="insight-content">
+        <h4>El rechazo bancario no es percibido como una condición — es una identidad.</h4>
+        <p>Los usuarios que han sido rechazados por el sistema no piensan "no pude obtener un crédito hoy". Piensan "soy el tipo de persona a quien los bancos no le prestan". PSE Crédito tiene la oportunidad de cambiar esa narrativa si su comunicación dice explícitamente: "te aprobamos con base en lo que ya haces con PSE, no en lo que el banco dice de ti".</p>
+        <div class="insight-evidence">Evidencia: Juan R., Mateo G. — 2 de 3 entrevistados reales</div>
+      </div>
+    </li>
+    <li class="insight-item">
+      <div class="insight-num">02</div>
+      <div class="insight-content">
+        <h4>El abandono del checkout no es un evento neutral — es una humillación silenciosa.</h4>
+        <p>Valentina cerró el computador y fue a hacer el almuerzo. Mateo mandó un audio de rabia a un amigo. El momento del "no" tiene una carga emocional subestimada. PSE Crédito puede posicionarse como la herramienta que elimina esa humillación específica — no como crédito, sino como "completar la compra que ya decidiste hacer".</p>
+        <div class="insight-evidence">Evidencia: Valentina R., Mateo G., Juan R. — presente en las 5 entrevistas</div>
+      </div>
+    </li>
+    <li class="insight-item">
+      <div class="insight-num">03</div>
+      <div class="insight-content">
+        <h4>La ansiedad financiera es más costosa que los intereses mismos.</h4>
+        <p>Valentina lo dijo con precisión: "La ansiedad financiera me cuesta más que los intereses." El producto no puede vencer las ansiedades acumuladas sobre el crédito — pero puede eliminar la incertidumbre que las alimenta. Un número claro, visible antes del primer clic, convierte la ansiedad en una decisión racional manejable.</p>
+        <div class="insight-evidence">Evidencia: Valentina R., Mateo G., Sofía M. — patrón en 5/5</div>
+      </div>
+    </li>
+    <li class="insight-item">
+      <div class="insight-num">04</div>
+      <div class="insight-content">
+        <h4>PSE tiene autoridad de marca. Addi tiene fricción de onboarding. Ese es el moat.</h4>
+        <p>Ningún participante usa Addi. La barrera no es desconfianza total — es la pereza de descargar otra app, llenar datos y enfrentar el riesgo del rechazo. PSE Crédito puede capturar ese mercado sin publicidad adicional, solo siendo más fluido que el competidor en el momento exacto de necesidad.</p>
+        <div class="insight-evidence">Evidencia: 4/5 preferirían PSE sobre Addi para financiar una compra</div>
+      </div>
+    </li>
+    <li class="insight-item">
+      <div class="insight-num">05</div>
+      <div class="insight-content">
+        <h4>El BNPL como inicio de historial crediticio es el gancho más poderoso para jóvenes.</h4>
+        <p>Juan fue el único que dijo "claro que sí, de una" al concepto — y lo hizo al conectarlo con la posibilidad de construir historial. Para el segmento de 18-27 años que el sistema bancario ignora, PSE Crédito no es un servicio de pago diferido — es la puerta de entrada al sistema financiero. Ese mensaje no existe hoy en ningún competidor.</p>
+        <div class="insight-evidence">Evidencia: Juan R. (24 años) — posible driver de adquisición para segmento joven</div>
+      </div>
+    </li>
+    <li class="insight-item">
+      <div class="insight-num">06</div>
+      <div class="insight-content">
+        <h4>No todo usuario de PSE es target de BNPL. Forzarlo generará rechazo.</h4>
+        <p>Sofía y Ana Sofía representan un perfil válido de usuario PSE que paga de contado por identidad, no por falta de opciones. Mostrarles PSE Crédito como una opción intrusiva o permanente podría dañar la relación con el producto principal. La solución es una intervención contextual y discreta, activada solo cuando hay saldo insuficiente detectado.</p>
+        <div class="insight-evidence">Evidencia: Sofía M., Ana Sofía L. — 2/5 participantes con aversión estructural al crédito</div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<div class="divider"></div>
+
+<!-- CITAS CLAVE -->
+<section class="section" id="citas">
+  <div class="section-label">05 · Voz del Usuario</div>
+  <h2 class="section-title">Citas que no se pueden ignorar</h2>
+  <p class="section-intro">Fragmentos textuales que capturan la intensidad emocional detrás de los datos. Usar en presentaciones para hacer tangible el dolor del usuario.</p>
+
+  <div class="quotes-grid">
+    <div class="quote-card">
+      <div class="quote-text">Trabajo 12 horas y no puedo ni comprar un celular. El sistema me trata como si no existiera.</div>
+      <div class="quote-author">Mateo G., 27 <span class="quote-tag">Sintético · Gig Worker</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">La ansiedad financiera me cuesta más que los intereses mismos.</div>
+      <div class="quote-author">Valentina R., 34 <span class="quote-tag">Sintético · TC Saturada</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Me preguntaron referencias personales. Eso me pareció muy invasivo. Lo cerré.</div>
+      <div class="quote-author">Valentina R., 34 <span class="quote-tag">Sobre Addi</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Ningún banco me quiere. No te dicen por qué. Solo llegan con su trajecita: no es un adiós, sino un hasta pronto.</div>
+      <div class="quote-author">Juan Rodríguez, 24 <span class="quote-tag">Real · Entrevista Caicedo</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Si eso me sirve para el historial crediticio, claro que sí, de una.</div>
+      <div class="quote-author">Juan Rodríguez, 24 <span class="quote-tag">Sobre PSE Crédito</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Pagar después me genera una carga emocional. Es como un doble trabajo: hacer la compra y luego volver a pagar.</div>
+      <div class="quote-author">Sofía Martín <span class="quote-tag">Real · Entrevista Bonilla</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Si no lo puedo pagar ahora, ¿quién me dice que puedo pagarlo después? Me destrozaría.</div>
+      <div class="quote-author">Ana Sofía Luque, 19 <span class="quote-tag">Real · Entrevista Plazas</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">Quiero meter el número en mi Excel y que se vuelva una decisión racional, no emocional.</div>
+      <div class="quote-author">Valentina R., 34 <span class="quote-tag">Condición de adopción</span></div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text">PSE lo uso para pagar el arriendo hace 3 años y nunca ha fallado. Le tengo más fe que a una fintech que apareció hace dos años.</div>
+      <div class="quote-author">Valentina R., 34 <span class="quote-tag">Ventaja de marca PSE</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARQUETIPOS -->
+<section class="section section-alt" id="arquetipos">
+  <div class="section-label">06 · Mapeo de Arquetipos</div>
+  <h2 class="section-title">Proto-arquetipos validados vs. muestra real</h2>
+  <p class="section-intro">Contraste entre los arquetipos definidos en la investigación desk y los patrones efectivamente observados en las entrevistas.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="archetype-table">
+      <thead>
+        <tr>
+          <th>Arquetipo</th>
+          <th>Definición Original</th>
+          <th>Coincidencia en Muestra</th>
+          <th>Hallazgos Clave</th>
+          <th>Prioridad MVP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="arch-name">🏍️ Trabajador Independiente / Gig Worker</div></td>
+          <td>Sin certificación de ingresos, informal, usa Nequi.</td>
+          <td><span class="match-dot filled"></span><span class="match-dot filled"></span><span class="match-dot"></span> 2/5</td>
+          <td>Confirmado plenamente en Mateo (sintético). Juan es empleado formal pero tiene el mismo dolor de invisibilidad. El scoring alternativo es la funcionalidad clave para este segmento.</td>
+          <td><span class="rec-priority priority-high">Alta</span></td>
+        </tr>
+        <tr>
+          <td><div class="arch-name">💳 Capacidad Agotada</div></td>
+          <td>Bancarizado, TC al límite, dolor en checkout de e-commerce.</td>
+          <td><span class="match-dot filled"></span><span class="match-dot filled"></span><span class="match-dot"></span> 2/5</td>
+          <td>Valentina (sintético) es el caso más claro. El impacto emocional del abandono es más alto de lo estimado. La preocupación por el score hipotecario es un hallazgo no anticipado que puede bloquear la conversión.</td>
+          <td><span class="rec-priority priority-high">Alta</span></td>
+        </tr>
+        <tr>
+          <td><div class="arch-name">🌱 Joven sin Historial</div></td>
+          <td>Nativo digital, sin TC, quiere iniciar vida crediticia.</td>
+          <td><span class="match-dot filled"></span><span class="match-dot filled"></span><span class="match-dot"></span> 2/5</td>
+          <td>Juan (24) encaja perfectamente y mostró la mayor disposición. El framing del BNPL como "inicio de historial" resonó inmediatamente. Ana Sofía (19) también califica pero su aversión al crédito es una barrera real.</td>
+          <td><span class="rec-priority priority-med">Media</span></td>
+        </tr>
+        <tr>
+          <td><div class="arch-name">👻 Invisible para el Sector</div></td>
+          <td>Sin datos en bureaus, scoring alternativo como única opción.</td>
+          <td><span class="match-dot filled"></span><span class="match-dot"></span><span class="match-dot"></span> 1/5</td>
+          <td>Juan mencionó ser rechazado sin explicación, lo que sugiere invisibilidad en centrales. Mateo (sintético) ilustra este perfil. Necesita más validación con muestra más grande.</td>
+          <td><span class="rec-priority priority-med">Media</span></td>
+        </tr>
+        <tr>
+          <td><div class="arch-name">🧾 Aversivo al Crédito</div></td>
+          <td>No estaba en los proto-arquetipos originales.</td>
+          <td><span class="match-dot filled"></span><span class="match-dot filled"></span><span class="match-dot"></span> 2/5</td>
+          <td><strong>Arquetipo emergente.</strong> Sofía y Ana Sofía muestran aversión estructural al crédito como identidad. No son el target de BNPL pero sí son usuarios activos de PSE. Deben identificarse para no forzarles la oferta.</td>
+          <td><span class="rec-priority priority-low">Monitorear</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECOMENDACIONES -->
+<section class="section" id="recomendaciones">
+  <div class="section-label">07 · Recomendaciones de Producto</div>
+  <h2 class="section-title">Del insight a la acción</h2>
+  <p class="section-intro">Sugerencias concretas para el diseño del MVP, organizadas por prioridad de impacto en la conversión y la confianza.</p>
+
+  <div class="recs-grid">
+    <div class="rec-card">
+      <div class="rec-num">01</div>
+      <h4>Mostrar el costo total real ANTES del primer clic</h4>
+      <p>Cuota mensual exacta, número de cuotas, costo total incluidos IVA, seguro y aval — en la pantalla del checkout, no en los T&C. Si el usuario tiene que desplazarse para encontrar el precio real, ya perdiste la transacción.</p>
+      <span class="rec-priority priority-high">Prioridad Crítica</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">02</div>
+      <h4>Comunicar explícitamente el impacto en Datacrédito</h4>
+      <p>Valentina y Mateo mencionaron Datacrédito espontáneamente. Una línea de texto en la pantalla de aprobación que diga exactamente cómo y cuándo se reporta (o no se reporta) puede desbloquear a todo el segmento que construye perfil crediticio.</p>
+      <span class="rec-priority priority-high">Prioridad Crítica</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">03</div>
+      <h4>Activación contextual — no intrusiva ni permanente</h4>
+      <p>PSE Crédito debe aparecer solo cuando el sistema detecte saldo insuficiente, como un botón discreto tipo "¿Pagar en cuotas con PSE Crédito?" — nunca como opción primaria ni como pop-up en usuarios que siempre tienen saldo.</p>
+      <span class="rec-priority priority-high">Prioridad Crítica</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">04</div>
+      <h4>Scoring comunicado como mérito, no como concesión</h4>
+      <p>Para el segmento de independientes e informales, el mensaje debe ser: "Te aprobamos con base en tus pagos con PSE, no en certificados laborales." Esto transforma el producto de un crédito de último recurso a una recompensa por buen comportamiento transaccional.</p>
+      <span class="rec-priority priority-high">Prioridad Alta</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">05</div>
+      <h4>Política de mora humana y visible en la pantalla de aprobación</h4>
+      <p>Garantizar explícitamente que los primeros 5 días de atraso no generan reporte a centrales de riesgo — no en los T&C, sino en un bloque visible antes del "Acepto". Esto elimina el mayor bloqueador de Mateo y perfiles similares.</p>
+      <span class="rec-priority priority-med">Prioridad Alta</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">06</div>
+      <h4>Framing para jóvenes: "Inicia tu historial con PSE"</h4>
+      <p>Para el segmento de 18-27 años sin historial crediticio, posicionar PSE Crédito como la puerta de entrada al sistema financiero formal. Juan pasó de neutral a "de una" con ese argumento. Es el hook de adquisición más poderoso para este segmento.</p>
+      <span class="rec-priority priority-med">Prioridad Media</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">07</div>
+      <h4>Política de reversas proactiva (no en T&C)</h4>
+      <p>Valentina preguntó: "¿Qué pasa si el comercio no me despacha y ya empecé a pagar cuotas?" Esta pregunta debe tener respuesta en la pantalla de checkout, no después. Una garantía de reversa visible aumenta la conversión de los perfiles más cautelosos.</p>
+      <span class="rec-priority priority-med">Prioridad Media</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">08</div>
+      <h4>Evitar referencias personales como requisito</h4>
+      <p>La fricción de Addi que más mencionaron fue pedir "referencias personales". PSE Crédito no debe replicar esta práctica bajo ningún esquema. Si necesita validación adicional de identidad, usar biometría o datos transaccionales propios del ecosistema PSE.</p>
+      <span class="rec-priority priority-low">Diferenciador competitivo</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUESTIONS OPEN -->
+<section class="section section-dark">
+  <div class="section-label">08 · Preguntas sin Responder</div>
+  <h2 class="section-title">Lo que este estudio no pudo contestar</h2>
+  <p class="section-intro">Hipótesis que requieren rondas adicionales de investigación o pruebas con prototipos para ser validadas.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">MONTO</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿Cuál es el rango de monto donde la conversión es más alta? ¿$150k–$400k donde el dolor es agudo pero la cuota es manejable?</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">SCORING</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿Están los independientes dispuestos a que PSE analice su historial de pagos de servicios para determinar el cupo? ¿A cambio de qué?</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">DATACRÉDITO</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿El miedo al reporte en Datacrédito es una barrera real o una racionalización de la resistencia emocional? ¿Un primer crédito de bajo monto sin reporte convertiría a Valentina?</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">CANAL</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿Qué canal de atención (WhatsApp, chat, llamada) generaría más confianza ante un problema con el pago o una reversa? El soporte post-aprobación no fue explorado.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">MODELO</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿Preferiría el usuario que PSE sea el originador del crédito directamente, o un aliado como Addi/Creditop invisible detrás de la marca PSE? ¿Importa si lo saben?</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(122,173,207,0.2); border-radius: 12px; padding: 24px;">
+      <div style="color: var(--sky); font-family: var(--font-head); font-size: 13px; margin-bottom: 10px; font-weight: 700;">HISTORIAL</div>
+      <p style="font-size: 14px; line-height: 1.6;">¿Cuántos jóvenes como Juan cambiarían de aversión a adopción si el mensaje principal fuera "construye historial con PSE"? ¿Es escalable este framing para campañas?</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <strong>Diagrama de Afinidad — PSE Crédito (BNPL)</strong><br>
+    Laboratorio Digital · ACH Colombia · Abril 2026
+  </div>
+  <div style="text-align: right; color: #8A9BB0;">
+    5 entrevistas analizadas · Método JTBD / Cuatro Fuerzas<br>
+    Uso confidencial — solo para equipos de producto ACH Colombia
+  </div>
+</footer>
+
+</body>
+</html>
