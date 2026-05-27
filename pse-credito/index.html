@@ -1117,62 +1117,13 @@ body{
           </div>
         </div>
 
-        <!-- ══ S1: COMMERCE PAYMENT ══ -->
+        <!-- ══ S1: COMMERCE PAYMENT (ALKOSTO) ══ -->
         <div class="scr" id="s1">
-          <div class="enel-screen">
-            <div class="enel-topbar">
-              <div class="enel-brand">enel</div>
-              <div class="enel-menu" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-            <div class="enel-body">
-              <div class="enel-title">Paga tu factura en línea.</div>
-              <div class="enel-fields">
-                <div>
-                  <div class="enel-field-lbl">No. de cliente*</div>
-                  <div class="enel-field">1234567</div>
-                </div>
-                <div>
-                  <div class="enel-field-lbl">DV*</div>
-                  <div class="enel-field">8</div>
-                </div>
-              </div>
-              <div class="enel-subtitle">Documentos disponibles para pago.</div>
-              <div class="enel-alert">Por favor, seleccione el documento a pagar.</div>
-              <div class="enel-table-scroll">
-                <div class="enel-table">
-                  <div class="enel-th">Seleccione</div>
-                  <div class="enel-th">Número de<br>documento</div>
-                  <div class="enel-th">Tipo de documento</div>
-                  <div class="enel-th">Valor de deuda</div>
-                  <div class="enel-td enel-row-last"><div class="enel-check">✓</div></div>
-                  <div class="enel-td enel-row-last">1029775890</div>
-                  <div class="enel-td enel-row-last">CC</div>
-                  <div class="enel-td enel-row-last">$240.000</div>
-                </div>
-              </div>
-              <div class="enel-pay-title">Selecciona el medio de pago.</div>
-              <div class="enel-methods">
-                <div class="enel-method selected" id="enelMethodPse" onclick="selectEnelMethod('pse')">
-                  <img class="enel-pse-logo" src="img/logo_pse.png" alt="Logo PSE">
-                </div>
-                <div class="enel-method" id="enelMethodBank" onclick="selectEnelMethod('bank')">
-                  <div class="enel-bank-logo">
-                    <div class="enel-bank-kicker">Paga con</div>
-                    <div class="enel-bank-name">Bancolombia</div>
-                  </div>
-                </div>
-              </div>
-              <div class="enel-consent" onclick="toggleEnelConsent()">
-                <div class="enel-consent-box" id="enelConsentBox"></div>
-                <div>Autorizo el <a href="#" onclick="event.preventDefault()">tratamiento de datos personales</a>.</div>
-              </div>
-              <button class="enel-pay-btn" id="enelPayBtn" onclick="submitEnelPayment()">Pagar</button>
-            </div>
-          </div>
+          <iframe
+            src="alkosto-envio-pago.html"
+            title="Alkosto - Envio y Pago"
+            style="width:100%;height:100%;border:0;background:#fff;display:block;"
+          ></iframe>
         </div>
 
         <!-- ══ S2: PSE SELECTOR ══ -->
