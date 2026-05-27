@@ -248,6 +248,7 @@ body{
 }
 .pay-opt:active{transform:scale(.985);}
 .pay-opt.highlight{border-color:var(--green);background:var(--green-lt);}
+.pay-opt.credit-box{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:14px;}
 .pay-opt.shake{animation:shake .4s ease;}
 @keyframes shake{
   0%,100%{transform:translateX(0);}
@@ -273,6 +274,21 @@ body{
   font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;
   letter-spacing:.06em;text-transform:uppercase;
 }
+.credit-top{display:flex;align-items:flex-start;gap:12px;}
+.credit-copy{display:flex;flex-direction:column;gap:2px;}
+.credit-plans{display:flex;gap:8px;}
+.credit-plan{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;padding:9px 6px;
+  border:1px solid rgba(0,168,107,.32);border-radius:10px;background:#fff;
+  font-size:11px;font-weight:700;color:var(--tp);font-family:'DM Sans',sans-serif;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:transform .1s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.credit-plan small{font-size:10px;font-weight:500;color:var(--ts);line-height:1.2;}
+.credit-plan:active{transform:scale(.985);}
+.credit-plan:hover{border-color:rgba(0,168,107,.52);box-shadow:0 2px 10px rgba(0,168,107,.1);}
 
 .pse-foot{
   display:flex;align-items:center;justify-content:center;gap:6px;
@@ -1190,14 +1206,20 @@ body{
               <div class="opt-arr">›</div>
             </div>
 
-            <div class="pay-opt highlight" onclick="go(3)">
+            <div class="pay-opt highlight credit-box">
               <div class="new-pill">NUEVO</div>
-              <div class="opt-icon i-pse">✨</div>
-              <div class="opt-info">
-                <div class="opt-name">Crédito con [Aliado]</div>
-                <div class="opt-desc">Financia tu compra al instante, sin tarjeta</div>
+              <div class="credit-top">
+                <div class="opt-icon i-pse">✨</div>
+                <div class="credit-copy">
+                  <div class="opt-name">Crédito con [Aliado]</div>
+                  <div class="opt-desc">Crédito con [Aliado] financia tu compra al instante, sin tarjeta.</div>
+                </div>
               </div>
-              <div class="opt-arr">›</div>
+              <div class="credit-plans">
+                <button class="credit-plan" type="button" onclick="go(3)">1 cuota<small>Interés X%</small></button>
+                <button class="credit-plan" type="button" onclick="go(3)">3 cuotas<small>Interés X%</small></button>
+                <button class="credit-plan" type="button" onclick="go(3)">6 cuotas<small>Interés X%</small></button>
+              </div>
             </div>
           </div>
           <div class="pse-foot">
@@ -1410,7 +1432,7 @@ body{
               <div class="d-row"><span class="dk">Estado civil</span><span class="dv" id="rv-estado">Soltero/a</span></div>
               <div class="d-row"><span class="dk">Correo</span><span class="dv" id="rv-email" style="font-size:11px">pablo@email.com ✏️</span></div>
             </div>
-            <button class="appv-cta" onclick="go(8)">Acepto y finalizar compra</button>
+            <button class="appv-cta" onclick="go(8)">Acepto, ir a pagar</button>
 
           </div>
         </div>
@@ -1435,7 +1457,7 @@ body{
               </div>
 
               <!-- Título -->
-              <div class="pse-sum-title">Crédito aprobado</div>
+              <div class="pse-sum-title">Pago realizado por [Aliado]</div>
 
               <!-- Monto -->
               <div class="pse-sum-amount">$240.000</div>
@@ -1783,7 +1805,7 @@ const screenMeta = [
   { name:'Aliado — Datos personales', sub:'Formulario 1 de 2', shortName:'Form 1' },
   { name:'Aliado — Datos de contacto', sub:'Formulario 2 de 2', shortName:'Form 2' },
   { name:'Aliado — Código OTP', sub:'Verificación por SMS', shortName:'OTP' },
-  { name:'Aliado — Crédito aprobado', sub:'Revisión y aceptación', shortName:'Cupo' },
+  { name:'Aliado — Pago realizado', sub:'Revisión y aceptación', shortName:'Pago' },
   { name:'PSE — Resumen de crédito', sub:'Confirmación PSE', shortName:'Resumen' },
   { name:'Fin de la prueba', sub:'Flujo completado', shortName:'Fin' },
 ];
