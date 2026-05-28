@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instrumentos de Research — Tres Puntas RtP · INNLAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../estilos.css">
+  <style>
+    html{scroll-behavior:smooth}:root{--radius:12px}.report-header__subtitle{color:rgba(255,255,255,.92);text-shadow:0 1px 2px rgba(0,0,0,.18)}.badge{white-space:nowrap}.h4{margin-bottom:14px}
+    .rtp-nav{position:sticky;top:0;z-index:200;background:var(--c-blue);display:flex;align-items:center;overflow-x:auto;border-bottom:3px solid rgba(255,255,255,.15)}
+    .rtp-nav__item{padding:11px 18px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;border-right:1px solid rgba(255,255,255,.12);transition:background .2s,color .2s;white-space:nowrap}
+    .rtp-nav__item:hover{background:rgba(255,255,255,.1);color:#fff}
+    .rtp-nav__badge{display:inline-block;width:17px;height:17px;border-radius:50%;font-size:10px;font-weight:800;line-height:17px;text-align:center;margin-right:6px;vertical-align:middle}
+    .doc-header{display:flex;align-items:center;gap:16px;padding:18px 24px;border-radius:var(--radius);margin-bottom:8px}
+    .doc-header--pagador{background:linear-gradient(135deg,#3a3acc,#5454e9)}
+    .doc-header--comercio{background:linear-gradient(135deg,#b05020,#e9683b)}
+    .doc-header--nodo{background:linear-gradient(135deg,#5f3fc4,#865cf0)}
+    .doc-header__icon{font-size:26px}.doc-header__label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+    .doc-header__title{font-size:18px;font-weight:800;color:#fff;margin:3px 0 2px}.doc-header__sub{font-size:13px;color:rgba(255,255,255,.75)}
+    .doc-header__meta{margin-left:auto;text-align:right}.doc-header__meta-label{font-size:11px;color:rgba(255,255,255,.55);font-weight:600;letter-spacing:.06em;text-transform:uppercase;display:block}
+    .doc-header__meta-value{font-size:13px;color:rgba(255,255,255,.85);font-weight:600}
+    .tag-new{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#e9683b;color:#fff;padding:1px 6px;border-radius:20px;margin-left:6px;vertical-align:middle}
+    .tag-updated{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#5454e9;color:#fff;padding:1px 6px;border-radius:20px;margin-left:6px;vertical-align:middle}
+    .cond-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--c-gray2);border-radius:10px}
+    .cond-num{width:26px;height:26px;min-width:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cond-body{flex:1}.cond-title{font-size:14px;font-weight:700;color:var(--c-black);margin-bottom:3px}.cond-desc{font-size:13px;color:var(--c-gray1);line-height:1.5}
+  </style>
+</head>
+<body>
+<div class="reporte">
+  <nav class="rtp-nav">
+    <a href="#indice" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:rgba(255,255,255,.25);color:#fff">↗</span>Índice</a>
+    <a href="#pag-screener" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e4eb60;color:#1a1a1a">1</span>Screener Pagadores</a>
+    <a href="#pag-guion" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e4eb60;color:#1a1a1a">1</span>Guión Pagadores</a>
+    <a href="#com-screener" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e9683b;color:#fff">2</span>Screener Comercios</a>
+    <a href="#com-guion" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e9683b;color:#fff">2</span>Guión Comercios</a>
+    <a href="#nodo-guion" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#865cf0;color:#fff">3</span>Co-diseño Entidades</a>
+  </nav>
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo"><img src="../img/Icesi_white.svg" alt="Universidad Icesi" style="height:40px"></div>
+      <div class="report-header__meta"><span class="report-header__meta-label">Proyecto</span><span class="report-header__meta-value">RtP · ACH Colombia × INNLAB</span></div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Instrumentos de Investigación · Tres Puntas del Ecosistema · Mayo 2026</span>
+      <h1 class="report-header__title">Screeners, Guiones y Guía<br>de Co-diseño — RtP</h1>
+      <p class="report-header__subtitle">Instrumentos operativos para las tres poblaciones de investigación: pagadores (usability testing), comercios (entrevista JTBD) y entidades financieras (co-diseño). Uso exclusivo del equipo investigador — no compartir con participantes.</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item"><span class="report-header__kpi-value">3</span><span class="report-header__kpi-label">Documentos</span></div>
+      <div class="report-header__kpi-item"><span class="report-header__kpi-value">7</span><span class="report-header__kpi-label">Hipótesis cubiertas</span></div>
+      <div class="report-header__kpi-item"><span class="report-header__kpi-value">3</span><span class="report-header__kpi-label">Actores del ecosistema</span></div>
+      <div class="report-header__kpi-item"><span class="report-header__kpi-value">6–8 sem</span><span class="report-header__kpi-label">Ciclo de investigación</span></div>
+    </div>
+  </div>
+  <div class="reporte-body">
+    <div class="section" id="indice">
+      <div class="section-title"><span class="section-title__label">Índice</span><h2 class="section-title__heading">Tres documentos · Tres puntas del ecosistema</h2></div>
+      <div class="grid-3">
+        <div class="highlight-box"><span class="highlight-box__label">Doc 1 · Pagadores <span class="tag-updated">Actualizado</span></span><span class="highlight-box__texto">Screener + guión usability testing. 5–8 participantes · 60–75 min · H1–H4. Nuevo: Tarea 4 cobro sospechoso, C9 card sorting, W5 Job Social, escenario timer, hoja de anotaciones extendida, Variante C sin timer.</span></div>
+        <div class="highlight-box highlight-box--orange"><span class="highlight-box__label">Doc 2 · Comercios <span class="tag-new">Nuevo</span></span><span class="highlight-box__texto">Screener + guión JTBD. 3–5 participantes · 60 min · H5–H7. Explora dolor de cobranza, brecha cobertura de llaves, política de contracargos y condición de adopción.</span></div>
+        <div class="highlight-box highlight-box--purple"><span class="highlight-box__label">Doc 3 · Entidades <span class="tag-new">Nuevo</span></span><span class="highlight-box__texto">Guía co-diseño para product leads. 2–4 participantes · 90 min. Explora las 4 condiciones de adopción del nodo, umbral de demanda comercial y términos de piloto.</span></div>
+      </div>
+      <div class="alerta alerta--advertencia"><span class="alerta__titulo">Dos brechas críticas que todos los instrumentos deben activar</span><p class="alerta__texto"><strong>Brecha Timer:</strong> el flujo propuesto tiene 03:59 para responder. Pagadores con hábito de fecha fija (día 14 o 29) rechazarán el cobro por pánico si llega fuera de esa fecha. El Doc 1 incluye un escenario específico. <strong>Brecha Cobertura:</strong> el comercio no puede saber cuántos clientes tienen llave Bre-B registrada. Sin ese dato no puede calcular el ROI. El Doc 2 explora esta brecha en detalle.</p></div>
+    </div>
+    <hr class="divider--thick">
+    <!-- DOC 1 SCREENER -->
+    <div class="section" id="pag-screener"><div class="divider-label"><span>DOCUMENTO 1 · SCREENER DE RECLUTAMIENTO — PAGADORES</span></div></div>
+    <div class="section">
+      <div class="doc-header doc-header--pagador"><div class="doc-header__icon">👩‍💼</div><div><div class="doc-header__label">Documento 1 de 3 · Screener</div><div class="doc-header__title">Reclutamiento — Pagadores</div><div class="doc-header__sub">Usability testing · 5–8 participantes · Perfiles Nequi / Bancolombia / Davivienda</div></div><div class="doc-header__meta"><span class="doc-header__meta-label">Hipótesis</span><span class="doc-header__meta-value">H1 · H2 · H3 · H4</span></div></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener · Parte 0</span><h2 class="section-title__heading">Encabezado del formulario</h2><p class="section-title__desc">Texto que el candidato lee al abrir el formulario. No mencionar el nombre del producto ni de ACH Colombia.</p></div>
+      <div class="cita"><span class="cita__texto">La Universidad Icesi está realizando una investigación sobre cómo las personas gestionan sus pagos digitales en Colombia. Buscamos personas que usen apps bancarias regularmente para participar en una sesión virtual o presencial de 60 a 75 minutos. Los participantes seleccionados recibirán un bono de agradecimiento de $50.000 COP. Esta encuesta toma menos de 5 minutos. Sus respuestas son confidenciales.</span><span class="cita__fuente">[LEER COMO APARECE — no revelar el tema de pagos RtP ni el timer de notificaciones]</span></div>
+      <div class="alerta alerta--info" style="margin-top:4px"><span class="alerta__titulo">Por qué no revelar el tema específico</span><p class="alerta__texto">Revelar que el estudio es sobre cobros automáticos puede activar la ansiedad antes de la sesión y sesgar las respuestas. El encuadre neutro garantiza reacción espontánea ante el timer.</p></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener · Sección A</span><h2 class="section-title__heading">Filtro de perfil básico</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones de respuesta</th><th>Acción</th></tr></thead><tbody>
+        <tr><td class="num"><strong>A1</strong></td><td>¿Cuál es su rango de edad?</td><td>• Menor de 20 · • 20–35 · • 36–50 · • 51–60 · • Mayor de 60</td><td><span class="badge badge--green">Clasificar</span> — balancear perfiles. No descalifica.</td></tr>
+        <tr><td class="num"><strong>A2</strong></td><td>¿En cuál ciudad vive actualmente?</td><td>• Bogotá · • Medellín · • Cali · • Barranquilla · • Otra</td><td><span class="badge badge--green">Clasificar</span> — presencial prioriza ciudad del equipo.</td></tr>
+        <tr><td class="num"><strong>A3</strong></td><td>¿Tiene al menos una app bancaria instalada que usa regularmente?</td><td>• Sí · • No</td><td><span class="badge badge--orange">Filtro duro</span> — <strong>No = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>A4</strong></td><td>¿Cuál o cuáles apps bancarias usa? (marcar todas)</td><td>• Nequi · • Bancolombia · • Davivienda · • Banco de Bogotá · • BBVA · • Otra</td><td><span class="badge badge--blue">Perfil</span> — Nequi = A · Bancolombia = B · Davivienda = C. Priorizar A, B, C.</td></tr>
+        <tr><td class="num"><strong>A5</strong></td><td>¿Con qué frecuencia abre la app de su banco?</td><td>• Todos los días · • Varias veces/semana · • Una vez/semana · • 1–2 veces/mes · • Menos de una vez/mes</td><td><span class="badge badge--orange">Filtro</span> — <strong>"Menos de una vez/mes" = DESCALIFICAR</strong>.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener · Sección B</span><h2 class="section-title__heading">Comportamiento de pagos del hogar</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones</th><th>Acción</th></tr></thead><tbody>
+        <tr><td class="num"><strong>B1</strong></td><td>¿Usted es quien paga habitualmente los servicios del hogar?</td><td>• Sí, yo los pago · • Comparto · • No, otra persona</td><td><span class="badge badge--orange">Filtro</span> — <strong>"No, otra persona" = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>B2</strong></td><td>¿Cuántos pagos de servicios hace mensualmente de forma digital?</td><td>• Ninguno · • 1 o 2 · • 3 a 5 · • Más de 5</td><td><span class="badge badge--orange">Filtro</span> — <strong>"Ninguno" = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>B3</strong></td><td>¿Cuáles de estos pagos hace mensualmente? (marcar todos)</td><td>• Arriendo · • Administración de conjunto · • Servicios públicos · • Internet/telefonía · • Suscripciones · • Pensión · • Otro</td><td><span class="badge badge--blue">Contexto</span> — mínimo 2 marcados. Usar para personalizar escenarios.</td></tr>
+        <tr><td class="num"><strong>B4</strong></td><td>¿Ha tenido algún problema con un cobro digital que no reconocía?</td><td>• Sí, fue un problema · • Sí, lo resolví fácil · • No, nunca · • No sé</td><td><span class="badge badge--blue">Ansiedad base</span> — "Sí, fue un problema" indica ansiedad alta. No descalifica.</td></tr>
+        <tr><td class="num"><strong>B5</strong></td><td>¿Alguna vez autorizó un débito automático desde su cuenta?</td><td>• Sí, activo · • Sí, lo cancelé · • No, nunca · • No sé si lo tengo</td><td><span class="badge badge--blue">Hábito</span> — familiaridad con cobros de terceros. No descalifica.</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>B6</strong></td><td><strong>¿En qué días del mes paga habitualmente sus servicios recurrentes?</strong> <span class="tag-new">Nuevo</span></td><td>• Inicio del mes (1–5) · • Mitad del mes (11–15) · • Final del mes (25–31) · • Varía cada mes · • No tengo días fijos</td><td><span class="badge badge--blue">Hábito de fecha</span> — crítico para el escenario del timer. Registrar respuesta exacta.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener · Sección C</span><h2 class="section-title__heading">Capacidad técnica + Conflicto de interés</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones</th><th>Acción</th></tr></thead><tbody>
+        <tr><td class="num"><strong>C1</strong></td><td>¿Tiene smartphone táctil que usa a diario?</td><td>• Sí Android · • Sí iPhone · • No</td><td><span class="badge badge--orange">Filtro duro</span> — <strong>No = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>C2</strong></td><td>[Solo remoto] ¿Puede conectarse a Zoom o Meet?</td><td>• Sí · • Sí, necesito ayuda · • No</td><td><span class="badge badge--orange">Filtro</span> — <strong>"No" = DESCALIFICAR</strong> para remoto. Ofrecer presencial.</td></tr>
+        <tr><td class="num"><strong>C3</strong></td><td>¿Autoriza grabación de la sesión para uso interno del equipo?</td><td>• Sí · • No</td><td><span class="badge badge--orange">Filtro duro</span> — <strong>No = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>D1</strong></td><td>¿Trabaja o ha trabajado (últimos 12 meses) en banco, fintech, medios de pago o telecomunicaciones?</td><td>• Sí · • No</td><td><span class="badge badge--orange">Filtro duro</span> — <strong>Sí = DESCALIFICAR</strong>.</td></tr>
+        <tr><td class="num"><strong>D2</strong></td><td>¿Trabaja en investigación de mercados, UX o pruebas de software?</td><td>• Sí · • No</td><td><span class="badge badge--orange">Filtro</span> — <strong>Sí = DESCALIFICAR</strong>.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener · Sección E</span><h2 class="section-title__heading">Disponibilidad y contacto</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones</th></tr></thead><tbody>
+        <tr><td colspan="3" style="background:rgba(84,84,233,.07);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5454e9;padding:8px 16px">Agenda</td></tr>
+        <tr><td class="num"><strong>E1</strong></td><td>¿Disponibilidad entre [FECHA INICIO] y [FECHA FIN] para sesión de 60–75 min?</td><td>• Sí · • No</td></tr>
+        <tr><td class="num"><strong>E2</strong></td><td>¿Prefiere sesión presencial en Cali o virtual?</td><td>• Presencial · • Virtual · • Me da igual</td></tr>
+        <tr><td class="num"><strong>E3</strong></td><td>¿En qué horario le queda mejor?</td><td>• Mañana 8–12h · • Tarde 13–17h · • Noche 18–20h</td></tr>
+        <tr><td colspan="3" style="background:rgba(84,84,233,.07);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5454e9;padding:8px 16px">Contacto</td></tr>
+        <tr><td class="num"><strong>E4</strong></td><td>Nombre completo</td><td>Texto libre</td></tr>
+        <tr><td class="num"><strong>E5</strong></td><td>Número de celular (WhatsApp)</td><td>Número</td></tr>
+        <tr><td class="num"><strong>E6</strong></td><td>Correo electrónico</td><td>Email</td></tr>
+        <tr><td class="num"><strong>E7</strong></td><td>¿Cómo prefiere que le contactemos?</td><td>• WhatsApp · • Correo · • Llamada</td></tr>
+      </tbody></table></div>
+      <div class="alerta alerta--info" style="margin-top:8px"><span class="alerta__titulo">Protección de datos</span><p class="alerta__texto">Los datos de contacto se usarán únicamente para coordinar la sesión y serán eliminados 90 días después del cierre del estudio. No se compartirán con terceros.</p></div>
+    </div>
+    <div class="section section--tinted">
+      <div class="section-title"><span class="section-title__label">Screener · Árbol de decisión</span><h2 class="section-title__heading">¿Califica o no?</h2><p class="section-title__desc">Un solo criterio de descalificación es suficiente para excluir al candidato.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Condición</th><th>Pregunta</th><th>Respuesta que descalifica</th><th>Mensaje al candidato</th></tr></thead><tbody>
+        <tr><td><span class="badge badge--orange">Desc. 1</span></td><td>A3</td><td>Sin app bancaria</td><td rowspan="7" style="vertical-align:middle"><em>"Gracias por tu interés. Tu perfil no se ajusta a lo que buscamos en este momento, pero te tendremos en cuenta para estudios futuros."</em></td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 2</span></td><td>A5</td><td>Menos de una vez al mes</td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 3</span></td><td>B1</td><td>Otra persona paga</td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 4</span></td><td>B2</td><td>Ningún pago digital</td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 5</span></td><td>C1</td><td>Sin smartphone táctil</td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 6</span></td><td>C3</td><td>No acepta grabación</td></tr>
+        <tr><td><span class="badge badge--orange">Desc. 7</span></td><td>D1 + D2</td><td>Sector financiero o UX</td></tr>
+        <tr><td><span class="badge badge--green">Califica</span></td><td colspan="2">Pasa todos los filtros</td><td><em>"¡Tu perfil es exactamente lo que buscamos! Te contactaremos en 24–48 horas para confirmar. Recibirás $50.000 COP al finalizar."</em></td></tr>
+      </tbody></table></div>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="kpi-card kpi-card--tint-blue"><span class="kpi-card__label">Perfil A · 2–3 cupos</span><span class="kpi-card__value" style="font-size:16px">Nequi</span><span class="kpi-card__desc">Edad 22–35. Digital-nativo. Línea base de ansiedad baja.</span></div>
+        <div class="kpi-card kpi-card--tint-purple"><span class="kpi-card__label">Perfil B · 2–3 cupos</span><span class="kpi-card__value" style="font-size:16px">Bancolombia</span><span class="kpi-card__desc">Edad 35–50. Caso más cercano a Claudia R. Al menos 1 con B6 = día fijo de pago.</span></div>
+        <div class="kpi-card kpi-card--tint-orange"><span class="kpi-card__label">Perfil C · 1–2 cupos</span><span class="kpi-card__value" style="font-size:16px">Davivienda</span><span class="kpi-card__desc">Edad 40–55. Prueba de estrés H1–H4. Al menos 1 con B4 = "fue un problema" y B6 = día fijo.</span></div>
+      </div>
+    </div>
+    <hr class="divider--thick">
+    <!-- DOC 1 GUIÓN -->
+    <div class="section" id="pag-guion"><div class="divider-label"><span>DOCUMENTO 1 · GUIÓN DE SESIÓN — PAGADORES (USO EXCLUSIVO DEL MODERADOR)</span></div></div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Pre-sesión</span><h2 class="section-title__heading">Checklist de preparación</h2><p class="section-title__desc">Verificar todos los ítems 30 minutos antes de que llegue el participante.</p></div>
+      <div class="grid-2">
+        <div><p class="h4" style="margin-top:0">Técnico</p><ul class="lista-icesi">
+          <li>Prototipo Figma en el celular de prueba — variante asignada (A, B o C)</li>
+          <li>Grabación de pantalla activada — no iniciar aún</li>
+          <li>Grabadora de audio de respaldo encendida</li>
+          <li>[Remoto] Sala Zoom / Meet creada y enlace enviado</li>
+          <li>Celular en modo avión excepto WiFi — notificaciones silenciadas</li>
+          <li>Prototipo reseteado al estado inicial</li>
+          <li><strong>Verificar en screener B6 el día habitual de pago — ajustar escenario del timer</strong></li>
+        </ul></div>
+        <div><p class="h4" style="margin-top:0">Documentos y logística</p><ul class="lista-icesi">
+          <li>Formulario de consentimiento impreso × 2</li>
+          <li>Hoja de anotaciones con ID, perfil y variante</li>
+          <li>9 tarjetas de card sorting (incluye C9 nueva)</li>
+          <li>Escala SEQ (1–7) — una copia por tarea</li>
+          <li>Escala de ansiedad Likert (1–7) — tres copias: base, post-detalle, post-reversión</li>
+          <li>Bono de $50.000 COP preparado</li>
+        </ul></div>
+      </div>
+      <div class="alerta alerta--info" style="margin-top:4px"><span class="alerta__titulo">Tres variantes del prototipo <span class="tag-updated">Actualizado</span></span><p class="alerta__texto"><strong>Variante A:</strong> frame "tú sigues siendo quien autoriza" + timer 03:59 visible. <strong>Variante B:</strong> frame "paga sin salir de la app" + timer 03:59 visible. <strong>Variante C:</strong> frame "tú sigues siendo quien autoriza" + notificación persistente sin timer. Rotar: sesión 1=A · 2=B · 3=C · 4=A… Variante C es nueva y responde directamente a la brecha del timer. El moderador NO debe revelar que existen tres variantes.</p></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 1</span><h2 class="section-title__heading">Bienvenida y consentimiento <span class="badge badge--gray">5 min</span></h2></div>
+      <div class="cita"><span class="cita__texto">"Hola [NOMBRE], gracias por venir. Soy [MODERADOR] y esta es [ANOTADOR], quien tomará notas. Estamos investigando cómo las personas interactúan con herramientas de pago digital en Colombia. No estamos evaluando tus habilidades — evaluamos el diseño de una aplicación. Si algo no queda claro, eso es información muy valiosa. No hay respuestas correctas o incorrectas. Lo más útil es que pienses en voz alta mientras usas la app."</span><span class="cita__fuente">Moderador — leer sin pausa, manteniendo contacto visual</span></div>
+      <div class="alerta alerta--advertencia" style="margin-top:8px"><span class="alerta__titulo">Nota del moderador</span><p class="alerta__texto">Si el participante pregunta qué producto va a probar: "Vamos a explorar una funcionalidad de pagos — prefiero que la descubras en la sesión para que tu reacción sea lo más natural posible." No revelar RtP, ACH Colombia ni el timer.</p></div>
+      <p style="margin-top:8px"><strong>[Acción]</strong> Iniciar grabación. Decir en voz alta: <em>"Iniciando sesión [ID], [FECHA], [HORA], variante [A / B / C]."</em></p>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 2</span><h2 class="section-title__heading">Calentamiento — contexto de pagos <span class="badge badge--gray">10 min</span></h2><p class="section-title__desc">Entender la rutina de pagos y medir ansiedad base ANTES de mostrar el prototipo. Usar respuestas de B3, B4, B5, B6 para personalizar.</p></div>
+      <div class="alerta alerta--info"><span class="alerta__titulo">Instrucción para el moderador</span><p class="alerta__texto">Estas preguntas son conversacionales — no leer de forma robotizada. Si el participante marcó "administración de conjunto" en B3, usar ese contexto en los escenarios de tarea.</p></div>
+      <div class="tabla-wrapper" style="margin-top:12px"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta [LEER AL PARTICIPANTE]</th><th>Qué observar / anotar</th><th>Sondeos posibles</th></tr></thead><tbody>
+        <tr><td class="num"><strong>W1</strong></td><td>"Cuéntame cómo manejas los pagos del hogar — ¿qué pagas, cuándo y cómo?"</td><td>Rutina de pagos, canales preferidos, si hay estrés en los días de pago</td><td>"¿Usas alguna app en particular?" / "¿Hay algún pago más difícil o molesto?"</td></tr>
+        <tr><td class="num"><strong>W2</strong></td><td>"¿Qué tan cómodo/a te sientes haciendo pagos desde tu app bancaria? ¿Hay algo que te genere duda?"</td><td>Confianza base, experiencias negativas previas</td><td>"¿Qué verificas antes de confirmar?" / "¿Alguna vez cancelaste un pago por algo que no te pareció bien?"</td></tr>
+        <tr><td class="num"><strong>W3</strong></td><td>[Si B5 = "Sí, tengo débito automático"] "¿Cómo tomaste esa decisión? ¿Cómo te sientes con que te cobren sin que tú hagas nada?"</td><td>Actitud hacia cobros de terceros, control percibido</td><td>"¿Lo cambiarías por alguna otra forma de pago?"</td></tr>
+        <tr><td class="num"><strong>W3b</strong></td><td>[Si B5 = "No, nunca"] "¿Por qué nunca has activado un débito automático si te lo han ofrecido?"</td><td>Razones de rechazo, umbral de control</td><td>"¿Qué tendría que cambiar para que lo activaras?"</td></tr>
+        <tr><td class="num"><strong>W4</strong></td><td>[Si B4 = "Sí, fue un problema"] "Mencionaste que tuviste un problema con un cobro que no reconocías. ¿Qué pasó?"</td><td>Detalle del incidente, impacto emocional residual</td><td>"¿Ese evento cambió cómo manejas tus pagos ahora?"</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>W5</strong></td><td><strong>"¿Qué pasa si no pagas a tiempo — hay alguna consecuencia social o personal que te pese más allá del recargo?"</strong> <span class="tag-new">Nuevo</span></td><td>Job Social latente. ¿Emerge la reputación, vergüenza o conflicto? Si lo menciona espontáneamente, explorar. Si no, no forzar.</td><td>"¿Alguien en tu círculo se enteraría si pagas tarde?" / "¿Hay algo en juego además del dinero?" [solo si surge orgánicamente]</td></tr>
+      </tbody></table></div>
+      <div class="highlight-box" style="margin-top:8px"><span class="highlight-box__label">Medición de ansiedad base — Escala 1 a 7</span><span class="highlight-box__texto">[LEER] "Antes de seguir, una sola pregunta: del 1 al 7, donde 1 es 'nada ansioso/a' y 7 es 'muy ansioso/a' — en general, ¿qué tan ansioso/a te sientes cuando alguien más inicia un cobro a tu cuenta sin que tú hayas entrado a pagar?" — Registrar. Esta es la medición PRE-intervención.</span></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 3</span><h2 class="section-title__heading">Tareas con prototipo — think-aloud <span class="badge badge--gray">35 min</span></h2></div>
+      <div class="alerta alerta--advertencia"><span class="alerta__titulo">Instrucciones críticas para el moderador</span><p class="alerta__texto"><strong>No ayudar</strong> si se bloquea — esperar 30 segundos, anotar. <strong>No confirmar</strong> si lo que hace es correcto. <strong>No reaccionar</strong> visualmente. <strong>Recordar think-aloud</strong> si hay más de 20 segundos de silencio: "Recuerda contarme qué está pasando por tu mente."</p></div>
+      <div class="cita" style="margin-top:8px"><span class="cita__texto">"Te voy a dar este celular con una app de pagos. Úsalo como si fuera tu propio celular. Mientras lo usas, cuéntame en voz alta qué ves, qué piensas y qué harías normalmente."</span><span class="cita__fuente">Moderador — entregar el celular con el prototipo en la pantalla de inicio</span></div>
+      <hr class="divider" style="margin-top:20px">
+      <p class="h4" style="margin-top:16px">Tarea 1 — Recibir y procesar la notificación <span class="badge badge--gray">~8 min</span></p>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Elemento</th><th>Contenido</th></tr></thead><tbody>
+        <tr><td><strong>Escenario [LEER]</strong></td><td>"Imagina que son las 10 de la mañana de un martes. Estás revisando el celular y de repente ves que llega una notificación. Tómalo desde ahí y dime qué harías."</td></tr>
+        <tr><td><strong>Pantalla inicial</strong></td><td>Notificación push de la app bancaria (según perfil): "La Administración Conjunto Los Pinos te solicita un pago de $185.000 por cuota de marzo. Toca para ver el detalle." — Variantes A/B muestran timer 03:59 corriendo. Variante C no muestra timer.</td></tr>
+        <tr class="row--highlight"><td><strong>Escenario timer <span class="tag-new">Nuevo</span></strong></td><td>[Solo si B6 = día fijo de pago] Después de la reacción inicial: "Imagina que hoy es el 3 del mes y tu día habitual de pago es el [DÍA DE B6]. ¿Eso cambia algo en tu decisión?" — Anotar si el timer activa pánico o si verbaliza querer esperar.</td></tr>
+        <tr><td><strong>Hipótesis observada</strong></td><td>H1 — frame control vs. velocidad. H4 — brecha timer vs. hábito de fecha fija (A/B vs. C).</td></tr>
+        <tr><td><strong>Qué anotar</strong></td><td>Primera verbalización espontánea · ¿Toca de inmediato o duda? · ¿Menciona el timer espontáneamente? · Tiempo hasta acción · ¿Verbaliza querer esperar a su día habitual?</td></tr>
+      </tbody></table></div>
+      <div class="highlight-box" style="margin-top:8px"><span class="highlight-box__label">SEQ Tarea 1</span><span class="highlight-box__texto">[LEER] "En una escala del 1 al 7, donde 1 es muy difícil y 7 es muy fácil, ¿qué tan fácil fue interactuar con esa notificación?"</span></div>
+      <hr class="divider" style="margin-top:20px">
+      <p class="h4" style="margin-top:16px">Tarea 2 — Revisar el detalle y tomar la decisión <span class="badge badge--gray">~10 min</span></p>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Elemento</th><th>Contenido</th></tr></thead><tbody>
+        <tr><td><strong>Escenario [LEER]</strong></td><td>"Ahora estás viendo la pantalla de detalle de ese cobro. Este es tu pago real de administración del mes. Cuéntame qué ves, qué te genera confianza o desconfianza, y qué decidirías hacer."</td></tr>
+        <tr><td><strong>Pantalla visible</strong></td><td>Nombre cobrador (Administración Conjunto Los Pinos), NIT, dirección, monto ($185.000), período (marzo 2026), concepto, cuenta destino (últimos 4 dígitos), botones [Aprobar] / [Rechazar]. En Variantes A/B el timer continúa corriendo.</td></tr>
+        <tr><td><strong>Hipótesis observada</strong></td><td>H2 — ¿El detalle reduce ansiedad? ¿Qué atributos mira primero? ¿Aprueba, rechaza o abandona?</td></tr>
+        <tr><td><strong>Sondeos durante tarea</strong></td><td>"¿Qué es lo primero que buscas en esta pantalla?" / "¿Hay algo que te falte ver?" / "¿Qué te hizo decidir [aprobar/rechazar]?"</td></tr>
+        <tr><td><strong>Señal de bloqueo</strong></td><td>Si pasan 90 seg sin acción: "¿Qué más necesitarías ver para decidir?"</td></tr>
+      </tbody></table></div>
+      <div class="highlight-box" style="margin-top:8px"><span class="highlight-box__label">SEQ T2 + Ansiedad post-detalle</span><span class="highlight-box__texto">[LEER] "¿Qué tan fácil fue tomar esa decisión? [SEQ] · Ahora en la escala de ansiedad: ¿qué tan ansioso/a te sentiste antes de tocar Aprobar o Rechazar?" — Comparar con medición base.</span></div>
+      <hr class="divider" style="margin-top:20px">
+      <p class="h4" style="margin-top:16px">Tarea 3 — Confirmación y mecanismo de reversión <span class="badge badge--gray">~8 min</span></p>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Elemento</th><th>Contenido</th></tr></thead><tbody>
+        <tr><td><strong>Escenario [LEER]</strong></td><td>"Ya tomaste la decisión. Ahora ves la pantalla de confirmación. Cuéntame qué ves y qué piensas."</td></tr>
+        <tr><td><strong>Pantalla visible</strong></td><td>Comprobante de transacción, estado ("Pago aprobado" o "Pago rechazado"), aviso: "¿Fue un cobro incorrecto? Puedes solicitar la reversión en las próximas 24 horas desde esta app."</td></tr>
+        <tr><td><strong>Sondeos</strong></td><td>"¿Notaste algo sobre la posibilidad de reversión?" [si no lo menciona] / "Ahora que sabes que puedes revertir en 24 horas, ¿cambia cómo te sentiste al aprobar?" / "¿Qué tan confiable te parece esa opción?"</td></tr>
+      </tbody></table></div>
+      <div class="highlight-box highlight-box--green" style="margin-top:8px"><span class="highlight-box__label">Ansiedad post-reversión — comparación clave</span><span class="highlight-box__texto">[LEER] "Del 1 al 7, ahora que sabes que existe la opción de reversión, ¿qué tan ansioso/a te sentirías si este cobro llegara de verdad?" — Δ entre esta y medición base es el indicador de impacto de la reversión.</span></div>
+      <hr class="divider" style="margin-top:20px">
+      <p class="h4" style="margin-top:16px">Tarea 4 — Cobro sospechoso <span class="badge badge--gray">~9 min</span> <span class="tag-new">Nueva</span></p>
+      <div class="alerta alerta--advertencia" style="margin-bottom:8px"><span class="alerta__titulo">Instrucción crítica — resetear el prototipo antes de esta tarea</span><p class="alerta__texto">El participante no debe saber que el cobro es sospechoso. Observar si lo detecta espontáneamente y cuánto tarda. Esta tarea valida H2 de la manera más directa posible.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Elemento</th><th>Contenido</th></tr></thead><tbody>
+        <tr><td><strong>Escenario [LEER]</strong></td><td>"Te llega otra notificación. Actúa como lo harías normalmente."</td></tr>
+        <tr><td><strong>Notificación</strong></td><td>"ADM CONJUNTO LOS PINOS 2 te solicita $185.000. Toca para ver el detalle." — Nombre levemente diferente (sin tilde en "ADM", "2" al final).</td></tr>
+        <tr><td><strong>Pantalla de detalle</strong></td><td>NIT diferente al anterior · Dirección ligeramente distinta · Monto idéntico · Período: "cuota administración febrero 2026" (mes ya pagado).</td></tr>
+        <tr><td><strong>Hipótesis observada</strong></td><td>H2 — ¿Los atributos de la pantalla de detalle son suficientes para detectar un cobro fraudulento sin ayuda?</td></tr>
+        <tr><td><strong>Qué anotar</strong></td><td>¿Detectó alguna señal de alerta? ¿Cuál fue la primera? · ¿En qué campo se detuvo más? · ¿Aprobó, rechazó o dudó?</td></tr>
+        <tr><td><strong>Revelación al terminar</strong></td><td>"Ese cobro tenía algunas diferencias con respecto al anterior. ¿Las notaste? ¿Qué habrías necesitado ver para detectarlas más fácilmente?"</td></tr>
+      </tbody></table></div>
+      <div class="highlight-box highlight-box--orange" style="margin-top:8px"><span class="highlight-box__label">SEQ Tarea 4</span><span class="highlight-box__texto">[LEER] "¿Qué tan fácil o difícil fue detectar si ese cobro era legítimo?" — Mide usabilidad de los controles de fraude, no comodidad del flujo.</span></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 4</span><h2 class="section-title__heading">Card sorting — atributos de confianza <span class="badge badge--gray">10 min</span></h2><p class="section-title__desc">9 tarjetas — incluye C9 nueva. Ordena de la más a la menos importante para confiar en que el cobro es legítimo.</p></div>
+      <div class="cita"><span class="cita__texto">"Te voy a mostrar 9 tarjetas con diferentes cosas que podría mostrar la app cuando llega un cobro. Ordénalas de la más importante a la menos importante para que confíes en que el cobro es legítimo. Dime en voz alta por qué pones cada tarjeta en ese lugar."</span><span class="cita__fuente">Moderador — entregar tarjetas o mostrar en pantalla secundaria</span></div>
+      <div class="tabla-wrapper" style="margin-top:12px"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>Tarjeta</th><th>Contenido</th><th>Hipótesis que informa</th></tr></thead><tbody>
+        <tr><td><span class="badge badge--blue">C1</span></td><td><strong>Nombre del cobrador</strong> — "Administración Conjunto Los Pinos"</td><td>H2 — ¿es suficiente el nombre para confiar?</td></tr>
+        <tr><td><span class="badge badge--blue">C2</span></td><td><strong>NIT del cobrador</strong> — "900.123.456-7 (entidad verificada)"</td><td>H2 — ¿el NIT agrega confianza real o es ruido?</td></tr>
+        <tr><td><span class="badge badge--purple">C3</span></td><td><strong>Logo o sello del banco</strong> — "Verificado por Bancolombia"</td><td>H2 — ¿la firma del banco transfiere confianza?</td></tr>
+        <tr><td><span class="badge badge--blue">C4</span></td><td><strong>Monto exacto</strong> — "$185.000"</td><td>H2 — componente básico de confianza</td></tr>
+        <tr><td><span class="badge badge--blue">C5</span></td><td><strong>Período del cobro</strong> — "Cuota de marzo 2026"</td><td>H2 — ¿el período permite detectar cobros duplicados?</td></tr>
+        <tr><td><span class="badge badge--green">C6</span></td><td><strong>Historial de cobros anteriores</strong> — "Este cobrador te ha cobrado 3 veces antes, todos aprobados"</td><td>H3 — ¿la historia reduce ansiedad en cobros recurrentes?</td></tr>
+        <tr><td><span class="badge badge--orange">C7</span></td><td><strong>Límite máximo configurado</strong> — "Este cobro está dentro de tu límite de $500.000"</td><td>H4 — ¿el límite aumenta percepción de control?</td></tr>
+        <tr><td><span class="badge badge--green">C8</span></td><td><strong>Opción de reversión</strong> — "Puedes revertir este cobro en 24 horas si hay un error"</td><td>H4 — ¿la red de seguridad reduce la ansiedad de aprobación?</td></tr>
+        <tr class="row--highlight"><td><span class="badge badge--purple">C9</span></td><td><strong>Fecha programada de aprobación</strong> — "Puedes programar este pago para el día [14/29] de este mes" <span class="tag-new">Nueva</span></td><td>H4 — brecha timer: ¿aprobación diferida aumenta disposición en pagadores con hábito de fecha fija?</td></tr>
+      </tbody></table></div>
+      <div class="alerta alerta--info" style="margin-top:8px"><span class="alerta__titulo">Qué anotar durante el card sorting</span><p class="alerta__texto">Orden final de las 9 tarjetas. Verbalizaciones al mover cada tarjeta — especialmente razones para poner algo al final. Si C9 genera reacción emocional fuerte ("¡esto sí necesito!"), registrar textual. Tarjetas que el participante considere "indispensables" y separe del grupo.</p></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 5</span><h2 class="section-title__heading">Entrevista post-test <span class="badge badge--gray">20 min</span></h2><p class="section-title__desc">Recuperar el celular antes de esta fase. El objetivo es que hable desde su experiencia real, no desde lo que vio en la app.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta [LEER]</th><th>Hipótesis</th><th>Sondeos</th></tr></thead><tbody>
+        <tr><td class="num"><strong>P1</strong></td><td>"En términos generales, ¿cómo describirías la experiencia de recibir ese cobro y tomar la decisión?"</td><td>General</td><td>"¿Qué fue lo más natural?" / "¿Qué te generó más duda?"</td></tr>
+        <tr><td class="num"><strong>P2</strong></td><td>"Si esta funcionalidad existiera hoy en la app real de tu banco, ¿la activarías? ¿Para qué cobros?"</td><td>H3 — gradualidad</td><td>"¿Empezarías con cobros de poco valor o con todos a la vez?" / "¿Hay algún cobro para el que nunca la activarías?"</td></tr>
+        <tr><td class="num"><strong>P3</strong></td><td>"Imagina que la administración de tu edificio quiere usar esto para cobrarte la cuota mensual. ¿Cómo te sentirías?"</td><td>H1 + H3 — caso de uso real</td><td>"¿Qué necesitarías que pasara primero?" / "¿Lo preferirías frente a PSE?"</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>P4</strong></td><td><strong>"Viste que el cobro tenía un tiempo límite para responder. ¿Eso cambió algo en tu decisión? ¿Cómo te haría sentir si llegaras ese cobro en un día en que no tienes liquidez?"</strong> <span class="tag-new">Nuevo</span></td><td>H4 — brecha timer</td><td>"¿Preferirías poder programar el pago para un día específico?" / "¿Cuánto tiempo considerarías razonable para responder?"</td></tr>
+        <tr><td class="num"><strong>P5</strong></td><td>"¿Qué diferencia ves entre esto y un débito automático?"</td><td>H1 — frame de control</td><td>"¿Cuál preferirías y por qué?" / "¿El hecho de que tú tengas que aprobar cambia algo?"</td></tr>
+        <tr><td class="num"><strong>P6</strong></td><td>"¿Qué pasa si alguien te envía un cobro falso haciéndose pasar por la administración? ¿Cómo lo detectarías?" [no revelar que ya ocurrió en T4]</td><td>H2 — señales de confianza y fraude</td><td>"¿La pantalla que viste te daría suficiente información?" / "¿Qué más necesitarías ver?"</td></tr>
+        <tr><td class="num"><strong>P7</strong></td><td>"Ahora que sabes que puedes revertir un cobro incorrecto en 24 horas, ¿eso cambia tu disposición a activar esta función?"</td><td>H4 — reversión</td><td>"¿Confías en que esa reversión funcionaría?" / "¿Cuánto tiempo considerarías razonable?"</td></tr>
+        <tr><td class="num"><strong>P8</strong></td><td>"¿Hay algo que le cambiarías a lo que viste hoy para que te generara más confianza o fuera más fácil de usar?"</td><td>Diseño — abierto</td><td>"¿Algo que echaste de menos?" / "¿Algo innecesario o confuso?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión · Fase 6</span><h2 class="section-title__heading">Cierre de sesión <span class="badge badge--gray">5 min</span></h2></div>
+      <div class="cita"><span class="cita__texto">"Eso es todo lo que necesitamos de tu parte. Tu información es exactamente lo que necesitamos para mejorar este producto. ¿Hay algo que quieras preguntarnos antes de cerrar? [Esperar] Lo que exploramos hoy es una funcionalidad de pagos que está siendo desarrollada para facilitar cobros entre comercios y usuarios bancarios en Colombia. Muchas gracias."</span><span class="cita__fuente">Moderador — puede revelar el contexto general. No mencionar ACH Colombia ni Bre-B a menos que el participante pregunte directamente.</span></div>
+      <div class="grid-2" style="margin-top:12px">
+        <div><p class="h4" style="margin-top:0">Acciones post-sesión</p><ul class="lista-icesi">
+          <li>Detener grabación de pantalla y audio</li>
+          <li>Anotar las 3 observaciones más importantes en 10 minutos</li>
+          <li>Registrar en hoja: variante, decisión final, ansiedad en 3 momentos, reacción al timer</li>
+          <li>Subir grabación: <em>P[ID]_[FECHA]_Variante[A/B/C].mp4</em></li>
+          <li>Enviar bono al participante si es digital</li>
+        </ul></div>
+        <div><p class="h4" style="margin-top:0">Señales de saturación</p><div class="alerta alerta--ok"><span class="alerta__titulo">¿Cuándo detener el reclutamiento?</span><p class="alerta__texto">Si en la sesión N los hallazgos del anotador son idénticos a los de N-2 y N-3 (mismos puntos de hesitación, mismas verbalizaciones de ansiedad, misma reacción al timer y al cobro sospechoso), se ha alcanzado saturación. Con 5 sesiones bien ejecutadas es suficiente. Con 8 se garantiza diversidad de perfil bancario y variante.</p></div></div>
+      </div>
+    </div>
+    <div class="section section--tinted">
+      <div class="section-title"><span class="section-title__label">Anexo</span><h2 class="section-title__heading">Hoja de anotaciones del anotador <span class="tag-updated">Actualizada</span></h2><p class="section-title__desc">Una copia por sesión. El anotador NO hace preguntas — solo observa y registra.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Campo</th><th>Valor a registrar</th></tr></thead><tbody>
+        <tr><td>ID participante</td><td>P__ (correlativo)</td></tr>
+        <tr><td>Fecha y hora</td><td>__ / __ / 2026 · __:__</td></tr>
+        <tr><td>Perfil bancario</td><td>A (Nequi) / B (Bancolombia) / C (Davivienda)</td></tr>
+        <tr><td>Variante prototipo</td><td>A (control + timer) / B (velocidad + timer) / C (control + persistente)</td></tr>
+        <tr><td>Día habitual de pago (B6)</td><td>__ del mes / No tiene día fijo</td></tr>
+        <tr><td>Modalidad</td><td>Presencial / Remota</td></tr>
+        <tr class="row--highlight"><td><strong>Ansiedad base (W)</strong></td><td>__ / 7</td></tr>
+        <tr class="row--highlight"><td><strong>Ansiedad post-detalle (T2)</strong></td><td>__ / 7</td></tr>
+        <tr class="row--highlight"><td><strong>Ansiedad post-reversión (T3)</strong></td><td>__ / 7</td></tr>
+        <tr><td>SEQ Tarea 1</td><td>__ / 7</td></tr>
+        <tr><td>SEQ Tarea 2</td><td>__ / 7</td></tr>
+        <tr><td>SEQ Tarea 4 (cobro sospechoso)</td><td>__ / 7</td></tr>
+        <tr><td>Decisión en T2</td><td>Aprobó / Rechazó / Abandonó</td></tr>
+        <tr><td>Decisión en T4 (cobro sospechoso)</td><td>Aprobó / Rechazó / Detectó inconsistencia</td></tr>
+        <tr><td>Tiempo en pantalla de detalle T2</td><td>__ seg</td></tr>
+        <tr class="row--highlight"><td><strong>¿Mencionó el timer espontáneamente?</strong></td><td>Sí / No — ¿Qué dijo textual?: " "</td></tr>
+        <tr class="row--highlight"><td><strong>¿Verbalizó querer esperar a su día de pago?</strong></td><td>Sí / No — ¿Qué dijo textual?: " "</td></tr>
+        <tr class="row--highlight"><td><strong>Tiempo restante en timer al decidir (T2)</strong></td><td>__ min __ seg [solo variantes A y B]</td></tr>
+        <tr><td>¿Notó la reversión espontáneamente (T3)?</td><td>Sí / No — tiempo desde que apareció: __ seg</td></tr>
+        <tr><td>¿Detectó cobro sospechoso espontáneamente (T4)?</td><td>Sí en __ seg / No</td></tr>
+        <tr><td>Primera señal de alerta en T4</td><td>Nombre / NIT / Dirección / Período / Monto / Ninguna</td></tr>
+        <tr><td>Reacción a C9 (fecha programada)</td><td>Indiferente / Positiva / Muy positiva — verbalizó: " "</td></tr>
+        <tr><td>Orden card sorting C1–C9</td><td>1.__ 2.__ 3.__ 4.__ 5.__ 6.__ 7.__ 8.__ 9.__</td></tr>
+        <tr><td>3 verbalizaciones clave (textual)</td><td>1. " " · 2. " " · 3. " "</td></tr>
+        <tr><td>Principal punto de hesitación</td><td>Pantalla: ________________</td></tr>
+        <tr><td>¿Activaría RtP? (P2)</td><td>Sí / No / Solo para ________________</td></tr>
+        <tr><td>Observación más importante de la sesión</td><td>&nbsp;</td></tr>
+      </tbody></table></div>
+    </div>
+    <hr class="divider--thick">
+    <!-- DOC 2 SCREENER COMERCIOS -->
+    <div class="section" id="com-screener"><div class="divider-label"><span>DOCUMENTO 2 · SCREENER DE RECLUTAMIENTO — COMERCIOS</span></div></div>
+    <div class="section">
+      <div class="doc-header doc-header--comercio"><div class="doc-header__icon">📦</div><div><div class="doc-header__label">Documento 2 de 3 · Screener + Guión</div><div class="doc-header__title">Reclutamiento — Comercios</div><div class="doc-header__sub">Entrevista JTBD · 3–5 participantes · 60 min · H5 H6 H7</div></div><div class="doc-header__meta"><span class="doc-header__meta-label">Hipótesis</span><span class="doc-header__meta-value">H5 · H6 · H7</span></div></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener Comercios · Parte 0</span><h2 class="section-title__heading">Encabezado del formulario</h2></div>
+      <div class="cita"><span class="cita__texto">La Universidad Icesi está realizando una investigación sobre los procesos de cobro digital en empresas de servicios en Colombia. Buscamos personas responsables de la gestión de cartera o medios de pago en empresas con cobros mensuales recurrentes. La participación consiste en una entrevista de 60 minutos. Esta encuesta toma menos de 5 minutos.</span><span class="cita__fuente">[LEER COMO APARECE — no mencionar RtP ni ACH Colombia]</span></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener Comercios · Sección A</span><h2 class="section-title__heading">Perfil de la persona y la empresa</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones</th><th>Acción</th></tr></thead><tbody>
+        <tr><td class="num"><strong>CA1</strong></td><td>¿Cuál es su cargo o rol principal en la empresa?</td><td>• Coordinador/gerente de cartera o billing · • Responsable de medios de pago · • Gerente financiero · • Dueño/CEO · • Otro</td><td><span class="badge badge--orange">Filtro</span> — buscar quien toma decisiones sobre cómo cobrar. Descartar si es solo operativo sin poder de decisión.</td></tr>
+        <tr><td class="num"><strong>CA2</strong></td><td>¿Cuántos clientes con pago mensual recurrente tiene su empresa actualmente?</td><td>• Menos de 50 · • 50–200 · • 200–1.000 · • Más de 1.000</td><td><span class="badge badge--orange">Filtro</span> — <strong>"Menos de 50" = DESCALIFICAR</strong>. Priorizar "200–1.000" y "Más de 1.000".</td></tr>
+        <tr><td class="num"><strong>CA3</strong></td><td>¿Cuál es el sector principal de la empresa?</td><td>• Educación · • Salud y bienestar · • Servicios digitales (streaming, SaaS) · • Administración de propiedades · • Servicios públicos · • Otro</td><td><span class="badge badge--blue">Contexto</span> — registrar para personalizar escenarios. No descalifica.</td></tr>
+        <tr><td class="num"><strong>CA4</strong></td><td>¿La empresa usa actualmente PSE como canal de cobro (recibir pagos)?</td><td>• Sí, es nuestro canal principal · • Sí, entre varios canales · • No usamos PSE</td><td><span class="badge badge--orange">Filtro</span> — <strong>"No usamos PSE" = DESCALIFICAR</strong>. RtP es extensión del ecosistema PSE/Bre-B.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Screener Comercios · Sección B</span><h2 class="section-title__heading">Dolor de cobranza + Capacidad + Conflicto de interés</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Opciones</th><th>Acción</th></tr></thead><tbody>
+        <tr><td class="num"><strong>CB1</strong></td><td>¿Qué porcentaje aproximado de sus clientes NO paga en la fecha esperada cada mes?</td><td>• Menos del 5% · • 5–15% · • 15–30% · • Más del 30%</td><td><span class="badge badge--orange">Filtro</span> — <strong>"Menos del 5%" = DESCALIFICAR</strong>. Sin dolor no aplica RtP. Priorizar "15–30%" y "Más del 30%".</td></tr>
+        <tr><td class="num"><strong>CB2</strong></td><td>¿Cuánto tiempo dedica el equipo a gestión de cartera vencida cada mes?</td><td>• Menos de 4 horas · • 4–20 horas · • 20–80 horas · • Más de 80 horas</td><td><span class="badge badge--blue">Cuantifica dolor</span> — registrar para cálculo de ROI en la entrevista. No descalifica.</td></tr>
+        <tr><td class="num"><strong>CB3</strong></td><td>¿Han perdido clientes por problemas con el flujo de cobro?</td><td>• Sí, frecuente · • Sí, ocasionalmente · • No · • No sé / no lo medimos</td><td><span class="badge badge--blue">Contexto</span> — "Sí, frecuente" indica alta predisposición al cambio. No descalifica.</td></tr>
+        <tr><td class="num"><strong>CC1</strong></td><td>¿Quién toma la decisión de integrar un nuevo medio de pago?</td><td>• Yo mismo/a · • Yo con aprobación de gerencia · • El equipo técnico · • La dirección general</td><td><span class="badge badge--blue">Poder de decisión</span> — priorizar participantes que puedan decidir o influir. No descalifica.</td></tr>
+        <tr><td class="num"><strong>CC2</strong></td><td>¿Trabaja o ha trabajado (últimos 12 meses) en ACH Colombia, PSE, Transfiya o empresa competidora directa?</td><td>• Sí · • No</td><td><span class="badge badge--orange">Conflicto de interés</span> — <strong>Sí = DESCALIFICAR</strong>.</td></tr>
+      </tbody></table></div>
+      <div class="alerta alerta--info" style="margin-top:8px"><span class="alerta__titulo">Árbol de calificación comercios</span><p class="alerta__texto"><strong>Califica:</strong> CA2 ≥ 50 clientes + CA4 = usa PSE + CB1 ≥ 5% abandono + CC2 = No. <strong>Perfil prioritario:</strong> CA2 ≥ 200 + CB1 ≥ 15% + CA3 = educación / servicios digitales / administración de propiedades + CC1 = decide solo o con gerencia.</p></div>
+    </div>
+    <hr class="divider--thick">
+
+    <!-- DOC 2 GUIÓN COMERCIOS -->
+    <div class="section" id="com-guion"><div class="divider-label"><span>DOCUMENTO 2 · GUIÓN DE ENTREVISTA JTBD — COMERCIOS (USO EXCLUSIVO DEL INVESTIGADOR)</span></div></div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión Comercios · Pre-entrevista</span><h2 class="section-title__heading">Preparación y encuadre</h2></div>
+      <div class="grid-2">
+        <div><p class="h4" style="margin-top:0">Materiales a preparar</p><ul class="lista-icesi">
+          <li>Calculadora de ROI (hoja o digital): campos para % abandono, número de clientes, monto promedio mensualidad</li>
+          <li>One-pager del concepto RtP (descripción funcional del flujo sin mencionar Bre-B ni ACH)</li>
+          <li>Diagrama simplificado: comercio solicita → cliente notificado → aprueba → dinero llega</li>
+          <li>Formulario de consentimiento y grabadora de audio</li>
+        </ul></div>
+        <div><div class="alerta alerta--info"><span class="alerta__titulo">Tres metas concretas de la entrevista</span><p class="alerta__texto">(1) Cuantificar el dolor de cobranza en COP para calcular el ROI de RtP. (2) Descubrir si el comercio tiene visibilidad sobre la cobertura de llaves Bre-B de sus clientes. (3) Identificar si el participante estaría dispuesto a hacer una solicitud formal a su banco para priorizar la implementación.</p></div></div>
+      </div>
+      <div class="cita" style="margin-top:8px"><span class="cita__texto">"Hola [NOMBRE], gracias por su tiempo. Somos investigadores de la Universidad Icesi y estamos estudiando los procesos de cobro digital en empresas de servicios colombianas. No estamos evaluando su empresa ni vendiendo nada — queremos entender cómo funciona el proceso de cobro hoy y qué mejoraría. No hay respuestas correctas o incorrectas."</span><span class="cita__fuente">Investigador — leer al inicio. Solicitar consentimiento para grabación.</span></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión Comercios · Bloque 1</span><h2 class="section-title__heading">El proceso de cobro actual <span class="badge badge--gray">15 min</span></h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta [HACER AL ENTREVISTADO]</th><th>Qué observar / anotar</th><th>Sondeos</th></tr></thead><tbody>
+        <tr><td class="num"><strong>B1.1</strong></td><td>"Descríbame el proceso completo de cobro de una mensualidad — desde que se genera la factura hasta que el dinero entra a la cuenta."</td><td>Número de pasos, canales usados, actores involucrados</td><td>"¿Cuántas personas del equipo intervienen?" / "¿Hay pasos manuales que podrían eliminarse?"</td></tr>
+        <tr><td class="num"><strong>B1.2</strong></td><td>"¿Cuáles son los pasos que más fricción le generan a usted o a su equipo?"</td><td>Puntos de quiebre, desperdicio de tiempo, sistemas que fallan</td><td>"¿Con qué frecuencia ocurre eso?" / "¿Tienen alguna métrica de cuánto cuesta ese problema?"</td></tr>
+        <tr><td class="num"><strong>B1.3</strong></td><td>"¿Cómo mide hoy el éxito de su proceso de cobranza?"</td><td>Métricas usadas (% recaudo, días de cartera, costo de cobranza)</td><td>"¿Tiene una meta para el mes en términos de % de recaudo?" / "¿Cómo compara con períodos anteriores?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión Comercios · Bloque 2</span><h2 class="section-title__heading">Cuantificación del dolor — Calculadora de ROI <span class="badge badge--gray">10 min</span></h2></div>
+      <div class="highlight-box" style="margin-bottom:12px"><span class="highlight-box__label">Instrucción al investigador</span><span class="highlight-box__texto">Completar la calculadora de ROI en tiempo real con los datos del participante. Al final, mostrarle el resultado: "Entonces si redujéramos su tasa de abandono del X% al 8%, eso representaría [COP] adicionales en flujo de caja mensual. ¿Eso es correcto?" — La mayoría valida o ajusta el número, generando un compromiso mental con el problema.</span></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Dato a capturar</th><th>Sondeos</th></tr></thead><tbody>
+        <tr><td class="num"><strong>B2.1</strong></td><td>"Del total de sus clientes activos, ¿qué porcentaje no paga en la fecha prevista cada mes?"</td><td>% abandono actual — base del cálculo</td><td>"¿Ese número ha cambiado en el último año?" / "¿Hay meses peores que otros?"</td></tr>
+        <tr><td class="num"><strong>B2.2</strong></td><td>"De esos que no pagan a tiempo, ¿cuántos terminan pagando después de gestión, y cuántos se van definitivamente?"</td><td>% recuperación vs. % churn real por problema de cobro</td><td>"¿Cuánto tiempo después pagan?" / "¿Hay un canal de cobranza que funcione mejor?"</td></tr>
+        <tr><td class="num"><strong>B2.3</strong></td><td>"¿Cuántas horas-persona mensuales dedica el equipo a gestión de cartera vencida — llamadas, WhatsApp, emails?"</td><td>Costo operativo de cobranza en horas</td><td>"¿Hay una persona dedicada full-time?" / "¿Ese tiempo podría liberarse para otras tareas?"</td></tr>
+        <tr><td class="num"><strong>B2.4</strong></td><td>"¿Han calculado cuánto les cuesta operativamente un cliente que no paga y luego se va?"</td><td>LTV perdido por churn causado por fricción en el cobro</td><td>"¿Ese número es fácil de recuperar?" / "¿Cuánto cuesta adquirir un nuevo cliente?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión Comercios · Bloque 3</span><h2 class="section-title__heading">Introducción del concepto RtP <span class="badge badge--gray">20 min</span></h2><p class="section-title__desc">Mostrar el one-pager y el diagrama de flujo al inicio. No nombrar Bre-B hasta que el entrevistado pregunte.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Qué observar</th><th>Sondeos</th></tr></thead><tbody>
+        <tr><td class="num"><strong>B3.1</strong></td><td>"[Entregar one-pager] Esto es una funcionalidad que permite a su empresa enviar una solicitud de pago directamente a la app bancaria de su cliente. El cliente recibe una notificación, la aprueba con huella, y el dinero llega de inmediato. ¿Qué piensa?"</td><td>Reacción inicial — entusiasmo, escepticismo, preguntas inmediatas. La primera pregunta espontánea es el dato más valioso.</td><td>No intervenir durante la primera reacción. Escuchar.</td></tr>
+        <tr><td class="num"><strong>B3.2</strong></td><td>"¿Qué necesitaría saber sobre su base de clientes para evaluar si esto vale la pena para usted?"</td><td>¿Menciona espontáneamente la cobertura de llaves? ¿O focaliza en precio o integración?</td><td>"¿Tiene idea de cuántos de sus clientes usan Nequi, Bancolombia o Davivienda?" / "¿Podría saber ese dato hoy?"</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>B3.3</strong></td><td><strong>"Para que esto funcione, su cliente debe tener registrada una llave bancaria en el sistema. ¿Sabe usted cuántos de sus clientes actuales la tienen registrada?"</strong></td><td>Brecha de cobertura central. Anotar si el entrevistado: (a) no sabía que existía esa llave, (b) sabe que existe pero no tiene el dato, (c) tiene el dato.</td><td>"Si no lo sabe, ¿cómo lo averiguaría?" / "¿Eso sería una barrera para empezar?" / "¿Qué necesitaría ACH o el banco para darle ese dato?"</td></tr>
+        <tr><td class="num"><strong>B3.4</strong></td><td>"¿Qué pasaría si usted envía la solicitud de pago y su cliente no tiene esa llave registrada? ¿Qué esperaría que ocurriera?"</td><td>Expectativas sobre el manejo del error. ¿Esperan notificación automática? ¿Flujo de fallback a PSE?</td><td>"¿Eso sería un problema operativo para usted?" / "¿Cómo lo manejaría?"</td></tr>
+        <tr><td class="num"><strong>B3.5</strong></td><td>"Si uno de sus clientes dice que no autorizó ese cobro o que fue un error, ¿quién respondería ante él — usted, el banco o la plataforma?"</td><td>Comprensión de la cadena de responsabilidad. ¿Hay ansiedad?</td><td>"¿Ese riesgo cambiaría su decisión?" / "¿Qué necesitaría que dijera el contrato?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Guión Comercios · Bloque 4</span><h2 class="section-title__heading">Condición de adopción <span class="badge badge--gray">15 min</span></h2></div>
+      <div class="alerta alerta--info"><span class="alerta__titulo">Objetivo de este bloque</span><p class="alerta__texto">Identificar si este comercio estaría dispuesto a hacer una solicitud formal a su banco. Según el usuario sintético Sandra (nodo), 3 comercios con solicitud formal son suficientes para que un banco priorice la implementación. Al final del bloque, preguntar directamente si firmaría una carta de interés.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta</th><th>Qué observar</th><th>Sondeos</th></tr></thead><tbody>
+        <tr><td class="num"><strong>B4.1</strong></td><td>"¿Qué tendría que existir para que [EMPRESA] integrara esto en los próximos seis meses?"</td><td>Condiciones declaradas: precio, cobertura, documentación, garantías</td><td>"¿Hay alguna condición innegociable?"</td></tr>
+        <tr><td class="num"><strong>B4.2</strong></td><td>"¿Procesa usted con algún banco que también es su cliente corporativo?"</td><td>¿Tiene una relación comercial preexistente con Bancolombia, Davivienda, Nequi?</td><td>"¿Esa relación influiría en si adoptaría un producto que ese banco tiene que habilitar primero?"</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>B4.3</strong></td><td><strong>"¿Estaría dispuesto/a a enviarle una carta de interés a su banco diciéndole que quiere que prioricen esta funcionalidad, si ACH Colombia le facilita el texto?"</strong></td><td>Un "sí" aquí activa la condición de adopción del nodo (Sandra necesita 3 comercios).</td><td>"¿Qué necesitaría que dijera esa carta?" / "¿Le preocuparía algo al hacerlo?"</td></tr>
+        <tr><td class="num"><strong>B4.4</strong></td><td>"¿Con qué tipo de cobros empezaría? ¿Cuáles aplicaría primero y cuáles esperaría?"</td><td>Priorización de casos de uso por riesgo percibido</td><td>"¿Hay cobros que nunca aplicaría por este canal?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section section--tinted">
+      <div class="section-title"><span class="section-title__label">Anexo Comercios</span><h2 class="section-title__heading">Calculadora de ROI — completar durante la entrevista</h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos"><thead><tr><th>Variable</th><th>Dato del participante</th><th>Cálculo</th></tr></thead><tbody>
+        <tr><td>Total clientes activos con pago mensual</td><td>________</td><td rowspan="5" style="vertical-align:middle;font-size:13px;line-height:1.8"><strong>ROI mensual estimado:</strong><br>(Clientes × % abandono actual × monto promedio)<br>−<br>(Clientes × 8% abandono estimado × monto promedio)<br>=<br><strong>COP adicionales en flujo de caja mensual</strong></td></tr>
+        <tr><td>% clientes que no pagan a tiempo (B2.1)</td><td>________%</td></tr>
+        <tr><td>Monto promedio mensualidad</td><td>$ ________</td></tr>
+        <tr><td>Horas-persona mensuales en cobranza (B2.3)</td><td>________ horas</td></tr>
+        <tr><td>Costo hora-persona promedio</td><td>$ ________</td></tr>
+        <tr class="row--highlight"><td><strong>ROI mensual estimado (reducción al 8%)</strong></td><td colspan="2"><strong>$ ________</strong></td></tr>
+        <tr><td>¿Dispuesto a carta de interés al banco? (B4.3)</td><td colspan="2">Sí / No / Condicional — condición: ________________</td></tr>
+        <tr><td>Banco principal del entrevistado</td><td colspan="2">________________</td></tr>
+      </tbody></table></div>
+    </div>
+    <hr class="divider--thick">
+    <!-- DOC 3 CO-DISEÑO ENTIDADES -->
+    <div class="section" id="nodo-guion"><div class="divider-label"><span>DOCUMENTO 3 · GUÍA DE CO-DISEÑO — ENTIDADES FINANCIERAS (NODOS)</span></div></div>
+    <div class="section">
+      <div class="doc-header doc-header--nodo"><div class="doc-header__icon">🏦</div><div><div class="doc-header__label">Documento 3 de 3 · Co-diseño</div><div class="doc-header__title">Sesión con Product Leads — Entidades Financieras</div><div class="doc-header__sub">Co-diseño estratégico · 2–4 participantes · 90 min · Reclutamiento directo vía equipo comercial ACH</div></div><div class="doc-header__meta"><span class="doc-header__meta-label">Objetivo</span><span class="doc-header__meta-value">4 condiciones de adopción</span></div></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Contexto</span><h2 class="section-title__heading">Este no es un test — es una negociación</h2></div>
+      <div class="alerta alerta--info"><span class="alerta__titulo">Diferencia fundamental con los otros dos documentos</span><p class="alerta__texto">El Doc 1 y el Doc 2 son instrumentos de investigación — el investigador observa y aprende. El Doc 3 es una sesión de co-diseño — ACH Colombia y la entidad trabajan juntos para definir las condiciones de un piloto. El investigador no es neutral: viene con evidencia (pagadores y comercios) y con una propuesta de valor. El objetivo no es entender el problema — ya lo sabemos. El objetivo es llegar a compromisos concretos.</p></div>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="kpi-card kpi-card--tint-purple"><span class="kpi-card__label">Participantes ideales</span><span class="kpi-card__value" style="font-size:14px">Product Lead + 1 técnico</span><span class="kpi-card__desc">Quien decide el roadmap + quien estima el esfuerzo de integración. Sin ambos, la sesión no puede llegar a compromisos vinculantes.</span></div>
+        <div class="kpi-card kpi-card--tint-orange"><span class="kpi-card__label">Reclutamiento</span><span class="kpi-card__value" style="font-size:14px">Vía comercial ACH</span><span class="kpi-card__desc">Priorizar Bancolombia, Davivienda, Nequi. Luego bancos regionales. Presentar como sesión estratégica, no como research.</span></div>
+        <div class="kpi-card kpi-card--tint-blue"><span class="kpi-card__label">Materiales</span><span class="kpi-card__value" style="font-size:14px">Evidencia + Propuesta</span><span class="kpi-card__desc">Resumen hallazgos pagadores, ROI de comercios, propuesta de 4 condiciones, borrador carta de intención.</span></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Pre-sesión</span><h2 class="section-title__heading">Checklist de preparación</h2></div>
+      <div class="grid-2">
+        <div><p class="h4" style="margin-top:0">Materiales a llevar</p><ul class="lista-icesi">
+          <li>Resumen 1 pág: hallazgos pagadores (tasas de adopción con/sin intervenciones)</li>
+          <li>Resumen 1 pág: hallazgos comercios (ROI calculado con datos reales del sector)</li>
+          <li>Diagrama del flujo técnico propuesto (del PDF de ACH)</li>
+          <li>Borrador de las 4 condiciones de adopción para co-diseñar</li>
+          <li>Borrador de carta de intención para piloto (lista para firmar o ajustar)</li>
+          <li>Propuesta de arquitectura de compatibilidad con caso regulado Banrep</li>
+          <li>Cartas de interés de comercios (si se obtuvieron en Doc 2) — llevar si el comercio es cliente del banco</li>
+        </ul></div>
+        <div><p class="h4" style="margin-top:0">Objetivo de la sesión</p><ul class="lista-icesi">
+          <li>Compartir evidencia de demanda: pagadores y comercios quieren esto</li>
+          <li>Negociar las 4 condiciones de adopción identificadas con el usuario sintético Sandra</li>
+          <li>Llegar a un compromiso concreto: ¿piloto en Q3 o Q4? ¿bajo qué condiciones?</li>
+          <li>Si no hay acuerdo: identificar exactamente qué falta para que el banco lo priorice</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Fase 1</span><h2 class="section-title__heading">Estado actual del banco con Bre-B <span class="badge badge--gray">20 min</span></h2><p class="section-title__desc">Entender dónde está el banco hoy antes de presentar nada. Esta información calibra el pitch.</p></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta [HACER AL PRODUCT LEAD]</th><th>Qué escuchar</th><th>Implicación para el pitch</th></tr></thead><tbody>
+        <tr><td class="num"><strong>F1.1</strong></td><td>"¿Dónde está hoy [BANCO] en términos de Bre-B y casos de uso de pago inmediato?"</td><td>¿Están conectados? ¿Qué casos tienen activos? ¿Hay deuda técnica?</td><td>Si están bien conectados → enfocarse en el caso de negocio. Si tienen deuda técnica → ofrecer acompañamiento técnico primero.</td></tr>
+        <tr><td class="num"><strong>F1.2</strong></td><td>"¿Qué necesita para que una nueva funcionalidad entre a la hoja de ruta? ¿Cómo se prioriza en su banco?"</td><td>¿Criterios son comerciales, regulatorios o técnicos? ¿Qué peso tiene cada uno?</td><td>Si es comercial → mostrar ROI de comercios. Si es regulatorio → mostrar alineación Banrep. Si es técnico → mostrar el SDK y la documentación.</td></tr>
+        <tr><td class="num"><strong>F1.3</strong></td><td>"¿Cuál es el mayor riesgo que ve en habilitar notificaciones de cobro de terceros dentro de su app?"</td><td>¿Es riesgo de fraude, costo técnico, responsabilidad legal, experiencia del cliente?</td><td>La respuesta determina qué condición de adopción hay que resolver primero.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Fase 2</span><h2 class="section-title__heading">Presentación de evidencia de demanda <span class="badge badge--gray">20 min</span></h2></div>
+      <div class="cita"><span class="cita__texto">"Antes de hablar de la propuesta, quiero mostrarle lo que encontramos investigando con pagadores y comercios reales. No son proyecciones — son datos de sesiones de investigación y entrevistas con empresas que ya usan PSE como canal de cobro."</span><span class="cita__fuente">Facilitador — entregar los dos resúmenes de una página al inicio de esta fase</span></div>
+      <div class="tabla-wrapper" style="margin-top:12px"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>Material a compartir</th><th>Punto central</th><th>Pregunta de sondeo</th></tr></thead><tbody>
+        <tr><td>Resumen pagadores: tasas de adopción con y sin intervenciones</td><td>"Con el canal bancario habilitado, la probabilidad de adopción sube de 27% a 68%. Sin él, ninguna otra intervención de diseño es suficiente."</td><td>"¿Eso cambia algo en cómo ven el riesgo de habilitarlo?"</td></tr>
+        <tr><td>Resumen comercios: ROI calculado con datos reales</td><td>"Los comercios con los que hablamos calculan un ROI de entre 12M y 25M COP mensuales si la tasa de abandono baja del 18% al 8%."</td><td>"¿Tienen comercios en su base que se ajusten a ese perfil?"</td></tr>
+        <tr class="row--highlight"><td><strong>Cartas de interés de comercios</strong> (si se obtuvieron en Doc 2)</td><td>"Estos comercios ya le están pidiendo a su banco que priorice esto. Algunos podrían ser sus propios clientes corporativos."</td><td>"¿Reconocen alguno de estos nombres como cliente suyo?"</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Fase 3</span><h2 class="section-title__heading">Co-diseño de las 4 condiciones de adopción <span class="badge badge--gray">35 min</span></h2><p class="section-title__desc">Para cada condición: presentar el borrador de ACH, escuchar la respuesta del banco, negociar. Estas 4 condiciones emergieron del usuario sintético Sandra (Product Lead, Banco Alianza regional).</p></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="cond-item"><div class="cond-num" style="background:var(--c-blue)">1</div><div class="cond-body"><div class="cond-title">Demanda comercial — tres comercios con solicitud formal</div><div class="cond-desc"><strong>Pregunta al banco:</strong> "¿Cuántos comercios de su base necesitarían solicitar formalmente este servicio para que lo prioricen en el roadmap?" Si ACH tiene cartas de interés de comercios que ya son clientes del banco, presentarlas aquí. Negociar si una carta colectiva de ACH con los comercios firmantes sería equivalente a solicitudes individuales.</div></div></div>
+        <div class="cond-item"><div class="cond-num" style="background:var(--c-orange)">2</div><div class="cond-body"><div class="cond-title">Política de disputas — ¿quién responde ante el cliente?</div><div class="cond-desc"><strong>Pregunta al banco:</strong> "¿Qué necesitaría que dijera el contrato con ACH para que su área jurídica apruebe la habilitación?" Presentar el borrador de política de ACH. Escuchar qué cláusulas son bloqueantes. Objetivo: llegar a un acuerdo sobre el texto antes de salir, o al menos identificar los dos o tres puntos que requieren revisión legal.</div></div></div>
+        <div class="cond-item"><div class="cond-num" style="background:var(--c-purple)">3</div><div class="cond-body"><div class="cond-title">Compatibilidad con caso regulado Banrep</div><div class="cond-desc"><strong>Pregunta al banco:</strong> "¿Qué garantía necesitarían de ACH para no hacer la integración dos veces?" Si ACH puede comprometer que cualquier cambio regulatorio es absorbido por ellos (no por el banco), este punto puede resolverse rápido. Si no, explorar qué nivel de documentación técnica reduce el riesgo percibido.</div></div></div>
+        <div class="cond-item"><div class="cond-num" style="background:var(--c-green)">4</div><div class="cond-body"><div class="cond-title">Acompañamiento técnico — reducir el costo de integración</div><div class="cond-desc"><strong>Pregunta al banco / técnico:</strong> "Si ACH provee un SDK certificado, documentación de casos de excepción y ambiente de pruebas estable, ¿cómo cambia el estimado de esfuerzo?" Pedir al técnico que estime el esfuerzo en sprints o semanas. Si baja de 3 meses a 6 semanas, cambia la posibilidad de entrar al roadmap del próximo trimestre.</div></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="section-title__label">Doc 3 · Fase 4</span><h2 class="section-title__heading">Compromisos y próximos pasos <span class="badge badge--gray">15 min</span></h2></div>
+      <div class="tabla-wrapper"><table class="tabla-datos tabla-datos--striped"><thead><tr><th>#</th><th>Pregunta [HACER AL PRODUCT LEAD]</th><th>Resultado esperado</th></tr></thead><tbody>
+        <tr><td class="num"><strong>F4.1</strong></td><td>"Dado todo lo que conversamos hoy, ¿en qué trimestre podría entrar esto al roadmap de su banco?"</td><td>Compromiso de fecha aproximada o lista de condiciones que deben cumplirse antes.</td></tr>
+        <tr><td class="num"><strong>F4.2</strong></td><td>"¿Estarían dispuestos a participar en un piloto cerrado con 3–5 comercios antes del lanzamiento general?"</td><td>Sí / No / Condicional. Si condicional, anotar qué falta.</td></tr>
+        <tr class="row--highlight"><td class="num"><strong>F4.3</strong></td><td><strong>"¿Podríamos acordar hoy un próximo paso concreto — por ejemplo, una reunión técnica en las próximas dos semanas para revisar el SDK?"</strong></td><td>Objetivo mínimo de la sesión: salir con una reunión técnica agendada. Eso indica que el banco está en modo activo, no en modo esperar-regulación.</td></tr>
+      </tbody></table></div>
+      <div class="alerta alerta--ok" style="margin-top:12px">
+        <span class="alerta__titulo">Criterios de éxito de la sesión</span>
+        <p class="alerta__texto"><strong>Éxito pleno:</strong> El banco acuerda entrar al roadmap Q3/Q4 + firma carta de intención de piloto. <strong>Éxito parcial:</strong> El banco agenda reunión técnica + identifica las 2–3 condiciones específicas que deben resolverse antes de comprometerse. <strong>Resultado mínimo aceptable:</strong> ACH sale sabiendo exactamente qué necesita resolver para que ese banco se mueva. Cualquier resultado más difuso indica que la sesión fue demasiado temprana o los participantes no tenían el poder de decisión correcto.</p>
+      </div>
+    </div>
+    <div class="section section--tinted">
+      <div class="section-title"><span class="section-title__label">Notas del facilitador</span><h2 class="section-title__heading">Lo que Sandra reveló que nadie más diría directamente</h2></div>
+      <ul class="lista-icesi">
+        <li><strong>El canal más efectivo para mover a un banco no es ACH — son los comercios que ya tienen relación con ese banco.</strong> Si antes de la sesión ACH tiene cartas de interés de comercios que son clientes del banco, llevarlas a la reunión vale más que cualquier presentación de producto.</li>
+        <li><strong>La política de "esperar regulación Banrep" es institucional, no personal.</strong> El product lead puede estar interesado pero bloqueado por esa política. Hay que resolver el argumento regulatorio antes de que ellos puedan moverse, no después.</li>
+        <li><strong>Dos reuniones valen más que una presentación perfecta.</strong> El objetivo de la primera sesión no es el sí — es la reunión técnica. El sí llega en la segunda.</li>
+        <li><strong>El banco no percibe a ACH como partner estratégico — lo percibe como proveedor de infraestructura.</strong> El tono de la sesión debe ser de aliado de negocio, no de proveedor presentando un nuevo servicio.</li>
+        <li><strong>No activar el argumento de urgencia antes de tiempo.</strong> Si el banco percibe que ACH necesita este acuerdo más de lo que el banco lo necesita a ellos, pierde poder negociador. Llegar con evidencia de demanda comercial invierte esa asimetría.</li>
+      </ul>
+    </div>
+
+  </div><!-- /reporte-body -->
+
+  <div class="report-footer">
+    <img src="../img/Icesi_white.svg" alt="Universidad Icesi" style="height:28px">
+    <span class="report-footer__info">Instrumentos de Research RtP · Pagadores · Comercios · Entidades · ACH Colombia × INNLAB · Mayo 2026 · Uso exclusivo del equipo investigador</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div>
+</body>
+</html>

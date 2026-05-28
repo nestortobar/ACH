@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RtP — Usuarios Sintéticos · Análisis Completo de las Tres Puntas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../estilos.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    :root { --radius: 12px; --space-xl: 60px; }
+
+    /* ─── NAV STICKY ─── */
+    .rtp-nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--c-blue);
+      display: flex; align-items: center; gap: 0;
+      border-bottom: 3px solid rgba(255,255,255,.15);
+    }
+    .rtp-nav__item {
+      padding: 12px 20px; font-size: 12px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(255,255,255,.6); text-decoration: none;
+      border-right: 1px solid rgba(255,255,255,.12);
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    .rtp-nav__item:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .rtp-nav__item.active { background: rgba(255,255,255,.15); color: #fff; }
+    .rtp-nav__badge {
+      display: inline-block; width: 18px; height: 18px; border-radius: 50%;
+      font-size: 10px; font-weight: 800; line-height: 18px; text-align: center;
+      margin-right: 7px; vertical-align: middle;
+    }
+
+    /* ─── HEADER ─── */
+    .report-header__logo img { height: 30px; }
+    .report-header__kpi-bar {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,.15);
+      border-radius: var(--radius); overflow: hidden;
+      margin-top: var(--space-lg); padding-top: 0; border-top: none;
+    }
+    .report-header__kpi-item { background: rgba(255,255,255,.08); padding: 16px 20px; flex: unset; border-right: none; margin-right: 0; }
+    .report-header__kpi-value { font-size: 26px; }
+    .report-header__subtitle { color: rgba(255,255,255,.96); text-shadow: 0 1px 2px rgba(0,0,0,.22); max-width: 600px; line-height: 1.5; }
+    .report-footer img { height: 24px; opacity: .8; }
+    .section-title__heading { font-size: clamp(20px, 2.5vw, 28px); }
+    .section-title__label--persona-section { margin-top: 40px; }
+    .kpi-card__value { font-size: 28px; }
+
+    /* ─── USER BANNER ─── */
+    .user-banner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 24px; border-radius: var(--radius);
+      margin-bottom: 4px;
+    }
+    .user-banner--pagador { background: linear-gradient(135deg, #3a3acc 0%, #5454e9 100%); }
+    .user-banner--comercio { background: linear-gradient(135deg, #b05020 0%, #e9683b 100%); }
+    .user-banner--nodo     { background: linear-gradient(135deg, #5f3fc4 0%, #865cf0 100%); }
+    .user-banner__avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,.2); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .user-banner__role { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+    .user-banner__name { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.1; margin: 3px 0; }
+    .user-banner__desc { font-size: 13px; color: rgba(255,255,255,.8); line-height: 1.4; }
+    .user-banner__tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .user-banner__tag { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 20px; background: rgba(255,255,255,.18); color: #fff; }
+
+    /* ─── TRAZABILIDAD ─── */
+    .traz-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+    }
+    .traz-ok     { background: #eaf7f0; color: #185F00; }
+    .traz-warn   { background: #fdf0eb; color: #8a3010; }
+    .traz-no     { background: #f4f4f6; color: #88898c; }
+    .traz-key    { background: #5454e9; color: #fff; }
+
+    /* ─── DIÁLOGO ─── */
+    .dialogo { display: flex; flex-direction: column; gap: 10px; }
+    .dialogo p { font-size: 14px; line-height: 1.7; color: #2b2b2b; }
+
+    /* ─── INTENSIDAD ─── */
+    .intensidad-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--c-gray0); }
+    .intensidad-row:last-child { border-bottom: none; }
+    .intensidad-label { width: 110px; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .intensidad-bg { flex: 1; height: 8px; background: var(--c-gray0); border-radius: 4px; overflow: hidden; }
+    .intensidad-fill { height: 100%; border-radius: 4px; }
+    .intensidad-tag { width: 80px; text-align: right; flex-shrink: 0; }
+
+    /* ─── SIMULADOR ─── */
+    .sim-owner { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
+    .sim-owner--ach   { background: #eeeeff; color: #3a3acc; }
+    .sim-owner--nodo  { background: #fdf0eb; color: #8a3010; }
+    .sim-owner--reg   { background: #f4f4f6; color: #55565a; }
+    .sim-meter-box{display:flex;align-items:center;gap:16px;background:var(--c-gray0);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;}
+    .sim-meter-label{font-size:11px;color:var(--c-gray1);white-space:nowrap;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .sim-meter-track{flex:1;height:10px;background:var(--c-gray2);border-radius:5px;overflow:hidden;}
+    .sim-meter-fill{height:100%;border-radius:5px;transition:width .5s ease,background .5s ease;}
+    .sim-meter-pct{font-size:22px;font-weight:800;min-width:56px;text-align:right;transition:color .5s;}
+    .sim-verdict{font-size:12px;min-width:120px;text-align:right;font-weight:700;}
+    .sim-eq{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--c-gray1);margin-bottom:20px;}
+    .sim-eq-group{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;background:var(--c-gray0);}
+    .sim-eq-lbl{font-size:11px;color:var(--c-gray1);}
+    .sim-eq-val{font-size:16px;font-weight:800;transition:all .4s;}
+    .sim-eq-op{font-size:16px;color:var(--c-gray1);}
+    .sim-eq-result{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;transition:background .4s,color .4s;}
+    .sim-forces{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+    .sim-fcard{background:#fff;border:1px solid var(--c-gray2);border-radius:var(--radius);padding:14px 16px;}
+    .sim-fcard-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+    .sim-fcard-name{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .sim-fcard-val{font-size:24px;font-weight:800;transition:all .4s;}
+    .sim-fcard-dir{font-size:11px;color:var(--c-gray1);margin-bottom:8px;}
+    .sim-bar-track{height:6px;background:var(--c-gray0);border-radius:3px;position:relative;overflow:visible;}
+    .sim-bar-fill{height:100%;border-radius:3px;transition:width .5s ease;}
+    .sim-dot{position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;border:2px solid #fff;cursor:default;z-index:2;box-shadow:0 0 0 1.5px #e24b4a;transition:left .5s,background .4s,box-shadow .4s;}
+    .sim-dot.reached{box-shadow:0 0 0 2px #4cb979;}
+    .sim-dot-wrap{position:relative;display:inline-block;}
+    .sim-dot-tip{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--c-gray2);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--c-black);white-space:normal;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:10;width:180px;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+    .sim-dot:hover .sim-dot-tip{opacity:1;}
+    .sim-int-box{background:var(--c-gray0);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;}
+    .sim-int-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-gray1);margin-bottom:12px;}
+    .sim-int-list{display:flex;flex-direction:column;gap:8px;}
+    .sim-int-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#fff;border:1px solid var(--c-gray2);border-radius:10px;cursor:pointer;transition:border-color .2s,background .2s;}
+    .sim-int-item:hover{border-color:var(--c-blue);}
+    .sim-int-item.applied{border-color:#4cb979;background:#eaf7ef;}
+    .sim-int-check{width:18px;height:18px;min-width:18px;border-radius:50%;border:1.5px solid var(--c-gray2);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s;margin-top:2px;font-weight:700;}
+    .sim-int-item.applied .sim-int-check{background:#4cb979;border-color:#4cb979;color:#fff;}
+    .sim-int-body{flex:1;}
+    .sim-int-name{font-size:13px;font-weight:700;color:var(--c-black);margin-bottom:4px;}
+    .sim-int-item.applied .sim-int-name{color:#185F00;}
+    .sim-int-desc{font-size:12px;color:var(--c-gray1);line-height:1.4;}
+    .sim-int-item.applied .sim-int-desc{color:#3B6D11;}
+    .sim-int-delta{font-size:10px;font-weight:700;white-space:nowrap;display:flex;flex-direction:column;gap:3px;align-items:flex-end;padding-top:2px;}
+    .dpill-down{background:#ffeaea;color:#a32d2d;padding:2px 7px;border-radius:100px;}
+    .dpill-up{background:#eaf7ef;color:#185F00;padding:2px 7px;border-radius:100px;}
+    .sim-reset{font-size:12px;color:var(--c-gray1);cursor:pointer;border:1px solid var(--c-gray2);background:transparent;border-radius:8px;padding:5px 16px;display:block;margin:0 auto;}
+    .sim-reset:hover{border-color:var(--c-blue);color:var(--c-blue);}
+    .sim-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--c-black);color:#fff;border-radius:var(--radius);padding:9px 20px;font-size:13px;opacity:0;transition:all .3s;z-index:9999;pointer-events:none;}
+    .sim-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+    /* ─── ADOPCIÓN CONDICIONAL (NODO) ─── */
+    .cond-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; background: #fff; border: 1px solid var(--c-gray2); border-radius: 10px; }
+    .cond-num { width: 26px; height: 26px; min-width: 26px; border-radius: 50%; background: var(--c-purple); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cond-body { flex: 1; }
+    .cond-title { font-size: 14px; font-weight: 700; color: var(--c-black); margin-bottom: 3px; }
+    .cond-desc { font-size: 13px; color: var(--c-gray1); line-height: 1.5; }
+    .cond-met { font-size: 11px; font-weight: 700; }
+    .cond-met--no { color: #a32d2d; }
+    .cond-met--partial { color: #8a3010; }
+
+    .lista-hallazgos li.alerta{flex-direction:row;}
+    .lista-hallazgos li.alerta::before{content:'⚠';}
+
+    @media(max-width:620px){ .sim-forces{grid-template-columns:1fr;} .rtp-nav{overflow-x:auto;} }
+  </style>
+</head>
+<body>
+<div class="reporte">
+
+  <!-- NAV -->
+  <nav class="rtp-nav">
+    <a href="#trazabilidad" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:rgba(255,255,255,.25);color:#fff">↗</span>Trazabilidad</a>
+    <a href="#claudia" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e4eb60;color:#1a1a1a">1</span>Claudia · Pagadora</a>
+    <a href="#felipe" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#e9683b;color:#fff">2</span>Felipe · Comercio</a>
+    <a href="#sandra" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:#865cf0;color:#fff">3</span>Sandra · Nodo</a>
+    <a href="#sintesis" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:rgba(255,255,255,.25);color:#fff">✦</span>Síntesis</a>
+    <a href="#plan" class="rtp-nav__item"><span class="rtp-nav__badge" style="background:rgba(255,255,255,.25);color:#fff">→</span>Plan</a>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="report-header__top">
+      <div class="report-header__logo">
+        <img src="../img/innlab_white.svg" alt="INNLAB">
+      </div>
+      <div class="report-header__meta">
+        <span class="report-header__meta-label">Fecha</span>
+        <span class="report-header__meta-value">Mayo 2026</span>
+        <span class="report-header__meta-label" style="margin-top:6px">Proyecto</span>
+        <span class="report-header__meta-value">Request to Pay — ACH Colombia</span>
+      </div>
+    </div>
+    <div class="report-header__title-block">
+      <span class="report-header__eyebrow">Investigación de Usuario Sintético · Tres Puntas del Ecosistema RtP</span>
+      <h1 class="report-header__title">Análisis Completo:<br>Pagadora · Comercio · Nodo</h1>
+      <p class="report-header__subtitle">Marco JTBD — Cuatro Fuerzas del Progreso. Cubre las tres decisiones de adopción que determinan el éxito del producto: pagador que acepta, comercio que activa y entidad financiera que habilita.</p>
+    </div>
+    <div class="report-header__kpi-bar">
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">3</span>
+        <span class="report-header__kpi-label">Usuarios sintéticos</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">5</span>
+        <span class="report-header__kpi-label">Hipótesis trazadas</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">4</span>
+        <span class="report-header__kpi-label">Condiciones de adopción nodo</span>
+      </div>
+      <div class="report-header__kpi-item">
+        <span class="report-header__kpi-value">2</span>
+        <span class="report-header__kpi-label">Brechas críticas nuevas</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reporte-body">
+
+    <!-- ══════════════════════════════════════
+         SECCIÓN 0: TRAZABILIDAD
+    ══════════════════════════════════════ -->
+    <div class="section" id="trazabilidad">
+      <div class="section-title">
+        <span class="section-title__label">Sección 0</span>
+        <h2 class="section-title__heading">Trazabilidad con el Brief</h2>
+        <p class="section-title__desc">Mapa de cobertura: qué hipótesis del brief responde cada usuario sintético, cuáles confirman, cuáles advierten y cuáles siguen sin responder.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Hipótesis del brief</th>
+              <th>Claudia<br><span style="font-weight:400;opacity:.7">Pagadora</span></th>
+              <th>Felipe<br><span style="font-weight:400;opacity:.7">Comercio</span></th>
+              <th>Sandra<br><span style="font-weight:400;opacity:.7">Nodo</span></th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>H1</strong></td>
+              <td>Comercios con cobros recurrentes necesitan mecanismo que no dependa de que el usuario recuerde pagar</td>
+              <td><span class="traz-chip traz-no">— No aplica</span></td>
+              <td><span class="traz-chip traz-ok">✓ Confirma (18% abandono)</span></td>
+              <td><span class="traz-chip traz-no">— No aplica</span></td>
+              <td><span class="traz-chip traz-ok">✓ Validada</span></td>
+            </tr>
+            <tr>
+              <td><strong>H2</strong></td>
+              <td>Pagadores necesitan flujo transparente y reversible porque notificación push puede generar desconfianza</td>
+              <td><span class="traz-chip traz-ok">✓ Confirma (control &gt; velocidad)</span></td>
+              <td><span class="traz-chip traz-warn">⚠ Lateral (teme quejas)</span></td>
+              <td><span class="traz-chip traz-no">— No aplica</span></td>
+              <td><span class="traz-chip traz-ok">✓ Validada</span></td>
+            </tr>
+            <tr class="row--highlight">
+              <td><strong>H3</strong></td>
+              <td>Entidades necesitan ver tracción entre sus comercios antes de adoptar</td>
+              <td><span class="traz-chip traz-no">— No aplica</span></td>
+              <td><span class="traz-chip traz-warn">⚠ Parcial (presionaría si tuviera ROI)</span></td>
+              <td><span class="traz-chip traz-ok">✓ Confirma ("3 comercios grandes")</span></td>
+              <td><span class="traz-chip traz-key">★ Clave — ver síntesis</span></td>
+            </tr>
+            <tr>
+              <td><strong>H4</strong></td>
+              <td>El flujo propuesto genera menos fricción que el flujo Bre-B estándar</td>
+              <td><span class="traz-chip traz-warn">⚠ Concepto sí, timer 3:59 no</span></td>
+              <td><span class="traz-chip traz-warn">⚠ Brecha: ¿qué pasa sin llave?</span></td>
+              <td><span class="traz-chip traz-no">— Sin datos</span></td>
+              <td><span class="traz-chip traz-warn">⚠ Pendiente prueba real</span></td>
+            </tr>
+            <tr>
+              <td><strong>H5</strong></td>
+              <td>Sin estrategia de adopción de nodos, el servicio quedará limitado como Transfiya</td>
+              <td><span class="traz-chip traz-no">— No aplica</span></td>
+              <td><span class="traz-chip traz-warn">⚠ Depende de que su banco adopte</span></td>
+              <td><span class="traz-chip traz-ok">✓ Confirma (postura "esperar reg.")</span></td>
+              <td><span class="traz-chip traz-ok">✓ Validada con urgencia</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alerta alerta--advertencia">
+        <span class="alerta__titulo">Dos brechas críticas que el brief no anticipaba</span>
+        <p class="alerta__texto"><strong>Brecha 1 (Felipe):</strong> El comercio no sabe si su cliente tiene una llave Bre-B registrada antes de enviar la solicitud. Si la envía y el cliente no tiene llave, el flujo colapsa en silencio. El brief no define cómo resolver esto. <strong>Brecha 2 (Claudia):</strong> El hábito de pago en fechas fijas (día 14 o 29) es incompatible con el timer de 03:59 minutos del flujo propuesto. RtP asume aceptación inmediata; el pagador asume aprobación diferida. Esta tensión requiere una decisión de producto.</p>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         USUARIO 1: CLAUDIA — PAGADORA
+    ══════════════════════════════════════ -->
+    <div id="claudia">
+
+      <div class="user-banner user-banner--pagador">
+        <div class="user-banner__avatar">👩‍💼</div>
+        <div style="flex:1">
+          <div class="user-banner__role">Usuario Sintético 1 · Pagadora del Hogar</div>
+          <div class="user-banner__name">Claudia R., 44 años</div>
+          <div class="user-banner__desc">Administradora de oficina · Bogotá, Cedritos · Responsable de pagos recurrentes del hogar y copropiedad</div>
+          <div class="user-banner__tags">
+            <span class="user-banner__tag">Alta bancarización</span>
+            <span class="user-banner__tag">Actitud cautelosa</span>
+            <span class="user-banner__tag">JTBD: reputación vecinal</span>
+            <span class="user-banner__tag">PSE de memoria</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 1: Perfil -->
+      <div class="section" style="margin-top:32px">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Claudia · Sección 1</span>
+          <h2 class="section-title__heading">Perfil del usuario sintético</h2>
+        </div>
+        <div class="grid-3">
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">Bancarización</span>
+            <span class="kpi-card__value" style="font-size:16px">Alta</span>
+            <span class="kpi-card__desc">Usa la app bancaria casi a diario. Se sabe el flujo PSE de memoria. Paga el 14 o el 29 sin excepción.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-purple">
+            <span class="kpi-card__label">Actitud tecnológica</span>
+            <span class="kpi-card__value" style="font-size:16px">Cautelosa</span>
+            <span class="kpi-card__desc">Desconfía de automatismos financieros. Valora el control sobre la iniciación del pago. PSE le da agencia.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-orange">
+            <span class="kpi-card__label">Job to Be Done real</span>
+            <span class="kpi-card__value" style="font-size:14px;line-height:1.3">Reputación vecinal</span>
+            <span class="kpi-card__desc">No quiere aparecer en la lista de morosos del ascensor. Ese miedo social supera cualquier otro incentivo.</span>
+          </div>
+        </div>
+        <div class="alerta alerta--info">
+          <span class="alerta__titulo">Nota metodológica</span>
+          <p class="alerta__texto">Los usuarios sintéticos no validan las ideas del investigador — las cuestionan. Claudia defiende su hábito actual y cede solo ante argumentos que resuelvan su ansiedad central: control y riesgo de fraude. Claudia representa el <strong>mejor escenario posible</strong> para RtP: pago fijo mensual, monto conocido, incentivo social fuerte. Perfiles con cobros variables o múltiples servicios simultáneos activarían barreras adicionales no exploradas aquí.</p>
+        </div>
+      </div>
+
+      <!-- Sección 2: Entrevista -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Claudia · Sección 2</span>
+          <h2 class="section-title__heading">Transcripción de la entrevista</h2>
+          <p class="section-title__desc">Entrevista semi-estructurada basada en JTBD · Duración estimada: 25 min.</p>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 1 · Apertura y contexto</p>
+          <div class="dialogo">
+            <p><strong>Hola Claudia, ¿quién es el "ministro de hacienda" en tu casa y qué es lo que más te quita tiempo de esa labor?</strong></p>
+            <p>Pues ese ministerio lo manejo yo solita. Lo que más me quita tiempo… ay, pagar la administración del edificio. Toca buscar el recibo, entrar al portal del conjunto, que a veces ni carga, luego lo mandan a uno a PSE, y ahí empieza el drama del banco. La semana pasada tuve que intentarlo tres veces porque el sistema se cayó dos veces. Al final pagué, pero me quedé con ese mal sabor de boca.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 2 · Comportamiento actual y Job Social</p>
+          <div class="dialogo">
+            <p><strong>¿Y si no pagas a tiempo, qué pasa?</strong></p>
+            <p>Pues hay un recargo, claro. Pero lo que de verdad no quiero es que me pongan en esa lista. Aquí en el edificio pegan en el ascensor los nombres de los que deben. Imagínese el señor de arriba viéndome ahí. No, eso sí que no. Entonces yo pago siempre antes del cinco.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 3 · Introducción del concepto RtP</p>
+          <div class="dialogo">
+            <p><strong>Imagina que en vez de entrar a todos esos portales, simplemente te llegara una notificación de tu banco que diga: "La administración del edificio te está cobrando 80.000. ¿Autorizas el pago?" Y tú solo pones la huella y listo.</strong></p>
+            <p>Suena bien… pero espere. ¿Eso quiere decir que cualquiera me puede mandar un cobro así?</p>
+            <p><strong>Solo las empresas o servicios que tú hayas autorizado previamente.</strong></p>
+            <p>Ahhh, bueno. Eso cambia las cosas. Porque mi miedo es que llegue un cobro y yo lo apruebe creyendo que es del edificio y resulta que no. Pero si yo controlo quién me puede cobrar… pues sí, suena a un alivio.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 4 · Ansiedades y requisitos de confianza</p>
+          <div class="dialogo">
+            <p><strong>¿Qué tendría que tener esa notificación para que confiaras en que es legítima?</strong></p>
+            <p>Que se vea el nombre exacto del conjunto, no un nombre raro. Que llegue desde la app de mi banco, no por WhatsApp ni por SMS. Y que yo pueda ver el detalle antes de aprobar: el mes que estoy pagando, el valor exacto. Si todo eso cuadra, pues uno puede fiarse.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 5 · Diferenciación con débito automático</p>
+          <div class="dialogo">
+            <p><strong>¿Y esto que te estoy contando, el botón de solicitud de pago, te parece diferente al débito automático?</strong></p>
+            <p>Sí, sí es diferente. En el débito le dan permiso a la empresa de sacarle la plata cuando quiera. Aquí en cambio me están preguntando a mí primero. <strong>Ellos piden y yo decido.</strong> Eso me gusta más.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 6 · Disposición a adoptar y fecha de pago</p>
+          <div class="dialogo">
+            <p><strong>¿Y cuándo usarías esto? ¿Lo aprobarías en el momento que llegara la notificación?</strong></p>
+            <p>Depende. Yo pago siempre el 14 o el 29, que ya sé que cayó la quincena. Si la notificación me llega el 3 del mes, la voy a ignorar hasta el 14. ¿Eso se puede? ¿O se vence?</p>
+            <p><strong>El flujo actual tiene un límite de tiempo de unos cuatro minutos para responder.</strong></p>
+            <p>Ay no, eso sí que no. Si me llega cuando no tengo plata y tengo cuatro minutos para decidir, voy a rechazarla por pánico y ahí sí termino en la lista. Eso no funciona así para mí.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 3: Cuatro Fuerzas -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Claudia · Sección 3</span>
+          <h2 class="section-title__heading">Análisis — Las Cuatro Fuerzas del Progreso</h2>
+        </div>
+        <div class="grid-2">
+          <div class="kpi-card kpi-card--orange">
+            <span class="kpi-card__label">🔴 Push — La empuja a cambiar</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">El portal PSE se cayó tres veces en una semana. El proceso implica 5 pasos, OTPs con límite de tiempo y reinicios desde cero. La fricción es real y repetida.</p>
+            <span class="badge badge--orange" style="margin-top:8px">Intensidad: Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--green">
+            <span class="kpi-card__label">🟢 Pull — La atrae la solución</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">La idea del pago "autorizado por mí sin buscar portales" genera alivio mental. Pull es <strong>condicional</strong>: solo funciona si el control percibido está garantizado.</p>
+            <span class="badge badge--green" style="margin-top:8px">Intensidad: Media</span>
+          </div>
+          <div class="kpi-card kpi-card--purple">
+            <span class="kpi-card__label">🟡 Ansiedad — Sus miedos</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Miedo a approbar cobros falsos (phishing por notificación). Miedo al spam de cobros no solicitados. Fuerza más intensa de la entrevista — supera el dolor del proceso actual.</p>
+            <span class="badge badge--purple" style="margin-top:8px">Intensidad: Muy Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">⚪ Hábito — Su inercia actual</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Lleva años con PSE. Paga en días fijos (14 o 29). El hábito no se rompe con argumentos de velocidad — requiere resolver la ansiedad primero.</p>
+            <span class="badge badge--gray" style="margin-top:8px">Intensidad: Alta</span>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:16px">Mapa de intensidad de fuerzas</p>
+          <div class="intensidad-row"><span class="intensidad-label">🔴 Push</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:80%;background:var(--c-orange)"></div></div><span class="intensidad-tag"><span class="badge badge--orange">Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟢 Pull</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:55%;background:var(--c-green)"></div></div><span class="intensidad-tag"><span class="badge badge--green">Media</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟡 Ansiedad</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:95%;background:var(--c-purple)"></div></div><span class="intensidad-tag"><span class="badge badge--purple">Muy Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">⚪ Hábito</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:80%;background:var(--c-gray1)"></div></div><span class="intensidad-tag"><span class="badge badge--gray">Alta</span></span></div>
+          <p class="text-sm text-muted" style="margin-top:12px">La ansiedad supera al Push. Sin resolver la credibilidad del cobro, el Pull no alcanza a vencer el Hábito.</p>
+        </div>
+      </div>
+
+      <!-- Sección 4: Simulador -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label">Claudia · Herramienta Interactiva</span>
+          <h2 class="section-title__heading">Simulador de adopción — Cuatro Fuerzas</h2>
+          <p class="section-title__desc">Activa las intervenciones de diseño para ver cómo cambia la probabilidad de adopción. Cada intervención está etiquetada según quién la controla: ACH Colombia, el nodo (entidad), o la regulación.</p>
+        </div>
+        <div class="alerta alerta--info" style="margin-bottom:20px">
+          <span class="alerta__titulo">Lectura estratégica del simulador</span>
+          <p class="alerta__texto">Las intervenciones marcadas <strong>"Depende del nodo"</strong> son las que más mueven la aguja de adopción — pero están fuera del control directo de ACH. Esto significa que la estrategia de UX y la estrategia de adopción de entidades son la misma decisión.</p>
+        </div>
+        <div class="sim-meter-box" id="simMeterBox" style="border-left:4px solid #e9683b">
+          <span class="sim-meter-label">Probabilidad de adopción</span>
+          <div class="sim-meter-track"><div class="sim-meter-fill" id="simMeterFill"></div></div>
+          <span class="sim-meter-pct" id="simMeterPct"></span>
+          <span class="sim-verdict" id="simVerdict"></span>
+        </div>
+        <div class="sim-eq">
+          <div class="sim-eq-group"><span class="sim-eq-lbl">Push</span><span class="sim-eq-val" id="seqPush" style="color:#BA7517"></span></div>
+          <span class="sim-eq-op">+</span>
+          <div class="sim-eq-group"><span class="sim-eq-lbl">Pull</span><span class="sim-eq-val" id="seqPull" style="color:#3B6D11"></span></div>
+          <span class="sim-eq-op">vs</span>
+          <div class="sim-eq-group"><span class="sim-eq-lbl">Ansiedad</span><span class="sim-eq-val" id="seqAnx" style="color:#A32D2D"></span></div>
+          <span class="sim-eq-op">+</span>
+          <div class="sim-eq-group"><span class="sim-eq-lbl">Hábito</span><span class="sim-eq-val" id="seqHab" style="color:#534AB7"></span></div>
+          <div class="sim-eq-result" id="seqResult"></div>
+        </div>
+        <div class="sim-forces" id="simForces"></div>
+        <div class="sim-int-box">
+          <p class="sim-int-title">Intervenciones — clic para activar · clic de nuevo para desactivar</p>
+          <div class="sim-int-list" id="simIntList"></div>
+        </div>
+        <button class="sim-reset" id="simReset">Reiniciar simulación</button>
+      </div>
+
+      <!-- Sección 5: Citas y hallazgos -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Claudia · Sección 4</span>
+          <h2 class="section-title__heading">Citas clave e insights</h2>
+        </div>
+        <div class="cita">
+          <span class="cita__texto">"Ellos piden y yo decido. Eso me gusta más."</span>
+          <span class="cita__fuente">Claudia R. — Al diferenciar RtP del débito automático. Insight central del modelo mental del pagador.</span>
+        </div>
+        <div class="cita">
+          <span class="cita__texto">"Si me llega cuando no tengo plata y tengo cuatro minutos para decidir, voy a rechazarla por pánico y ahí sí termino en la lista."</span>
+          <span class="cita__fuente">Claudia R. — Reacción al timer de 03:59. Brecha crítica entre el flujo propuesto y el hábito de pago en fechas fijas.</span>
+        </div>
+        <div class="cita">
+          <span class="cita__texto">"Aquí en el edificio pegan en el ascensor los nombres de los que deben. Imagínese el señor de arriba viéndome ahí. No, eso sí que no."</span>
+          <span class="cita__fuente">Claudia R. — Job Social. No emergió espontáneamente; requirió pregunta directa. El mensaje de adopción que apela a "no quedar mal" es más efectivo que el de "ahorro de tiempo".</span>
+        </div>
+        <ul class="lista-hallazgos" style="margin-top:8px">
+          <li class="ok">El modelo mental "solicitud + aprobación" es comprensible y bienvenido. Claudia diferencia RtP del débito automático sin explicación extensa.</li>
+          <li class="ok">El canal bancario es el único canal de confianza. Si la notificación llega en la app del banco, la credibilidad se transfiere automáticamente.</li>
+          <li class="ok">El Job Social (reputación en el edificio) es el motor real de adopción, más fuerte que el ahorro de tiempo o la modernidad del canal.</li>
+          <li class="alerta">La ansiedad por fraude supera en intensidad al dolor del proceso actual. Sin resolverla, el producto no se adopta aunque el concepto guste.</li>
+          <li class="alerta"><strong>Brecha de timer:</strong> el hábito de pago en fechas fijas (día 14 o 29) es incompatible con el temporizador de 03:59 del flujo propuesto. RtP asume aceptación inmediata; el pagador asume aprobación diferida. Requiere decisión de producto.</li>
+          <li class="alerta">La adopción no puede ser "todo o nada". Claudia necesita una rampa de bajo riesgo antes de habilitar pagos críticos. Falta mecanismo de onboarding progresivo.</li>
+          <li class="info">El día exacto del pago es parte del hábito. Un diseño que permita programar la aprobación para ciertos días podría acelerar la adopción significativamente.</li>
+          <li class="info">Claudia preguntó inmediatamente sobre quién puede enviarle cobros. El directorio de cobradores (whitelist) debe ser prominente en el onboarding.</li>
+        </ul>
+        <div class="tabla-wrapper" style="margin-top:24px">
+          <table class="tabla-datos tabla-datos--striped">
+            <thead><tr><th>#</th><th>Hipótesis de diseño</th><th>Evidencia</th><th>Implicación</th><th>Prioridad</th></tr></thead>
+            <tbody>
+              <tr class="row--highlight"><td>H1</td><td>El control percibido importa más que la velocidad</td><td>"Ellos piden y yo decido"</td><td>El copy de la notificación debe enfatizar la autorización activa, no la automatización</td><td><span class="badge badge--orange">Alta</span></td></tr>
+              <tr><td>H2</td><td>La identidad verificable del cobrador es requisito de confianza, no "nice to have"</td><td>Pide nombre exacto, monto, período antes de aprobar</td><td>La pantalla de detalle debe mostrar estos campos antes del botón de aprobación</td><td><span class="badge badge--orange">Alta</span></td></tr>
+              <tr><td>H3</td><td>El timer de 03:59 generará rechazos ansiosos en pagadores con hábitos de fecha fija</td><td>"Voy a rechazarla por pánico"</td><td>Evaluar notificación persistente (sin timer) o timer configurable por el pagador</td><td><span class="badge badge--orange">Alta</span></td></tr>
+              <tr><td>H4</td><td>La adopción necesita rampa gradual</td><td>"No arrancaría con la administración de una vez"</td><td>Diseñar onboarding progresivo: primero cobros pequeños, luego recurrentes críticos</td><td><span class="badge badge--blue">Media</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /claudia -->
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         USUARIO 2: FELIPE — COMERCIO
+    ══════════════════════════════════════ -->
+    <div id="felipe">
+
+      <div class="user-banner user-banner--comercio">
+        <div class="user-banner__avatar">📦</div>
+        <div style="flex:1">
+          <div class="user-banner__role">Usuario Sintético 2 · Coordinador de Cartera, Comercio</div>
+          <div class="user-banner__name">Felipe O., 38 años</div>
+          <div class="user-banner__desc">Coordinador de Cartera · EduFlex (plataforma de cursos con membresías mensuales) · Medellín · 3.400 suscriptores activos</div>
+          <div class="user-banner__tags">
+            <span class="user-banner__tag">Cobro recurrente</span>
+            <span class="user-banner__tag">PSE + WhatsApp + email</span>
+            <span class="user-banner__tag">18% abandono mensual</span>
+            <span class="user-banner__tag">Flujo de caja ajustado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 1: Perfil -->
+      <div class="section" style="margin-top:32px">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Felipe · Sección 1</span>
+          <h2 class="section-title__heading">Perfil del usuario sintético</h2>
+          <p class="section-title__desc">Felipe representa al comercio de servicios digitales con cobro mensual recurrente — el caso de uso más relevante para RtP según el flujo propuesto en el PDF.</p>
+        </div>
+        <div class="grid-3">
+          <div class="kpi-card kpi-card--tint-orange">
+            <span class="kpi-card__label">Dolor actual</span>
+            <span class="kpi-card__value" style="font-size:22px;color:var(--c-orange)">18%</span>
+            <span class="kpi-card__desc">De los 3.400 suscriptores no pagan en la fecha prevista. Cada mes: 2 semanas de WhatsApp + email de cobranza, suspensiones parciales y churn.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">Flujo de recaudo actual</span>
+            <span class="kpi-card__value" style="font-size:14px;line-height:1.3">PSE + links de cobro</span>
+            <span class="kpi-card__desc">Envía links por correo y WhatsApp. Los links PSE se vencen en 24h. Los clientes dicen que no les llegó el correo.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-purple">
+            <span class="kpi-card__label">JTBD</span>
+            <span class="kpi-card__value" style="font-size:14px;line-height:1.3">Flujo de caja predecible</span>
+            <span class="kpi-card__desc">Que cada cierre de mes tenga los ingresos esperados sin dedicar la mitad del equipo a perseguir pagos.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 2: Entrevista -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Felipe · Sección 2</span>
+          <h2 class="section-title__heading">Transcripción de la entrevista</h2>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 1 · El proceso de cobro actual</p>
+          <div class="dialogo">
+            <p><strong>Felipe, cuéntame cómo es el proceso de cobro de una membresía mensual hoy, desde que sale la factura hasta que el dinero entra.</strong></p>
+            <p>Es un proceso que parece simple pero tiene como cinco micro-fricciones. El día 28 mandamos el recordatorio por correo y WhatsApp con el link de pago PSE. Los buenos pagadores lo hacen ese día. Pero el 18% restante… hay que perseguirlos. El link de PSE se vence en 24 horas, así que los que no lo hacen ese día tienen que pedir uno nuevo. El correo "no llegó", el WhatsApp "lo vi pero se me olvidó", y los que lo intentaron y PSE se cayó desistieron. Al final estamos entrando al mes siguiente con plata que ya era del mes anterior. Eso descuadra la proyección.</p>
+            <p><strong>¿Qué te cuesta más: el tiempo de gestión o el churn que genera?</strong></p>
+            <p>El churn, sin duda. Un suscriptor que suspendemos porque no pagó a tiempo y que luego no vuelve a activarse es un ingreso perdido para siempre. El tiempo de gestión lo podemos optimizar, pero el cliente que se fue es difícil recuperarlo.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 2 · Introducción del concepto RtP</p>
+          <div class="dialogo">
+            <p><strong>Imagina que en vez de mandar el link, puedes enviar una solicitud directamente a la app bancaria del cliente. Él recibe una notificación, la aprueba con la huella y listo. ¿Qué te parece?</strong></p>
+            <p>Eso suena exactamente como lo que necesitamos. Si la notificación llega dentro de la app del banco del cliente… eso es mucho más limpio que un link de WhatsApp que parece spam. La tasa de conversión debería ser mucho mayor.</p>
+            <p><strong>¿Y qué necesitarías saber antes de activarlo para tus 3.400 suscriptores?</strong></p>
+            <p>Lo primero: ¿yo puedo saber de antemano qué clientes tienen esto activado? Porque si mando la solicitud a alguien que no tiene llave Bre-B registrada, ¿qué pasa? ¿Me quedo esperando? ¿El sistema me avisa que no llegó? Si no tengo esa visibilidad, termino con los mismos problemas de hoy pero en un canal diferente.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 3 · Ansiedades y riesgos</p>
+          <div class="dialogo">
+            <p><strong>¿Qué es lo que más te preocuparía de implementar esto?</strong></p>
+            <p>Dos cosas. La primera: que algún suscriptor diga que él no autorizó ese cobro y pida el dinero de vuelta. Ahí ¿quién responde? ¿Yo, el banco, ACH? Si tengo que devolver plata y encima perder al cliente, eso es doble golpe. La segunda: el costo de la integración. Si me piden que conecte un API nuevo, que certifique el flujo, que haga testing… eso me saca del roadmap por tres meses. Necesitaría ver que el ROI justifica ese esfuerzo.</p>
+            <p><strong>¿Y cómo se calcularía ese ROI para ti?</strong></p>
+            <p>Si bajo la tasa de abandono mensual del 18% al 8%, eso son 340 suscriptores que antes no pagaban a tiempo y ahora sí. A 60.000 pesos promedio de membresía, estamos hablando de 20 millones de pesos adicionales en flujo de caja mensual. Ese número justifica la integración con creces. Pero primero necesito creerme que el 8% es alcanzable, y para eso necesito ver un piloto con resultados reales.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 4 · Condición de adopción</p>
+          <div class="dialogo">
+            <p><strong>¿Qué tendría que pasar para que EduFlex sea uno de los primeros comercios en activar RtP?</strong></p>
+            <p>Que el banco de la mayoría de mis suscriptores esté conectado. Si Bancolombia y Nequi están, ya tengo cubierto el 65% de mi base. Si solo están bancos pequeños, el esfuerzo de integración no se justifica. Y que me den un dato de cuántos de mis clientes actuales ya tienen llave Bre-B registrada. Si ese número es bajo, primero hay que resolver eso y luego hablar de RtP.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 3: Cuatro Fuerzas -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Felipe · Sección 3</span>
+          <h2 class="section-title__heading">Análisis — Las Cuatro Fuerzas del Progreso</h2>
+        </div>
+        <div class="grid-2">
+          <div class="kpi-card kpi-card--orange">
+            <span class="kpi-card__label">🔴 Push — Lo empuja a cambiar</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">18% de abandono mensual, dos semanas de cobranza manual, churn por suspensión temporal, desajuste de flujo de caja. El dolor es cuantificable y recurrente.</p>
+            <span class="badge badge--orange" style="margin-top:8px">Intensidad: Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--green">
+            <span class="kpi-card__label">🟢 Pull — Lo atrae la solución</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Notificación activa = menos chaseo, liquidación inmediata sin ciclos PSE, reducción de churn. El ROI potencial es concreto: ~20M COP/mes si baja la tasa a 8%.</p>
+            <span class="badge badge--green" style="margin-top:8px">Intensidad: Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--purple">
+            <span class="kpi-card__label">🟡 Ansiedad — Sus miedos</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Riesgo de contracargos (¿quién responde?). Costo de integración técnica vs. roadmap. Incertidumbre sobre cobertura: ¿cuántos de sus clientes tienen llave Bre-B?</p>
+            <span class="badge badge--purple" style="margin-top:8px">Intensidad: Media-Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">⚪ Hábito — Su inercia actual</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">El flujo PSE + WhatsApp funciona "bien enough". Cambiar requiere convencer al equipo técnico, al equipo de atención al cliente y al equipo financiero.</p>
+            <span class="badge badge--gray" style="margin-top:8px">Intensidad: Media</span>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:16px">Mapa de intensidad de fuerzas</p>
+          <div class="intensidad-row"><span class="intensidad-label">🔴 Push</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:82%;background:var(--c-orange)"></div></div><span class="intensidad-tag"><span class="badge badge--orange">Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟢 Pull</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:78%;background:var(--c-green)"></div></div><span class="intensidad-tag"><span class="badge badge--green">Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟡 Ansiedad</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:65%;background:var(--c-purple)"></div></div><span class="intensidad-tag"><span class="badge badge--purple">Media-Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">⚪ Hábito</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:50%;background:var(--c-gray1)"></div></div><span class="intensidad-tag"><span class="badge badge--gray">Media</span></span></div>
+          <p class="text-sm text-muted" style="margin-top:12px">Push y Pull están casi en balance — Felipe es el perfil de adopción más cercano al "sí" inmediato. La clave está en resolver las ansiedades de contracargo y cobertura de llaves.</p>
+        </div>
+      </div>
+
+      <!-- Sección 4: Hallazgos -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Felipe · Sección 4</span>
+          <h2 class="section-title__heading">Hallazgos e hipótesis de diseño</h2>
+        </div>
+        <ul class="lista-hallazgos">
+          <li class="ok">Felipe es el perfil con mayor disposición de adopción de los tres usuarios. Su Push y Pull están casi equilibrados, y sus ansiedades son resolubles con información concreta.</li>
+          <li class="ok">El argumento de ROI funciona. Calcular la reducción de abandono en pesos es más persuasivo que cualquier argumento de modernidad o eficiencia abstracta.</li>
+          <li class="ok">El canal bancario también genera confianza desde el lado del comercio: "más limpio que un link de WhatsApp que parece spam".</li>
+          <li class="alerta"><strong>Brecha crítica — Cobertura de llaves:</strong> Felipe necesita saber cuántos de sus clientes tienen llave Bre-B registrada antes de integrar RtP. Si ese número es bajo, el esfuerzo no se justifica. Esta información no está disponible hoy en el ecosistema. ACH debe definir si proveerá un API de consulta de cobertura para comercios.</li>
+          <li class="alerta"><strong>Brecha de responsabilidad en contracargos:</strong> Felipe no sabe quién responde si un cliente disputa un cargo RtP. La cadena de responsabilidad (comercio / entidad origen / ACH) no está definida en el flujo propuesto. Sin claridad aquí, los comercios con alto volumen no adoptarán.</li>
+          <li class="info">La condición de adopción de Felipe es muy específica: Bancolombia y Nequi deben estar disponibles. Esto confirma directamente la H3 del brief ("entidades necesitan ver tracción de sus comercios") pero también la invierte: los comercios no se mueven sin las entidades grandes.</li>
+          <li class="info">Felipe menciona que la integración técnica es un costo real de oportunidad. Un SDK o conector listo para usar (no un API desde cero) reduciría drásticamente esta barrera.</li>
+        </ul>
+        <div class="tabla-wrapper" style="margin-top:24px">
+          <table class="tabla-datos tabla-datos--striped">
+            <thead><tr><th>#</th><th>Hipótesis de diseño (comercio)</th><th>Evidencia</th><th>Implicación</th><th>Prioridad</th></tr></thead>
+            <tbody>
+              <tr class="row--highlight"><td>H5</td><td>El comercio necesita visibilidad de cobertura antes de integrar</td><td>"¿Qué clientes tienen llave Bre-B?"</td><td>Proveer API o dashboard de cobertura por comercio antes del lanzamiento</td><td><span class="badge badge--orange">Alta</span></td></tr>
+              <tr><td>H6</td><td>La cadena de responsabilidad en contracargos es bloqueante para comercios de alto volumen</td><td>"¿Quién responde si un cliente dice que no autorizó?"</td><td>Definir y documentar la política de disputas RtP antes de salir a comercios</td><td><span class="badge badge--orange">Alta</span></td></tr>
+              <tr><td>H7</td><td>El ROI calculado en COP es el argumento más efectivo de adopción</td><td>Cálculo espontáneo de 20M COP/mes</td><td>Incluir calculadora de ROI en el kit de ventas para comercios</td><td><span class="badge badge--blue">Media</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /felipe -->
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         USUARIO 3: SANDRA — NODO
+    ══════════════════════════════════════ -->
+    <div id="sandra">
+
+      <div class="user-banner user-banner--nodo">
+        <div class="user-banner__avatar">🏦</div>
+        <div style="flex:1">
+          <div class="user-banner__role">Usuario Sintético 3 · Product Lead, Entidad Financiera (Nodo)</div>
+          <div class="user-banner__name">Sandra M., 41 años</div>
+          <div class="user-banner__desc">Product Lead de Canales Digitales · Banco Alianza (banco regional mediano, ~800.000 clientes) · Cali</div>
+          <div class="user-banner__tags">
+            <span class="user-banner__tag">Responsable roadmap Bre-B</span>
+            <span class="user-banner__tag">18 meses de backlog</span>
+            <span class="user-banner__tag">Postura: esperar regulación</span>
+            <span class="user-banner__tag">Presión comercial baja</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 1: Perfil -->
+      <div class="section" style="margin-top:32px">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Sandra · Sección 1</span>
+          <h2 class="section-title__heading">Perfil del usuario sintético</h2>
+          <p class="section-title__desc">Sandra es el stakeholder más estratégico para ACH Colombia. Sin que ella — o su equivalente en Bancolombia, Davivienda y Nequi — diga que sí, el flujo RtP no puede llegar al pagador. Su adopción no es de usuario; es de canal.</p>
+        </div>
+        <div class="grid-3">
+          <div class="kpi-card kpi-card--tint-purple">
+            <span class="kpi-card__label">Decisión en juego</span>
+            <span class="kpi-card__value" style="font-size:14px;line-height:1.3">Implementar notificación RtP en app</span>
+            <span class="kpi-card__desc">Habilitar que las notificaciones de cobro RtP aparezcan dentro de la app bancaria del Banco Alianza y que el usuario pueda aprobarlas desde ahí.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-orange">
+            <span class="kpi-card__label">Postura actual</span>
+            <span class="kpi-card__value" style="font-size:14px;line-height:1.3">Esperar regulación Banrep</span>
+            <span class="kpi-card__desc">Política oficial del banco: no invertir en nuevos flujos de pago hasta que el caso regulado de Banrep esté definido, para no hacer dos implementaciones.</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">Threshold de movimiento</span>
+            <span class="kpi-card__value" style="font-size:20px;color:var(--c-purple)">3</span>
+            <span class="kpi-card__desc">Comercios grandes de los que ya procesan con el banco. Si tres hacen una solicitud formal de RtP, Sandra lo mueve al tope del roadmap.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 2: Entrevista -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Sandra · Sección 2</span>
+          <h2 class="section-title__heading">Transcripción de la entrevista</h2>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 1 · Contexto estratégico del banco</p>
+          <div class="dialogo">
+            <p><strong>Sandra, ¿dónde está hoy el Banco Alianza en términos de Bre-B y pagos inmediatos?</strong></p>
+            <p>Estamos conectados a Bre-B, eso sí. El banco hizo la integración base hace dos años. Pero habilitar un caso de uso nuevo sobre esa infraestructura no es trivial. Cada funcionalidad nueva implica certificación, casos de excepción, capacitación al equipo de atención al cliente y actualización del app. Y tenemos 18 meses de backlog. Así que cualquier cosa que llegue tiene que competir por ese espacio.</p>
+            <p><strong>¿Y cómo gana esa competencia una iniciativa?</strong></p>
+            <p>Básicamente de tres maneras: un cliente grande lo pide formalmente, el equipo comercial demuestra que hay riesgo de perder ingresos si no lo hacemos, o que el regulador lo exige. De las tres, la del regulador es la más fácil de procesar internamente porque viene con una fecha.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 2 · Introducción de RtP y reacción</p>
+          <div class="dialogo">
+            <p><strong>ACH Colombia está desarrollando un caso de uso no regulado de RtP, donde el comercio envía una solicitud de pago y el pagador la aprueba desde la app del banco. Para eso necesitarían que el Banco Alianza habilite la notificación en su app.</strong></p>
+            <p>Entiendo el concepto. El flujo tiene sentido. Mi pregunta inmediata es: ¿qué papel jugamos nosotros en la cadena de responsabilidad? Porque si un cliente dice que él no autorizó ese cobro, o que fue víctima de fraude, yo soy el banco que aparece en el extracto. Así no hayamos iniciado la transacción, nuestro cliente nos va a reclamar a nosotros.</p>
+            <p><strong>¿Y qué pasaría si la política de disputas estuviera clara y documentada?</strong></p>
+            <p>Cambia mucho. Si el contrato con ACH establece que la responsabilidad de validar al comercio es de ellos, y el banco tiene eso respaldado, la conversación interna con nuestros abogados es completamente diferente. Pero hoy eso no existe.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 3 · El threshold de los tres comercios</p>
+          <div class="dialogo">
+            <p><strong>¿Qué tendría que pasar para que esto entre a la hoja de ruta del Banco Alianza en los próximos seis meses?</strong></p>
+            <p>Que tres de los comercios con los que ya proceso — que sean nombres que yo reconozca, no startups — me llamen y me digan: "Sandra, nuestros clientes nos están pidiendo pagar por notificación y no podemos ofrecerlo porque tu banco no está conectado." Si eso pasa tres veces, yo lo llevo al comité de producto la semana siguiente. Hasta ahora, ninguno me ha llamado.</p>
+            <p><strong>¿Y si ACH hiciera el argumento directo al banco, sin intermediario?</strong></p>
+            <p>Funciona menos. La relación comercial con ACH es de proveedor de infraestructura. La relación con un comercio que me genera 4.000 transacciones al mes es diferente. Si ACH consigue que ese comercio hable conmigo, el mensaje llega de manera muy distinta.</p>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:12px">Bloque 4 · La incertidumbre regulatoria</p>
+          <div class="dialogo">
+            <p><strong>El caso de uso es no regulado por Banrep por ahora. ¿Eso afecta tu disposición?</strong></p>
+            <p>Sí, bastante. No porque sea ilegal — entiendo que es un caso no regulado válido. El problema es que sé que cuando Banrep saque el caso regulado va a tener requisitos específicos. Si implemento algo hoy y en seis meses tengo que cambiarlo, hice el trabajo dos veces. Con el backlog que tenemos, eso es un lujo que no nos podemos dar. A menos que ACH garantice que la implementación actual es 100% compatible con lo que venga de Banrep, voy a preferir esperar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 3: Cuatro Fuerzas -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Sandra · Sección 3</span>
+          <h2 class="section-title__heading">Análisis — Las Cuatro Fuerzas del Progreso</h2>
+        </div>
+        <div class="grid-2">
+          <div class="kpi-card kpi-card--orange">
+            <span class="kpi-card__label">🔴 Push — La empuja a cambiar</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Nequi y Bancolombia están ganando cuota en pagos digitales. El equipo comercial presiona. Algunos comercios empiezan a preguntar por opciones de cobro más ágiles.</p>
+            <span class="badge badge--orange" style="margin-top:8px">Intensidad: Media</span>
+          </div>
+          <div class="kpi-card kpi-card--green">
+            <span class="kpi-card__label">🟢 Pull — La atrae la solución</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Ingresos adicionales por procesamiento. Posicionamiento de "banco digital relevante". Fortalece la relación con comercios que ya son clientes del banco.</p>
+            <span class="badge badge--green" style="margin-top:8px">Intensidad: Media</span>
+          </div>
+          <div class="kpi-card kpi-card--purple">
+            <span class="kpi-card__label">🟡 Ansiedad — Sus miedos</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Responsabilidad por disputas de cobro. Incertidumbre regulatoria (doble implementación). Costo técnico vs. backlog. Riesgo reputacional si hay fraudes masivos.</p>
+            <span class="badge badge--purple" style="margin-top:8px">Intensidad: Alta</span>
+          </div>
+          <div class="kpi-card kpi-card--tint-blue">
+            <span class="kpi-card__label">⚪ Hábito — Su inercia actual</span>
+            <p style="font-size:14px;line-height:1.6;margin-top:8px">Política oficial: esperar a regulación de Banrep. 18 meses de backlog. Priorización por cliente grande o riesgo comercial, no por iniciativa de proveedor.</p>
+            <span class="badge badge--gray" style="margin-top:8px">Intensidad: Muy Alta</span>
+          </div>
+        </div>
+        <div class="section--tinted">
+          <p class="text-label" style="margin-bottom:16px">Mapa de intensidad de fuerzas</p>
+          <div class="intensidad-row"><span class="intensidad-label">🔴 Push</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:50%;background:var(--c-orange)"></div></div><span class="intensidad-tag"><span class="badge badge--orange">Media</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟢 Pull</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:45%;background:var(--c-green)"></div></div><span class="intensidad-tag"><span class="badge badge--green">Media</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">🟡 Ansiedad</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:78%;background:var(--c-purple)"></div></div><span class="intensidad-tag"><span class="badge badge--purple">Alta</span></span></div>
+          <div class="intensidad-row"><span class="intensidad-label">⚪ Hábito</span><div class="intensidad-bg"><div class="intensidad-fill" style="width:92%;background:var(--c-gray1)"></div></div><span class="intensidad-tag"><span class="badge badge--gray">Muy Alta</span></span></div>
+          <p class="text-sm text-muted" style="margin-top:12px">El Hábito institucional es la fuerza más intensa. La política de "esperar regulación" actúa como escudo racional frente a cualquier argumento de producto. Solo una señal comercial de sus propios clientes puede romperla.</p>
+        </div>
+      </div>
+
+      <!-- Sección 4: Condiciones de adopción -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Sandra · Sección 4</span>
+          <h2 class="section-title__heading">Condiciones de adopción del nodo</h2>
+          <p class="section-title__desc">Las cuatro condiciones que Sandra identificó explícitamente. Ninguna depende solo de ACH Colombia — todas involucran a comercios o a Banrep. Esta es la razón por la que la estrategia de adopción de comercios y la estrategia de adopción de entidades son la misma campaña.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="cond-item">
+            <div class="cond-num">1</div>
+            <div class="cond-body">
+              <div class="cond-title">Tres comercios relevantes hacen solicitud formal al banco</div>
+              <div class="cond-desc">No startups — comercios que ya procesan con el banco y tienen una relación comercial establecida. Un solo comercio no mueve el roadmap; tres sí. Este es el umbral declarado explícitamente por Sandra.</div>
+            </div>
+            <div><span class="cond-met cond-met--no">Sin evidencia hoy</span></div>
+          </div>
+          <div class="cond-item">
+            <div class="cond-num">2</div>
+            <div class="cond-body">
+              <div class="cond-title">Política de disputas documentada y contractualizada con ACH</div>
+              <div class="cond-desc">El banco necesita saber quién responde si un cliente disputa un cargo RtP. Sin esto, los abogados internos bloquean cualquier avance independientemente del interés del equipo de producto.</div>
+            </div>
+            <div><span class="cond-met cond-met--no">No existe aún</span></div>
+          </div>
+          <div class="cond-item">
+            <div class="cond-num">3</div>
+            <div class="cond-body">
+              <div class="cond-title">Garantía de compatibilidad con el futuro caso regulado de Banrep</div>
+              <div class="cond-desc">El banco no hará una implementación que tenga que rehacer en seis meses. ACH debe comprometer en contrato que la arquitectura actual es compatible con la regulación que venga — o asumir el costo de la migración.</div>
+            </div>
+            <div><span class="cond-met cond-met--partial">Incierto</span></div>
+          </div>
+          <div class="cond-item">
+            <div class="cond-num">4</div>
+            <div class="cond-body">
+              <div class="cond-title">Acompañamiento técnico para reducir el costo de integración</div>
+              <div class="cond-desc">Si ACH provee un SDK certificado, documentación detallada de casos de excepción y un ambiente de pruebas estable, el costo técnico del banco baja lo suficiente para competir en el backlog. Sin esto, la integración no entra al roadmap.</div>
+            </div>
+            <div><span class="cond-met cond-met--no">No disponible</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección 5: Hallazgos -->
+      <div class="section">
+        <div class="section-title">
+          <span class="section-title__label section-title__label--persona-section">Sandra · Sección 5</span>
+          <h2 class="section-title__heading">Hallazgos</h2>
+        </div>
+        <ul class="lista-hallazgos">
+          <li class="ok">Sandra reveló el threshold exacto de adopción: 3 comercios grandes con solicitud formal. Este número es accionable y concreto para la estrategia comercial de ACH.</li>
+          <li class="ok">El canal más efectivo para mover a Sandra no es ACH — son los comercios que ya tienen relación con el banco. ACH debe convertir a Felipe (y perfiles similares) en sus embajadores ante los nodos.</li>
+          <li class="alerta">La política de "esperar regulación Banrep" es el principal bloqueante institucional. Es un Hábito organizacional, no una postura personal de Sandra. Requiere más que un buen argumento de producto para superarse.</li>
+          <li class="alerta">La ausencia de una política de disputas documentada es un bloqueante legal independiente del interés comercial. Este documento no existe hoy y debe crearse antes de cualquier piloto con entidades.</li>
+          <li class="alerta">La incertidumbre de compatibilidad con la futura regulación de Banrep convierte cada mes de espera en un argumento a favor de no actuar. ACH debe tomar posición pública sobre esto.</li>
+          <li class="info">Sandra mencionó que la relación comercial con ACH es "de proveedor de infraestructura" — transaccional. Para que RtP funcione, ACH debe construir una relación de partner estratégico con los equipos de producto de los bancos, no solo de proveedor técnico.</li>
+          <li class="info">El tamaño del banco importa. Un banco regional de 800K clientes como Banco Alianza tiene un backlog más manejable que un banco grande, pero menos poder de arrastre sobre el ecosistema. La estrategia de adopción debe priorizar los bancos grandes primero (Bancolombia, Davivienda, Nequi) para generar el efecto de red que luego mueva a los regionales.</li>
+        </ul>
+      </div>
+    </div><!-- /sandra -->
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         SECCIÓN 4: SÍNTESIS ESTRATÉGICA
+    ══════════════════════════════════════ -->
+    <div class="section" id="sintesis">
+      <div class="section-title">
+        <span class="section-title__label">Sección 4</span>
+        <h2 class="section-title__heading">Síntesis estratégica</h2>
+        <p class="section-title__desc">Lo que los tres usuarios revelan juntos que ninguno revela por separado.</p>
+      </div>
+
+      <!-- El circuito de adopción -->
+      <div class="highlight-box" style="margin-bottom:24px">
+        <span class="highlight-box__label">El circuito de adopción cerrado</span>
+        <span class="highlight-box__texto">Los tres usuarios están atrapados en un círculo de dependencias: Felipe no adopta si sus clientes no tienen llaves activas en bancos conectados. Sandra no conecta el banco si Felipe y otros tres comercios no se lo piden formalmente. Claudia no registra su llave Bre-B si no hay un comercio relevante que la incentive a hacerlo. ACH necesita romper este círculo desde un punto concreto — y la evidencia sugiere que ese punto es Felipe, no Sandra ni Claudia.</span>
+      </div>
+
+      <!-- Job social → B2B -->
+      <div class="section--accented">
+        <p class="text-label" style="margin-bottom:10px">Conexión: Job Social de Claudia → Argumento B2B de ACH</p>
+        <p style="font-size:14px;line-height:1.7">El hallazgo más poderoso de la entrevista con Claudia — la lista del ascensor — no es solo un insight de comunicación para el pagador. Es el argumento de ventas más concreto disponible para que Felipe adopte RtP, y para que Felipe, a su vez, convenza a Sandra. La cadena es: <strong>Claudia no quiere aparecer en la lista → Felipe reduce su churn y su costo de cobranza → Felipe llama a Sandra → Sandra mueve RtP al roadmap.</strong> El Job Social del pagador es el motor oculto de toda la estrategia de ecosistema.</p>
+      </div>
+
+      <!-- Tabla síntesis cruzada -->
+      <div class="tabla-wrapper" style="margin-top:24px">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>Dimensión</th>
+              <th>Claudia (Pagadora)</th>
+              <th>Felipe (Comercio)</th>
+              <th>Sandra (Nodo)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Fuerza dominante</strong></td>
+              <td>Ansiedad (95)</td>
+              <td>Push + Pull equilibrados</td>
+              <td>Hábito institucional (92)</td>
+            </tr>
+            <tr>
+              <td><strong>Qué la mueve</strong></td>
+              <td>Control percibido + canal bancario</td>
+              <td>ROI cuantificado en COP</td>
+              <td>3 comercios grandes con solicitud formal</td>
+            </tr>
+            <tr class="row--highlight">
+              <td><strong>Bloqueante principal</strong></td>
+              <td>Timer 03:59 vs. hábito de fecha fija</td>
+              <td>Sin datos de cobertura de llaves</td>
+              <td>Sin política de disputas + incertidumbre regulatoria</td>
+            </tr>
+            <tr>
+              <td><strong>Argumento más efectivo</strong></td>
+              <td>"No quedas en la lista" (Job Social)</td>
+              <td>Calculadora de ROI por reducción de abandono</td>
+              <td>Solicitud formal de comercios del banco</td>
+            </tr>
+            <tr>
+              <td><strong>Canal más efectivo</strong></td>
+              <td>App de su banco (no WhatsApp, no SMS)</td>
+              <td>Equipo comercial de ACH + piloto con datos</td>
+              <td>Los propios comercios del banco (no ACH directo)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Brechas críticas resumidas -->
+      <div class="grid-2" style="margin-top:24px">
+        <div class="alerta alerta--critica">
+          <span class="alerta__titulo">🔴 Brecha 1 — Timer vs. hábito de fecha fija</span>
+          <p class="alerta__texto">El flujo propuesto muestra 03:59 minutos para responder. Claudia (y por extensión cualquier pagador con hábitos de pago en fechas específicas) rechazará el cobro si llega en un momento de no liquidez. Requiere decisión de producto: ¿notificación persistente o timer configurable? Esta decisión también afecta el caso de responsabilidad ante fraude.</p>
+        </div>
+        <div class="alerta alerta--critica">
+          <span class="alerta__titulo">🔴 Brecha 2 — Cobertura de llaves Bre-B</span>
+          <p class="alerta__texto">Felipe necesita saber cuántos de sus clientes tienen llave Bre-B antes de integrar RtP. Hoy no existe un mecanismo para que un comercio consulte la cobertura de llaves de su base de clientes. Sin este dato, los comercios no pueden calcular el ROI real y no adoptarán. ACH debe definir si proveerá este API.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider--thick">
+
+    <!-- ══════════════════════════════════════
+         SECCIÓN 5: PLAN DE INVESTIGACIÓN
+    ══════════════════════════════════════ -->
+    <div class="section" id="plan">
+      <div class="section-title">
+        <span class="section-title__label">Sección 5</span>
+        <h2 class="section-title__heading">Idea de plan de investigación</h2>
+        <p class="section-title__desc">Métodos sugeridos para responder las preguntas críticas antes de avanzar al diseño detallado.</p>
+      </div>
+      <div class="tabla-wrapper">
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Objetivo principal</th>
+              <th>Perfil de participantes</th>
+              <th>Tiempo estimado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Entrevistas en profundidad con pagadores</strong><br><span class="badge badge--outline-blue" style="margin-top:6px">Generativo</span></td>
+              <td>Entender percepción de confianza, conveniencia y control al recibir una notificación de cobro de un comercio</td>
+              <td>Adultos 25–45 años, usuarios de apps bancarias con experiencia en pagos digitales (Nequi, PSE, Bancolombia app)</td>
+              <td>2–3 semanas<br>8–10 entrevistas</td>
+            </tr>
+            <tr>
+              <td><strong>Prueba de usabilidad del flujo propuesto</strong><br><span class="badge badge--outline-green" style="margin-top:6px">Evaluativo</span></td>
+              <td>Evaluar si el flujo notificación → aceptar → débito es comprensible y ejecutable sin errores en condiciones reales</td>
+              <td>Usuarios actuales de Nequi, Bancolombia app o Davivienda con smartphone Android/iOS</td>
+              <td>1–2 semanas<br>6–8 sesiones</td>
+            </tr>
+            <tr>
+              <td><strong>Entrevistas con stakeholders de entidades</strong><br><span class="badge badge--outline-blue" style="margin-top:6px">Generativo</span></td>
+              <td>Identificar objeciones reales para adoptar el servicio y co-construir la oferta de valor para nodos</td>
+              <td>Líderes de producto o canales digitales en 2–3 entidades financieras grandes (Bancolombia, Davivienda, Nequi)</td>
+              <td>2 semanas<br>4–6 entrevistas</td>
+            </tr>
+            <tr>
+              <td><strong>Entrevistas con comercios</strong><br><span class="badge badge--outline-blue" style="margin-top:6px">Generativo</span></td>
+              <td>Validar si el flujo de cobro push resuelve un pain real y cómo compite con sus opciones actuales de recaudo</td>
+              <td>Gerentes o responsables de pagos en comercios medianos con suscripciones o cobros recurrentes</td>
+              <td>1–2 semanas<br>5–6 entrevistas</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"><strong>Duración total estimada del ciclo de investigación</strong></td>
+              <td><strong>6–8 semanas</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /reporte-body -->
+
+  <div class="sim-toast" id="simToast"></div>
+
+  <!-- ══ SCRIPT SIMULADOR CLAUDIA ══ -->
+  <script>
+  (function(){
+    var FORCES=[
+      {id:'push',label:'Push',dir:'↑ Empuja al cambio',desc:'Fricción real con PSE hoy',base:80,color:'#BA7517',bar:'#EF9F27'},
+      {id:'pull',label:'Pull',dir:'↑ Atrae hacia RtP',desc:'Atracción hacia la nueva solución',base:52,color:'#3B6D11',bar:'#639922'},
+      {id:'anx',label:'Ansiedad',dir:'↓ Frena el cambio',desc:'Miedo al fraude y pérdida de control',base:95,color:'#A32D2D',bar:'#E24B4A'},
+      {id:'habit',label:'Hábito',dir:'↓ Frena el cambio',desc:'Inercia con PSE y fechas fijas de pago',base:80,color:'#534AB7',bar:'#7F77DD'}
+    ];
+    var DOTS=[
+      {pct:77,label:'Sin whitelist: cualquiera puede cobrarme'},
+      {pct:57,label:'Sin detalle verificable: no sé qué apruebo'},
+      {pct:35,label:'Sin canal bancario: no confío en la fuente'},
+      {pct:21,label:'Sin reversión: el error es permanente'}
+    ];
+    /* owner: 'ach' | 'nodo' | 'reg' */
+    var IVS=[
+      {id:'wl',   name:'Whitelist de cobradores',              owner:'ach',  ownerLabel:'ACH diseña',           desc:'El usuario decide quién puede enviarle cobros. Solo comercios autorizados previamente.',da:-18,dp:8, dh:-4, msg:'Control activado — la ansiedad baja notablemente.'},
+      {id:'det',  name:'Pantalla de detalle verificable',      owner:'ach',  ownerLabel:'ACH diseña',           desc:'Nombre exacto del comercio, monto y período visibles antes del botón de aprobación.',   da:-20,dp:12,dh:-5, msg:'Credibilidad mejorada — Pull sube, hábito cede.'},
+      {id:'ch',   name:'Notificación dentro de la app bancaria',owner:'nodo', ownerLabel:'Depende del nodo ⚠', desc:'La confianza del banco se transfiere al flujo. Es el canal que Claudia ya usa a diario.',  da:-22,dp:15,dh:-8, msg:'Canal de confianza — el banco avala la solicitud.'},
+      {id:'rev',  name:'Mecanismo de reversión claro',         owner:'reg',  ownerLabel:'Requiere definición', desc:'El usuario sabe que puede deshacer un cobro aprobado por error dentro de X horas.',        da:-14,dp:8, dh:-4, msg:'Red de seguridad — adoptar ya no es irreversible.'},
+      {id:'timer',name:'Notificación persistente (sin timer)', owner:'ach',  ownerLabel:'ACH diseña',           desc:'La solicitud permanece activa hasta el día de pago habitual del usuario (14 o 29).',       da:-12,dp:10,dh:-6, msg:'Hábito respetado — el pago llega cuando toca.'}
+    ];
+    var BASE={push:80,pull:52,anx:95,habit:80};
+    var st={push:80,pull:52,anx:95,habit:80,app:[]};
+    function has(id){return st.app.indexOf(id)>=0;}
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+    function recompute(){
+      st.push=BASE.push;st.pull=BASE.pull;st.anx=BASE.anx;st.habit=BASE.habit;
+      IVS.forEach(function(iv){if(has(iv.id)){st.anx=clamp(st.anx+iv.da,5,99);st.pull=clamp(st.pull+iv.dp,0,99);st.habit=clamp(st.habit+iv.dh,0,99);}});
+    }
+    function adoptPct(){return Math.round(clamp((st.push+st.pull-st.anx-st.habit+80)/160,0,1)*100);}
+    function renderMeter(){
+      var p=adoptPct();
+      var fill=document.getElementById('simMeterFill');
+      var pctEl=document.getElementById('simMeterPct');
+      var vrd=document.getElementById('simVerdict');
+      var box=document.getElementById('simMeterBox');
+      fill.style.width=p+'%';
+      pctEl.textContent=p+'%';
+      if(p>=65){fill.style.background='#639922';pctEl.style.color='#185F00';vrd.textContent='✓ Adopción probable';vrd.style.color='#3B6D11';box.style.borderLeft='4px solid #4cb979';}
+      else if(p>=45){fill.style.background='#e9683b';pctEl.style.color='#8a3010';vrd.textContent='~ En el límite';vrd.style.color='#8a3010';box.style.borderLeft='4px solid #e9683b';}
+      else{fill.style.background='#E24B4A';pctEl.style.color='#791F1F';vrd.textContent='✗ Sin adopción';vrd.style.color='#A32D2D';box.style.borderLeft='4px solid #E24B4A';}
+    }
+    function renderEq(){
+      ['Push','Pull','Anx','Hab'].forEach(function(k,i){
+        var ids=['seqPush','seqPull','seqAnx','seqHab'];
+        var vals=[st.push,st.pull,st.anx,st.habit];
+        document.getElementById(ids[i]).textContent=Math.round(vals[i]);
+      });
+      var w=(st.push+st.pull)>(st.anx+st.habit);
+      var r=document.getElementById('seqResult');
+      if(w){r.style.background='#eaf7ef';r.style.color='#185F00';r.textContent='✓ Adopción probable';}
+      else{r.style.background='#ffeaea';r.style.color='#791F1F';r.textContent='✗ Sin adopción';}
+    }
+    function renderForces(){
+      var grid=document.getElementById('simForces');grid.innerHTML='';
+      FORCES.forEach(function(f){
+        var val=Math.round(st[f.id]);
+        var d=document.createElement('div');d.className='sim-fcard';
+        d.innerHTML='<div class="sim-fcard-head"><span class="sim-fcard-name" style="color:'+f.color+'">'+f.label+'</span><span class="sim-fcard-val" style="color:'+f.color+'">'+val+'</span></div>'
+          +'<div class="sim-fcard-dir" style="color:'+f.color+';font-size:11px;margin-bottom:8px">'+f.dir+'</div>'
+          +'<div class="sim-bar-track" id="sbt-'+f.id+'"><div class="sim-bar-fill" style="width:'+val+'%;background:'+f.bar+'"></div></div>'
+          +'<div style="margin-top:6px;font-size:11px;color:#88898c">'+f.desc+'</div>';
+        grid.appendChild(d);
+      });
+      var track=document.getElementById('sbt-anx');
+      if(track){DOTS.forEach(function(dot){
+        var el=document.createElement('div');el.className='sim-dot'+(st.anx<=dot.pct?' reached':'');
+        el.style.left=dot.pct+'%';el.style.background=st.anx<=dot.pct?'#4cb979':'#E24B4A';
+        var tip=document.createElement('div');tip.className='sim-dot-tip';tip.textContent=dot.label;el.appendChild(tip);
+        track.appendChild(el);
+      });}
+    }
+    var OWNER_COLORS={'ach':'sim-owner--ach','nodo':'sim-owner--nodo','reg':'sim-owner--reg'};
+    function renderInt(){
+      var list=document.getElementById('simIntList');list.innerHTML='';
+      IVS.forEach(function(iv){
+        var applied=has(iv.id);
+        var item=document.createElement('div');item.className='sim-int-item'+(applied?' applied':'');
+        item.innerHTML='<div class="sim-int-check">'+(applied?'✓':'')+'</div>'
+          +'<div class="sim-int-body">'
+          +'<div class="sim-int-name">'+iv.name+' <span class="sim-owner '+OWNER_COLORS[iv.owner]+'">'+iv.ownerLabel+'</span></div>'
+          +'<div class="sim-int-desc">'+iv.desc+'</div></div>'
+          +'<div class="sim-int-delta"><span class="dpill-down">Ansiedad '+iv.da+'</span><span class="dpill-up">Pull +'+iv.dp+'</span></div>';
+        item.onclick=(function(x){return function(){toggleIv(x);};})(iv);
+        list.appendChild(item);
+      });
+    }
+    function toggleIv(iv){
+      if(has(iv.id)){st.app.splice(st.app.indexOf(iv.id),1);}else{st.app.push(iv.id);}
+      recompute();renderAll();showToast(has(iv.id)?iv.msg:iv.name+' desactivado.');
+    }
+    function showToast(msg){var t=document.getElementById('simToast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2800);}
+    function renderAll(){renderMeter();renderEq();renderForces();renderInt();}
+    document.getElementById('simReset').onclick=function(){st={push:80,pull:52,anx:95,habit:80,app:[]};recompute();renderAll();showToast('Simulación reiniciada.');};
+    renderAll();
+  })();
+  </script>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <img src="../img/innlab_white.svg" alt="INNLAB">
+    <span class="report-footer__info">Usuarios Sintéticos RtP — Pagadora · Comercio · Nodo · Universidad Icesi × ACH Colombia · Confidencial</span>
+    <span class="report-footer__url">icesi.edu.co</span>
+  </div>
+
+</div><!-- /reporte -->
+</body>
+</html>
