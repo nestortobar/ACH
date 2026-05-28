@@ -18,7 +18,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #333;
-      background-color: var(--alkosto-gray-bg);
+      background-color: #fff;
     }
 
     .pay-tabs {
@@ -47,6 +47,29 @@
       width: 16px;
       height: 16px;
       flex: 0 0 auto;
+    }
+
+    .pay-tab-finance {
+      position: relative;
+      overflow: visible;
+    }
+
+    .pay-tab-new-chip {
+      position: absolute;
+      top: -8px;
+      right: 8px;
+      border-radius: 999px;
+      background: #E4532A;
+      color: #fff;
+      border: 1px solid #fff;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      padding: 3px 6px;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 2;
     }
 
     .pay-tab.active-debit {
@@ -187,9 +210,9 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="flex flex-col">
 <!-- BEGIN: MainContainer -->
-<main class="max-w-md mx-auto bg-white min-h-screen shadow-lg pb-24 relative" data-purpose="app-container">
+<main class="pb-8 relative" data-purpose="app-container">
 <!-- BEGIN: PaymentMethodSelection -->
 <section class="p-4 border-b border-gray-100" data-purpose="payment-method-header">
 <div class="flex items-center justify-between p-3 border border-gray-300 rounded-md cursor-pointer" id="back-to-state-a" role="button" tabindex="0">
@@ -215,7 +238,8 @@
 </svg>
 <span>Débito bancario</span>
 </button>
-<button class="pay-tab" id="tab-financiar" type="button">
+<button class="pay-tab pay-tab-finance" id="tab-financiar" type="button">
+<span class="pay-tab-new-chip">Nuevo</span>
 <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 <rect x="2" y="5" width="20" height="14" rx="2"></rect>
 <path d="M2 10h20"></path>
@@ -300,6 +324,27 @@
 <div class="finance-metric">
 <div class="finance-metric-label">Aprobación</div>
 <div class="finance-metric-value">~2 min</div>
+</div>
+</div>
+</button>
+
+<button class="credit-card-option" data-entidad="ALIADO_2" type="button">
+<span class="credit-card-check">✓</span>
+<div class="credit-card-top">
+<div class="credit-card-entity">Aliado 2</div>
+</div>
+<div class="finance-metrics">
+<div class="finance-metric">
+<div class="finance-metric-label">Tasa mensual</div>
+<div class="finance-metric-value">1.9%</div>
+</div>
+<div class="finance-metric">
+<div class="finance-metric-label">Plazo</div>
+<div class="finance-metric-value">Hasta 30</div>
+</div>
+<div class="finance-metric">
+<div class="finance-metric-label">Aprobación</div>
+<div class="finance-metric-value">~3 min</div>
 </div>
 </div>
 </button>

@@ -67,7 +67,8 @@
 
     .state-b-frame {
       width: 100%;
-      height: 1px;
+      height: auto;
+      min-height: 1px;
       border: 0;
       display: block;
       background: #fff;
@@ -136,10 +137,10 @@
 <h2 class="font-bold text-base">Tus datos</h2>
 </div>
 <div class="pl-7 space-y-1 text-gray-600">
-<div class="flex items-center gap-1 font-semibold">Sofi* Gome* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
-<p>CC: 2528****</p>
-<p class="font-bold">sofiagomezgrisales@gmail.com</p>
-<p>+57 315***5385</p>
+<div class="flex items-center gap-1 font-semibold">Pabl* Pere* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
+<p>CC: 1234****</p>
+<p class="font-bold">pablo@mail.com</p>
+<p>+57 12***678</p>
 </div>
 <div class="pl-7 mt-3">
 <button class="text-alkosto-orange flex items-center gap-1 text-sm font-semibold">
@@ -159,8 +160,8 @@
 <h2 class="font-bold text-base">Dirección de envío</h2>
 </div>
 <div class="pl-7 space-y-1 text-gray-600">
-<div class="flex items-center gap-1 font-semibold">Sofi* Gome* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
-<p>KR 87 # *****5 AP 309</p>
+<div class="flex items-center gap-1 font-semibold">Pabl* Pere* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
+<p>KR 100 # *****5 AP 102</p>
 <p>Cali, Valle Del Cauca</p>
 </div>
 </section>
@@ -173,7 +174,7 @@
 <h2 class="font-bold text-base">Datos de facturación</h2>
 </div>
 <div class="pl-7 space-y-1 text-gray-600">
-<div class="flex items-center gap-1 font-semibold">Sofi* Gome* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
+<div class="flex items-center gap-1 font-semibold">Pabl* Pere* <span class="bg-alkosto-blue rounded-full w-4 h-4 text-white text-[10px] flex items-center justify-center">?</span></div>
 <p>CC ******3528</p>
 </div>
 <div class="pl-7 mt-4">
@@ -197,7 +198,7 @@
 <div class="pl-7 space-y-4">
 <div class="flex gap-3">
 <svg class="w-5 h-5 text-alkosto-orange shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<p class="text-gray-500">KR 87 # *****5 AP 309 - Cali, Valle Del Cauca.</p>
+<p class="text-gray-500">KR 100 # *****5 AP 102 - Cali, Valle Del Cauca.</p>
 </div>
 <div class="flex gap-3">
 <svg class="w-5 h-5 text-alkosto-orange shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -332,15 +333,22 @@
     var stateB = document.getElementById('stateB-payment-detail');
     var stateBFrame = document.getElementById('stateBFrame');
 
+    function setStateBHeight(height) {
+      if (!stateBFrame) return;
+      var nextHeight = Math.max(1, Math.ceil(height));
+      stateBFrame.style.height = nextHeight + 'px';
+    }
+
     function resizeStateBFrame() {
       if (!stateBFrame) return;
       try {
+        stateBFrame.style.height = '1px';
         var doc = stateBFrame.contentDocument || (stateBFrame.contentWindow && stateBFrame.contentWindow.document);
         if (!doc) return;
         var bodyH = doc.body ? doc.body.scrollHeight : 0;
         var docH = doc.documentElement ? doc.documentElement.scrollHeight : 0;
         var height = Math.max(bodyH, docH, 1);
-        stateBFrame.style.height = height + 'px';
+        setStateBHeight(height);
       } catch (e) {
         /* noop */
       }
@@ -350,11 +358,13 @@
       stateA.classList.add('hidden');
       stateB.classList.remove('hidden');
       requestAnimationFrame(resizeStateBFrame);
+      setTimeout(resizeStateBFrame, 120);
     }
 
     function showStateA() {
       stateB.classList.add('hidden');
       stateA.classList.remove('hidden');
+      if (stateBFrame) stateBFrame.style.height = '1px';
     }
 
     if (openStateB) {
@@ -371,7 +381,7 @@
         showStateA();
       } else if (event && event.data && event.data.type === 'ALKOSTO_STATE_B_HEIGHT') {
         if (stateBFrame && typeof event.data.height === 'number' && event.data.height > 0) {
-          stateBFrame.style.height = event.data.height + 'px';
+          setStateBHeight(event.data.height);
         }
       } else if (event && event.data && event.data.type === 'ALKOSTO_GO_REDIRECT') {
         if (window.parent && window.parent !== window) {

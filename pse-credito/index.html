@@ -910,47 +910,6 @@ body{
   stroke-dasharray:276.46; stroke-dashoffset:276.46;
 }
 
-/* ── User type toggle on intro screen ── */
-.user-toggle-wrap {
-  width:100%; margin-bottom:16px;
-}
-.user-toggle-label {
-  font-size:9px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-  color:rgba(255,255,255,.3); margin-bottom:10px; display:block;
-}
-.user-toggle-track {
-  display:flex; gap:0;
-  background:rgba(0,0,0,.35); border-radius:12px; padding:4px;
-  border:1px solid rgba(255,255,255,.08);
-}
-.user-toggle-opt {
-  flex:1; padding:10px 8px; border-radius:9px; cursor:pointer;
-  display:flex; flex-direction:column; align-items:center; gap:3px;
-  transition:all .2s ease; border:none; background:transparent;
-  font-family:inherit;
-}
-.user-toggle-opt.active {
-  background:rgba(255,255,255,.1); box-shadow:0 1px 4px rgba(0,0,0,.3);
-}
-.user-toggle-icon { font-size:18px; }
-.user-toggle-title {
-  font-size:11px; font-weight:600; color:rgba(255,255,255,.75); line-height:1.2;
-}
-.user-toggle-sub {
-  font-size:9px; color:rgba(255,255,255,.3); line-height:1.2;
-}
-.user-toggle-opt.active .user-toggle-title { color:rgba(255,255,255,.95); }
-.user-toggle-opt.active .user-toggle-sub { color:rgba(255,255,255,.5); }
-/* Registered badge on persona card */
-.persona-badge {
-  display:inline-flex; align-items:center; gap:4px;
-  font-size:9px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
-  padding:3px 8px; border-radius:20px; margin-bottom:10px;
-}
-.persona-badge.reg { background:rgba(52,201,138,.15); color:rgba(52,201,138,.85); border:1px solid rgba(52,201,138,.2); }
-.persona-badge.unreg { background:rgba(255,255,255,.06); color:rgba(255,255,255,.3); border:1px solid rgba(255,255,255,.08); }
-
-
 /* ── Floating datos card (outside phone frame) ── */
 .datos-float {
   display:none;
@@ -1067,49 +1026,14 @@ body{
           <div class="s0-bg">
             <div class="s0-eyebrow">Escenario de prueba</div>
 
-            <!-- TOGGLE TIPO DE USUARIO — solo para el moderador -->
-            <div class="user-toggle-wrap">
-              <span class="user-toggle-label">⚙️ Moderador — tipo de usuario</span>
-              <div class="user-toggle-track">
-                <button class="user-toggle-opt active" id="toggleReg" onclick="setUserType('registered')">
-                  <span class="user-toggle-icon">✅</span>
-                  <span class="user-toggle-title">Registrado</span>
-                  <span class="user-toggle-sub">Campos pre-llenados</span>
-                </button>
-                <button class="user-toggle-opt" id="toggleUnreg" onclick="setUserType('unregistered')">
-                  <span class="user-toggle-icon">🆕</span>
-                  <span class="user-toggle-title">No registrado</span>
-                  <span class="user-toggle-sub">Campos vacíos</span>
-                </button>
-              </div>
-            </div>
-
             <!-- Escenario -->
             <div class="s0-card">
               <span class="s0-icon">🛒</span>
               <div class="s0-kicker">Situación</div>
               <div class="s0-text">
-                Imagina que hoy vence tu factura de energía por $240.000 y actualmente no cuentas con el dinero disponible para pagarla.
+                Has encontrado por fin los audífonos que tanto necesitas. Tienen un precio de $240.000, pero justo ahora no cuentas con el dinero suficiente para comprarlos de contado.
               </div>
               <div class="s0-goal">🎯 Necesitas encontrar una alternativa para evitar la suspensión del servicio.</div>
-            </div>
-
-            <!-- Tarjeta de datos — solo visible en modo registrado -->
-            <div id="personaCard" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:left;">
-              <span class="persona-badge reg">👤 Usuario registrado · datos pre-cargados</span>
-              <div style="display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:12px;">
-                <span style="color:rgba(255,255,255,.3);">Nombre</span><span style="color:rgba(255,255,255,.75);font-weight:500;">Pablo Perez</span>
-                <span style="color:rgba(255,255,255,.3);">Cédula</span><span style="color:rgba(255,255,255,.75);font-family:'DM Mono',monospace;">12345678</span>
-                <span style="color:rgba(255,255,255,.3);">Celular</span><span style="color:rgba(255,255,255,.75);font-family:'DM Mono',monospace;">12345678</span>
-                <span style="color:rgba(255,255,255,.3);">Correo</span><span style="color:rgba(255,255,255,.75);">pablo@email.com</span>
-                <span style="color:rgba(255,255,255,.3);">Ciudad</span><span style="color:rgba(255,255,255,.75);">Cali, Valle del Cauca</span>
-              </div>
-            </div>
-
-            <!-- Indicador modo no registrado -->
-            <div id="unregCard" style="display:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 16px;margin-bottom:16px;text-align:left;">
-              <span class="persona-badge unreg">🆕 Usuario nuevo · sin datos previos</span>
-              <p style="font-size:12px;color:rgba(255,255,255,.3);line-height:1.5;margin-top:4px;">El participante deberá llenar todos los campos del formulario manualmente.</p>
             </div>
 
             <p class="s0-hint">Navega como lo harías normalmente.<br>No hay respuestas correctas o incorrectas.</p>
@@ -1210,7 +1134,7 @@ body{
                 <div class="pl-contact-row">💬 <span>Contáctanos: pse.com.co/persona-centro-de-ayuda</span></div>
               </div>
             </div>
-            <div class="pl-tap" onclick="goToAllyForm()">Toca para continuar →</div>
+            <div class="pl-tap" onclick="goToAllyForm()"></div>
           </div>
         </div>
 
@@ -1239,11 +1163,11 @@ body{
             <div class="f-row">
               <div class="f-g">
                 <label class="f-lbl">Fecha de nacimiento *</label>
-                <input class="f-inp" type="text" placeholder="DD/MM/AAAA">
+                <input class="f-inp" type="date">
               </div>
               <div class="f-g">
                 <label class="f-lbl">Fecha de expedición *</label>
-                <input class="f-inp" type="text" placeholder="DD/MM/AAAA">
+                <input class="f-inp" type="date">
               </div>
             </div>
             <div class="f-row">
@@ -1409,7 +1333,7 @@ body{
               </div>
 
               <!-- Título -->
-              <div class="pse-sum-title">Pago realizado por [Aliado]</div>
+              <div class="pse-sum-title">Tu compra fue financiada por [Aliado]</div>
 
               <!-- Monto -->
               <div class="pse-sum-amount">$240.000</div>
@@ -1432,7 +1356,7 @@ body{
                 </div>
                 <div class="pse-sum-row">
                   <span class="pse-sum-key">Método</span>
-                  <span class="pse-sum-val">Crédito con [Aliado]</span>
+                  <span class="pse-sum-val">Crédito [Aliado] · procesado vía PSE</span>
                 </div>
                 <div class="pse-sum-row">
                   <span class="pse-sum-key">Valor inicial</span>
@@ -1449,7 +1373,7 @@ body{
 
               <!-- Transacción procesada por -->
               <div class="pse-sum-procesado">
-                <span class="pse-sum-procesado-lbl">Transacción procesada por:</span>
+                <span class="pse-sum-procesado-lbl">Financiado por [Aliado] · Canal de pago: PSE</span>
                 <div class="pse-sum-logos">
                   <div class="alliance-aliado-circle">[Ali]</div>
                 </div>
@@ -1777,7 +1701,6 @@ function go(n) {
     else { el.className = 'scr'; }
   }
   if (cur === 3) startPreloaderAnim(); else resetPreloaderAnim();
-  if (cur === 4) applyUserType();
   updateDatosFloat();
   if (cur === 6) startOtpTimer(); else stopOtpTimer();
   if (cur === 8) {
@@ -2158,83 +2081,6 @@ function resetPreloaderAnim() {
   if (preloaderTimer) { clearTimeout(preloaderTimer); preloaderTimer = null; }
 }
 
-/* ── USER TYPE TOGGLE ── */
-var userType = 'registered'; // default
-
-var PERSONA = {
-  nombre1:   'Pablo',
-  nombre2:   '',
-  apellido1: 'Perez',
-  apellido2: '',
-  doctype:   'CC',
-  docnum:    '12345678',
-  celular:   '12345678',
-  email:     'pablo@email.com',
-  genero:    'Masculino',
-  estado:    'Soltero/a',
-  ciudad:    'Cali',
-  dpto:      'Valle del Cauca',
-};
-
-function setUserType(type) {
-  userType = type;
-  // Toggle button states
-  document.getElementById('toggleReg').classList.toggle('active', type === 'registered');
-  document.getElementById('toggleUnreg').classList.toggle('active', type === 'unregistered');
-  // Show/hide cards
-  document.getElementById('personaCard').style.display = type === 'registered' ? 'block' : 'none';
-  document.getElementById('unregCard').style.display = type === 'unregistered' ? 'block' : 'none';
-}
-
-function applyUserType() {
-  var reg = userType === 'registered';
-  // Helper: set value or clear + show placeholder
-  function setField(id, val, placeholder) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    if (reg && val) {
-      el.value = val;
-      el.classList.add('pre-hi');
-    } else {
-      el.value = '';
-      if (placeholder) el.setAttribute('placeholder', placeholder);
-      el.classList.remove('pre-hi');
-    }
-  }
-  function setSelect(id, val) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    if (reg && val) {
-      for (var i = 0; i < el.options.length; i++) {
-        if (el.options[i].text === val) { el.selectedIndex = i; break; }
-      }
-    } else {
-      el.selectedIndex = 0;
-    }
-  }
-  // Screen 3 — datos personales
-  setField('f-doctype',   reg ? PERSONA.doctype   : '', 'CC');
-  setField('f-docnum',    reg ? PERSONA.docnum    : '', 'Número de documento');
-  setField('f-nombre1',   reg ? PERSONA.nombre1   : '', 'Primer nombre');
-  setField('f-nombre2',   reg ? PERSONA.nombre2   : '', 'Segundo apellido');
-  setField('f-apellido1', reg ? PERSONA.apellido1 : '', 'Primer apellido');
-  setField('f-apellido2', reg ? PERSONA.apellido2 : '', 'Segundo nombre');
-  // Screen 4 — datos de contacto
-  setField('f-celular', reg ? PERSONA.celular : '', 'Número de celular');
-  setField('f-email',   reg ? PERSONA.email   : '', 'correo@email.com');
-  // Género debe iniciar en "Seleccionar" para ambos tipos de usuario.
-  setSelect('f-genero', '');
-  // Estado civil también debe iniciar en "Seleccionar".
-  setSelect('f-estado', '');
-  // Visual feedback: add pre-hi class when registered
-  ['f-doctype','f-docnum','f-nombre1','f-apellido1','f-celular','f-email'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle('pre-hi', reg && el.value !== '');
-  });
-  updateDatosFloat();
-}
-
 /* ── DATOS FLOATING CARD ── */
 var datosFloatCollapsed = false;
 
@@ -2248,7 +2094,7 @@ function toggleDatosFloat() {
 function updateDatosFloat() {
   var card = document.getElementById('datosFloat');
   if (!card) return;
-  var show = userType === 'unregistered' && (cur === 4 || cur === 5);
+  var show = false;
   card.classList.toggle('visible', show);
   // Reset collapsed state each time it appears
   if (show) {
